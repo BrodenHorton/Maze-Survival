@@ -1,0 +1,12 @@
+name: MazeSurvival
+main: me.brody.mazesurvival.Main
+version: 1.0
+description: Maze Survival Plugin
+api-version: 1.14
+softdepend:
+   - WorldEdit
+
+commands:
+  ms:
+    description: Use /ms help to view all available commands.
+    aliases: [MS]
