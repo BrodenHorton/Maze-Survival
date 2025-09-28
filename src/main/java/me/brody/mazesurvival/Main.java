@@ -46,8 +46,8 @@ public class Main extends JavaPlugin {
 		ItemGrade.register();
 		CustomItem.register();
 		CustomMob.register();
-		MazeGridBase.register();
 		CustomRecipes.register();
+		MazeGridBase.register();
 		mazeManager = new MazeManager(this);
 		profileManager = new ProfileManager(this);
 		dayNightCycle = new DayNightCycle(this, mazeManager);

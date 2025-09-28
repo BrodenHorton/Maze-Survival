@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CustomShapedRecipe {
+public class CustomShapedRecipe implements CustomRecipe {
+    private static final char BLANK_SLOT = ' ';
+
     private List<String> recipe;
     private Map<Character, ItemStack> ingredientByChar;
     private ItemStack result;
@@ -75,17 +77,31 @@ public class CustomShapedRecipe {
             if(recipeLine.length() > recipeWidth)
                 recipeWidth = recipeLine.length();
         }
-        // TODO: Check crafting inventory for matching recipe
-        for(int i = 0; i <= rowLength - recipeHeight; i++) {
-            for(int j = 0; j <= rowLength - recipeWidth; j++) {
-                if(item.isSimilar(matrix[i * rowLength + j]) && item.isSimilar(matrix[i * rowLength + j + 1])
-                        && item.isSimilar(matrix[(i + 1) * rowLength + j]) && item.isSimilar(matrix[(i + 1) * rowLength + j + 1])) {
+        for(int i = 0; i < rowLength - recipeHeight + 1; i++) {
+            for(int j = 0; j < rowLength - recipeWidth + 1; j++) {
+                if(isMatchingRecipeAtIndex(matrix, i, j))
                     return true;
-                }
             }
         }
 
         return false;
+    }
+
+    private boolean isMatchingRecipeAtIndex(ItemStack[] matrix, int row, int column) {
+        int rowLength = (int)Math.sqrt(matrix.length);
+        for(int i = 0; i < recipe.size(); i++) {
+            for(int j = 0; j < recipe.get(i).length(); j++) {
+                int craftingSlotIndex = (row + i) * rowLength + (column + j);
+                if(recipe.get(i).charAt(j) == BLANK_SLOT && matrix[craftingSlotIndex] != null)
+                    return false;
+
+                ItemStack item = ingredientByChar.get(recipe.get(i).charAt(j));
+                if(!item.isSimilar(matrix[craftingSlotIndex]))
+                    return false;
+            }
+        }
+
+        return true;
     }
 
     public ItemStack getResult() {
