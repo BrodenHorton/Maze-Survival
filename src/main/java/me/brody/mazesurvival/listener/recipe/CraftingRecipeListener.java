@@ -1,6 +1,8 @@
 package me.brody.mazesurvival.listener.recipe;
 
 import me.brody.mazesurvival.Main;
+import me.brody.mazesurvival.item.recipe.CustomRecipe;
+import me.brody.mazesurvival.item.recipe.CustomRecipes;
 import me.brody.mazesurvival.item.recipe.CustomShapelessRecipe;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -20,6 +22,16 @@ public class CraftingRecipeListener implements Listener {
     }
 
     @EventHandler
+    public void customCraftingRecipe(PrepareItemCraftEvent e) {
+        CraftingInventory craftingInventory = e.getInventory();
+        ItemStack[] matrix = e.getInventory().getMatrix();
+        for(CustomRecipe recipe : CustomRecipes.getRecipes()) {
+            if(recipe.isMatchingRecipe(matrix))
+                craftingInventory.setResult(recipe.getResult());
+        }
+    }
+
+    /*@EventHandler
     public void customTwoByTwoCraftingRecipe(PrepareItemCraftEvent e) {
         CraftingInventory craftingInventory = e.getInventory();
         ItemStack[] matrix = e.getInventory().getMatrix();
@@ -37,7 +49,7 @@ public class CraftingRecipeListener implements Listener {
             if(recipe.isMatchingRecipe(matrix))
                 craftingInventory.setResult(recipe.getResult());
         }
-    }
+    }*/
 
     @EventHandler
     public void cancelInvalidCraftingItem(CraftItemEvent e) {

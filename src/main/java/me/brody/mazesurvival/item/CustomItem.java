@@ -220,7 +220,7 @@ public class CustomItem {
                 .withDisplayName(ChatColor.WHITE + "Orichalcum")
                 .build();
 
-        MITHRIL = new SimpleCustomItemBuilder(new ItemStack(Material.PRISMARINE_SHARD), "Mithril")
+        MITHRIL = new SimpleCustomItemBuilder(new ItemStack(Material.PRISMARINE_SHARD), "mithril")
                 .withDisplayName(ChatColor.WHITE + "Mithril")
                 .build();
 
@@ -398,8 +398,10 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(corruptedDiamondHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        List<String> amethystArmorLore = List.of(ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Glintstone Tempo",
-                ChatColor.GRAY + "Gain a speed boost when in the maze.");
+        List<String> amethystArmorLore = List.of(
+                ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Glintstone Tempo",
+                ChatColor.GRAY + "Gain a speed boost when in",
+                ChatColor.GRAY + "the maze.");
         Color amethystColor = Color.fromRGB(211, 111, 222);
         int amethystHealthBoost = 6;
         AMETHYST_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "amethyst_helmet")
@@ -430,7 +432,8 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(amethystHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        List<String> lapisArmorLore = List.of(ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Purification",
+        List<String> lapisArmorLore = List.of(
+                ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Purification",
                 ChatColor.GRAY + "Immune to poison and wither damage.");
         Color lapisColor = Color.fromRGB(41, 76, 255);
         int lapisHealthBoost = 12;
@@ -462,8 +465,10 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(lapisHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        List<String> mithrilArmorLore = List.of(ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Evasion",
-                ChatColor.GRAY + "Small chance of negating all damage when damaged.");
+        List<String> mithrilArmorLore = List.of(
+                ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Evasion",
+                ChatColor.GRAY + "Small chance of negating all damage",
+                ChatColor.GRAY + "whenever damaged.");
         Color mithrilColor = Color.fromRGB(158, 232, 216);
         int mithrilHealthBoost = 30;
         MITHRIL_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "mithril_helmet")
@@ -494,8 +499,10 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(mithrilHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        List<String> solariumArmorLore = List.of(ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Fireproof",
-                ChatColor.GRAY + "Negate all damage from fire, lava, and magma blocks.");
+        List<String> solariumArmorLore = List.of(
+                ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Fireproof",
+                ChatColor.GRAY + "Negate all damage from fire, lava,",
+                ChatColor.GRAY + "and magma blocks.");
         Color solariumColor = Color.fromRGB(240, 26, 76);
         int solariumHealthBoost = 40;
         SOLARIUM_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "solarium_helmet")
@@ -526,7 +533,8 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(solariumHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        List<String> adamantiteArmorLore = List.of(ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Indestructible",
+        List<String> adamantiteArmorLore = List.of(
+                ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Indestructible",
                 ChatColor.GRAY + "Armor takes no durability damage.");
         Color adamantiteColor = Color.fromRGB(43, 8, 64);
         int adamantiteHealthBoost = 54;
