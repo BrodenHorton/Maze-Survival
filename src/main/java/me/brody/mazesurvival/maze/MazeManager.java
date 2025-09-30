@@ -49,20 +49,15 @@ public class MazeManager {
 		MazeRegion swamp = new MazeRegion(MazeRegionBase.SWAMP, new Vector2Int(2, 2), swampHaven, swampBossRoom);
 		grid.addMazeRegion(swamp, new Vector2Int(-3, 1));
 
-		/*CellExtension netherHaven = new CellExtension(new Vector2Int(0, 0), Direction.NORTH, MazeSchematic.NETHER_HAVEN);
+		CellExtension netherHaven = new CellExtension(new Vector2Int(0, 0), Direction.NORTH, MazeSchematic.NETHER_HAVEN);
 		CellExtension netherBossRoom = new CellExtension(new Vector2Int(0, 0), Direction.WEST, MazeSchematic.NETHER_BOSS_ROOM);
 		MazeRegion nether = new MazeRegion(MazeRegionBase.NETHER, new Vector2Int(1, 2), netherHaven, netherBossRoom);
 		grid.addMazeRegion(nether, new Vector2Int(0, -2));
 
-		CellExtension bastionHaven = new CellExtension(new Vector2Int(0, 0), Direction.NORTH, MazeSchematic.BASTION_HAVEN);
-		CellExtension bastionBossRoom = new CellExtension(new Vector2Int(1, -1), Direction.EAST, MazeSchematic.BASTION_BOSS_ROOM);
-		MazeRegion bastion = new MazeRegion(MazeRegionBase.BASTION, new Vector2Int(2, 2), bastionHaven, bastionBossRoom);
-		grid.addMazeRegion(bastion, new Vector2Int(0, -4));
-
 		CellExtension deepDarkHaven = new CellExtension(new Vector2Int(1, 0), Direction.EAST, MazeSchematic.DEEP_DARK_HAVEN);
 		CellExtension deepDarkBossRoom = new CellExtension(new Vector2Int(0, -1), Direction.SOUTH, MazeSchematic.DEEP_DARK_BOSS_ROOM);
 		MazeRegion deepDark = new MazeRegion(MazeRegionBase.DEEP_DARK, new Vector2Int(2, 2), deepDarkHaven, deepDarkBossRoom);
-		grid.addMazeRegion(deepDark, new Vector2Int(-5, 0));*/
+		grid.addMazeRegion(deepDark, new Vector2Int(-5, 0));
 
 		grid.generateRegionMazes();
 

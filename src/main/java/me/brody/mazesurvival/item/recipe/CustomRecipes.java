@@ -116,16 +116,17 @@ public class CustomRecipes {
         registerTwoByTwoGradedRecipes(new ItemStack(Material.LEATHER));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.COBBLESTONE));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.DEEPSLATE));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_SAND));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.SOUL_SAND));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.FEATHER));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.CACTUS));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.BROWN_MUSHROOM));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_MUSHROOM));
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.APPLE));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.WHEAT));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.CARROT));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.POTATO));
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.CACTUS));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.BEETROOT));
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.BROWN_MUSHROOM));
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_MUSHROOM));
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_SAND));
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.SOUL_SAND));
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.FEATHER));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.STRING));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.SPIDER_EYE));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.HONEYCOMB));
@@ -315,11 +316,6 @@ public class CustomRecipes {
                 new ItemStack(Material.QUARTZ),
                 new ItemStack(Material.LAPIS_LAZULI)));
         registerShapelessRecipe(mithrilIngredients, CustomItem.MITHRIL.getItemStack());
-
-        List<ItemStack> orichalcumIngredients = new ArrayList<>(List.of(
-                new ItemStack(Material.EMERALD),
-                CustomItem.BRONZE_INGOT.getItemStack()));
-        registerShapelessRecipe(orichalcumIngredients, CustomItem.ORICHALCUM.getItemStack());
 
         ItemStack echoShardGoldGrade = new ItemStack(Material.ECHO_SHARD);
         ItemGradeUtils.setItemGrade(echoShardGoldGrade, ItemGrade.GOLD);

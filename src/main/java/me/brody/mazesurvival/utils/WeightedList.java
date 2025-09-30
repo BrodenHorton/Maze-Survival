@@ -17,6 +17,10 @@ public class WeightedList<T> {
         this.weightedEntries = new ArrayList<>(weightedEntries);
     }
 
+    public void add(T value, int weight) {
+        weightedEntries.add(new WeightedEntry<>(value, weight));
+    }
+
     public T getWeightedValue() {
         int totalWeight = 0;
         for (int i = 0; i < weightedEntries.size(); i++)
