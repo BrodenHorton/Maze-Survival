@@ -91,7 +91,7 @@ public class WanderingTraderManager implements Listener {
                 trader.setInvulnerable(true);
                 trader.setProfession(Villager.Profession.CARTOGRAPHER);
                 trader.getPersistentDataContainer().set(NamespacedKeys.WANDERING_TRADER, PersistentDataType.STRING, "haven");
-                trader.setRecipes(region.getTradeTable().getWeightedTrades().getWeightedValuesNoRepeat(4));
+                trader.setRecipes(region.getTradeTable().getWeightedValuesNoRepeat(4));
                 traderUuids.add(trader.getUniqueId());
             }
         }
