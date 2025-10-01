@@ -30,7 +30,7 @@ public class MobSpawnPool {
         this.weightedItems = new WeightedList<>(weightedItems);
     }
 
-    public static void initMobPools() {
+    public static void init() {
         List<WeightedEntry<CustomMob>> strongholdDayMobList = List.of(
                 new WeightedEntry<>(CustomMob.REVENANT, 50),
                 new WeightedEntry<>(CustomMob.ARACHNID, 40),

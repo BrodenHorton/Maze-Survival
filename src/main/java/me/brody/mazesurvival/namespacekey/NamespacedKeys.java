@@ -28,4 +28,11 @@ public class NamespacedKeys {
 
     // Brewing Menu keys
     public static final NamespacedKey BREWING_MENU_INGREDIENTS = new NamespacedKey(PLUGIN_NAMESPACE, "brewing-menu-ingredients");
+
+    // Generation
+    public static final NamespacedKey GENERATE_LOOT = new NamespacedKey(PLUGIN_NAMESPACE, "generate-loot");
+    public static final NamespacedKey BREAK_ON_CLOSE = new NamespacedKey(PLUGIN_NAMESPACE, "break-on-close");
+    public static final NamespacedKey BREAK_ON_OPEN = new NamespacedKey(PLUGIN_NAMESPACE, "break-on-open");
+    public static final NamespacedKey TRAP_CHEST = new NamespacedKey(PLUGIN_NAMESPACE, "trap-chest");
+
 }

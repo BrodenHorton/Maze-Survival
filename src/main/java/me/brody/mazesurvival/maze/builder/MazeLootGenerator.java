@@ -7,7 +7,9 @@ import me.brody.mazesurvival.maze.Direction;
 import me.brody.mazesurvival.maze.MazeCell;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import me.brody.mazesurvival.utils.Vector2Int;
+import me.brody.mazesurvival.utils.WeightedList;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -20,22 +22,21 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.*;
 
 public class MazeLootGenerator {
+    private static final Random RNG = new Random();
     private static final int GENERATION_BATCH_SIZE = 50;
     private static final long GENERATION_DELAY = 15L;
     private static final double CHEST_DENSITY = 0.45;
-    private static final double TRAP_CHEST_CHANCE = 0.8;
+    private static final double TRAP_CHEST_CHANCE = 0.15;
     private static final double POT_DENSITY = 0.03;
 
     public Event<EventArgs> onLootGenerationFinished;
 
     private final Main plugin;
-    private final Random RNG;
 
     private MazeGrid grid;
     private Queue<LootNode> lootNodes;
     private Map<Direction, BlockFace> chestFacingByWallDir;
-    private Map<String, Integer> trapChestWeights;
-
+    private WeightedList<String> trapChestWeights;
     private boolean isRunning;
 
     private class LootNode {
@@ -53,7 +54,6 @@ public class MazeLootGenerator {
     public MazeLootGenerator(Main plugin, MazeGrid grid) {
         onLootGenerationFinished = new Event<>();
         this.plugin = plugin;
-        RNG = new Random();
         this.grid = grid;
         lootNodes = new ArrayDeque<>();
         isRunning = false;
@@ -64,12 +64,11 @@ public class MazeLootGenerator {
         chestFacingByWallDir.put(Direction.SOUTH, BlockFace.NORTH);
         chestFacingByWallDir.put(Direction.WEST, BlockFace.EAST);
 
-        trapChestWeights = new HashMap<>();
-        trapChestWeights.put("splash-potion", 2);
-        trapChestWeights.put("tnt", 2);
-        trapChestWeights.put("ambush", 10);
-        trapChestWeights.put("teleportation", 1);
-
+        trapChestWeights = new WeightedList<>();
+        trapChestWeights.add("splash-potion", 2);
+        trapChestWeights.add("tnt", 2);
+        trapChestWeights.add("ambush", 10);
+        trapChestWeights.add("teleportation", 1);
     }
 
     public void start() {
@@ -114,23 +113,18 @@ public class MazeLootGenerator {
             if(lootNode.material == Material.CHEST && RNG.nextDouble(0, 1) <= TRAP_CHEST_CHANCE)
                 lootNode.material = Material.TRAPPED_CHEST;
             lootNode.location.getBlock().setType(lootNode.material);
-            // TODO Create class to hold static references to NamespacedKeys
             if((lootNode.location.getBlock().getType() == Material.CHEST || lootNode.location.getBlock().getType() == Material.DECORATED_POT) && lootNode.location.getBlock().getState() instanceof TileState tileState) {
-                NamespacedKey key = new NamespacedKey(plugin, "generate-loot");
-                tileState.getPersistentDataContainer().set(key, PersistentDataType.INTEGER, 1);
+                tileState.getPersistentDataContainer().set(NamespacedKeys.GENERATE_LOOT, PersistentDataType.INTEGER, 1);
                 if(lootNode.location.getBlock().getType() == Material.CHEST) {
-                    NamespacedKey breakKey = new NamespacedKey(plugin, "break-on-close");
-                    tileState.getPersistentDataContainer().set(breakKey, PersistentDataType.INTEGER, 1);
+                    tileState.getPersistentDataContainer().set(NamespacedKeys.BREAK_ON_CLOSE, PersistentDataType.INTEGER, 1);
                 }
                 tileState.update();
             }
             else if(lootNode.location.getBlock().getType() == Material.TRAPPED_CHEST && lootNode.location.getBlock().getState() instanceof TileState tileState) {
-                NamespacedKey key = new NamespacedKey(plugin, "trap-chest");
-                String trapType = getRandomTrapChestByWeight();
-                tileState.getPersistentDataContainer().set(key, PersistentDataType.STRING, trapType);
+                String trapType = trapChestWeights.getWeightedValue();
+                tileState.getPersistentDataContainer().set(NamespacedKeys.TRAP_CHEST, PersistentDataType.STRING, trapType);
                 if(trapType.equals("tnt") || trapType.equals("ambush")) {
-                    NamespacedKey breakKey = new NamespacedKey(plugin, "break-on-open");
-                    tileState.getPersistentDataContainer().set(breakKey, PersistentDataType.INTEGER, 1);
+                    tileState.getPersistentDataContainer().set(NamespacedKeys.BREAK_ON_OPEN, PersistentDataType.INTEGER, 1);
                 }
                 tileState.update();
             }
@@ -204,22 +198,4 @@ public class MazeLootGenerator {
         return dirs != null ? dirs.get(rand.nextInt(0, dirs.size())) : null;
     }
 
-    private String getRandomTrapChestByWeight() {
-        if(trapChestWeights == null || trapChestWeights.isEmpty())
-            return null;
-
-        int totalWeight = 0;
-        for(Map.Entry<String, Integer> entry : trapChestWeights.entrySet())
-            totalWeight += entry.getValue();
-
-        int weightValue = RNG.nextInt(0, totalWeight + 1);
-        for(Map.Entry<String, Integer> entry : trapChestWeights.entrySet()) {
-            if(weightValue <= entry.getValue())
-                return entry.getKey();
-
-            weightValue -= entry.getValue();
-        }
-
-        return null;
-    }
 }

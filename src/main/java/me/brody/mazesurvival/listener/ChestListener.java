@@ -2,7 +2,9 @@ package me.brody.mazesurvival.listener;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.loot.ChestFiller;
+import me.brody.mazesurvival.loot.LootTableEntry;
 import me.brody.mazesurvival.maze.region.MazeRegion;
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
@@ -20,6 +22,7 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChestListener implements Listener {
@@ -40,18 +43,17 @@ public class ChestListener implements Listener {
         Chest chest = (Chest)e.getInventory().getHolder();
         if(!(chest.getBlock().getState() instanceof TileState tileState))
             return;
-        NamespacedKey key = new NamespacedKey(plugin, "generate-loot");
-        if(!tileState.getPersistentDataContainer().has(key))
+        if(!tileState.getPersistentDataContainer().has(NamespacedKeys.GENERATE_LOOT))
             return;
         Player player = (Player)e.getPlayer();
         MazeRegion region = plugin.getMazeManager().getGrid().getRegionAt(player.getLocation());
         if(region == null)
             return;
 
-        tileState.getPersistentDataContainer().remove(key);
+        tileState.getPersistentDataContainer().remove(NamespacedKeys.GENERATE_LOOT);
         tileState.update(); // Update must be called on BlockState before adding items to the inventory for some reason
 
-        ChestFiller chestFiller = new ChestFiller(region.getLootTable(), 7, 4);
+        ChestFiller chestFiller = new ChestFiller(region.getLootTable(), 3, 5);
         chestFiller.generateInventoryLoot(e.getInventory());
     }
 
@@ -65,8 +67,7 @@ public class ChestListener implements Listener {
             return;
         if(!(chest.getBlock().getState() instanceof TileState tileState))
             return;
-        NamespacedKey key = new NamespacedKey(plugin, "break-on-close");
-        if(!tileState.getPersistentDataContainer().has(key))
+        if(!tileState.getPersistentDataContainer().has(NamespacedKeys.BREAK_ON_CLOSE))
             return;
         Player player = (Player)e.getPlayer();
         MazeRegion region = plugin.getMazeManager().getGrid().getRegionAt(player.getLocation());
@@ -101,8 +102,7 @@ public class ChestListener implements Listener {
             return;
         if(!(e.getBlock().getState() instanceof TileState tileState))
             return;
-        NamespacedKey key = new NamespacedKey(plugin, "generate-loot");
-        if(!tileState.getPersistentDataContainer().has(key))
+        if(!tileState.getPersistentDataContainer().has(NamespacedKeys.GENERATE_LOOT))
             return;
         MazeRegion region = plugin.getMazeManager().getGrid().getRegionAt(e.getBlock().getLocation());
         if(region == null)
@@ -110,7 +110,10 @@ public class ChestListener implements Listener {
 
         e.setCancelled(true);
         e.getBlock().setType(Material.AIR);
-        List<ItemStack> items = region.getLootTable().getWeightedItems().getWeightedValues(1, 3);
+        List<ItemStack> items = new ArrayList<>();
+        List<LootTableEntry> lootTableEntries = region.getLootTable().getWeightedValues(1, 2);
+        for(LootTableEntry entry : lootTableEntries)
+            items.add(entry.obtain());
         for(int i = 0; i < items.size(); i++)
             e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), items.get(i));
     }

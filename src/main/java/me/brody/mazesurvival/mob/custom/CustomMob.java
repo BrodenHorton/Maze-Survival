@@ -77,7 +77,7 @@ public abstract class CustomMob {
 
     protected CustomMob() {}
 
-    public static void initCustomMobs(Main plugin) {
+    public static void init(Main plugin) {
         REVENANT = new RevenantBuilder(plugin).withHelmet(new ItemStack(Material.LEATHER_HELMET)).build();
         ARISEN_REVENANT = new RevenantBuilder(plugin)
                 .withMaxHealth(40)

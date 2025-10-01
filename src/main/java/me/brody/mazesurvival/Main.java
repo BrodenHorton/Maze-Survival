@@ -13,6 +13,7 @@ import me.brody.mazesurvival.listener.enchantment.LingeringShotEnchantmentListen
 import me.brody.mazesurvival.listener.enchantment.SoulBoundEnchantmentListener;
 import me.brody.mazesurvival.listener.recipe.CraftingRecipeListener;
 import me.brody.mazesurvival.listener.setbonus.*;
+import me.brody.mazesurvival.loot.LootTable;
 import me.brody.mazesurvival.maze.grid.MazeGridBase;
 import me.brody.mazesurvival.maze.region.MazeRegionBase;
 import me.brody.mazesurvival.mob.MobSpawnPool;
@@ -39,9 +40,10 @@ public class Main extends JavaPlugin {
 		getConfig().options().copyDefaults();
 		saveDefaultConfig();
 
-		CustomMob.initCustomMobs(this);
-		MobSpawnPool.initMobPools();
-		MazeEnchantment.initEnchantments(this);
+		CustomMob.init(this);
+		MobSpawnPool.init();
+		MazeEnchantment.init(this);
+		LootTable.init(this);
 		MazeRegionBase.initMazeBases();
 		ItemGrade.register();
 		CustomItem.register();

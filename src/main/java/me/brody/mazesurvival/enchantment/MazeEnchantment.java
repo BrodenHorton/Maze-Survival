@@ -38,7 +38,7 @@ public abstract class MazeEnchantment {
         this.category = category;
     }
 
-    public static void initEnchantments(Main plugin) {
+    public static void init(Main plugin) {
         // Armor Enchantments
         PROTECTION = new SimpleEnchantment(plugin, Enchantment.PROTECTION, EnchantmentCategory.ARMOR);
         THORNS = new SimpleEnchantment(plugin, Enchantment.THORNS, EnchantmentCategory.ARMOR);

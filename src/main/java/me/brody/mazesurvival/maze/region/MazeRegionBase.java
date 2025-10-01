@@ -45,7 +45,7 @@ public class MazeRegionBase {
                 BlockPalette.DESERT_WALL,
                 BlockPalette.DESERT_FLOOR,
                 RegionDecoration.DESERT_DECORATIONS,
-                LootTable.STRONGHOLD_LOOT_TABLE,
+                LootTable.DESERT_LOOT_TABLE,
                 TradeTable.STRONGHOLD_TRADER,
                 MobSpawnPool.DESERT_DAY_MOBS,
                 MobSpawnPool.DESERT_NIGHT_MOBS);
@@ -53,7 +53,7 @@ public class MazeRegionBase {
                 BlockPalette.SWAMP_WALL,
                 BlockPalette.SWAMP_FLOOR,
                 RegionDecoration.SWAMP_DECORATIONS,
-                LootTable.STRONGHOLD_LOOT_TABLE,
+                LootTable.SWAMP_LOOT_TABLE,
                 TradeTable.STRONGHOLD_TRADER,
                 MobSpawnPool.SWAMP_DAY_MOBS,
                 MobSpawnPool.SWAMP_NIGHT_MOBS);
@@ -61,7 +61,7 @@ public class MazeRegionBase {
                 BlockPalette.NETHER_WALL,
                 BlockPalette.NETHER_FLOOR,
                 RegionDecoration.NETHER_DECORATIONS,
-                LootTable.STRONGHOLD_LOOT_TABLE,
+                LootTable.NETHER_LOOT_TABLE,
                 TradeTable.STRONGHOLD_TRADER,
                 MobSpawnPool.NETHER_DAY_MOBS,
                 MobSpawnPool.NETHER_NIGHT_MOBS);
@@ -77,7 +77,7 @@ public class MazeRegionBase {
                 BlockPalette.DEEP_DARK_WALL,
                 BlockPalette.DEEP_DARK_FLOOR,
                 RegionDecoration.DEEP_DARK_DECORATIONS,
-                LootTable.STRONGHOLD_LOOT_TABLE,
+                LootTable.DEEP_DARK_LOOT_TABLE,
                 TradeTable.STRONGHOLD_TRADER,
                 MobSpawnPool.DEEP_DARK_DAY_MOBS,
                 MobSpawnPool.DEEP_DARK_NIGHT_MOBS);
