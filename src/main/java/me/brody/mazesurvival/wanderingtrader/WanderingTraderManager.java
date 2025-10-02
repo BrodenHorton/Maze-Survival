@@ -17,9 +17,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.VillagerCareerChangeEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 public class WanderingTraderManager implements Listener {
     private static final Random RNG = new Random();
@@ -91,7 +93,9 @@ public class WanderingTraderManager implements Listener {
                 trader.setInvulnerable(true);
                 trader.setProfession(Villager.Profession.CARTOGRAPHER);
                 trader.getPersistentDataContainer().set(NamespacedKeys.WANDERING_TRADER, PersistentDataType.STRING, "haven");
-                trader.setRecipes(region.getTradeTable().getWeightedValuesNoRepeat(4));
+                List<Supplier<MerchantRecipe>> recipes = region.getTradeTable().getWeightedValuesNoRepeat(4);
+                for(int j = 0; j < recipes.size(); j++)
+                    trader.setRecipe(j, recipes.get(j).get());
                 traderUuids.add(trader.getUniqueId());
             }
         }

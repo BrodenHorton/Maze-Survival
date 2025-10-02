@@ -1,7 +1,7 @@
 package me.brody.mazesurvival.maze.region;
 
-import me.brody.mazesurvival.loot.LootTable;
-import me.brody.mazesurvival.loot.TradeTable;
+import me.brody.mazesurvival.loot.chest.LootTable;
+import me.brody.mazesurvival.loot.trade.TradeTable;
 import me.brody.mazesurvival.maze.BlockPalette;
 import me.brody.mazesurvival.maze.Direction;
 import me.brody.mazesurvival.maze.MazeCell;

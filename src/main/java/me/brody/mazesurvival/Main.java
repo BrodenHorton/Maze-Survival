@@ -13,7 +13,7 @@ import me.brody.mazesurvival.listener.enchantment.LingeringShotEnchantmentListen
 import me.brody.mazesurvival.listener.enchantment.SoulBoundEnchantmentListener;
 import me.brody.mazesurvival.listener.recipe.CraftingRecipeListener;
 import me.brody.mazesurvival.listener.setbonus.*;
-import me.brody.mazesurvival.loot.LootTable;
+import me.brody.mazesurvival.loot.chest.LootTable;
 import me.brody.mazesurvival.maze.grid.MazeGridBase;
 import me.brody.mazesurvival.maze.region.MazeRegionBase;
 import me.brody.mazesurvival.mob.MobSpawnPool;

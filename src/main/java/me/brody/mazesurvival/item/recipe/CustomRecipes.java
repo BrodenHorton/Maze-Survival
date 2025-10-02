@@ -160,138 +160,119 @@ public class CustomRecipes {
         registerTwoByTwoGradedRecipes(CustomItem.ADAMANTITE_INGOT.getItemStack());
 
         // Armor
-        ItemStack leatherGoldGrade = new ItemStack(Material.LEATHER);
-        ItemGradeUtils.setItemGrade(leatherGoldGrade, ItemGrade.GOLD);
+        ItemStack leatherGoldGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.LEATHER), ItemGrade.GOLD);
         registerHelmetRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_HELMET.getItemStack());
         registerChestplateRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_LEGGIGNS.getItemStack());
         registerBootsRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_BOOTS.getItemStack());
 
-        ItemStack bronzeIngotGoldGrade = CustomItem.BRONZE_INGOT.getItemStack();
-        ItemGradeUtils.setItemGrade(bronzeIngotGoldGrade, ItemGrade.GOLD);
+        ItemStack bronzeIngotGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.BRONZE_INGOT.getItemStack(), ItemGrade.GOLD);
         registerHelmetRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_HELMET.getItemStack());
         registerChestplateRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_LEGGINGS.getItemStack());
         registerBootsRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_BOOTS.getItemStack());
 
-        ItemStack miststeelIngotGoldGrade = CustomItem.MISTSTEEL_INGOT.getItemStack();
-        ItemGradeUtils.setItemGrade(miststeelIngotGoldGrade, ItemGrade.GOLD);
+        ItemStack miststeelIngotGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.GOLD);
         registerHelmetRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_HELMET.getItemStack());
         registerChestplateRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_LEGGINGS.getItemStack());
         registerBootsRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_BOOTS.getItemStack());
 
-        ItemStack sunGoldIngotGoldGrade = CustomItem.SUN_GOLD_INGOT.getItemStack();
-        ItemGradeUtils.setItemGrade(sunGoldIngotGoldGrade, ItemGrade.GOLD);
+        ItemStack sunGoldIngotGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.SUN_GOLD_INGOT.getItemStack(), ItemGrade.GOLD);
         registerHelmetRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_HELMET.getItemStack());
         registerChestplateRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_LEGGINGS.getItemStack());
         registerBootsRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_BOOTS.getItemStack());
 
-        ItemStack orichalcumGoldGrade = CustomItem.ORICHALCUM.getItemStack();
-        ItemGradeUtils.setItemGrade(orichalcumGoldGrade, ItemGrade.GOLD);
+        ItemStack orichalcumGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.ORICHALCUM.getItemStack(), ItemGrade.GOLD);
         registerHelmetRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_HELMET.getItemStack());
         registerChestplateRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_LEGGINGS.getItemStack());
         registerBootsRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_BOOTS.getItemStack());
 
-        ItemStack corruptedDiamondGoldGrade = CustomItem.CORRUPTED_DIAMOND.getItemStack();
-        ItemGradeUtils.setItemGrade(corruptedDiamondGoldGrade, ItemGrade.GOLD);
+        ItemStack corruptedDiamondGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.CORRUPTED_DIAMOND.getItemStack(), ItemGrade.GOLD);
         registerHelmetRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_HELMET.getItemStack());
         registerChestplateRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_LEGGINGS.getItemStack());
         registerBootsRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_BOOTS.getItemStack());
 
-        ItemStack amethystGoldGrade = new ItemStack(Material.AMETHYST_SHARD);
-        ItemGradeUtils.setItemGrade(amethystGoldGrade, ItemGrade.GOLD);
+        ItemStack amethystGoldGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.AMETHYST_SHARD), ItemGrade.GOLD);
         registerHelmetRecipe(amethystGoldGrade, CustomItem.AMETHYST_HELMET.getItemStack());
         registerChestplateRecipe(amethystGoldGrade, CustomItem.AMETHYST_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(amethystGoldGrade, CustomItem.AMETHYST_LEGGINGS.getItemStack());
         registerBootsRecipe(amethystGoldGrade, CustomItem.AMETHYST_BOOTS.getItemStack());
 
-        ItemStack lapisGoldGrade = new ItemStack(Material.LAPIS_LAZULI);
-        ItemGradeUtils.setItemGrade(lapisGoldGrade, ItemGrade.GOLD);
+        ItemStack lapisGoldGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.LAPIS_LAZULI), ItemGrade.GOLD);
         registerHelmetRecipe(lapisGoldGrade, CustomItem.LAPIS_HELMET.getItemStack());
         registerChestplateRecipe(lapisGoldGrade, CustomItem.LAPIS_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(lapisGoldGrade, CustomItem.LAPIS_LEGGINGS.getItemStack());
         registerBootsRecipe(lapisGoldGrade, CustomItem.LAPIS_BOOTS.getItemStack());
 
-        ItemStack mithrilGoldGrade = CustomItem.MITHRIL.getItemStack();
-        ItemGradeUtils.setItemGrade(mithrilGoldGrade, ItemGrade.GOLD);
+        ItemStack mithrilGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.MITHRIL.getItemStack(), ItemGrade.GOLD);
         registerHelmetRecipe(mithrilGoldGrade, CustomItem.MITHRIL_HELMET.getItemStack());
         registerChestplateRecipe(mithrilGoldGrade, CustomItem.MITHRIL_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(mithrilGoldGrade, CustomItem.MITHRIL_LEGGINGS.getItemStack());
         registerBootsRecipe(mithrilGoldGrade, CustomItem.MITHRIL_BOOTS.getItemStack());
 
-        ItemStack solariumGoldGrade = CustomItem.SOLARIUM.getItemStack();
-        ItemGradeUtils.setItemGrade(solariumGoldGrade, ItemGrade.GOLD);
+        ItemStack solariumGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.SOLARIUM.getItemStack(), ItemGrade.GOLD);
         registerHelmetRecipe(solariumGoldGrade, CustomItem.SOLARIUM_HELMET.getItemStack());
         registerChestplateRecipe(solariumGoldGrade, CustomItem.SOLARIUM_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(solariumGoldGrade, CustomItem.SOLARIUM_LEGGINGS.getItemStack());
         registerBootsRecipe(solariumGoldGrade, CustomItem.SOLARIUM_BOOTS.getItemStack());
 
-        ItemStack adamantiteGoldGrade = CustomItem.ADAMANTITE_INGOT.getItemStack();
-        ItemGradeUtils.setItemGrade(adamantiteGoldGrade, ItemGrade.GOLD);
+        ItemStack adamantiteGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.ADAMANTITE_INGOT.getItemStack(), ItemGrade.GOLD);
         registerHelmetRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_HELMET.getItemStack());
         registerChestplateRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_CHESTPLATE.getItemStack());
         registerLeggingsRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_LEGGINGS.getItemStack());
         registerBootsRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_BOOTS.getItemStack());
 
         // Tools
-        ItemStack logTitaniumGrade = CustomItem.LOG.getItemStack();
-        ItemGradeUtils.setItemGrade(logTitaniumGrade, ItemGrade.TITANIUM);
+        ItemStack logTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.TITANIUM);
         registerSwordRecipe(logTitaniumGrade, CustomItem.WOODEN_SHORT_SWORD.getItemStack());
         registerAxeRecipe(logTitaniumGrade, CustomItem.WOODEN_HATCHET.getItemStack());
         registerShovelRecipe(logTitaniumGrade, CustomItem.WOODEN_SPADE.getItemStack());
         registerHoeRecipe(logTitaniumGrade, CustomItem.WOODEN_SCYTHE.getItemStack());
         registerPickaxeRecipe(logTitaniumGrade, CustomItem.WORN_WOODEN_PICKAXE.getItemStack());
 
-        ItemStack cobblestoneTitaniumGrade = new ItemStack(Material.COBBLESTONE);
-        ItemGradeUtils.setItemGrade(cobblestoneTitaniumGrade, ItemGrade.TITANIUM);
+        ItemStack cobblestoneTitaniumGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.COBBLESTONE), ItemGrade.TITANIUM);
         registerSwordRecipe(cobblestoneTitaniumGrade, CustomItem.BASTARD_SWORD.getItemStack());
         registerAxeRecipe(cobblestoneTitaniumGrade, CustomItem.BATTLE_AXE.getItemStack());
         registerShovelRecipe(cobblestoneTitaniumGrade, CustomItem.MACE.getItemStack());
         registerPickaxeRecipe(cobblestoneTitaniumGrade, CustomItem.COBBLESTONE_PICKAXE.getItemStack());
 
-        ItemStack bronzeIngotTitaniumGrade = CustomItem.BRONZE_INGOT.getItemStack();
-        ItemGradeUtils.setItemGrade(bronzeIngotTitaniumGrade, ItemGrade.TITANIUM);
+        ItemStack bronzeIngotTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.BRONZE_INGOT.getItemStack(), ItemGrade.TITANIUM);
         registerSwordRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_SWORD.getItemStack());
         registerAxeRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_AXE.getItemStack());
         registerShovelRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_MACE.getItemStack());
         registerPickaxeRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_PICKAXE.getItemStack());
 
-        ItemStack miststeelIngotTitaniumGrade = CustomItem.MISTSTEEL_INGOT.getItemStack();
-        ItemGradeUtils.setItemGrade(miststeelIngotTitaniumGrade, ItemGrade.TITANIUM);
+        ItemStack miststeelIngotTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.TITANIUM);
         registerSwordRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_SWORD.getItemStack());
         registerAxeRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_AXE.getItemStack());
         registerShovelRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_MACE.getItemStack());
         registerHoeRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_SCYTHE.getItemStack());
         registerPickaxeRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_PICKAXE.getItemStack());
 
-        ItemStack sunGoldIngotTitaniumGrade = CustomItem.SUN_GOLD_INGOT.getItemStack();
-        ItemGradeUtils.setItemGrade(sunGoldIngotTitaniumGrade, ItemGrade.TITANIUM);
+        ItemStack sunGoldIngotTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.SUN_GOLD_INGOT.getItemStack(), ItemGrade.TITANIUM);
         registerSwordRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_SWORD.getItemStack());
         registerAxeRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_AXE.getItemStack());
         registerShovelRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_MACE.getItemStack());
         registerPickaxeRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_PICKAXE.getItemStack());
 
-        ItemStack orichalcumTitaniumGrade = CustomItem.ORICHALCUM.getItemStack();
-        ItemGradeUtils.setItemGrade(orichalcumTitaniumGrade, ItemGrade.TITANIUM);
+        ItemStack orichalcumTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.ORICHALCUM.getItemStack(), ItemGrade.TITANIUM);
         registerSwordRecipe(orichalcumTitaniumGrade, CustomItem.ORICHALCUM_SWORD.getItemStack());
         registerAxeRecipe(orichalcumTitaniumGrade, CustomItem.ORICHALCUM_AXE.getItemStack());
         registerShovelRecipe(orichalcumTitaniumGrade, CustomItem.ORICHALCUM_MACE.getItemStack());
         registerPickaxeRecipe(orichalcumTitaniumGrade, CustomItem.ORICHALCUM_PICKAXE.getItemStack());
 
-        ItemStack corruptedDiamondTitaniumGrade = CustomItem.CORRUPTED_DIAMOND.getItemStack();
-        ItemGradeUtils.setItemGrade(corruptedDiamondTitaniumGrade, ItemGrade.TITANIUM);
+        ItemStack corruptedDiamondTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.CORRUPTED_DIAMOND.getItemStack(), ItemGrade.TITANIUM);
         registerSwordRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_SWORD.getItemStack());
         registerAxeRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_AXE.getItemStack());
         registerShovelRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_MACE.getItemStack());
         registerHoeRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_SCYTHE.getItemStack());
         registerPickaxeRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_PICKAXE.getItemStack());
 
-        ItemStack adamantiteIngotTitaniumGrade = CustomItem.ADAMANTITE_INGOT.getItemStack();
-        ItemGradeUtils.setItemGrade(adamantiteIngotTitaniumGrade, ItemGrade.TITANIUM);
+        ItemStack adamantiteIngotTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.ADAMANTITE_INGOT.getItemStack(), ItemGrade.TITANIUM);
         registerSwordRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_EDGE.getItemStack());
         registerAxeRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_CLEAVER.getItemStack());
         registerShovelRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_GRAVEDIGGER.getItemStack());
@@ -301,11 +282,6 @@ public class CustomRecipes {
                 new ItemStack(Material.COPPER_INGOT),
                 CustomItem.TIN.getItemStack()));
         registerShapelessRecipe(bronzeIngotIngredients, CustomItem.BRONZE_INGOT.getItemStack());
-
-        List<ItemStack> miststeelIngotIngredients = new ArrayList<>(List.of(
-                new ItemStack(Material.IRON_INGOT),
-                new ItemStack(Material.LAPIS_LAZULI)));
-        registerShapelessRecipe(miststeelIngotIngredients, CustomItem.MISTSTEEL_INGOT.getItemStack());
 
         List<ItemStack> sunGoldIngotIngredients = new ArrayList<>(List.of(
                 CustomItem.SUN_GOLD_NUGGET.getItemStack(),
@@ -317,15 +293,13 @@ public class CustomRecipes {
                 new ItemStack(Material.LAPIS_LAZULI)));
         registerShapelessRecipe(mithrilIngredients, CustomItem.MITHRIL.getItemStack());
 
-        ItemStack echoShardGoldGrade = new ItemStack(Material.ECHO_SHARD);
-        ItemGradeUtils.setItemGrade(echoShardGoldGrade, ItemGrade.GOLD);
+        ItemStack echoShardGoldGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.ECHO_SHARD), ItemGrade.GOLD);
         List<ItemStack> corruptedDiamondIngredients = new ArrayList<>(List.of(
                 new ItemStack(Material.DIAMOND),
                 echoShardGoldGrade));
         registerShapelessRecipe(corruptedDiamondIngredients, CustomItem.CORRUPTED_DIAMOND.getItemStack());
 
-        ItemStack logIronGrade = CustomItem.LOG.getItemStack();
-        ItemGradeUtils.setItemGrade(logIronGrade, ItemGrade.IRON);
+        ItemStack logIronGrade = ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON);
         String logRecipeUuid = UUID.randomUUID().toString();
         ShapedRecipe logIronGradeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + logRecipeUuid), logIronGrade);
         logIronGradeRecipe.shape("LL", "LL");
@@ -360,12 +334,9 @@ public class CustomRecipes {
     }
 
     private static void registerTwoByTwoGradedRecipes(ItemStack item) {
-        ItemStack itemIronGrade = item.clone();
-        ItemGradeUtils.setItemGrade(itemIronGrade, ItemGrade.IRON);
-        ItemStack itemGoldGrade = item.clone();
-        ItemGradeUtils.setItemGrade(itemGoldGrade, ItemGrade.GOLD);
-        ItemStack itemTitaniumGrade = item.clone();
-        ItemGradeUtils.setItemGrade(itemTitaniumGrade, ItemGrade.TITANIUM);
+        ItemStack itemIronGrade = ItemGradeUtils.createGradedItem(item.clone(), ItemGrade.IRON);
+        ItemStack itemGoldGrade = ItemGradeUtils.createGradedItem(item.clone(), ItemGrade.GOLD);
+        ItemStack itemTitaniumGrade = ItemGradeUtils.createGradedItem(item.clone(), ItemGrade.TITANIUM);
 
         CustomShapedRecipe ironGradeRecipe = new CustomShapedRecipe("LL", "LL", itemIronGrade);
         ironGradeRecipe.addIngredient('L', item);

@@ -1,4 +1,4 @@
-package me.brody.mazesurvival.loot;
+package me.brody.mazesurvival.loot.chest;
 
 import me.brody.mazesurvival.enchantment.MazeEnchantment;
 import me.brody.mazesurvival.item.CustomItem;
@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.function.Supplier;
 
-public class EnchantedScriptLootTableEntry implements LootTableEntry {
+public class EnchantedScriptLootTableEntry implements Supplier<ItemStack> {
     private static final Random RNG = new Random();
 
     private Map<MazeEnchantment, Integer> enchantments;
@@ -21,7 +22,7 @@ public class EnchantedScriptLootTableEntry implements LootTableEntry {
     }
 
     @Override
-    public ItemStack obtain() {
+    public ItemStack get() {
         ItemStack itemStack = isDoubleEnchant ? CustomItem.SCRIPTING_TOME.getItemStack() : CustomItem.SCRIPTING_PAPER.getItemStack();
         int enchantCount = isDoubleEnchant ? 2 : 1;
         List<Map.Entry<MazeEnchantment, Integer>> enchantmentList = new ArrayList<>(enchantments.entrySet());

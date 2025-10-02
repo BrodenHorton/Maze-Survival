@@ -13,6 +13,14 @@ import java.util.List;
 
 public class ItemGradeUtils {
 
+    public static ItemStack createGradedItem(ItemStack itemStack, ItemGrade grade) {
+        if(itemStack == null)
+            return null;
+
+        setItemGrade(itemStack, grade);
+        return itemStack;
+    }
+
     public static void setItemGrade(ItemStack item, ItemGrade grade) {
         if(grade == null)
             return;

@@ -1,4 +1,4 @@
-package me.brody.mazesurvival.loot;
+package me.brody.mazesurvival.loot.chest;
 
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;

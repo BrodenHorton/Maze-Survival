@@ -1,12 +1,11 @@
 package me.brody.mazesurvival.listener;
 
 import me.brody.mazesurvival.Main;
-import me.brody.mazesurvival.loot.ChestFiller;
+import me.brody.mazesurvival.loot.chest.ChestFiller;
 import me.brody.mazesurvival.loot.LootTableEntry;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Chest;

@@ -1,8 +1,10 @@
-package me.brody.mazesurvival.loot;
+package me.brody.mazesurvival.loot.chest;
 
 import org.bukkit.inventory.ItemStack;
 
-public class SimpleLootTableEntry implements LootTableEntry {
+import java.util.function.Supplier;
+
+public class SimpleLootTableEntry implements Supplier<ItemStack> {
     private ItemStack itemStack;
 
     public SimpleLootTableEntry(ItemStack itemStack) {
@@ -10,7 +12,7 @@ public class SimpleLootTableEntry implements LootTableEntry {
     }
 
     @Override
-    public ItemStack obtain() {
+    public ItemStack get() {
         return itemStack;
     }
 }

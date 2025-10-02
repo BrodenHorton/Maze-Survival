@@ -1,10 +1,9 @@
 package me.brody.mazesurvival.maze.region;
 
-import me.brody.mazesurvival.loot.LootTable;
-import me.brody.mazesurvival.loot.TradeTable;
+import me.brody.mazesurvival.loot.chest.LootTable;
+import me.brody.mazesurvival.loot.trade.TradeTable;
 import me.brody.mazesurvival.maze.BlockPalette;
 import me.brody.mazesurvival.mob.MobSpawnPool;
-import me.brody.mazesurvival.registry.Registry;
 
 public class MazeRegionBase {
     public static MazeRegionBase STRONGHOLD;
@@ -38,7 +37,7 @@ public class MazeRegionBase {
                 BlockPalette.STRONGHOLD_FLOOR,
                 RegionDecoration.STRONGHOLD_DECORATIONS,
                 LootTable.STRONGHOLD_LOOT_TABLE,
-                TradeTable.STRONGHOLD_TRADER,
+                TradeTable.STRONGHOLD_TRADE_TABLE,
                 MobSpawnPool.STRONGHOLD_DAY_MOBS,
                 MobSpawnPool.STRONGHOLD_NIGHT_MOBS);
         DESERT = new MazeRegionBase(
@@ -46,7 +45,7 @@ public class MazeRegionBase {
                 BlockPalette.DESERT_FLOOR,
                 RegionDecoration.DESERT_DECORATIONS,
                 LootTable.DESERT_LOOT_TABLE,
-                TradeTable.STRONGHOLD_TRADER,
+                TradeTable.DESERT_TRADE_TABLE,
                 MobSpawnPool.DESERT_DAY_MOBS,
                 MobSpawnPool.DESERT_NIGHT_MOBS);
         SWAMP = new MazeRegionBase(
@@ -54,7 +53,7 @@ public class MazeRegionBase {
                 BlockPalette.SWAMP_FLOOR,
                 RegionDecoration.SWAMP_DECORATIONS,
                 LootTable.SWAMP_LOOT_TABLE,
-                TradeTable.STRONGHOLD_TRADER,
+                TradeTable.SWAMP_TRADE_TABLE,
                 MobSpawnPool.SWAMP_DAY_MOBS,
                 MobSpawnPool.SWAMP_NIGHT_MOBS);
         NETHER = new MazeRegionBase(
@@ -62,7 +61,7 @@ public class MazeRegionBase {
                 BlockPalette.NETHER_FLOOR,
                 RegionDecoration.NETHER_DECORATIONS,
                 LootTable.NETHER_LOOT_TABLE,
-                TradeTable.STRONGHOLD_TRADER,
+                TradeTable.NETHER_TRADE_TABLE,
                 MobSpawnPool.NETHER_DAY_MOBS,
                 MobSpawnPool.NETHER_NIGHT_MOBS);
         BASTION = new MazeRegionBase(
@@ -70,7 +69,7 @@ public class MazeRegionBase {
                 BlockPalette.BASTION_FLOOR,
                 RegionDecoration.BASTION_DECORATIONS,
                 LootTable.STRONGHOLD_LOOT_TABLE,
-                TradeTable.STRONGHOLD_TRADER,
+                TradeTable.STRONGHOLD_TRADE_TABLE,
                 MobSpawnPool.BASTION_DAY_MOBS,
                 MobSpawnPool.BASTION_NIGHT_MOBS);
         DEEP_DARK = new MazeRegionBase(
@@ -78,7 +77,7 @@ public class MazeRegionBase {
                 BlockPalette.DEEP_DARK_FLOOR,
                 RegionDecoration.DEEP_DARK_DECORATIONS,
                 LootTable.DEEP_DARK_LOOT_TABLE,
-                TradeTable.STRONGHOLD_TRADER,
+                TradeTable.DEEP_DARK_TRADE_TABLE,
                 MobSpawnPool.DEEP_DARK_DAY_MOBS,
                 MobSpawnPool.DEEP_DARK_NIGHT_MOBS);
     }
