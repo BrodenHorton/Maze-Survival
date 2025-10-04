@@ -1231,6 +1231,14 @@ public class CustomItem {
         return itemStack.clone();
     }
 
+    public ItemStack getItemStack(int amount) {
+        ItemStack clone = itemStack.clone();
+        if(amount > 0)
+            clone.setAmount(amount);
+
+        return clone;
+    }
+
     public String getItemName() {
         return itemName;
     }

@@ -124,6 +124,7 @@ public class CustomRecipes {
         registerTwoByTwoGradedRecipes(new ItemStack(Material.BEETROOT));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.BROWN_MUSHROOM));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_MUSHROOM));
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.PORKCHOP));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_SAND));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.SOUL_SAND));
         registerTwoByTwoGradedRecipes(new ItemStack(Material.FEATHER));
