@@ -42,13 +42,12 @@ public class WanderingTraderManager implements Listener {
     }
 
     private void updateDayWanderingTraders(Object sender, EventArgs e) {
-        plugin.getLogger().info("Day-time Summoning Wandering Traders into the maze.");
         despawnWanderingTraders();
         havenTraderAmountByRegionId.clear();
         MazeGrid grid = plugin.getMazeManager().getGrid();
         for(int i = 0; i < grid.getRegions().size(); i++) {
             MazeRegion region = grid.getRegions().get(i);
-            int traderCount = (int)Math.floor(Math.sqrt(region.getRegionDimensions().x * region.getRegionDimensions().y));
+            int traderCount = (int)Math.floor(Math.sqrt(region.getRegionDimensions().x * region.getRegionDimensions().y)) + 1;
             for(int j = 0; j < traderCount; j++) {
                 int row, column;
                 int count = 0;
