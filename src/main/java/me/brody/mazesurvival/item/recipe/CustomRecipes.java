@@ -39,6 +39,9 @@ public class CustomRecipes {
         REMOVED_RECIPE_MATERIALS.add(Material.GLOWSTONE);
         REMOVED_RECIPE_MATERIALS.add(Material.IRON_NUGGET);
         REMOVED_RECIPE_MATERIALS.add(Material.GOLD_NUGGET);
+        REMOVED_RECIPE_MATERIALS.add(Material.ENCHANTING_TABLE);
+        REMOVED_RECIPE_MATERIALS.add(Material.BREWING_STAND);
+        REMOVED_RECIPE_MATERIALS.add(Material.ANVIL);
         REMOVED_RECIPE_MATERIALS.add(Material.LEATHER_HELMET);
         REMOVED_RECIPE_MATERIALS.add(Material.LEATHER_CHESTPLATE);
         REMOVED_RECIPE_MATERIALS.add(Material.LEATHER_LEGGINGS);
@@ -279,6 +282,30 @@ public class CustomRecipes {
         registerShovelRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_GRAVEDIGGER.getItemStack());
         registerHoeRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_REAPER.getItemStack());
 
+        ItemStack enchantingTable = new ItemStack(Material.ENCHANTING_TABLE);
+        CustomShapedRecipe customEnchantingTableRecipe = new CustomShapedRecipe("LCL", "CMC", "LCL", enchantingTable);
+        customEnchantingTableRecipe.addIngredient('L', ItemGradeUtils.createGradedItem(new ItemStack(Material.LAPIS_LAZULI), ItemGrade.GOLD));
+        customEnchantingTableRecipe.addIngredient('C', ItemGradeUtils.createGradedItem(new ItemStack(Material.COBBLESTONE), ItemGrade.TITANIUM));
+        customEnchantingTableRecipe.addIngredient('M', ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.TITANIUM));
+        recipes.add(customEnchantingTableRecipe);
+        ShapedRecipe enchantingTableRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
+        enchantingTableRecipe.shape("LCL", "CMC", "LCL");
+        enchantingTableRecipe.setIngredient('L', Material.LAPIS_LAZULI);
+        enchantingTableRecipe.setIngredient('C', Material.COBBLESTONE);
+        enchantingTableRecipe.setIngredient('M', Material.IRON_INGOT);
+        Bukkit.addRecipe(enchantingTableRecipe);
+
+        ItemStack brewingStand = new ItemStack(Material.ENCHANTING_TABLE);
+        CustomShapedRecipe customBrewingStandRecipe = new CustomShapedRecipe(" B ", "MMM", brewingStand);
+        customBrewingStandRecipe.addIngredient('B', ItemGradeUtils.createGradedItem(new ItemStack(Material.BLAZE_ROD), ItemGrade.GOLD));
+        customBrewingStandRecipe.addIngredient('M', ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.GOLD));
+        recipes.add(customBrewingStandRecipe);
+        ShapedRecipe brewingStandRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
+        brewingStandRecipe.shape(" B ", "MMM");
+        brewingStandRecipe.setIngredient('B', Material.BLAZE_ROD);
+        brewingStandRecipe.setIngredient('M', Material.IRON_INGOT);
+        Bukkit.addRecipe(brewingStandRecipe);
+
         List<ItemStack> bronzeIngotIngredients = new ArrayList<>(List.of(
                 new ItemStack(Material.COPPER_INGOT),
                 CustomItem.TIN.getItemStack()));
@@ -301,8 +328,7 @@ public class CustomRecipes {
         registerShapelessRecipe(corruptedDiamondIngredients, CustomItem.CORRUPTED_DIAMOND.getItemStack());
 
         ItemStack logIronGrade = ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON);
-        String logRecipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe logIronGradeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + logRecipeUuid), logIronGrade);
+        ShapedRecipe logIronGradeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), logIronGrade);
         logIronGradeRecipe.shape("LL", "LL");
         RecipeChoice.MaterialChoice logMaterialChoice = new RecipeChoice.MaterialChoice(
                 Material.OAK_LOG,
@@ -320,15 +346,13 @@ public class CustomRecipes {
         Bukkit.addRecipe(logIronGradeRecipe);
 
         ItemStack wool = new ItemStack(Material.WHITE_WOOL);
-        String woolRecipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe woolRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + woolRecipeUuid), wool);
+        ShapedRecipe woolRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), wool);
         woolRecipe.shape("LLL", "LLL", "LLL");
         woolRecipe.setIngredient('L', Material.STRING);
         Bukkit.addRecipe(woolRecipe);
 
         ItemStack glowstone = new ItemStack(Material.GLOWSTONE);
-        String glowstoneRecipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe glowstoneRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + glowstoneRecipeUuid), glowstone);
+        ShapedRecipe glowstoneRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), glowstone);
         glowstoneRecipe.shape("LLL", "LLL", "LLL");
         glowstoneRecipe.setIngredient('L', Material.GLOWSTONE_DUST);
         Bukkit.addRecipe(glowstoneRecipe);
@@ -349,8 +373,7 @@ public class CustomRecipes {
         titaniumGradeRecipe.addIngredient('L', itemGoldGrade);
         recipes.add(titaniumGradeRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         recipe.shape("LL", "LL");
         recipe.setIngredient('L', item.getType());
         Bukkit.addRecipe(recipe);
@@ -361,8 +384,7 @@ public class CustomRecipes {
         customHelmetRecipe.addIngredient('L', mineral);
         recipes.add(customHelmetRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe helmetRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe helmetRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         helmetRecipe.shape("LLL", "L L");
         helmetRecipe.setIngredient('L', mineral.getType());
         Bukkit.addRecipe(helmetRecipe);
@@ -373,8 +395,7 @@ public class CustomRecipes {
         customChestplateRecipe.addIngredient('L', mineral);
         recipes.add(customChestplateRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe chestplateRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe chestplateRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         chestplateRecipe.shape("L L", "LLL", "LLL");
         chestplateRecipe.setIngredient('L', mineral.getType());
         Bukkit.addRecipe(chestplateRecipe);
@@ -385,8 +406,7 @@ public class CustomRecipes {
         customLeggingsRecipe.addIngredient('L', mineral);
         recipes.add(customLeggingsRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe leggingsRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe leggingsRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         leggingsRecipe.shape("LLL", "L L", "L L");
         leggingsRecipe.setIngredient('L', mineral.getType());
         Bukkit.addRecipe(leggingsRecipe);
@@ -397,8 +417,7 @@ public class CustomRecipes {
         customBootsRecipe.addIngredient('L', mineral);
         recipes.add(customBootsRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe bootsRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe bootsRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         bootsRecipe.shape("L L", "L L");
         bootsRecipe.setIngredient('L', mineral.getType());
         Bukkit.addRecipe(bootsRecipe);
@@ -410,8 +429,7 @@ public class CustomRecipes {
         customSwordRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customSwordRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe swordRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe swordRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         swordRecipe.shape("L", "L", "S");
         swordRecipe.setIngredient('L', mineral.getType());
         swordRecipe.setIngredient('S', Material.STICK);
@@ -424,8 +442,7 @@ public class CustomRecipes {
         customAxeRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customAxeRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe axeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe axeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         axeRecipe.shape("LL", "LS", " S");
         axeRecipe.setIngredient('L', mineral.getType());
         axeRecipe.setIngredient('S', Material.STICK);
@@ -438,8 +455,7 @@ public class CustomRecipes {
         customShovelRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customShovelRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe shovelRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe shovelRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         shovelRecipe.shape("L", "S", "S");
         shovelRecipe.setIngredient('L', mineral.getType());
         shovelRecipe.setIngredient('S', Material.STICK);
@@ -452,8 +468,7 @@ public class CustomRecipes {
         customHoeRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customHoeRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe hoeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe hoeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         hoeRecipe.shape("LL", " S", " S");
         hoeRecipe.setIngredient('L', mineral.getType());
         hoeRecipe.setIngredient('S', Material.STICK);
@@ -466,8 +481,7 @@ public class CustomRecipes {
         customPickaxeRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customPickaxeRecipe);
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapedRecipe pickaxeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapedRecipe pickaxeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         pickaxeRecipe.shape("LLL", " S ", " S ");
         pickaxeRecipe.setIngredient('L', mineral.getType());
         pickaxeRecipe.setIngredient('S', Material.STICK);
@@ -477,8 +491,7 @@ public class CustomRecipes {
     private static void registerShapelessRecipe(List<ItemStack> ingredients, ItemStack result) {
         recipes.add(new CustomShapelessRecipe(ingredients, result));
 
-        String recipeUuid = UUID.randomUUID().toString();
-        ShapelessRecipe recipe = new ShapelessRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + recipeUuid), INVALID_RECIPE_ITEM);
+        ShapelessRecipe recipe = new ShapelessRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         for(ItemStack ingredient : ingredients)
             recipe.addIngredient(ingredient.getType());
         Bukkit.addRecipe(recipe);
