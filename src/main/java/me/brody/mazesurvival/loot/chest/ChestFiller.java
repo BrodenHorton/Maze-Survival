@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class ChestFiller {
     private LootTable lootTable;
@@ -28,9 +29,9 @@ public class ChestFiller {
             slotIndices.add(i);
         Collections.shuffle(slotIndices);
         List<ItemStack> items = new ArrayList<>();
-        List<LootTableEntry> lootTableEntries = lootTable.getWeightedValues(fillAmt);
-        for(LootTableEntry entry : lootTableEntries)
-            items.add(entry.obtain());
+        List<Supplier<ItemStack>> lootTableEntries = lootTable.getWeightedValues(fillAmt);
+        for(Supplier<ItemStack> entry : lootTableEntries)
+            items.add(entry.get());
         for(int i = 0; i < items.size(); i++)
             inventory.setItem(slotIndices.get(i), items.get(i));
     }

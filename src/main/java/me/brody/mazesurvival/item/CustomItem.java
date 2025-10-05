@@ -1,5 +1,6 @@
 package me.brody.mazesurvival.item;
 
+import me.brody.mazesurvival.enchantment.MazeEnchantment;
 import me.brody.mazesurvival.enchantment.persistentdata.*;
 import me.brody.mazesurvival.item.builder.CustomArmorBuilder;
 import me.brody.mazesurvival.item.builder.CustomToolBuilder;
@@ -15,7 +16,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CustomItem {
     // === Resources ===
@@ -268,7 +271,7 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(hardLeatherHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        Color bronzeColor = Color.fromRGB(166, 135, 50);
+        Color bronzeColor = Color.fromRGB(211, 169, 55);
         int bronzeHealthBoost = 10;
         BRONZE_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "bronze_helmet")
                 .withDisplayName(ChatColor.WHITE + "Bronze Helmet")
@@ -294,7 +297,7 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(bronzeHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        Color miststeelColor = Color.fromRGB(182, 225, 227);
+        Color miststeelColor = Color.fromRGB(216, 246, 247);
         int miststeelHealthBoost = 18;
         MISTSTEEL_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "miststeel_helmet")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Helmet")
@@ -320,7 +323,7 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(miststeelHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        Color sunGoldColor = Color.fromRGB(212, 155, 2);
+        Color sunGoldColor = Color.fromRGB(242, 194, 0);
         int sunGoldHealthBoost = 24;
         SUN_GOLD_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "sun_gold_helmet")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Helmet")
@@ -402,7 +405,7 @@ public class CustomItem {
                 ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Glintstone Tempo",
                 ChatColor.GRAY + "Gain a speed boost when in",
                 ChatColor.GRAY + "the maze.");
-        Color amethystColor = Color.fromRGB(211, 111, 222);
+        Color amethystColor = Color.fromRGB(239, 151, 249);
         int amethystHealthBoost = 6;
         AMETHYST_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "amethyst_helmet")
                 .withDisplayName(ChatColor.WHITE + "Amethyst Helmet")
@@ -648,13 +651,14 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(wraithHealthBoost * bootsHealthMultiplier))
                 .build();
 
+        int mazeRunnerBootsHealthBoost = 3;
+        Map<MazeEnchantment, Integer> mazeRunnerEnchantment = new HashMap<>();
+        mazeRunnerEnchantment.put(MazeEnchantment.MAZE_RUNNER, 1);
         MAZE_RUNNER_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "maze_runner_boots")
                 .withDisplayName(ChatColor.AQUA + "Maze Runner Boots")
-                .withLore(List.of(ChatColor.GOLD + "Boots that allow you to run",
-                        ChatColor.GOLD + "faster in the maze"))
                 .withColor(125, 20, 114)
-                .withCustomEnchantments(List.of(new EnchantmentEntry("Maze Runner", 1)))
-                .withPersistentData(NamespacedKeys.SCRIPT, new ScriptDataType(), new Script(2))
+                .withCustomEnchantments(mazeRunnerEnchantment)
+                .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, mazeRunnerBootsHealthBoost)
                 .build();
 
         // === Weapons ===

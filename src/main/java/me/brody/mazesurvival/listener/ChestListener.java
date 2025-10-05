@@ -2,7 +2,6 @@ package me.brody.mazesurvival.listener;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.loot.chest.ChestFiller;
-import me.brody.mazesurvival.loot.LootTableEntry;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Material;
@@ -23,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ChestListener implements Listener {
     private final Main plugin;
@@ -110,9 +110,9 @@ public class ChestListener implements Listener {
         e.setCancelled(true);
         e.getBlock().setType(Material.AIR);
         List<ItemStack> items = new ArrayList<>();
-        List<LootTableEntry> lootTableEntries = region.getLootTable().getWeightedValues(1, 2);
-        for(LootTableEntry entry : lootTableEntries)
-            items.add(entry.obtain());
+        List<Supplier<ItemStack>> lootTableEntries = region.getLootTable().getWeightedValues(1, 2);
+        for(Supplier<ItemStack> entry : lootTableEntries)
+            items.add(entry.get());
         for(int i = 0; i < items.size(); i++)
             e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), items.get(i));
     }

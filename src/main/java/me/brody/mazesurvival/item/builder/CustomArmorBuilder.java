@@ -2,6 +2,7 @@ package me.brody.mazesurvival.item.builder;
 
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class CustomArmorBuilder extends CustomItemBuilder<CustomArmorBuilder> {
@@ -15,7 +16,9 @@ public class CustomArmorBuilder extends CustomItemBuilder<CustomArmorBuilder> {
     }
 
     public CustomArmorBuilder withColor(int red, int green, int blue) {
+        ItemMeta itemMeta = itemStack.getItemMeta();
         ((LeatherArmorMeta)itemMeta).setColor(Color.fromRGB(red, green, blue));
+        itemStack.setItemMeta(itemMeta);
         return this;
     }
 

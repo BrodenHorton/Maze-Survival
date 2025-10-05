@@ -6,6 +6,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,8 +61,10 @@ public class CustomToolBuilder extends CustomItemBuilder<CustomToolBuilder> {
         AttributeModifier attackDamageModifier = new AttributeModifier(NamespacedKey.minecraft("base_attack_damage"), baseDamage, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.MAINHAND);
         double attackSpeed = attackSpeedByTool.containsKey(itemStack.getType()) ? attackSpeedByTool.get(itemStack.getType()) : 0;
         AttributeModifier attackSpeedModifier = new AttributeModifier(NamespacedKey.minecraft("base_attack_speed"), attackSpeed, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.MAINHAND);
+        ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.addAttributeModifier(Attribute.ATTACK_DAMAGE, attackDamageModifier);
         itemMeta.addAttributeModifier(Attribute.ATTACK_SPEED, attackSpeedModifier);
+        itemStack.setItemMeta(itemMeta);
         return this;
     }
 
