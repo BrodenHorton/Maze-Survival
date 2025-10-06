@@ -1,4 +1,4 @@
-package me.brody.mazesurvival.mob;
+package me.brody.mazesurvival.mob.drop;
 
 import org.bukkit.inventory.ItemStack;
 

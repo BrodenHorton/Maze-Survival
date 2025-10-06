@@ -2,9 +2,11 @@ package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.mob.builder.CustomArmorMobBuilder;
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -15,6 +17,7 @@ public class Revenant extends CustomArmorMob {
 
     protected Revenant(RevenantBuilder builder) {
         this.plugin = builder.plugin;
+        this.mobName = builder.mobName;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -31,6 +34,7 @@ public class Revenant extends CustomArmorMob {
             zombie = (Husk) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.HUSK);
         else
             zombie = (Zombie) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.ZOMBIE);
+        zombie.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         zombie.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         zombie.setHealth(maxHealth);
         zombie.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
@@ -55,8 +59,8 @@ public class Revenant extends CustomArmorMob {
     public static class RevenantBuilder extends CustomArmorMobBuilder<RevenantBuilder, Revenant> {
         public boolean isHusk;
 
-        public RevenantBuilder(Main plugin) {
-            super(plugin);
+        public RevenantBuilder(Main plugin, String mobName) {
+            super(plugin, mobName);
             this.isHusk = false;
         }
 

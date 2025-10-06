@@ -2,11 +2,13 @@ package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.mob.builder.CustomArmorMobBuilder;
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.PiglinBrute;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -15,6 +17,7 @@ public class MazeBrute extends CustomArmorMob {
 
     protected MazeBrute(MazeBruteBuilder builder) {
         this.plugin = builder.plugin;
+        this.mobName = builder.mobName;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -26,6 +29,7 @@ public class MazeBrute extends CustomArmorMob {
     @Override
     public LivingEntity summon(Location location) {
         PiglinBrute brute = (PiglinBrute) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.PIGLIN_BRUTE);
+        brute.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         brute.setImmuneToZombification(true);
         brute.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         brute.setHealth(maxHealth);
@@ -50,8 +54,8 @@ public class MazeBrute extends CustomArmorMob {
 
     public static class MazeBruteBuilder extends CustomArmorMobBuilder<MazeBruteBuilder, MazeBrute> {
 
-        public MazeBruteBuilder(Main plugin) {
-            super(plugin);
+        public MazeBruteBuilder(Main plugin, String mobName) {
+            super(plugin, mobName);
         }
 
         @Override

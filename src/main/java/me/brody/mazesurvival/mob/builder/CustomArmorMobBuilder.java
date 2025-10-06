@@ -8,8 +8,8 @@ public abstract class CustomArmorMobBuilder<T, U> extends CustomMobBuilder<T, U>
     public ItemStack offHandWeapon;
     public ItemStack[] armor;
 
-    public CustomArmorMobBuilder(Main plugin) {
-        super(plugin);
+    public CustomArmorMobBuilder(Main plugin, String mobName) {
+        super(plugin, mobName);
         armor = new ItemStack[4];
     }
 

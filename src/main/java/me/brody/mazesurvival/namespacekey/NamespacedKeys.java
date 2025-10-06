@@ -15,6 +15,9 @@ public class NamespacedKeys {
     public static final NamespacedKey SCRIPT = new NamespacedKey(PLUGIN_NAMESPACE, "script");
     public static final NamespacedKey CUSTOM_ENCHANTMENTS = new NamespacedKey(PLUGIN_NAMESPACE, "custom-enchantments");
 
+    // Custom Mob keys
+    public static final NamespacedKey CUSTOM_MOB = new NamespacedKey(PLUGIN_NAMESPACE, "custom-mob");
+
     // Wandering Trader keys
     public static final NamespacedKey WANDERING_TRADER = new NamespacedKey(PLUGIN_NAMESPACE, "wandering-trader");
 

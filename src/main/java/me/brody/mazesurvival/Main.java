@@ -70,7 +70,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new SoulBoundEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new LapisSetBonusListener(this), this);
 		getServer().getPluginManager().registerEvents(new MithrilSetBonusListener(this), this);
-		getServer().getPluginManager().registerEvents(new SolariumSetBonusListener(this), this);
+		getServer().getPluginManager().registerEvents(new OrichalcumSetBonusListener(this), this);
 		getServer().getPluginManager().registerEvents(new AdamantiteSetBonusListener(this), this);
 		getServer().getPluginManager().registerEvents(new ChestListener(this), this);
 		getServer().getPluginManager().registerEvents(new TrapListener(this), this);
@@ -79,6 +79,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new InventoryEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new BrewingMenu(this), this);
 		getServer().getPluginManager().registerEvents(new CraftingRecipeListener(this), this);
+		getServer().getPluginManager().registerEvents(new MobDropListener(this), this);
 
 		PlayerHealthManager.getInstance().run(this);
 		MazeRunnerEnchantmentManager.getInstance().run(this);

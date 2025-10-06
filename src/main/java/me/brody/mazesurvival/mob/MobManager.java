@@ -105,9 +105,9 @@ public class MobManager implements Listener {
                 spawnLocation.setZ(spawnLocation.getZ() + zOffset + blockCenterOffset);
                 LivingEntity entity;
                 if(isDay)
-                    entity = region.getDayMobs().getWeightedItems().getWeightedValue().summon(spawnLocation);
+                    entity = region.getDayMobs().getWeightedValue().summon(spawnLocation);
                 else
-                    entity = region.getNightMobs().getWeightedItems().getWeightedValue().summon(spawnLocation);
+                    entity = region.getNightMobs().getWeightedValue().summon(spawnLocation);
                 // Temp Glowing effect
                 entity.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 100000, 0, false));
                 mobs.add(entity.getUniqueId());

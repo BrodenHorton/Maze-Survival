@@ -351,32 +351,6 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(sunGoldHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        Color orichalcumColor = Color.fromRGB(118, 176, 142);
-        int orichalcumHealthBoost = 34;
-        ORICHALCUM_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "orichalcum_helmet")
-                .withDisplayName(ChatColor.WHITE + "Orichalcum Helmet")
-                .withColor(orichalcumColor)
-                .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * helmetHealthMultiplier))
-                .build();
-
-        ORICHALCUM_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "orichalcum_chestplate")
-                .withDisplayName(ChatColor.WHITE + "Orichalcum Chestplate")
-                .withColor(orichalcumColor)
-                .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * chestplateHealthMultiplier))
-                .build();
-
-        ORICHALCUM_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "orichalcum_leggings")
-                .withDisplayName(ChatColor.WHITE + "Orichalcum Leggings")
-                .withColor(orichalcumColor)
-                .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * leggingsHealthMultiplier))
-                .build();
-
-        ORICHALCUM_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "orichalcum_boots")
-                .withDisplayName(ChatColor.WHITE + "Orichalcum Boots")
-                .withColor(orichalcumColor)
-                .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * bootsHealthMultiplier))
-                .build();
-
         Color corruptedDiamondColor = Color.fromRGB(3, 129, 171);
         int corruptedDiamondHealthBoost = 44;
         CORRUPTED_DIAMOND_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "corrupted_diamond_helmet")
@@ -468,6 +442,40 @@ public class CustomItem {
                 .withLore(lapisArmorLore)
                 .withColor(lapisColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(lapisHealthBoost * bootsHealthMultiplier))
+                .build();
+
+        List<String> orichalcumArmorLore = List.of(
+                ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Fireproof",
+                ChatColor.GRAY + "Negate all damage from fire, lava,",
+                ChatColor.GRAY + "and magma blocks.");
+        Color orichalcumColor = Color.fromRGB(118, 176, 142);
+        int orichalcumHealthBoost = 34;
+        ORICHALCUM_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "orichalcum_helmet")
+                .withDisplayName(ChatColor.WHITE + "Orichalcum Helmet")
+                .withLore(orichalcumArmorLore)
+                .withColor(orichalcumColor)
+                .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * helmetHealthMultiplier))
+                .build();
+
+        ORICHALCUM_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "orichalcum_chestplate")
+                .withDisplayName(ChatColor.WHITE + "Orichalcum Chestplate")
+                .withLore(orichalcumArmorLore)
+                .withColor(orichalcumColor)
+                .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * chestplateHealthMultiplier))
+                .build();
+
+        ORICHALCUM_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "orichalcum_leggings")
+                .withDisplayName(ChatColor.WHITE + "Orichalcum Leggings")
+                .withLore(orichalcumArmorLore)
+                .withColor(orichalcumColor)
+                .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * leggingsHealthMultiplier))
+                .build();
+
+        ORICHALCUM_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "orichalcum_boots")
+                .withDisplayName(ChatColor.WHITE + "Orichalcum Boots")
+                .withLore(orichalcumArmorLore)
+                .withColor(orichalcumColor)
+                .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * bootsHealthMultiplier))
                 .build();
 
         List<String> mithrilArmorLore = List.of(

@@ -2,9 +2,11 @@ package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.mob.builder.CustomMobBuilder;
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -15,6 +17,7 @@ public class Hare extends CustomMob {
 
     protected Hare(HareBuilder builder) {
         this.plugin = builder.plugin;
+        this.mobName = builder.mobName;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -23,8 +26,8 @@ public class Hare extends CustomMob {
 
     @Override
     public LivingEntity summon(Location location) {
-        Rabbit rabbit;
-        rabbit = (Rabbit) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.RABBIT);
+        Rabbit rabbit = (Rabbit) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.RABBIT);
+        rabbit.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         rabbit.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         rabbit.setHealth(maxHealth);
         rabbit.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
@@ -38,8 +41,8 @@ public class Hare extends CustomMob {
     public static class HareBuilder extends CustomMobBuilder<HareBuilder, Hare> {
         public Rabbit.Type rabbitType;
 
-        public HareBuilder(Main plugin) {
-            super(plugin);
+        public HareBuilder(Main plugin, String mobName) {
+            super(plugin, mobName);
             this.rabbitType = Rabbit.Type.BROWN;
         }
 

@@ -2,9 +2,11 @@ package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.mob.builder.CustomArmorMobBuilder;
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -16,6 +18,7 @@ public class Remains extends CustomArmorMob {
 
     protected Remains(RemainsBuilder builder) {
         this.plugin = builder.plugin;
+        this.mobName = builder.mobName;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -35,6 +38,7 @@ public class Remains extends CustomArmorMob {
             skeleton = (Stray) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.STRAY);
         else
             skeleton = (Skeleton) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.SKELETON);
+        skeleton.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         skeleton.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         skeleton.setHealth(maxHealth);
         skeleton.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
@@ -60,8 +64,8 @@ public class Remains extends CustomArmorMob {
         private boolean isBogged;
         private boolean isStray;
 
-        public RemainsBuilder(Main plugin) {
-            super(plugin);
+        public RemainsBuilder(Main plugin, String mobName) {
+            super(plugin,mobName);
             isBogged = false;
             isStray = false;
         }

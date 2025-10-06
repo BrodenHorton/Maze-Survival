@@ -2,11 +2,13 @@ package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.mob.builder.CustomMobBuilder;
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.persistence.PersistentDataType;
 
 public class Bomber extends CustomMob {
     public final Main plugin;
@@ -15,6 +17,7 @@ public class Bomber extends CustomMob {
 
     protected Bomber(BomberBuilder builder) {
         this.plugin = builder.plugin;
+        this.mobName = builder.mobName;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -24,6 +27,7 @@ public class Bomber extends CustomMob {
     @Override
     public LivingEntity summon(Location location) {
         Creeper creeper = (Creeper)plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.CREEPER);
+        creeper.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         creeper.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         creeper.setHealth(maxHealth);
         creeper.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
@@ -35,8 +39,8 @@ public class Bomber extends CustomMob {
     public static class BomberBuilder extends CustomMobBuilder<BomberBuilder, Bomber> {
         private boolean isPowered;
 
-        public BomberBuilder(Main plugin) {
-            super(plugin);
+        public BomberBuilder(Main plugin, String mobName) {
+            super(plugin, mobName);
             isPowered = false;
         }
 

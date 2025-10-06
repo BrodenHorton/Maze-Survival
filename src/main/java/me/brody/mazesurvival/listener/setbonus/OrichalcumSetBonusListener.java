@@ -8,10 +8,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
-public class SolariumSetBonusListener implements Listener {
+public class OrichalcumSetBonusListener implements Listener {
     private final Main plugin;
 
-    public SolariumSetBonusListener(Main plugin) {
+    public OrichalcumSetBonusListener(Main plugin) {
         this.plugin = plugin;
     }
 
@@ -21,8 +21,8 @@ public class SolariumSetBonusListener implements Listener {
             return;
         if(e.getCause() != DamageCause.FIRE && e.getCause() != DamageCause.FIRE_TICK && e.getCause() != DamageCause.LAVA && e.getCause() != DamageCause.HOT_FLOOR)
             return;
-        if(!CustomItem.SOLARIUM_HELMET.compareItem(player.getInventory().getHelmet()) || !CustomItem.SOLARIUM_CHESTPLATE.compareItem(player.getInventory().getChestplate())
-                || !CustomItem.SOLARIUM_LEGGINGS.compareItem(player.getInventory().getLeggings()) || !CustomItem.SOLARIUM_BOOTS.compareItem(player.getInventory().getBoots()))
+        if(!CustomItem.ORICHALCUM_HELMET.compareItem(player.getInventory().getHelmet()) || !CustomItem.ORICHALCUM_CHESTPLATE.compareItem(player.getInventory().getChestplate())
+                || !CustomItem.ORICHALCUM_LEGGINGS.compareItem(player.getInventory().getLeggings()) || !CustomItem.ORICHALCUM_BOOTS.compareItem(player.getInventory().getBoots()))
             return;
 
         e.setCancelled(true);

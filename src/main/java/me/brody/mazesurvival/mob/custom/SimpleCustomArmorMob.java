@@ -2,11 +2,13 @@ package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.mob.builder.CustomArmorMobBuilder;
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -17,6 +19,7 @@ public class SimpleCustomArmorMob extends CustomArmorMob {
 
     protected SimpleCustomArmorMob(SimpleCustomArmorMobBuilder builder) {
         this.plugin = builder.plugin;
+        this.mobName = builder.mobName;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -28,8 +31,8 @@ public class SimpleCustomArmorMob extends CustomArmorMob {
 
     @Override
     public LivingEntity summon(Location location) {
-        Mob mob;
-        mob = (Mob) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, entityType);
+        Mob mob = (Mob) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, entityType);
+        mob.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         mob.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         mob.setHealth(maxHealth);
         mob.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
@@ -54,8 +57,8 @@ public class SimpleCustomArmorMob extends CustomArmorMob {
     public static class SimpleCustomArmorMobBuilder extends CustomArmorMobBuilder<SimpleCustomArmorMobBuilder, SimpleCustomArmorMob> {
         private EntityType entityType;
 
-        public SimpleCustomArmorMobBuilder(Main plugin) {
-            super(plugin);
+        public SimpleCustomArmorMobBuilder(Main plugin, String mobName) {
+            super(plugin, mobName);
         }
 
         public SimpleCustomArmorMobBuilder withEntityType(EntityType entityType) {

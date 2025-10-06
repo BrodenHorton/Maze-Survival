@@ -2,11 +2,13 @@ package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.mob.builder.CustomArmorMobBuilder;
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Hoglin;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -15,6 +17,7 @@ public class MazeHoglin extends CustomArmorMob {
 
     protected MazeHoglin(MazeHoglinBuilder builder) {
         this.plugin = builder.plugin;
+        this.mobName = builder.mobName;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -23,6 +26,7 @@ public class MazeHoglin extends CustomArmorMob {
     @Override
     public LivingEntity summon(Location location) {
         Hoglin hoglin = (Hoglin) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.HOGLIN);
+        hoglin.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         hoglin.setImmuneToZombification(true);
         hoglin.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         hoglin.setHealth(maxHealth);
@@ -35,8 +39,8 @@ public class MazeHoglin extends CustomArmorMob {
 
     public static class MazeHoglinBuilder extends CustomArmorMobBuilder<MazeHoglinBuilder, MazeHoglin> {
 
-        public MazeHoglinBuilder(Main plugin) {
-            super(plugin);
+        public MazeHoglinBuilder(Main plugin, String mobName) {
+            super(plugin, mobName);
         }
 
         @Override
