@@ -15,12 +15,11 @@ public class MobDropTable {
         rareDrops = new WeightedList<>();
     }
 
-    public void addBasicDrop(ItemStack itemStack, int maxQuantity, double dropRate) {
+    public void addBasicDrop(ItemStack itemStack, int maxQuantity) {
         if(itemStack == null)
             return;
 
-        dropRate = Math.max(dropRate, 1);
-        addBasicDrop(new MobDropEntry(itemStack, maxQuantity, dropRate));
+        addBasicDrop(new MobDropEntry(itemStack, maxQuantity));
     }
 
     public void addBasicDrop(MobDropEntry dropEntry) {

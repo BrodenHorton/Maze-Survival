@@ -147,7 +147,9 @@ public class CustomItem {
     public static final CustomItem SWIFTNESS_III;
     public static final CustomItem SWIFTNESS_III_EXTENDED;
     public static final CustomItem SWIFTNESS_IV;
+    public static final CustomItem SWIFTNESS_IV_EXTENDED;
     public static final CustomItem SWIFTNESS_V;
+    public static final CustomItem SWIFTNESS_V_EXTENDED;
     public static final CustomItem SWIFTNESS_VI;
     public static final CustomItem STRENGTH;
     public static final CustomItem STRENGTH_EXTENDED;
@@ -951,9 +953,19 @@ public class CustomItem {
                 .withPotionEffect(PotionEffectType.SPEED, 20 * 30, 3, false)
                 .build();
 
+        SWIFTNESS_IV_EXTENDED = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_four_extended")
+                .withDisplayName(ChatColor.AQUA + "Potion of Swiftness IV Extended")
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 90, 3, false)
+                .build();
+
         SWIFTNESS_V = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_five")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness V")
                 .withPotionEffect(PotionEffectType.SPEED, 20 * 30, 4, false)
+                .build();
+
+        SWIFTNESS_V_EXTENDED = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_five_extended")
+                .withDisplayName(ChatColor.AQUA + "Potion of Swiftness V Extended")
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 90, 4, false)
                 .build();
 
         SWIFTNESS_VI = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_six")
@@ -1207,7 +1219,9 @@ public class CustomItem {
         Registry.CUSTOM_ITEM.register(SWIFTNESS_III.getItemName(), SWIFTNESS_III);
         Registry.CUSTOM_ITEM.register(SWIFTNESS_III_EXTENDED.getItemName(), SWIFTNESS_III_EXTENDED);
         Registry.CUSTOM_ITEM.register(SWIFTNESS_IV.getItemName(), SWIFTNESS_IV);
+        Registry.CUSTOM_ITEM.register(SWIFTNESS_IV_EXTENDED.getItemName(), SWIFTNESS_IV_EXTENDED);
         Registry.CUSTOM_ITEM.register(SWIFTNESS_V.getItemName(), SWIFTNESS_V);
+        Registry.CUSTOM_ITEM.register(SWIFTNESS_V_EXTENDED.getItemName(), SWIFTNESS_V_EXTENDED);
         Registry.CUSTOM_ITEM.register(SWIFTNESS_VI.getItemName(), SWIFTNESS_VI);
         Registry.CUSTOM_ITEM.register(STRENGTH.getItemName(), STRENGTH);
         Registry.CUSTOM_ITEM.register(STRENGTH_EXTENDED.getItemName(), STRENGTH_EXTENDED);

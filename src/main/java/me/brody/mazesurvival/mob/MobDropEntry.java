@@ -5,12 +5,10 @@ import org.bukkit.inventory.ItemStack;
 public class MobDropEntry {
     private ItemStack itemStack;
     private int maxQuantity;
-    private double dropRate;
 
-    public MobDropEntry(ItemStack itemStack, int maxQuantity, double dropRate) {
+    public MobDropEntry(ItemStack itemStack, int maxQuantity) {
         this.itemStack = itemStack;
         this.maxQuantity = maxQuantity;
-        this.dropRate = dropRate;
     }
 
     public ItemStack getItemStack() {
@@ -19,9 +17,5 @@ public class MobDropEntry {
 
     public int getMaxQuantity() {
         return maxQuantity;
-    }
-
-    public double getDropRate() {
-        return dropRate;
     }
 }
