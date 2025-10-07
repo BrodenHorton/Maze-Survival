@@ -49,8 +49,11 @@ public class SimpleMobDropTable implements MobDropTable {
             }
         }
         boolean shouldDropRare = rng.nextDouble() < RARE_DROP_RATE * (lootingLevel + 1);
-        if(shouldDropRare)
-            drops.add(rareDrops.getWeightedValue());
+        if(shouldDropRare) {
+            ItemStack rareDrop = rareDrops.getWeightedValue();
+            if(rareDrop != null)
+                drops.add(rareDrop);
+        }
 
         return drops;
     }

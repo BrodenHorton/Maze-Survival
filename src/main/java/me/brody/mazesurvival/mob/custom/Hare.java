@@ -16,8 +16,9 @@ public class Hare extends CustomMob {
     private Rabbit.Type rabbitType;
 
     protected Hare(HareBuilder builder) {
+        super(builder.mobName);
         this.plugin = builder.plugin;
-        this.mobName = builder.mobName;
+        this.dropTable = builder.dropTable;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;

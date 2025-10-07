@@ -27,14 +27,17 @@ public class MobDropListener implements Listener {
         if(!e.getEntity().getPersistentDataContainer().has(NamespacedKeys.CUSTOM_MOB))
             return;
 
-        CustomMob customMob = Registry.CUSTOM_MOB.get(e.getEntity().getPersistentDataContainer().get(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING));
+        String customMobName = e.getEntity().getPersistentDataContainer().get(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING).toLowerCase().replace('-', '_');
+        CustomMob customMob = Registry.CUSTOM_MOB.get(customMobName);
         int lootingLevel = 0;
         Player killer = e.getEntity().getKiller();
         if(killer != null && killer.getInventory().getItemInMainHand().getEnchantments().containsKey(Enchantment.LOOTING))
             lootingLevel = killer.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOTING);
 
-        List<ItemStack> drops = e.getDrops();
-        drops = customMob.getDropTable().getDrops(lootingLevel);
+        e.getDrops().clear();
+        List<ItemStack> drops = customMob.getDropTable().getDrops(lootingLevel);
+        for(int i = 0; i < drops.size(); i++)
+            e.getDrops().add(drops.get(i));
     }
 
 }

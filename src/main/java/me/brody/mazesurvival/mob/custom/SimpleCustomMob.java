@@ -18,8 +18,9 @@ public class SimpleCustomMob extends CustomMob {
     private EntityType entityType;
 
     protected SimpleCustomMob(SimpleCustomMobBuilder builder) {
+        super(builder.mobName);
         this.plugin = builder.plugin;
-        this.mobName = builder.mobName;
+        this.dropTable = builder.dropTable;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;

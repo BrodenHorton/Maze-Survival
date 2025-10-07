@@ -40,10 +40,10 @@ public class Main extends JavaPlugin {
 		getConfig().options().copyDefaults();
 		saveDefaultConfig();
 
-		CustomMob.init(this);
-		MobSpawnPool.init();
 		MazeEnchantment.init(this);
 		LootTable.init(this);
+		CustomMob.init(this);
+		MobSpawnPool.init();
 		MazeRegionBase.initMazeBases();
 		ItemGrade.register();
 		CustomItem.register();

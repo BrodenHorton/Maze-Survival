@@ -36,8 +36,11 @@ public abstract class CustomItemBuilder<T> {
     }
 
     public T withCustomEnchantments(Map<MazeEnchantment, Integer> enchantments) {
-        for(Map.Entry<MazeEnchantment, Integer> entry : enchantments.entrySet())
+        for(Map.Entry<MazeEnchantment, Integer> entry : enchantments.entrySet()) {
+            if(entry.getKey() == null)
+                continue;
             entry.getKey().enchantItem(itemStack, entry.getValue());
+        }
 
         return link();
     }

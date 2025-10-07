@@ -22,6 +22,9 @@ public class WeightedList<T> {
     }
 
     public T getWeightedValue() {
+        if(weightedEntries.isEmpty())
+            return null;
+
         int totalWeight = 0;
         for (int i = 0; i < weightedEntries.size(); i++)
             totalWeight += weightedEntries.get(i).getWeight();
@@ -60,6 +63,9 @@ public class WeightedList<T> {
     }
 
     public List<T> getWeightedValues(int amt) {
+        if(weightedEntries.isEmpty())
+            return null;
+
         List<T> values = new ArrayList<>();
         for (int i = 0; i < amt; i++) {
             T value = getWeightedValue();

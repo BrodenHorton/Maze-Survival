@@ -10,14 +10,17 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Arrays;
+
 public class Revenant extends CustomArmorMob {
     public final Main plugin;
 
     private boolean isHusk;
 
     protected Revenant(RevenantBuilder builder) {
+        super(builder.mobName);
         this.plugin = builder.plugin;
-        this.mobName = builder.mobName;
+        this.dropTable = builder.dropTable;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -44,6 +47,7 @@ public class Revenant extends CustomArmorMob {
             zombie.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)
             zombie.getEquipment().setItemInOffHand(offHandWeapon);
+        Arrays.fill(zombie.getEquipment().getArmorContents(), null);
         if(armor.length >= 1 && armor[0] != null)
             zombie.getEquipment().setHelmet(armor[0]);
         if(armor.length >= 2 && armor[1] != null)

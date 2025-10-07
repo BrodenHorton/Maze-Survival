@@ -92,9 +92,11 @@ public class WanderingTraderManager implements Listener {
                 trader.setInvulnerable(true);
                 trader.setProfession(Villager.Profession.CARTOGRAPHER);
                 trader.getPersistentDataContainer().set(NamespacedKeys.WANDERING_TRADER, PersistentDataType.STRING, "haven");
-                List<Supplier<MerchantRecipe>> recipes = region.getTradeTable().getWeightedValuesNoRepeat(4);
-                for(int j = 0; j < recipes.size(); j++)
-                    trader.setRecipe(j, recipes.get(j).get());
+                List<Supplier<MerchantRecipe>> recipeSuppliers = region.getTradeTable().getWeightedValuesNoRepeat(4);
+                List<MerchantRecipe> recipes = new ArrayList<>();
+                for(int j = 0; j < recipeSuppliers.size(); j++)
+                    recipes.add(recipeSuppliers.get(j).get());
+                trader.setRecipes(recipes);
                 traderUuids.add(trader.getUniqueId());
             }
         }

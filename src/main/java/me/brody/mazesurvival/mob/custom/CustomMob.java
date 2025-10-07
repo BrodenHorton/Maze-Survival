@@ -79,15 +79,16 @@ public abstract class CustomMob {
     public static CustomMob GOLDEN_HARE_SWAMP;
     public static CustomMob GOLDEN_HARE_NETHER;
     public static CustomMob GOLDEN_HARE_DEEP_DARK;
-    public static CustomMob CHICKEN_JOCKEY;
 
     protected String mobName;
+    protected MobDropTable dropTable;
     protected double maxHealth;
     protected double movementSpeed;
     protected int powerAmplifier;
-    protected MobDropTable dropTable;
 
-    protected CustomMob() {}
+    protected CustomMob(String mobName) {
+        this.mobName = mobName;
+    }
 
     public static void init(Main plugin) {
         SimpleMobDropTable revenantDropTable = new SimpleMobDropTable();
@@ -98,7 +99,7 @@ public abstract class CustomMob {
         revenantDropTable.addRareDrop(CustomItem.SPLINTERED_SWORD.getItemStack(), 10);
         REVENANT = new RevenantBuilder(plugin, "Revenant")
                 .withDropTable(revenantDropTable)
-                .withHelmet(new ItemStack(Material.LEATHER_HELMET))
+                .withHelmet(CustomItem.WORN_HELMET.getItemStack())
                 .build();
 
         SimpleMobDropTable arisenRevenantDropTable = new SimpleMobDropTable();
@@ -192,7 +193,8 @@ public abstract class CustomMob {
         REMAINS = new RemainsBuilder(plugin, "Remains")
                 .withMovementSpeed(0.3)
                 .withDropTable(remainsDropTable)
-                .withHelmet(new ItemStack(Material.LEATHER_HELMET)).build();
+                .withHelmet(CustomItem.WORN_HELMET.getItemStack())
+                .build();
 
         SimpleMobDropTable infusedRemainsDropTable = new SimpleMobDropTable();
         infusedRemainsDropTable.addBasicDrop(new ItemStack(Material.BONE), 1);
@@ -774,11 +776,10 @@ public abstract class CustomMob {
         registerCustomMob(BEHEMOTH);
         registerCustomMob(ALCHEMIST);
         registerCustomMob(GOLDEN_HARE_STRONGHOLD);
-        registerCustomMob(CHICKEN_JOCKEY);
     }
 
     private static void registerCustomMob(CustomMob customMob) {
-        Registry.CUSTOM_MOB.register(customMob.getMobName().toLowerCase().replace(" ", "_"), customMob);
+        Registry.CUSTOM_MOB.register(customMob.getMobName().toLowerCase().replace(' ', '_'), customMob);
     }
 
     public abstract LivingEntity summon(Location location);

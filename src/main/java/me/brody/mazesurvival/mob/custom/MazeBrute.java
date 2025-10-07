@@ -12,12 +12,15 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Arrays;
+
 public class MazeBrute extends CustomArmorMob {
     public final Main plugin;
 
     protected MazeBrute(MazeBruteBuilder builder) {
+        super(builder.mobName);
         this.plugin = builder.plugin;
-        this.mobName = builder.mobName;
+        this.dropTable = builder.dropTable;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -40,6 +43,7 @@ public class MazeBrute extends CustomArmorMob {
             brute.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)
             brute.getEquipment().setItemInOffHand(offHandWeapon);
+        Arrays.fill(brute.getEquipment().getArmorContents(), null);
         if(armor.length >= 1 && armor[0] != null)
             brute.getEquipment().setHelmet(armor[0]);
         if(armor.length >= 2 && armor[1] != null)

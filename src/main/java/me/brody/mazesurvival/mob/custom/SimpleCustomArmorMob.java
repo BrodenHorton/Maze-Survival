@@ -12,14 +12,17 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Arrays;
+
 public class SimpleCustomArmorMob extends CustomArmorMob {
     public final Main plugin;
 
     private EntityType entityType;
 
     protected SimpleCustomArmorMob(SimpleCustomArmorMobBuilder builder) {
+        super(builder.mobName);
         this.plugin = builder.plugin;
-        this.mobName = builder.mobName;
+        this.dropTable = builder.dropTable;
         this.maxHealth = builder.maxHealth;
         this.movementSpeed = builder.movementSpeed;
         this.powerAmplifier = builder.powerAmplifier;
@@ -42,6 +45,7 @@ public class SimpleCustomArmorMob extends CustomArmorMob {
             mob.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)
             mob.getEquipment().setItemInOffHand(offHandWeapon);
+        Arrays.fill(mob.getEquipment().getArmorContents(), null);
         if(armor.length >= 1 && armor[0] != null)
             mob.getEquipment().setHelmet(armor[0]);
         if(armor.length >= 2 && armor[1] != null)
