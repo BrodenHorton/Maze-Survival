@@ -51,7 +51,10 @@ public class Remains extends CustomArmorMob {
             skeleton.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)
             skeleton.getEquipment().setItemInOffHand(offHandWeapon);
-        Arrays.fill(skeleton.getEquipment().getArmorContents(), null);
+        skeleton.getEquipment().setHelmet(null);
+        skeleton.getEquipment().setChestplate(null);
+        skeleton.getEquipment().setLeggings(null);
+        skeleton.getEquipment().setBoots(null);
         if(armor.length >= 1 && armor[0] != null)
             skeleton.getEquipment().setHelmet(armor[0]);
         if(armor.length >= 2 && armor[1] != null)

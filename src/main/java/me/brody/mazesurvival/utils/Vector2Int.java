@@ -20,10 +20,9 @@ public class Vector2Int {
             return true;
         if(obj == null)
             return false;
-        if(!(obj instanceof Vector2Int))
+        if(!(obj instanceof Vector2Int other))
             return false;
 
-        Vector2Int other = (Vector2Int)obj;
         return other.x == this.x && other.y == this.y;
     }
 

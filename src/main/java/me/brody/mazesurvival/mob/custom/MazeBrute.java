@@ -43,7 +43,10 @@ public class MazeBrute extends CustomArmorMob {
             brute.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)
             brute.getEquipment().setItemInOffHand(offHandWeapon);
-        Arrays.fill(brute.getEquipment().getArmorContents(), null);
+        brute.getEquipment().setHelmet(null);
+        brute.getEquipment().setChestplate(null);
+        brute.getEquipment().setLeggings(null);
+        brute.getEquipment().setBoots(null);
         if(armor.length >= 1 && armor[0] != null)
             brute.getEquipment().setHelmet(armor[0]);
         if(armor.length >= 2 && armor[1] != null)

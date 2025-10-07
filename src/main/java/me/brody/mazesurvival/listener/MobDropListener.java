@@ -35,6 +35,7 @@ public class MobDropListener implements Listener {
             lootingLevel = killer.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOTING);
 
         e.getDrops().clear();
+        plugin.getLogger().info("Looting level: " + lootingLevel);
         List<ItemStack> drops = customMob.getDropTable().getDrops(lootingLevel);
         for(int i = 0; i < drops.size(); i++)
             e.getDrops().add(drops.get(i));

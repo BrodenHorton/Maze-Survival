@@ -325,7 +325,7 @@ public class CustomItem {
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(miststeelHealthBoost * bootsHealthMultiplier))
                 .build();
 
-        Color sunGoldColor = Color.fromRGB(242, 194, 0);
+        Color sunGoldColor = Color.fromRGB(255, 186, 0);
         int sunGoldHealthBoost = 24;
         SUN_GOLD_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "sun_gold_helmet")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Helmet")

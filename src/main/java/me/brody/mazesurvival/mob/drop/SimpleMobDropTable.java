@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class SimpleMobDropTable implements MobDropTable {
-    private static final double RARE_DROP_RATE = 0.5;
+    private static final double DEFAULT_RARE_DROP_RATE = 0.5;
 
     private List<MobDropEntry> basicDrops;
     private WeightedList<ItemStack> rareDrops;
@@ -48,9 +48,15 @@ public class SimpleMobDropTable implements MobDropTable {
                 drops.add(item);
             }
         }
-        boolean shouldDropRare = rng.nextDouble() < RARE_DROP_RATE * (lootingLevel + 1);
+        double dropRate = DEFAULT_RARE_DROP_RATE * (lootingLevel + 1);
+        double rngRoll = rng.nextDouble();
+        System.out.println("rng Roll: " + rngRoll + " dropRate: " + dropRate);
+        boolean shouldDropRare = rngRoll < dropRate;
         if(shouldDropRare) {
-            ItemStack rareDrop = rareDrops.getWeightedValue();
+            System.out.println("Dropping rare item!");
+            ItemStack rareDrop = rareDrops.getWeightedValue().clone();
+            if(rareDrop == null)
+                System.out.println("Rare Item was null!");
             if(rareDrop != null)
                 drops.add(rareDrop);
         }

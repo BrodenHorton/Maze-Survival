@@ -47,7 +47,10 @@ public class Revenant extends CustomArmorMob {
             zombie.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)
             zombie.getEquipment().setItemInOffHand(offHandWeapon);
-        Arrays.fill(zombie.getEquipment().getArmorContents(), null);
+        zombie.getEquipment().setHelmet(null);
+        zombie.getEquipment().setChestplate(null);
+        zombie.getEquipment().setLeggings(null);
+        zombie.getEquipment().setBoots(null);
         if(armor.length >= 1 && armor[0] != null)
             zombie.getEquipment().setHelmet(armor[0]);
         if(armor.length >= 2 && armor[1] != null)

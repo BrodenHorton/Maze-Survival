@@ -45,7 +45,10 @@ public class SimpleCustomArmorMob extends CustomArmorMob {
             mob.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)
             mob.getEquipment().setItemInOffHand(offHandWeapon);
-        Arrays.fill(mob.getEquipment().getArmorContents(), null);
+        mob.getEquipment().setHelmet(null);
+        mob.getEquipment().setChestplate(null);
+        mob.getEquipment().setLeggings(null);
+        mob.getEquipment().setBoots(null);
         if(armor.length >= 1 && armor[0] != null)
             mob.getEquipment().setHelmet(armor[0]);
         if(armor.length >= 2 && armor[1] != null)

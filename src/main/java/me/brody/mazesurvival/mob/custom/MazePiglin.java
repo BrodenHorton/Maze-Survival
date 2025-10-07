@@ -41,7 +41,10 @@ public class MazePiglin extends CustomArmorMob {
             piglin.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)
             piglin.getEquipment().setItemInOffHand(offHandWeapon);
-        Arrays.fill(piglin.getEquipment().getArmorContents(), null);
+        piglin.getEquipment().setHelmet(null);
+        piglin.getEquipment().setChestplate(null);
+        piglin.getEquipment().setLeggings(null);
+        piglin.getEquipment().setBoots(null);
         if(armor.length >= 1 && armor[0] != null)
             piglin.getEquipment().setHelmet(armor[0]);
         if(armor.length >= 2 && armor[1] != null)

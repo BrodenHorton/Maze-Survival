@@ -95,8 +95,8 @@ public abstract class CustomMob {
         revenantDropTable.addBasicDrop(new ItemStack(Material.ROTTEN_FLESH), 1);
         revenantDropTable.addBasicDrop(new ItemStack(Material.COBBLESTONE), 1);
         revenantDropTable.addRareDrop(new ItemStack(Material.LEATHER), 10);
-        revenantDropTable.addRareDrop(CustomItem.WORN_HELMET.getItemStack(), 10);
-        revenantDropTable.addRareDrop(CustomItem.SPLINTERED_SWORD.getItemStack(), 10);
+        revenantDropTable.addRareDrop(CustomItem.WORN_HELMET.getItemStack(), 5);
+        revenantDropTable.addRareDrop(CustomItem.SPLINTERED_SWORD.getItemStack(), 5);
         REVENANT = new RevenantBuilder(plugin, "Revenant")
                 .withDropTable(revenantDropTable)
                 .withHelmet(CustomItem.WORN_HELMET.getItemStack())
@@ -104,8 +104,8 @@ public abstract class CustomMob {
 
         SimpleMobDropTable arisenRevenantDropTable = new SimpleMobDropTable();
         arisenRevenantDropTable.addBasicDrop(new ItemStack(Material.ROTTEN_FLESH), 2);
-        arisenRevenantDropTable.addRareDrop(CustomItem.ARISEN_REVENANT_SWORD.getItemStack(), 10);
-        arisenRevenantDropTable.addRareDrop(CustomItem.MISTSTEEL_INGOT.getItemStack(), 10);
+        arisenRevenantDropTable.addRareDrop(CustomItem.MISTSTEEL_INGOT.getItemStack(), 5);
+        arisenRevenantDropTable.addRareDrop(CustomItem.ARISEN_REVENANT_SWORD.getItemStack(), 4);
         ARISEN_REVENANT = new RevenantBuilder(plugin, "Arisen Revenant")
                 .withMaxHealth(40)
                 .withMovementSpeed(0.3)
@@ -118,8 +118,8 @@ public abstract class CustomMob {
 
         SimpleMobDropTable fortifiedRevenantDropTable = new SimpleMobDropTable();
         fortifiedRevenantDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.ROTTEN_FLESH), ItemGrade.GOLD), 2);
-        fortifiedRevenantDropTable.addRareDrop(CustomItem.MISTSTEEL_INGOT.getItemStack(), 10);
-        fortifiedRevenantDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.IRON), 10);
+        fortifiedRevenantDropTable.addRareDrop(CustomItem.MISTSTEEL_INGOT.getItemStack(), 5);
+        fortifiedRevenantDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.IRON), 1);
         FORTIFIED_REVENANT = new RevenantBuilder(plugin, "Fortified Revenant")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.35)
@@ -136,7 +136,7 @@ public abstract class CustomMob {
         deathKnightDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.ROTTEN_FLESH), ItemGrade.TITANIUM), 1);
         deathKnightDropTable.addBasicDrop(new ItemStack(Material.ECHO_SHARD), 1);
         deathKnightDropTable.addBasicDrop(new ItemStack(Material.DIAMOND), 1);
-        deathKnightDropTable.addRareDrop(CustomItem.ADAMANTITE_INGOT.getItemStack(), 10);
+        deathKnightDropTable.addRareDrop(CustomItem.ADAMANTITE_INGOT.getItemStack(), 1);
         DEATH_KNIGHT = new RevenantBuilder(plugin, "Death Knight")
                 .withMaxHealth(80)
                 .withMovementSpeed(0.4)
@@ -153,10 +153,10 @@ public abstract class CustomMob {
         hungryHorrorDropTable.addBasicDrop(new ItemStack(Material.ROTTEN_FLESH), 2);
         hungryHorrorDropTable.addBasicDrop(new ItemStack(Material.SAND), 2);
         hungryHorrorDropTable.addBasicDrop(new ItemStack(Material.RED_SAND), 1);
-        hungryHorrorDropTable.addRareDrop(new ItemStack(Material.RAW_COPPER), 10);
-        hungryHorrorDropTable.addRareDrop(CustomItem.TIN.getItemStack(), 10);
-        hungryHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.RAW_COPPER), ItemGrade.IRON), 10);
-        hungryHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.TIN.getItemStack(), ItemGrade.IRON), 10);
+        hungryHorrorDropTable.addRareDrop(new ItemStack(Material.RAW_COPPER), 5);
+        hungryHorrorDropTable.addRareDrop(CustomItem.TIN.getItemStack(), 5);
+        hungryHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.RAW_COPPER), ItemGrade.IRON), 1);
+        hungryHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.TIN.getItemStack(), ItemGrade.IRON), 1);
         HUNGRY_HORROR = new RevenantBuilder(plugin, "Hungry Horror")
                 .withMaxHealth(30)
                 .withMovementSpeed(0.25)
@@ -172,8 +172,8 @@ public abstract class CustomMob {
         starvedHorrorDropTable.addBasicDrop(new ItemStack(Material.RED_SAND), 1);
         starvedHorrorDropTable.addBasicDrop(new ItemStack(Material.RAW_COPPER), 1);
         starvedHorrorDropTable.addBasicDrop(CustomItem.TIN.getItemStack(), 1);
-        starvedHorrorDropTable.addRareDrop(new ItemStack(Material.LAPIS_LAZULI), 10);
-        starvedHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.LAPIS_LAZULI), ItemGrade.IRON), 10);
+        starvedHorrorDropTable.addRareDrop(new ItemStack(Material.LAPIS_LAZULI), 5);
+        starvedHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.LAPIS_LAZULI), ItemGrade.IRON), 1);
         STARVED_HORROR = new RevenantBuilder(plugin, "Starved Horror")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.3)
@@ -188,8 +188,8 @@ public abstract class CustomMob {
         SimpleMobDropTable remainsDropTable = new SimpleMobDropTable();
         remainsDropTable.addBasicDrop(new ItemStack(Material.BONE), 1);
         remainsDropTable.addBasicDrop(new ItemStack(Material.ARROW), 1);
-        remainsDropTable.addRareDrop(CustomItem.WORN_HELMET.getItemStack(), 10);
-        remainsDropTable.addRareDrop(CustomItem.SHORT_BOW.getItemStack(), 10);
+        remainsDropTable.addRareDrop(CustomItem.WORN_HELMET.getItemStack(), 1);
+        remainsDropTable.addRareDrop(CustomItem.SHORT_BOW.getItemStack(), 1);
         REMAINS = new RemainsBuilder(plugin, "Remains")
                 .withMovementSpeed(0.3)
                 .withDropTable(remainsDropTable)
@@ -199,7 +199,7 @@ public abstract class CustomMob {
         SimpleMobDropTable infusedRemainsDropTable = new SimpleMobDropTable();
         infusedRemainsDropTable.addBasicDrop(new ItemStack(Material.BONE), 1);
         infusedRemainsDropTable.addBasicDrop(new ItemStack(Material.ARROW), 1);
-        infusedRemainsDropTable.addRareDrop(CustomItem.SHORT_BOW.getItemStack(), 10);
+        infusedRemainsDropTable.addRareDrop(CustomItem.SHORT_BOW.getItemStack(), 1);
         ItemStack infusedBow = new ItemStack(Material.BOW);
         infusedBow.addEnchantment(Enchantment.POWER, 1);
         INFUSED_REMAINS = new RemainsBuilder(plugin, "Infused Remains")
@@ -227,8 +227,8 @@ public abstract class CustomMob {
         SimpleMobDropTable immortalLegionaryDropTable = new SimpleMobDropTable();
         immortalLegionaryDropTable.addBasicDrop(new ItemStack(Material.BONE), 2);
         immortalLegionaryDropTable.addBasicDrop(new ItemStack(Material.ARROW), 1);
-        immortalLegionaryDropTable.addRareDrop(CustomItem.LEGIONARY_BOW.getItemStack(), 10);
-        immortalLegionaryDropTable.addRareDrop(new ItemStack(Material.ECHO_SHARD), 10);
+        immortalLegionaryDropTable.addRareDrop(new ItemStack(Material.ECHO_SHARD), 5);
+        immortalLegionaryDropTable.addRareDrop(CustomItem.LEGIONARY_BOW.getItemStack(), 2);
         IMMORTAL_LEGIONARY = new RemainsBuilder(plugin, "Immortal Legionary")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.35)
@@ -376,7 +376,7 @@ public abstract class CustomMob {
 
         SimpleMobDropTable superChargedBomberDropTable = new SimpleMobDropTable();
         superChargedBomberDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.GUNPOWDER), ItemGrade.GOLD), 1);
-        superChargedBomberDropTable.addRareDrop(new ItemStack(Material.DIAMOND), 10);
+        superChargedBomberDropTable.addRareDrop(new ItemStack(Material.DIAMOND), 1);
         SUPER_CHARGED_BOMBER = new BomberBuilder(plugin, "Super Charged Bomber")
                 .withMaxHealth(40)
                 .withMovementSpeed(0.4)
@@ -486,7 +486,7 @@ public abstract class CustomMob {
 
         SimpleMobDropTable infernoDropTable = new SimpleMobDropTable();
         infernoDropTable.addBasicDrop(new ItemStack(Material.BLAZE_ROD), 2);
-        infernoDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.BLAZE_ROD), ItemGrade.IRON), 10);
+        infernoDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.BLAZE_ROD), ItemGrade.IRON), 1);
         INFERNO = new SimpleCustomMobBuilder(plugin, "Inferno")
                 .withMaxHealth(70)
                 .withMovementSpeed(0.4)
@@ -499,7 +499,7 @@ public abstract class CustomMob {
         mazePiglinDropTable.addBasicDrop(new ItemStack(Material.PORKCHOP), 1);
         mazePiglinDropTable.addBasicDrop(CustomItem.SUN_GOLD_NUGGET.getItemStack(), 1);
         mazePiglinDropTable.addBasicDrop(new ItemStack(Material.NETHERRACK), 1);
-        mazePiglinDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.SUN_GOLD_NUGGET.getItemStack(), ItemGrade.IRON), 10);
+        mazePiglinDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.SUN_GOLD_NUGGET.getItemStack(), ItemGrade.IRON), 1);
         MAZE_PIGLIN = new MazePiglinBuilder(plugin, "Maze Piglin")
                 .withMaxHealth(45)
                 .withMovementSpeed(0.35)
@@ -524,11 +524,11 @@ public abstract class CustomMob {
         SimpleMobDropTable wraithDropTable = new SimpleMobDropTable();
         wraithDropTable.addBasicDrop(new ItemStack(Material.ECHO_SHARD), 1);
         wraithDropTable.addBasicDrop(new ItemStack(Material.DIAMOND), 1);
-        wraithDropTable.addRareDrop(CustomItem.WRAITH_HELMET.getItemStack(), 10);
-        wraithDropTable.addRareDrop(CustomItem.WRAITH_CHESTPLATE.getItemStack(), 10);
-        wraithDropTable.addRareDrop(CustomItem.WRAITH_LEGGINGS.getItemStack(), 10);
-        wraithDropTable.addRareDrop(CustomItem.WRAITH_BOOTS.getItemStack(), 10);
-        wraithDropTable.addRareDrop(CustomItem.ADAMANTITE_INGOT.getItemStack(), 10);
+        wraithDropTable.addRareDrop(CustomItem.ADAMANTITE_INGOT.getItemStack(), 5);
+        wraithDropTable.addRareDrop(CustomItem.WRAITH_HELMET.getItemStack(), 1);
+        wraithDropTable.addRareDrop(CustomItem.WRAITH_CHESTPLATE.getItemStack(), 1);
+        wraithDropTable.addRareDrop(CustomItem.WRAITH_LEGGINGS.getItemStack(), 1);
+        wraithDropTable.addRareDrop(CustomItem.WRAITH_BOOTS.getItemStack(), 1);
         WRAITH = new MazeBruteBuilder(plugin, "Wraith")
                 .withMaxHealth(100)
                 .withMovementSpeed(0.4)
@@ -541,7 +541,7 @@ public abstract class CustomMob {
 
         SimpleMobDropTable netherBeastDropTable = new SimpleMobDropTable();
         netherBeastDropTable.addBasicDrop(new ItemStack(Material.PORKCHOP), 2);
-        netherBeastDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.PORKCHOP), ItemGrade.IRON), 10);
+        netherBeastDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.PORKCHOP), ItemGrade.IRON), 1);
         NETHER_BEAST = new MazeHoglinBuilder(plugin, "Nether Beast")
                 .withMaxHealth(60)
                 .withMovementSpeed(0.3)
@@ -623,7 +623,7 @@ public abstract class CustomMob {
 
         SimpleMobDropTable executionerDropTable = new SimpleMobDropTable();
         executionerDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.ROTTEN_FLESH), ItemGrade.GOLD), 1);
-        executionerDropTable.addRareDrop(new ItemStack(Material.DIAMOND), 10);
+        executionerDropTable.addRareDrop(new ItemStack(Material.DIAMOND), 1);
         EXECUTIONER = new SimpleCustomArmorMobBuilder(plugin, "Executioner")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.3)
@@ -649,11 +649,11 @@ public abstract class CustomMob {
         alchemistDropTable.addBasicDrop(new ItemStack(Material.RED_MUSHROOM), 2);
         alchemistDropTable.addBasicDrop(new ItemStack(Material.GLOWSTONE_DUST), 2);
         alchemistDropTable.addBasicDrop(new ItemStack(Material.SUGAR), 2);
-        alchemistDropTable.addRareDrop(CustomItem.SWIFTNESS_II.getItemStack(), 10);
-        alchemistDropTable.addRareDrop(CustomItem.STRENGTH.getItemStack(), 10);
-        alchemistDropTable.addRareDrop(CustomItem.POISON.getItemStack(), 10);
-        alchemistDropTable.addRareDrop(CustomItem.SLOWNESS.getItemStack(), 10);
-        alchemistDropTable.addRareDrop(CustomItem.WEAKNESS.getItemStack(), 10);
+        alchemistDropTable.addRareDrop(CustomItem.SWIFTNESS_II.getItemStack(), 1);
+        alchemistDropTable.addRareDrop(CustomItem.STRENGTH.getItemStack(), 1);
+        alchemistDropTable.addRareDrop(CustomItem.POISON.getItemStack(), 1);
+        alchemistDropTable.addRareDrop(CustomItem.SLOWNESS.getItemStack(), 1);
+        alchemistDropTable.addRareDrop(CustomItem.WEAKNESS.getItemStack(), 1);
         ALCHEMIST = new SimpleCustomMobBuilder(plugin, "Alchemist")
                 .withMaxHealth(45)
                 .withMovementSpeed(0.35)
