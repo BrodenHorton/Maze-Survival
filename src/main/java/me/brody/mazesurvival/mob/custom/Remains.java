@@ -47,6 +47,8 @@ public class Remains extends CustomArmorMob {
         skeleton.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
         if(powerAmplifier >= 0)
             skeleton.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
+        skeleton.getEquipment().setItemInMainHand(null);
+        skeleton.getEquipment().setItemInOffHand(null);
         if(mainHandWeapon != null)
             skeleton.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)

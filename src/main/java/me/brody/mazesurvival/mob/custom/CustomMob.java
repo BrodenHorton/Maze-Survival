@@ -776,6 +776,10 @@ public abstract class CustomMob {
         registerCustomMob(BEHEMOTH);
         registerCustomMob(ALCHEMIST);
         registerCustomMob(GOLDEN_HARE_STRONGHOLD);
+        registerCustomMob(GOLDEN_HARE_DESERT);
+        registerCustomMob(GOLDEN_HARE_SWAMP);
+        registerCustomMob(GOLDEN_HARE_NETHER);
+        registerCustomMob(GOLDEN_HARE_DEEP_DARK);
     }
 
     private static void registerCustomMob(CustomMob customMob) {

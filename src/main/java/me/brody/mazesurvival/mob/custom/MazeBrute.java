@@ -12,8 +12,6 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Arrays;
-
 public class MazeBrute extends CustomArmorMob {
     public final Main plugin;
 
@@ -39,6 +37,8 @@ public class MazeBrute extends CustomArmorMob {
         brute.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
         if(powerAmplifier >= 0)
             brute.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
+        brute.getEquipment().setItemInMainHand(null);
+        brute.getEquipment().setItemInOffHand(null);
         if(mainHandWeapon != null)
             brute.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)

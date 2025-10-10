@@ -37,6 +37,8 @@ public class MazePiglin extends CustomArmorMob {
         piglin.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
         if(powerAmplifier >= 0)
             piglin.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
+        piglin.getEquipment().setItemInMainHand(null);
+        piglin.getEquipment().setItemInOffHand(null);
         if(mainHandWeapon != null)
             piglin.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)

@@ -41,6 +41,8 @@ public class SimpleCustomArmorMob extends CustomArmorMob {
         mob.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
         if(powerAmplifier >= 0)
             mob.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
+        mob.getEquipment().setItemInMainHand(null);
+        mob.getEquipment().setItemInOffHand(null);
         if(mainHandWeapon != null)
             mob.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)

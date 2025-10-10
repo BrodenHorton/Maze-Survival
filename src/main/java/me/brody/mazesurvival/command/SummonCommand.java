@@ -21,8 +21,8 @@ public class SummonCommand implements SubCommand {
             ChatUtils.msg(p, String.format("%sInvalid args\nCommand Parameters: /ms summon <Mob>", ERROR_COLOR));
             return;
         }
-        if(args.length != 2 || Registry.CUSTOM_MOB.get(args[1]) == null) {
-            ChatUtils.msg(p, String.format("%sInvalid mob type: " + args[1]));
+        if(Registry.CUSTOM_MOB.get(args[1]) == null) {
+            ChatUtils.msg(p, String.format("%sInvalid mob type: %s", ERROR_COLOR, args[1]));
             return;
         }
 

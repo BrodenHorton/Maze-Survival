@@ -43,6 +43,8 @@ public class Revenant extends CustomArmorMob {
         zombie.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
         if(powerAmplifier >= 0)
             zombie.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
+        zombie.getEquipment().setItemInMainHand(null);
+        zombie.getEquipment().setItemInOffHand(null);
         if(mainHandWeapon != null)
             zombie.getEquipment().setItemInMainHand(mainHandWeapon);
         if(offHandWeapon != null)
