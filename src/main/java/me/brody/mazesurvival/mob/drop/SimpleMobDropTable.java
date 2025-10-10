@@ -55,8 +55,6 @@ public class SimpleMobDropTable implements MobDropTable {
         if(shouldDropRare) {
             System.out.println("Dropping rare item!");
             ItemStack rareDrop = rareDrops.getWeightedValue().clone();
-            if(rareDrop == null)
-                System.out.println("Rare Item was null!");
             if(rareDrop != null)
                 drops.add(rareDrop);
         }

@@ -81,6 +81,9 @@ public class WeightedList<T> {
     }
 
     public List<T> getWeightedValuesNoRepeat(int amt) {
+        if(weightedEntries.isEmpty())
+            return null;
+
         List<WeightedEntry<T>> weightedListCopy = new ArrayList<>(weightedEntries);
         List<T> results = new ArrayList<>();
         for(int i = 0; i < amt && !weightedListCopy.isEmpty(); i++) {

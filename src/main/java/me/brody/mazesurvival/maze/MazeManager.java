@@ -2,10 +2,7 @@ package me.brody.mazesurvival.maze;
 
 import me.brody.mazesurvival.event.Event;
 import me.brody.mazesurvival.event.eventargs.EventArgs;
-import me.brody.mazesurvival.maze.builder.MazeBuilder;
-import me.brody.mazesurvival.maze.builder.DecoratorGenerator;
-import me.brody.mazesurvival.maze.builder.MazeLootGenerator;
-import me.brody.mazesurvival.maze.builder.StructureGenerator;
+import me.brody.mazesurvival.maze.builder.*;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.grid.MazeGridBase;
 import me.brody.mazesurvival.maze.region.CellExtension;

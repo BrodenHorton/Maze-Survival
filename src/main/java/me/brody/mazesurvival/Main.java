@@ -1,6 +1,8 @@
 package me.brody.mazesurvival;
 
+import me.brody.mazesurvival.bounds.AreaProtectionManager;
 import me.brody.mazesurvival.brewing.BrewingMenu;
+import me.brody.mazesurvival.bounds.CollisionManager;
 import me.brody.mazesurvival.daynightcycle.DayNightCycle;
 import me.brody.mazesurvival.enchantment.EnchantingController;
 import me.brody.mazesurvival.enchantment.MazeEnchantment;
@@ -34,6 +36,8 @@ public class Main extends JavaPlugin {
 	private MobManager mobManager;
 	private WanderingTraderManager wanderingTraderManager;
 	private EnchantingController enchantingController;
+	private AreaProtectionManager areaProtectionManager;
+	private CollisionManager collisionManager;
 
 	@Override
 	public void onEnable() {
@@ -56,6 +60,8 @@ public class Main extends JavaPlugin {
 		mobManager = new MobManager(this, dayNightCycle);
 		wanderingTraderManager = new WanderingTraderManager(this, dayNightCycle);
 		enchantingController = new EnchantingController(this);
+		areaProtectionManager = new AreaProtectionManager(this);
+		collisionManager = new CollisionManager(this);
 
 		// Registering the executor for the "ms" command
 		getCommand("ms").setExecutor(new CommandManager(this));
@@ -65,6 +71,8 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(wanderingTraderManager, this);
 		getServer().getPluginManager().registerEvents(enchantingController, this);
 		getServer().getPluginManager().registerEvents(enchantingController.getNavigationMenu(), this);
+		getServer().getPluginManager().registerEvents(areaProtectionManager, this);
+		getServer().getPluginManager().registerEvents(collisionManager, this);
 		getServer().getPluginManager().registerEvents(new CrusaderEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new LingeringShotEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new SoulBoundEnchantmentListener(this), this);
@@ -107,5 +115,13 @@ public class Main extends JavaPlugin {
 
 	public EnchantingController getEnchantingController() {
 		return enchantingController;
+	}
+
+	public AreaProtectionManager getAreaProtectionManager() {
+		return areaProtectionManager;
+	}
+
+	public CollisionManager getCollisionManager() {
+		return collisionManager;
 	}
 }

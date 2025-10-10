@@ -10,6 +10,7 @@ import me.brody.mazesurvival.maze.region.CellOrientation;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.utils.MazeSchematic;
 import me.brody.mazesurvival.utils.Vector2Int;
+import me.brody.mazesurvival.utils.WeightedList;
 import org.bukkit.Location;
 
 import java.util.*;
@@ -27,7 +28,7 @@ public class DecoratorGenerator {
 
     private MazeGrid grid;
     private Queue<MazeStructureGenerator> decorations;
-    private Map<String, Integer> trapWeights;
+    private WeightedList<CellTrap> weightedTraps;
     private boolean isRunning;
 
     public DecoratorGenerator(Main plugin, MazeGrid grid) {
@@ -36,10 +37,10 @@ public class DecoratorGenerator {
         RNG = new Random();
         this.grid = grid;
         decorations = new ArrayDeque<>();
-        trapWeights = new HashMap<>();
-        trapWeights.put("blindness", 2);
-        trapWeights.put("slowness", 2);
-        trapWeights.put("teleportation", 1);
+        weightedTraps = new WeightedList<>();
+        weightedTraps.add(CellTrap.BLINDNESS_TRAP, 2);
+        weightedTraps.add(CellTrap.SLOWNESS_TRAP, 2);
+        weightedTraps.add(CellTrap.TELEPORTATION_TRAP, 1);
         isRunning = false;
     }
 
@@ -107,7 +108,7 @@ public class DecoratorGenerator {
             int trapCount = (int)Math.ceil(cellCoords.size() * TRAP_DENSITY);
             for(int i = 0; i < trapCount; i++) {
                 Location cellCenter = grid.getRegionCellWorldCenter(region, cellCoords.get(i).y, cellCoords.get(i).x);
-                CellTrap cellTrap = getRandomTrapByWeight(cellCenter);
+                CellTrapGenerator cellTrap = new CellTrapGenerator(weightedTraps.getWeightedValue(), cellCenter);
                 if(cellTrap != null)
                     decorations.add(cellTrap);
             }
@@ -130,45 +131,6 @@ public class DecoratorGenerator {
             isRunning = false;
             onMazeDecoratorFinished.invoke(this, EventArgs.EMPTY);
         }
-    }
-
-    private CellTrap getRandomTrapByWeight(Location cellCenter) {
-        if(trapWeights == null || trapWeights.isEmpty())
-            return null;
-
-        int totalWeight = 0;
-        for(Map.Entry<String, Integer> entry : trapWeights.entrySet())
-            totalWeight += entry.getValue();
-
-        String resultStr = null;
-        int weightValue = RNG.nextInt(0, totalWeight + 1);
-        for(Map.Entry<String, Integer> entry : trapWeights.entrySet()) {
-            if(weightValue <= entry.getValue()) {
-                resultStr = entry.getKey();
-                break;
-            }
-
-            weightValue -= entry.getValue();
-        }
-
-        CellTrap cellTrap = null;
-        if(resultStr != null) {
-            switch(resultStr) {
-                case "blindness":
-                    cellTrap = new BlindnessCellTrap(cellCenter);
-                    break;
-                case "slowness":
-                    cellTrap = new SlownessCellTrap(cellCenter);
-                    break;
-                case "teleportation":
-                    cellTrap = new TeleportationCellTrap(cellCenter);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        return cellTrap;
     }
 
 }

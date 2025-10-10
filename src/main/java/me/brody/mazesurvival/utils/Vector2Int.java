@@ -10,6 +10,10 @@ public class Vector2Int {
         this.y = y;
     }
 
+    public Vector2Int clone() {
+        return new Vector2Int(x, y);
+    }
+
     public static Vector2Int Zero(){
         return new Vector2Int(0, 0);
     }

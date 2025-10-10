@@ -11,6 +11,16 @@ public class Vector3Int {
         this.z = z;
     }
 
+    public void add(Vector3Int addition) {
+        x += addition.x;
+        y += addition.y;
+        z += addition.z;
+    }
+
+    public Vector3Int clone() {
+        return new Vector3Int(x, y, z);
+    }
+
     public static Vector3Int Zero(){
         return new Vector3Int(0, 0, 0);
     }
