@@ -4,18 +4,25 @@ import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.bounds.BoundsInt;
 import me.brody.mazesurvival.event.Event;
 import me.brody.mazesurvival.event.eventargs.EventArgs;
-import me.brody.mazesurvival.maze.Direction;
 import me.brody.mazesurvival.maze.builder.structure.MazeStructure;
 import me.brody.mazesurvival.maze.builder.structure.MazeStructureGenerator;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.CellExtension;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.utils.ChatUtils;
+import me.brody.mazesurvival.utils.LocationCopier;
 import me.brody.mazesurvival.utils.Vector3Int;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.function.Consumer;
 
 public class StructureGenerator {
     private static final long GENERATION_DELAY = 25L;
@@ -96,6 +103,10 @@ public class StructureGenerator {
         final int distanceToCellCenter = (grid.getRegionCellSize() - grid.getWallWidth()) / 2;
         final int entranceToExitDistance = 4;
         final int doorCellCentersDistance = (grid.getMarginInBlocks() * 2) + grid.getRegionCellSize();
+        final int teleportDistance = 7;
+        final float primaryDirectionYaw = (haven.getDirection().id - 2) * 90;
+        final float secondaryDirectionYaw = ((haven.getDirection().id + 2 % 4) - 2) * 90;
+        final float halfBlockOffset = 0.5f;
 
         boolean isMeridional = haven.getDirection().id % 2 == 0;
         int directionFactor = haven.getDirection().id == 1 || haven.getDirection().id == 2 ? 1 : -1;
@@ -104,42 +115,86 @@ public class StructureGenerator {
         Location cellExtensionOrigin = grid.getRegionHavenWorldOrigin(region);
         BoundsInt primaryEntrance = startingTrigger.clone();
         primaryEntrance.shift(cellExtensionOrigin);
-        if(isMeridional)
+        if(isMeridional) {
             primaryEntrance.shiftZ(distanceToCellCenter * directionFactor);
-        else
+            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
+            teleportLocation.setX(teleportLocation.getX() + halfBlockOffset);
+            teleportLocation.setY(teleportLocation.getY() + 1);
+            teleportLocation.setZ(teleportLocation.getZ() + ((distanceToCellCenter + teleportDistance) * directionFactor) + halfBlockOffset);
+            teleportLocation.setYaw((primaryDirectionYaw));
+            plugin.getCollisionManager().addTriggerBounds(primaryEntrance, getHavenEntranceTriggerConsumer(teleportLocation));
+        }
+        else {
             primaryEntrance.shiftX(distanceToCellCenter * directionFactor);
-        plugin.getCollisionManager().addTriggerBounds(primaryEntrance, (p) -> {
-            ChatUtils.msg(p, "&aHaven's primary door entrance triggered!");
-        });
+            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
+            teleportLocation.setX(teleportLocation.getX() + ((distanceToCellCenter + teleportDistance) * directionFactor) + halfBlockOffset);
+            teleportLocation.setY(teleportLocation.getY() + 1);
+            teleportLocation.setZ(teleportLocation.getZ() + halfBlockOffset);
+            teleportLocation.setYaw((primaryDirectionYaw));
+            plugin.getCollisionManager().addTriggerBounds(primaryEntrance, getHavenEntranceTriggerConsumer(teleportLocation));
+        }
 
         BoundsInt primaryExit = primaryEntrance.clone();
-        if(isMeridional)
+        if(isMeridional) {
             primaryExit.shiftZ(entranceToExitDistance * directionFactor);
-        else
+            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
+            teleportLocation.setX(teleportLocation.getX() + halfBlockOffset);
+            teleportLocation.setY(teleportLocation.getY() + 1);
+            teleportLocation.setZ(teleportLocation.getZ() + ((distanceToCellCenter - 3) * directionFactor) + halfBlockOffset);
+            teleportLocation.setYaw((secondaryDirectionYaw));
+            plugin.getCollisionManager().addTriggerBounds(primaryExit, getHavenExitTriggerConsumer(teleportLocation));
+        }
+        else {
             primaryExit.shiftX(entranceToExitDistance * directionFactor);
-        plugin.getCollisionManager().addTriggerBounds(primaryExit, (p) -> {
-            ChatUtils.msg(p, "&aHaven's primary door exit trigger!");
-        });
+            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
+            teleportLocation.setX(teleportLocation.getX() + ((distanceToCellCenter - 3) * directionFactor) + halfBlockOffset);
+            teleportLocation.setY(teleportLocation.getY() + 1);
+            teleportLocation.setZ(teleportLocation.getZ() + halfBlockOffset);
+            teleportLocation.setYaw((secondaryDirectionYaw));
+            plugin.getCollisionManager().addTriggerBounds(primaryExit, getHavenExitTriggerConsumer(teleportLocation));
+        }
 
         BoundsInt secondaryEntrance = startingTrigger.clone();
         secondaryEntrance.shift(cellExtensionOrigin);
         int secondaryEntranceShift = (doorCellCentersDistance * directionFactor) + (distanceToCellCenter * (-directionFactor));
-        if(isMeridional)
+        if(isMeridional) {
             secondaryEntrance.shiftZ(secondaryEntranceShift);
-        else
+            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
+            teleportLocation.setX(teleportLocation.getX() + halfBlockOffset);
+            teleportLocation.setY(teleportLocation.getY() + 1);
+            teleportLocation.setZ(teleportLocation.getZ() + (secondaryEntranceShift - (teleportDistance * directionFactor)) + halfBlockOffset);
+            teleportLocation.setYaw((secondaryDirectionYaw));
+            plugin.getCollisionManager().addTriggerBounds(secondaryEntrance, getHavenEntranceTriggerConsumer(teleportLocation));
+        }
+        else {
             secondaryEntrance.shiftX(secondaryEntranceShift);
-        plugin.getCollisionManager().addTriggerBounds(secondaryEntrance, (p) -> {
-            ChatUtils.msg(p, "&aHaven's secondary door entrance trigger!");
-        });
+            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
+            teleportLocation.setX(teleportLocation.getX() + (secondaryEntranceShift - (teleportDistance * directionFactor)) + halfBlockOffset);
+            teleportLocation.setY(teleportLocation.getY() + 1);
+            teleportLocation.setZ(teleportLocation.getZ() + halfBlockOffset);
+            teleportLocation.setYaw((secondaryDirectionYaw));
+            plugin.getCollisionManager().addTriggerBounds(secondaryEntrance, getHavenEntranceTriggerConsumer(teleportLocation));
+        }
 
         BoundsInt secondaryExit = secondaryEntrance.clone();
-        if(isMeridional)
+        if(isMeridional) {
             secondaryExit.shiftZ(entranceToExitDistance * (-directionFactor));
-        else
+            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
+            teleportLocation.setX(teleportLocation.getX() + halfBlockOffset);
+            teleportLocation.setY(teleportLocation.getY() + 1);
+            teleportLocation.setZ(teleportLocation.getZ() + (secondaryEntranceShift + (3 * directionFactor)) + halfBlockOffset);
+            teleportLocation.setYaw((primaryDirectionYaw));
+            plugin.getCollisionManager().addTriggerBounds(secondaryExit, getHavenExitTriggerConsumer(teleportLocation));
+        }
+        else {
             secondaryExit.shiftX(entranceToExitDistance * (-directionFactor));
-        plugin.getCollisionManager().addTriggerBounds(secondaryExit, (p) -> {
-            ChatUtils.msg(p, "&aHaven's secondary door exit trigger!");
-        });
+            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
+            teleportLocation.setX(teleportLocation.getX() + (secondaryEntranceShift + (3 * directionFactor)) + halfBlockOffset);
+            teleportLocation.setY(teleportLocation.getY() + 1);
+            teleportLocation.setZ(teleportLocation.getZ() + halfBlockOffset);
+            teleportLocation.setYaw((primaryDirectionYaw));
+            plugin.getCollisionManager().addTriggerBounds(secondaryExit, getHavenExitTriggerConsumer(teleportLocation));
+        }
     }
 
     public void generateBossRoomTriggers(MazeRegion region) {
@@ -175,5 +230,43 @@ public class StructureGenerator {
         plugin.getCollisionManager().addTriggerBounds(exit, (p) -> {
             ChatUtils.msg(p, "&aBoss Room exit trigger!");
         });
+    }
+
+    private Consumer<Player> getHavenEntranceTriggerConsumer(Location teleportLocation) {
+        return (p) -> {
+            if(plugin.getDayNightCycle().isDay()) {
+                p.teleport(teleportLocation);
+                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
+            }
+            else {
+                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&bYou cannot enter a Haven at night")));
+            }
+        };
+    }
+
+    private Consumer<Player> getHavenExitTriggerConsumer(Location teleportLocation) {
+        return (p) -> {
+            if(plugin.getDayNightCycle().isDay()) {
+                p.teleport(teleportLocation);
+                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
+            }
+            else {
+                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&bYou cannot exit a Haven at night")));
+            }
+        };
+    }
+
+    private Consumer<Player> getBossRoomEntranceTriggerConsumer(Location teleportLocation) {
+        return (p) -> {
+            p.teleport(teleportLocation);
+            p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
+        };
+    }
+
+    private Consumer<Player> getBossRoomExitTriggerConsumer(Location teleportLocation) {
+        return (p) -> {
+            p.teleport(teleportLocation);
+            p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
+        };
     }
 }

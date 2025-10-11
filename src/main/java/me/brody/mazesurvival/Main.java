@@ -113,6 +113,10 @@ public class Main extends JavaPlugin {
 		return profileManager;
 	}
 
+	public DayNightCycle getDayNightCycle() {
+		return dayNightCycle;
+	}
+
 	public EnchantingController getEnchantingController() {
 		return enchantingController;
 	}
