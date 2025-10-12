@@ -115,86 +115,74 @@ public class StructureGenerator {
         Location cellExtensionOrigin = grid.getRegionHavenWorldOrigin(region);
         BoundsInt primaryEntrance = startingTrigger.clone();
         primaryEntrance.shift(cellExtensionOrigin);
+        float cellCenterToPrimaryEntranceTeleport = ((distanceToCellCenter + teleportDistance) * directionFactor) + halfBlockOffset;
+        Location primaryEntranceTeleportLocation = LocationCopier.copy(cellExtensionOrigin);
         if(isMeridional) {
             primaryEntrance.shiftZ(distanceToCellCenter * directionFactor);
-            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
-            teleportLocation.setX(teleportLocation.getX() + halfBlockOffset);
-            teleportLocation.setY(teleportLocation.getY() + 1);
-            teleportLocation.setZ(teleportLocation.getZ() + ((distanceToCellCenter + teleportDistance) * directionFactor) + halfBlockOffset);
-            teleportLocation.setYaw((primaryDirectionYaw));
-            plugin.getCollisionManager().addTriggerBounds(primaryEntrance, getHavenEntranceTriggerConsumer(teleportLocation));
+            primaryEntranceTeleportLocation.setX(primaryEntranceTeleportLocation.getX() + halfBlockOffset);
+            primaryEntranceTeleportLocation.setZ(primaryEntranceTeleportLocation.getZ() + cellCenterToPrimaryEntranceTeleport);
         }
         else {
             primaryEntrance.shiftX(distanceToCellCenter * directionFactor);
-            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
-            teleportLocation.setX(teleportLocation.getX() + ((distanceToCellCenter + teleportDistance) * directionFactor) + halfBlockOffset);
-            teleportLocation.setY(teleportLocation.getY() + 1);
-            teleportLocation.setZ(teleportLocation.getZ() + halfBlockOffset);
-            teleportLocation.setYaw((primaryDirectionYaw));
-            plugin.getCollisionManager().addTriggerBounds(primaryEntrance, getHavenEntranceTriggerConsumer(teleportLocation));
+            primaryEntranceTeleportLocation.setX(primaryEntranceTeleportLocation.getX() + cellCenterToPrimaryEntranceTeleport);
+            primaryEntranceTeleportLocation.setZ(primaryEntranceTeleportLocation.getZ() + halfBlockOffset);
         }
+        primaryEntranceTeleportLocation.setY(primaryEntranceTeleportLocation.getY() + 1);
+        primaryEntranceTeleportLocation.setYaw((primaryDirectionYaw));
+        plugin.getCollisionManager().addTriggerBounds(primaryEntrance, getHavenEntranceTriggerConsumer(primaryEntranceTeleportLocation));
 
         BoundsInt primaryExit = primaryEntrance.clone();
+        float cellCenterToPrimaryExitTeleport = ((distanceToCellCenter - 3) * directionFactor) + halfBlockOffset;
+        Location primaryExitTeleportLocation = LocationCopier.copy(cellExtensionOrigin);
         if(isMeridional) {
             primaryExit.shiftZ(entranceToExitDistance * directionFactor);
-            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
-            teleportLocation.setX(teleportLocation.getX() + halfBlockOffset);
-            teleportLocation.setY(teleportLocation.getY() + 1);
-            teleportLocation.setZ(teleportLocation.getZ() + ((distanceToCellCenter - 3) * directionFactor) + halfBlockOffset);
-            teleportLocation.setYaw((secondaryDirectionYaw));
-            plugin.getCollisionManager().addTriggerBounds(primaryExit, getHavenExitTriggerConsumer(teleportLocation));
+            primaryExitTeleportLocation.setX(primaryExitTeleportLocation.getX() + halfBlockOffset);
+            primaryExitTeleportLocation.setZ(primaryExitTeleportLocation.getZ() + cellCenterToPrimaryExitTeleport);
         }
         else {
             primaryExit.shiftX(entranceToExitDistance * directionFactor);
-            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
-            teleportLocation.setX(teleportLocation.getX() + ((distanceToCellCenter - 3) * directionFactor) + halfBlockOffset);
-            teleportLocation.setY(teleportLocation.getY() + 1);
-            teleportLocation.setZ(teleportLocation.getZ() + halfBlockOffset);
-            teleportLocation.setYaw((secondaryDirectionYaw));
-            plugin.getCollisionManager().addTriggerBounds(primaryExit, getHavenExitTriggerConsumer(teleportLocation));
+            primaryExitTeleportLocation.setX(primaryExitTeleportLocation.getX() + cellCenterToPrimaryExitTeleport);
+            primaryExitTeleportLocation.setZ(primaryExitTeleportLocation.getZ() + halfBlockOffset);
         }
+        primaryExitTeleportLocation.setY(primaryExitTeleportLocation.getY() + 1);
+        primaryExitTeleportLocation.setYaw((secondaryDirectionYaw));
+        plugin.getCollisionManager().addTriggerBounds(primaryExit, getHavenExitTriggerConsumer(primaryExitTeleportLocation));
 
         BoundsInt secondaryEntrance = startingTrigger.clone();
         secondaryEntrance.shift(cellExtensionOrigin);
         int secondaryEntranceShift = (doorCellCentersDistance * directionFactor) + (distanceToCellCenter * (-directionFactor));
+        float cellCenterToSecondaryEntranceTeleport = (secondaryEntranceShift - (teleportDistance * directionFactor)) + halfBlockOffset;
+        Location secondaryEntranceTeleportLocation = LocationCopier.copy(cellExtensionOrigin);
         if(isMeridional) {
             secondaryEntrance.shiftZ(secondaryEntranceShift);
-            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
-            teleportLocation.setX(teleportLocation.getX() + halfBlockOffset);
-            teleportLocation.setY(teleportLocation.getY() + 1);
-            teleportLocation.setZ(teleportLocation.getZ() + (secondaryEntranceShift - (teleportDistance * directionFactor)) + halfBlockOffset);
-            teleportLocation.setYaw((secondaryDirectionYaw));
-            plugin.getCollisionManager().addTriggerBounds(secondaryEntrance, getHavenEntranceTriggerConsumer(teleportLocation));
+            secondaryEntranceTeleportLocation.setX(secondaryEntranceTeleportLocation.getX() + halfBlockOffset);
+            secondaryEntranceTeleportLocation.setZ(secondaryEntranceTeleportLocation.getZ() + cellCenterToSecondaryEntranceTeleport);
         }
         else {
             secondaryEntrance.shiftX(secondaryEntranceShift);
-            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
-            teleportLocation.setX(teleportLocation.getX() + (secondaryEntranceShift - (teleportDistance * directionFactor)) + halfBlockOffset);
-            teleportLocation.setY(teleportLocation.getY() + 1);
-            teleportLocation.setZ(teleportLocation.getZ() + halfBlockOffset);
-            teleportLocation.setYaw((secondaryDirectionYaw));
-            plugin.getCollisionManager().addTriggerBounds(secondaryEntrance, getHavenEntranceTriggerConsumer(teleportLocation));
+            secondaryEntranceTeleportLocation.setX(secondaryEntranceTeleportLocation.getX() + cellCenterToSecondaryEntranceTeleport);
+            secondaryEntranceTeleportLocation.setZ(secondaryEntranceTeleportLocation.getZ() + halfBlockOffset);
         }
+        secondaryEntranceTeleportLocation.setY(secondaryEntranceTeleportLocation.getY() + 1);
+        secondaryEntranceTeleportLocation.setYaw((secondaryDirectionYaw));
+        plugin.getCollisionManager().addTriggerBounds(secondaryEntrance, getHavenEntranceTriggerConsumer(secondaryEntranceTeleportLocation));
 
         BoundsInt secondaryExit = secondaryEntrance.clone();
+        float cellCenterToSecondaryExitTeleport = (secondaryEntranceShift + (3 * directionFactor)) + halfBlockOffset;
+        Location secondaryExitTeleportLocation = LocationCopier.copy(cellExtensionOrigin);
         if(isMeridional) {
             secondaryExit.shiftZ(entranceToExitDistance * (-directionFactor));
-            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
-            teleportLocation.setX(teleportLocation.getX() + halfBlockOffset);
-            teleportLocation.setY(teleportLocation.getY() + 1);
-            teleportLocation.setZ(teleportLocation.getZ() + (secondaryEntranceShift + (3 * directionFactor)) + halfBlockOffset);
-            teleportLocation.setYaw((primaryDirectionYaw));
-            plugin.getCollisionManager().addTriggerBounds(secondaryExit, getHavenExitTriggerConsumer(teleportLocation));
+            secondaryExitTeleportLocation.setX(secondaryExitTeleportLocation.getX() + halfBlockOffset);
+            secondaryExitTeleportLocation.setZ(secondaryExitTeleportLocation.getZ() + cellCenterToSecondaryExitTeleport);
         }
         else {
             secondaryExit.shiftX(entranceToExitDistance * (-directionFactor));
-            Location teleportLocation = LocationCopier.copy(cellExtensionOrigin);
-            teleportLocation.setX(teleportLocation.getX() + (secondaryEntranceShift + (3 * directionFactor)) + halfBlockOffset);
-            teleportLocation.setY(teleportLocation.getY() + 1);
-            teleportLocation.setZ(teleportLocation.getZ() + halfBlockOffset);
-            teleportLocation.setYaw((primaryDirectionYaw));
-            plugin.getCollisionManager().addTriggerBounds(secondaryExit, getHavenExitTriggerConsumer(teleportLocation));
+            secondaryExitTeleportLocation.setX(secondaryExitTeleportLocation.getX() + cellCenterToSecondaryExitTeleport);
+            secondaryExitTeleportLocation.setZ(secondaryExitTeleportLocation.getZ() + halfBlockOffset);
         }
+        secondaryExitTeleportLocation.setY(secondaryExitTeleportLocation.getY() + 1);
+        secondaryExitTeleportLocation.setYaw((primaryDirectionYaw));
+        plugin.getCollisionManager().addTriggerBounds(secondaryExit, getHavenExitTriggerConsumer(secondaryExitTeleportLocation));
     }
 
     public void generateBossRoomTriggers(MazeRegion region) {
@@ -206,6 +194,10 @@ public class StructureGenerator {
         final BoundsInt zonalTrigger = new BoundsInt(new Vector3Int(0, 0, -3), new Vector3Int(0, 9, 3));
         final int distanceToCellCenter = (grid.getRegionCellSize() - grid.getWallWidth()) / 2;
         final int entranceToExitDistance = 4;
+        final int teleportDistance = 7;
+        final float primaryDirectionYaw = (bossRoom.getDirection().id - 2) * 90;
+        final float secondaryDirectionYaw = ((bossRoom.getDirection().id + 2 % 4) - 2) * 90;
+        final float halfBlockOffset = 0.5f;
 
         boolean isMeridional = bossRoom.getDirection().id % 2 == 0;
         int directionFactor = bossRoom.getDirection().id == 1 || bossRoom.getDirection().id == 2 ? 1 : -1;
@@ -214,22 +206,38 @@ public class StructureGenerator {
         Location cellExtensionOrigin = grid.getRegionBossRoomWorldOrigin(region);
         BoundsInt entrance = startingTrigger.clone();
         entrance.shift(cellExtensionOrigin);
-        if(isMeridional)
+        float cellCenterToEntranceTeleport = ((distanceToCellCenter + teleportDistance) * directionFactor) + halfBlockOffset;
+        Location entranceTeleportLocation = LocationCopier.copy(cellExtensionOrigin);
+        if(isMeridional) {
             entrance.shiftZ(distanceToCellCenter * directionFactor);
-        else
+            entranceTeleportLocation.setX(entranceTeleportLocation.getX() + halfBlockOffset);
+            entranceTeleportLocation.setZ(entranceTeleportLocation.getZ() + cellCenterToEntranceTeleport);
+        }
+        else {
             entrance.shiftX(distanceToCellCenter * directionFactor);
-        plugin.getCollisionManager().addTriggerBounds(entrance, (p) -> {
-            ChatUtils.msg(p, "&aBoss Room entrance triggered!");
-        });
+            entranceTeleportLocation.setX(entranceTeleportLocation.getX() + cellCenterToEntranceTeleport);
+            entranceTeleportLocation.setZ(entranceTeleportLocation.getZ() + halfBlockOffset);
+        }
+        entranceTeleportLocation.setY(entranceTeleportLocation.getY() + 1);
+        entranceTeleportLocation.setYaw((primaryDirectionYaw));
+        plugin.getCollisionManager().addTriggerBounds(entrance, getBossRoomEntranceTriggerConsumer(entranceTeleportLocation));
 
-        BoundsInt exit = entrance.clone();
-        if(isMeridional)
-            exit.shiftZ(entranceToExitDistance * directionFactor);
-        else
-            exit.shiftX(entranceToExitDistance * directionFactor);
-        plugin.getCollisionManager().addTriggerBounds(exit, (p) -> {
-            ChatUtils.msg(p, "&aBoss Room exit trigger!");
-        });
+        BoundsInt primaryExit = entrance.clone();
+        float cellCenterToPrimaryExitTeleport = ((distanceToCellCenter - 3) * directionFactor) + halfBlockOffset;
+        Location exitTeleportLocation = LocationCopier.copy(cellExtensionOrigin);
+        if(isMeridional) {
+            primaryExit.shiftZ(entranceToExitDistance * directionFactor);
+            exitTeleportLocation.setX(exitTeleportLocation.getX() + halfBlockOffset);
+            exitTeleportLocation.setZ(exitTeleportLocation.getZ() + cellCenterToPrimaryExitTeleport);
+        }
+        else {
+            primaryExit.shiftX(entranceToExitDistance * directionFactor);
+            exitTeleportLocation.setX(exitTeleportLocation.getX() + cellCenterToPrimaryExitTeleport);
+            exitTeleportLocation.setZ(exitTeleportLocation.getZ() + halfBlockOffset);
+        }
+        exitTeleportLocation.setY(exitTeleportLocation.getY() + 1);
+        exitTeleportLocation.setYaw((secondaryDirectionYaw));
+        plugin.getCollisionManager().addTriggerBounds(primaryExit, getBossRoomExitTriggerConsumer(exitTeleportLocation));
     }
 
     private Consumer<Player> getHavenEntranceTriggerConsumer(Location teleportLocation) {
@@ -265,8 +273,13 @@ public class StructureGenerator {
 
     private Consumer<Player> getBossRoomExitTriggerConsumer(Location teleportLocation) {
         return (p) -> {
-            p.teleport(teleportLocation);
-            p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
+            if(false) {
+                p.teleport(teleportLocation);
+                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
+            }
+            else {
+                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&bYou cannot exit until the boss is defeated")));
+            }
         };
     }
 }

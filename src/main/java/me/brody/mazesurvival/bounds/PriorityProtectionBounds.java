@@ -1,17 +1,17 @@
 package me.brody.mazesurvival.bounds;
 
 public class PriorityProtectionBounds implements Comparable<PriorityProtectionBounds> {
-    private Priority priority;
+    private int priority;
     private BoundsInt bounds;
-    private boolean isProtectedArea;
+    private ProtectionType protectionType;
 
-    public PriorityProtectionBounds(Priority priority, BoundsInt bounds, boolean isProtectedArea) {
+    public PriorityProtectionBounds(int priority, BoundsInt bounds, ProtectionType protectionType) {
         this.priority = priority;
         this.bounds = bounds;
-        this.isProtectedArea = isProtectedArea;
+        this.protectionType = protectionType;
     }
 
-    public Priority getPriority() {
+    public int getPriority() {
         return priority;
     }
 
@@ -19,12 +19,18 @@ public class PriorityProtectionBounds implements Comparable<PriorityProtectionBo
         return bounds;
     }
 
-    public boolean isProtectedArea() {
-        return isProtectedArea;
+    public ProtectionType getProtectionType() {
+        return protectionType;
     }
 
     @Override
-    public int compareTo(PriorityProtectionBounds o) {
-        return priority.compareTo(o.getPriority());
+    public int compareTo(PriorityProtectionBounds other) {
+        int value = 0;
+        if(priority > other.priority)
+            value = 1;
+        else if(priority < other.priority)
+            value = -1;
+
+        return value;
     }
 }
