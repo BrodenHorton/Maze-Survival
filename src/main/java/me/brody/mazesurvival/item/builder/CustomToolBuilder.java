@@ -1,5 +1,7 @@
 package me.brody.mazesurvival.item.builder;
 
+import me.brody.mazesurvival.namespacekey.NamespacedKeys;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -7,8 +9,11 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CustomToolBuilder extends CustomItemBuilder<CustomToolBuilder> {
@@ -65,6 +70,20 @@ public class CustomToolBuilder extends CustomItemBuilder<CustomToolBuilder> {
         itemMeta.addAttributeModifier(Attribute.ATTACK_DAMAGE, attackDamageModifier);
         itemMeta.addAttributeModifier(Attribute.ATTACK_SPEED, attackSpeedModifier);
         itemStack.setItemMeta(itemMeta);
+        return this;
+    }
+
+    public CustomToolBuilder withToolLevel(int toolLevel) {
+        if(toolLevel < 1)
+            return this;
+
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.getPersistentDataContainer().set(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER, toolLevel);
+        List<String> lore = itemMeta.getLore() != null ? itemMeta.getLore() : new ArrayList<>();
+        lore.add(0, ChatColor.GRAY + "Tool Level: " + ChatColor.WHITE + toolLevel);
+        itemMeta.setLore(lore);
+        itemStack.setItemMeta(itemMeta);
+
         return this;
     }
 

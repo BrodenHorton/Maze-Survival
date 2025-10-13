@@ -97,6 +97,10 @@ public class WeightedList<T> {
         return results;
     }
 
+    public boolean isEmpty() {
+        return weightedEntries.isEmpty();
+    }
+
     public List<T> getWeightedValuesNoRepeat(int min, int max) {
         return getWeightedValuesNoRepeat(rng.nextInt(min, max + 1));
     }

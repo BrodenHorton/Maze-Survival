@@ -703,7 +703,7 @@ public class CustomItem {
         WORN_WOODEN_PICKAXE = new CustomToolBuilder(new ItemStack(Material.WOODEN_PICKAXE), "worn_wooden_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Worn Wooden Pickaxe")
                 .withBaseDamage(Math.round(woodenBaseAttack * pickaxeMultiplier))
-                .withPersistentData(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER, wornWoodenPickaxeToolLevel)
+                .withToolLevel(wornWoodenPickaxeToolLevel)
                 .build();
 
         int stoneBaseAttack = 4;
@@ -726,7 +726,7 @@ public class CustomItem {
         COBBLESTONE_PICKAXE = new CustomToolBuilder(new ItemStack(Material.STONE_PICKAXE), "cobblestone_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Cobblestone Pickaxe")
                 .withBaseDamage(Math.round(stoneBaseAttack * pickaxeMultiplier))
-                .withPersistentData(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER, cobblestonePickaxeToolLevel)
+                .withToolLevel(cobblestonePickaxeToolLevel)
                 .build();
 
         int bronzeBaseAttack = 8;
@@ -749,7 +749,7 @@ public class CustomItem {
         BRONZE_PICKAXE = new CustomToolBuilder(new ItemStack(Material.STONE_PICKAXE), "bronze_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Bronze Pickaxe")
                 .withBaseDamage(Math.round(bronzeBaseAttack * pickaxeMultiplier))
-                .withPersistentData(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER, bronzePickaxeToolLevel)
+                .withToolLevel(bronzePickaxeToolLevel)
                 .build();
 
         int miststeelBaseAttack = 12;
@@ -777,7 +777,7 @@ public class CustomItem {
         MISTSTEEL_PICKAXE = new CustomToolBuilder(new ItemStack(Material.IRON_PICKAXE), "miststeel_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Pickaxe")
                 .withBaseDamage(Math.round(miststeelBaseAttack * pickaxeMultiplier))
-                .withPersistentData(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER, miststeelPickaxeToolLevel)
+                .withToolLevel(miststeelPickaxeToolLevel)
                 .build();
 
         int sunGoldBaseAttack = 18;
@@ -800,7 +800,7 @@ public class CustomItem {
         SUN_GOLD_PICKAXE = new CustomToolBuilder(new ItemStack(Material.GOLDEN_PICKAXE), "sun_gold_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Pickaxe")
                 .withBaseDamage(Math.round(sunGoldBaseAttack * pickaxeMultiplier))
-                .withPersistentData(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER, sunGoldPickaxeToolLevel)
+                .withToolLevel(sunGoldPickaxeToolLevel)
                 .build();
 
         int orichalcumBaseAttack = 24;
@@ -823,7 +823,7 @@ public class CustomItem {
         ORICHALCUM_PICKAXE = new CustomToolBuilder(new ItemStack(Material.IRON_PICKAXE), "orichalcum_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Orichalcum Pickaxe")
                 .withBaseDamage(Math.round(orichalcumBaseAttack * pickaxeMultiplier))
-                .withPersistentData(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER, orichalcumPickaxeToolLevel)
+                .withToolLevel(orichalcumPickaxeToolLevel)
                 .build();
 
         int corruptedDiamondBaseAttack = 30;
@@ -847,11 +847,11 @@ public class CustomItem {
                 .withBaseDamage(Math.round(corruptedDiamondBaseAttack * hoeMultiplier))
                 .build();
 
-        int corruptedDiamondPickaxeToolLevel = 7;
+        int corruptedDiamondPickaxeToolLevel = 6;
         CORRUPTED_DIAMOND_PICKAXE = new CustomToolBuilder(new ItemStack(Material.DIAMOND_PICKAXE), "corrupted_diamond_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Pickaxe")
                 .withBaseDamage(Math.round(corruptedDiamondBaseAttack * pickaxeMultiplier))
-                .withPersistentData(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER, corruptedDiamondPickaxeToolLevel)
+                .withToolLevel(corruptedDiamondPickaxeToolLevel)
                 .build();
 
         int adamantiteBaseAttack = 34;

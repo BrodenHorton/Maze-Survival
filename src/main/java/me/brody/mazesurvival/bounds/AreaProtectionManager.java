@@ -8,8 +8,10 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -27,17 +29,22 @@ public class AreaProtectionManager implements Listener {
     static {
         toolLevelByBreakableMaterial = new HashMap<>();
         toolLevelByBreakableMaterial.put(Material.COBBLESTONE, 1);
+        toolLevelByBreakableMaterial.put(Material.COAL_ORE, 1);
         toolLevelByBreakableMaterial.put(Material.AMETHYST_CLUSTER, 2);
         toolLevelByBreakableMaterial.put(Material.COPPER_ORE, 2);
         toolLevelByBreakableMaterial.put(Material.LAPIS_ORE, 3);
         toolLevelByBreakableMaterial.put(Material.IRON_ORE, 3);
+        toolLevelByBreakableMaterial.put(Material.DEEPSLATE_IRON_ORE, 3);
         toolLevelByBreakableMaterial.put(Material.NETHER_GOLD_ORE, 4);
         toolLevelByBreakableMaterial.put(Material.NETHER_QUARTZ_ORE, 5);
         toolLevelByBreakableMaterial.put(Material.DIAMOND_ORE, 5);
+        toolLevelByBreakableMaterial.put(Material.DEEPSLATE_DIAMOND_ORE, 5);
         toolLevelByBreakableMaterial.put(Material.ANCIENT_DEBRIS, 6);
+        toolLevelByBreakableMaterial.put(Material.DECORATED_POT, 0);
         toolLevelByBreakableMaterial.put(Material.ANDESITE, 0);
         toolLevelByBreakableMaterial.put(Material.DIORITE, 0);
         toolLevelByBreakableMaterial.put(Material.GRANITE, 0);
+        toolLevelByBreakableMaterial.put(Material.CALCITE, 0);
         toolLevelByBreakableMaterial.put(Material.SAND, 0);
         toolLevelByBreakableMaterial.put(Material.RED_SAND, 0);
         toolLevelByBreakableMaterial.put(Material.CACTUS, 0);
@@ -55,6 +62,7 @@ public class AreaProtectionManager implements Listener {
 
     public AreaProtectionManager(Main plugin) {
         this.plugin = plugin;
+        protectionBounds = new ArrayList<>();
     }
 
     public void addProtectionBounds(PriorityProtectionBounds bounds) {
@@ -85,41 +93,68 @@ public class AreaProtectionManager implements Listener {
                 return protectionBounds.get(i).getProtectionType();
         }
 
-        return ProtectionType.NONE;
+        return ProtectionType.RESOURCE_GATHERING;
     }
 
-    public void protectionBoundsBlockBreak(PlayerInteractEvent e) {
+    @EventHandler
+    public void protectionBoundsBlockInteract(PlayerInteractEvent e) {
         if(e.getPlayer() == null)
             return;
         if(e.getAction() != Action.LEFT_CLICK_BLOCK)
             return;
         if(e.getPlayer().getGameMode() == GameMode.CREATIVE)
             return;
-
         ProtectionType protectionType = getProtectionType(e.getClickedBlock().getLocation());
+        if(protectionType != ProtectionType.RESOURCE_GATHERING)
+            return;
+
+        if(!toolLevelByBreakableMaterial.containsKey(e.getClickedBlock().getType())) {
+            e.setCancelled(true);
+            return;
+        }
+
+        int toolLevel = 0;
+        ItemStack heldItem = e.getPlayer().getEquipment().getItemInMainHand();
+        if(heldItem != null && heldItem.getItemMeta() != null) {
+            ItemMeta meta = heldItem.getItemMeta();
+            if(meta.getPersistentDataContainer().has(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER))
+                toolLevel = meta.getPersistentDataContainer().get(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER);
+        }
+        int requiredToolLevel = toolLevelByBreakableMaterial.get(e.getClickedBlock().getType());
+        if(toolLevel < requiredToolLevel)
+            e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&bTool level &f" + requiredToolLevel + " &brequired to mine this resource")));
+    }
+
+    @EventHandler
+    public void protectionBoundsBlockBreak(BlockBreakEvent e) {
+        if(e.getPlayer() == null)
+            return;
+        if(e.getPlayer().getGameMode() == GameMode.CREATIVE)
+            return;
+
+        ProtectionType protectionType = getProtectionType(e.getBlock().getLocation());
         if(protectionType == ProtectionType.PROTECTED)
             e.setCancelled(true);
-        else if(protectionType == ProtectionType.NONE) {
-            if(!toolLevelByBreakableMaterial.containsKey(e.getClickedBlock().getType())) {
+        else if(protectionType == ProtectionType.RESOURCE_GATHERING) {
+            if(!toolLevelByBreakableMaterial.containsKey(e.getBlock().getType())) {
                 e.setCancelled(true);
                 return;
             }
 
             int toolLevel = 0;
             ItemStack heldItem = e.getPlayer().getEquipment().getItemInMainHand();
-            if(heldItem != null) {
+            if(heldItem != null && heldItem.getItemMeta() != null) {
                 ItemMeta meta = heldItem.getItemMeta();
                 if(meta.getPersistentDataContainer().has(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER))
                     toolLevel = meta.getPersistentDataContainer().get(NamespacedKeys.TOOL_LEVEL, PersistentDataType.INTEGER);
             }
-            int requiredToolLevel = toolLevelByBreakableMaterial.get(e.getClickedBlock().getType());
-            if(toolLevel < requiredToolLevel) {
-                e.getPlayer().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&bTool level &f" + requiredToolLevel + " &brequired to mine this resource")));
+            int requiredToolLevel = toolLevelByBreakableMaterial.get(e.getBlock().getType());
+            if(toolLevel < requiredToolLevel)
                 e.setCancelled(true);
-            }
         }
     }
 
+    @EventHandler
     public void protectionBoundsBlockPlace(BlockPlaceEvent e) {
         if(e.getPlayer() == null)
             return;

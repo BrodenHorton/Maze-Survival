@@ -52,7 +52,7 @@ public class SimpleMobDropTable implements MobDropTable {
         double rngRoll = rng.nextDouble();
         System.out.println("rng Roll: " + rngRoll + " dropRate: " + dropRate);
         boolean shouldDropRare = rngRoll < dropRate;
-        if(shouldDropRare) {
+        if(shouldDropRare && !rareDrops.isEmpty()) {
             System.out.println("Dropping rare item!");
             ItemStack rareDrop = rareDrops.getWeightedValue().clone();
             if(rareDrop != null)
