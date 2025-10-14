@@ -20,7 +20,7 @@ import java.io.InputStream;
 
 public class SchematicPaster {
 
-    public static void paste(Location location, double rotation, InputStream decoration) {
+    public static void paste(Location location, double rotation, boolean shouldIgnoreAirBlocks, InputStream decoration) {
         ClipboardFormat format = ClipboardFormats.findByAlias("schem");
         try {
             ClipboardReader reader = format.getReader(decoration);
@@ -33,7 +33,7 @@ public class SchematicPaster {
                 Operation operation = clipboardHolder
                         .createPaste(roomEditSession)
                         .to(BlockVector3.at(location.getX(), location.getY(), location.getZ()))
-                        .ignoreAirBlocks(true)
+                        .ignoreAirBlocks(shouldIgnoreAirBlocks)
                         .build();
                 Operations.complete(operation);
             }

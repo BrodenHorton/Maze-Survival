@@ -68,9 +68,6 @@ public class MobManager implements Listener {
     public void spawnMazeMobs() {
         MazeGrid grid = plugin.getMazeManager().getGrid();
         for(Player player : plugin.getServer().getOnlinePlayers()) {
-            PlayerProfile profile = plugin.getProfileManager().getProfileOf(player);
-            if(profile == null)
-                continue;
             MazeRegion region = grid.getRegionAt(player.getLocation());
             if(region == null)
                 continue;

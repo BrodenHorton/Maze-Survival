@@ -12,6 +12,8 @@ public class MazeSchematic {
     private static final String DEEP_DARK_FOLDER_PATH = SCHEMATICS_FOLDER_PATH + "/deepdark";
 
     public static final MazeSchematic GLADE = new MazeSchematic(SCHEMATICS_FOLDER_PATH + "/glade-7x7.schem");
+    public static final MazeSchematic GLADE_DOOR = new MazeSchematic(SCHEMATICS_FOLDER_PATH + "/glade-door.schem");
+    public static final MazeSchematic GLADE_DOOR_OPENED = new MazeSchematic(SCHEMATICS_FOLDER_PATH + "/glade-door-opened.schem");
 
     // Stronghold Decorations
     public static final MazeSchematic STRONGHOLD_DEADEND_1 = new MazeSchematic(STRONGHOLD_FOLDER_PATH + "/stronghold-deadend-1.schem");

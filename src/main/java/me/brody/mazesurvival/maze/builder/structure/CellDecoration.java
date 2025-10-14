@@ -22,7 +22,7 @@ public class CellDecoration implements MazeStructureGenerator {
     @Override
     public void generateStructure() {
         double rotation = getDecorationRotation(cell);
-        SchematicPaster.paste(origin, rotation, schematic.getSchematicInputStream());
+        SchematicPaster.paste(origin, rotation, true, schematic.getSchematicInputStream());
     }
 
     private double getDecorationRotation(MazeCell cell) {

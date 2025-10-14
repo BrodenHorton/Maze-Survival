@@ -16,6 +16,7 @@ import me.brody.mazesurvival.listener.enchantment.SoulBoundEnchantmentListener;
 import me.brody.mazesurvival.listener.recipe.CraftingRecipeListener;
 import me.brody.mazesurvival.listener.setbonus.*;
 import me.brody.mazesurvival.loot.chest.LootTable;
+import me.brody.mazesurvival.maze.GladeDoorListener;
 import me.brody.mazesurvival.maze.grid.MazeGridBase;
 import me.brody.mazesurvival.maze.region.MazeRegionBase;
 import me.brody.mazesurvival.mob.MobSpawnPool;
@@ -38,6 +39,7 @@ public class Main extends JavaPlugin {
 	private EnchantingController enchantingController;
 	private AreaProtectionManager areaProtectionManager;
 	private CollisionManager collisionManager;
+	private GladeDoorListener gladeDoorListener;
 
 	@Override
 	public void onEnable() {
@@ -62,6 +64,7 @@ public class Main extends JavaPlugin {
 		enchantingController = new EnchantingController(this);
 		areaProtectionManager = new AreaProtectionManager(this);
 		collisionManager = new CollisionManager(this);
+		gladeDoorListener = new GladeDoorListener(this, dayNightCycle);
 
 		// Registering the executor for the "ms" command
 		getCommand("ms").setExecutor(new CommandManager(this));

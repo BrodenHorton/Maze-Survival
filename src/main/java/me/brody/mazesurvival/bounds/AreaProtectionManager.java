@@ -2,6 +2,7 @@ package me.brody.mazesurvival.bounds;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
+import me.brody.mazesurvival.utils.ChatUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -133,8 +134,10 @@ public class AreaProtectionManager implements Listener {
             return;
 
         ProtectionType protectionType = getProtectionType(e.getBlock().getLocation());
-        if(protectionType == ProtectionType.PROTECTED)
+        if(protectionType == ProtectionType.PROTECTED) {
+            ChatUtils.msg(e.getPlayer(), "&dProtected area");
             e.setCancelled(true);
+        }
         else if(protectionType == ProtectionType.RESOURCE_GATHERING) {
             if(!toolLevelByBreakableMaterial.containsKey(e.getBlock().getType())) {
                 e.setCancelled(true);

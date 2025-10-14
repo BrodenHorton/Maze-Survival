@@ -35,7 +35,7 @@ public class BossRoomStructure implements MazeStructureGenerator {
 
     @Override
     public void generateStructure() {
-        SchematicPaster.paste(origin, rotation, schematic.getSchematicInputStream());
+        SchematicPaster.paste(origin, rotation, true, schematic.getSchematicInputStream());
         generateBossRoomTriggers();
     }
 

@@ -2,7 +2,6 @@ package me.brody.mazesurvival.maze.grid;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.maze.Direction;
-import me.brody.mazesurvival.maze.builder.structure.MazeStructure;
 import me.brody.mazesurvival.maze.region.CellExtension;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.utils.LocationCopier;
@@ -165,8 +164,8 @@ public class MazeGrid {
 
 	public Location getGladeWorldCenter() {
 		Location gladeCenter = getGladeWorldOrigin();
-		gladeCenter.setX(gladeCenter.getX() + (gridBase.getGladeSize() * gridBase.getRegionCellSize() / 2));
-		gladeCenter.setZ(gladeCenter.getZ() + (gridBase.getGladeSize() * gridBase.getRegionCellSize() / 2));
+		gladeCenter.setX(gladeCenter.getX() + (gridBase.getGladeSize() * gridBase.getRegionCellSize() / 2) - 1);
+		gladeCenter.setZ(gladeCenter.getZ() + (gridBase.getGladeSize() * gridBase.getRegionCellSize() / 2) - 1);
 		return gladeCenter;
 	}
 
