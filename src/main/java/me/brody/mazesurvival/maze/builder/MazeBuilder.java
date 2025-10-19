@@ -6,6 +6,7 @@ import me.brody.mazesurvival.maze.Direction;
 import me.brody.mazesurvival.maze.MazeCell;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
+import me.brody.mazesurvival.utils.LocationUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
@@ -148,19 +149,21 @@ public class MazeBuilder {
 	}
 
 	private void placeOriginCornerPillar(MazeRegion region, Location cellCorner) {
-		Location originCornerLoc = new Location(cellCorner.getWorld(),
-				cellCorner.getX() - grid.getWallWidth(),
-				cellCorner.getY(),
-				cellCorner.getZ() - grid.getWallWidth());
+		Location originCornerLoc = LocationUtils.copy(cellCorner);
+		originCornerLoc.setX(originCornerLoc.getX() - grid.getWallWidth());
+		originCornerLoc.setZ(originCornerLoc.getZ() - grid.getWallWidth());
 
-		for(int y = 0; y <= grid.getWallHeight(); y++) {
+		for(int y = 0; y < grid.getWallHeight() + 1; y++) {
 			for(int z = 0; z < grid.getWallWidth(); z++) {
 				for(int x = 0; x < grid.getWallWidth(); x++) {
-					Location loc = new Location(originCornerLoc.getWorld(),
-							originCornerLoc.getX() + x,
-							originCornerLoc.getY() + y + 1,
-							originCornerLoc.getZ() + z);
-					loc.getBlock().setType(region.getWallPalette().pickBlockFromPalette());
+					Location loc = LocationUtils.copy(originCornerLoc);
+					loc.setX(loc.getX() + x);
+					loc.setY(loc.getY() + y);
+					loc.setZ(loc.getZ() + z);
+					if(y == 0)
+						loc.getBlock().setType(region.getFloorPalette().pickBlockFromPalette());
+					else
+						loc.getBlock().setType(region.getWallPalette().pickBlockFromPalette());
 				}
 			}
 		}
@@ -170,10 +173,10 @@ public class MazeBuilder {
 		for(int y = 0; y < grid.getWallHeight(); y++) {
 			for(int z = 0; z < grid.getWallWidth(); z++) {
 				for(int x = 0; x < grid.getWallWidth(); x++) {
-					Location loc = new Location(cellCorner.getWorld(),
-							cellCorner.getX() + grid.getRegionCellSize() - grid.getWallWidth() + x,
-							cellCorner.getY() + y + 1,
-							cellCorner.getZ() + grid.getRegionCellSize() - grid.getWallWidth() + z);
+					Location loc = LocationUtils.copy(cellCorner);
+					loc.setX(loc.getX() + grid.getRegionCellSize() - grid.getWallWidth() + x);
+					loc.setY(loc.getY() + y + 1);
+					loc.setZ(loc.getZ() + grid.getRegionCellSize() - grid.getWallWidth() + z);
 					loc.getBlock().setType(region.getWallPalette().pickBlockFromPalette());
 				}
 			}
@@ -181,29 +184,43 @@ public class MazeBuilder {
 	}
 
 	private void placeOuterWallFloorStrips(MazeRegion region) {
-		Location cellOuterWallOrigin = grid.getRegionCellWorldOrigin(region, 0, 0);
-		cellOuterWallOrigin.setX(cellOuterWallOrigin.getX() - grid.getWallWidth());
-		cellOuterWallOrigin.setZ(cellOuterWallOrigin.getZ() - grid.getWallWidth());
+		for(int i = 0; i < region.getMazeCells().length; i++) {
+			for(int j = 0; j < region.getMazeCells()[0].length; j++) {
+				if(region.getMazeCells()[i][j] == null)
+					continue;
 
-		for(int i = 0; i < region.getMazeCells()[0].length * grid.getRegionCellSize() + grid.getWallWidth(); i++) {
-			for(int j = 0; j < grid.getWallWidth(); j++) {
-				Location loc = new Location(
-						cellOuterWallOrigin.getWorld(),
-						cellOuterWallOrigin.getX() + i,
-						cellOuterWallOrigin.getY(),
-						cellOuterWallOrigin.getZ() + j
-				);
+				if(i - 1 < 0 || region.getMazeCells()[i - 1][j] == null) {
+					placeFloorNorthOfCell(region, i, j);
+				}
+				if(j - 1 < 0 || region.getMazeCells()[i][j - 1] == null) {
+					placeFloorWestOfCell(region, i, j);
+				}
+			}
+		}
+
+	}
+
+	private void placeFloorNorthOfCell(MazeRegion region, int row, int column) {
+		Location northFloorOrigin = grid.getRegionCellWorldOrigin(region, row, column);
+		northFloorOrigin.setZ(northFloorOrigin.getZ() - grid.getWallWidth());
+		for(int y = 0; y < grid.getWallWidth(); y++) {
+			for(int x = 0; x < grid.getRegionCellSize(); x++) {
+				Location loc = LocationUtils.copy(northFloorOrigin);
+				loc.setX(loc.getX() + x);
+				loc.setZ(loc.getZ() + y);
 				loc.getBlock().setType(region.getFloorPalette().pickBlockFromPalette());
 			}
 		}
-		for(int i = 0; i < region.getMazeCells().length * grid.getRegionCellSize() + grid.getWallWidth(); i++) {
-			for(int j = 0; j < grid.getWallWidth(); j++) {
-				Location loc = new Location(
-						cellOuterWallOrigin.getWorld(),
-						cellOuterWallOrigin.getX() + j,
-						cellOuterWallOrigin.getY(),
-						cellOuterWallOrigin.getZ() + i
-				);
+	}
+
+	private void placeFloorWestOfCell(MazeRegion region, int row, int column) {
+		Location westFloorOrigin = grid.getRegionCellWorldOrigin(region, row, column);
+		westFloorOrigin.setX(westFloorOrigin.getX() - grid.getWallWidth());
+		for(int y = 0; y < grid.getRegionCellSize(); y++) {
+			for(int x = 0; x < grid.getWallWidth(); x++) {
+				Location loc = LocationUtils.copy(westFloorOrigin);
+				loc.setX(loc.getX() + x);
+				loc.setZ(loc.getZ() + y);
 				loc.getBlock().setType(region.getFloorPalette().pickBlockFromPalette());
 			}
 		}

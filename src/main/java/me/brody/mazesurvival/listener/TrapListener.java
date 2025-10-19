@@ -8,7 +8,7 @@ import me.brody.mazesurvival.enchantment.persistentdata.EnchantmentListDataType;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
-import me.brody.mazesurvival.utils.LocationCopier;
+import me.brody.mazesurvival.utils.LocationUtils;
 import me.brody.mazesurvival.utils.Vector2Int;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -45,7 +45,7 @@ public class TrapListener implements Listener {
     public void blindnessTrap(PlayerMoveEvent e) {
         if(plugin.getProfileManager().getProfileOf(e.getPlayer()) == null)
             return;
-        Location belowPlayer = LocationCopier.copy(e.getPlayer().getLocation());
+        Location belowPlayer = LocationUtils.copy(e.getPlayer().getLocation());
         belowPlayer.setY(Math.ceil(belowPlayer.getY()) - 2);
         if(belowPlayer.getBlock().getType() != Material.GRAY_GLAZED_TERRACOTTA)
             return;
@@ -57,7 +57,7 @@ public class TrapListener implements Listener {
     public void slownessTrap(PlayerMoveEvent e) {
         if(plugin.getProfileManager().getProfileOf(e.getPlayer()) == null)
             return;
-        Location belowPlayer = LocationCopier.copy(e.getPlayer().getLocation());
+        Location belowPlayer = LocationUtils.copy(e.getPlayer().getLocation());
         belowPlayer.setY(Math.ceil(belowPlayer.getY()) - 2);
         if(belowPlayer.getBlock().getType() != Material.BROWN_GLAZED_TERRACOTTA)
             return;
@@ -91,7 +91,7 @@ public class TrapListener implements Listener {
         MazeRegion region = grid.getRegionAt(e.getPlayer().getLocation());
         if(region == null)
             return;
-        Location belowPlayer = LocationCopier.copy(e.getPlayer().getLocation());
+        Location belowPlayer = LocationUtils.copy(e.getPlayer().getLocation());
         belowPlayer.setY(Math.ceil(belowPlayer.getY()) - 2);
         if(belowPlayer.getBlock().getType() != Material.MAGENTA_GLAZED_TERRACOTTA)
             return;

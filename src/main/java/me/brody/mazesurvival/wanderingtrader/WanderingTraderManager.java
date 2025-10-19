@@ -7,7 +7,7 @@ import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import me.brody.mazesurvival.utils.ChatUtils;
-import me.brody.mazesurvival.utils.LocationCopier;
+import me.brody.mazesurvival.utils.LocationUtils;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
@@ -60,7 +60,7 @@ public class WanderingTraderManager implements Listener {
                 if(region.getMazeCells()[row][column] == null)
                     continue;
 
-                Location traderLocation = LocationCopier.copy(grid.getRegionCellWorldCenter(region, row, column));
+                Location traderLocation = LocationUtils.copy(grid.getRegionCellWorldCenter(region, row, column));
                 traderLocation.setY(traderLocation.getY() + 1);
                 Villager trader = (Villager) plugin.getServer().getWorld(traderLocation.getWorld().getUID()).spawnEntity(traderLocation, EntityType.VILLAGER);
                 trader.setAI(false);

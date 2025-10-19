@@ -1,27 +1,15 @@
 package me.brody.mazesurvival.maze.builder;
 
 import me.brody.mazesurvival.Main;
-import me.brody.mazesurvival.bounds.BoundsInt;
 import me.brody.mazesurvival.event.Event;
 import me.brody.mazesurvival.event.eventargs.EventArgs;
 import me.brody.mazesurvival.maze.builder.structure.*;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
-import me.brody.mazesurvival.maze.region.CellExtension;
 import me.brody.mazesurvival.maze.region.MazeRegion;
-import me.brody.mazesurvival.utils.ChatUtils;
-import me.brody.mazesurvival.utils.LocationCopier;
-import me.brody.mazesurvival.utils.Vector3Int;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
-import org.bukkit.Sound;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.function.Consumer;
 
 public class StructureGenerator {
     private static final long GENERATION_DELAY = 25L;

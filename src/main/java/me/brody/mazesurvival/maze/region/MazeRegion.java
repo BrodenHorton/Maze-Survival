@@ -1,5 +1,6 @@
 package me.brody.mazesurvival.maze.region;
 
+import me.brody.mazesurvival.boss.BossFight;
 import me.brody.mazesurvival.loot.chest.LootTable;
 import me.brody.mazesurvival.loot.trade.TradeTable;
 import me.brody.mazesurvival.maze.BlockPalette;
@@ -20,15 +21,17 @@ public class MazeRegion {
 	private MazeCell[][] mazeCells;
 	private CellExtension haven;
 	private CellExtension bossRoom;
+	private BossFight bossFight;
 	private Map<Vector2Int, Vector2Int> tileTeleportationMap;
 	private Map<Vector2Int, Vector2Int> trapChestTeleportationMap;
 
-	public MazeRegion(MazeRegionBase regionBase, Vector2Int regionDimensions, CellExtension haven, CellExtension bossRoom) {
+	public MazeRegion(MazeRegionBase regionBase, Vector2Int regionDimensions, CellExtension haven, CellExtension bossRoom, BossFight bossFight) {
 		this.regionBase = regionBase;
 		uuid = UUID.randomUUID();
 		this.regionDimensions = regionDimensions;
 		this.haven = haven;
 		this.bossRoom = bossRoom;
+		this.bossFight = bossFight;
 		tileTeleportationMap = new HashMap<>();
 		trapChestTeleportationMap = new HashMap<>();
 	}
@@ -178,6 +181,10 @@ public class MazeRegion {
 
 	public CellExtension getBossRoom() {
 		return bossRoom;
+	}
+
+	public BossFight getBossFight() {
+		return bossFight;
 	}
 
 	public void setBossRoom(CellExtension bossRoom) {

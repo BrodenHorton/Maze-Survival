@@ -6,7 +6,7 @@ import me.brody.mazesurvival.enchantment.persistentdata.EnchantmentEntry;
 import me.brody.mazesurvival.enchantment.persistentdata.EnchantmentList;
 import me.brody.mazesurvival.enchantment.persistentdata.EnchantmentListDataType;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
-import me.brody.mazesurvival.utils.LocationCopier;
+import me.brody.mazesurvival.utils.LocationUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
@@ -131,7 +131,7 @@ public class LingeringShotEnchantmentListener implements Listener {
         potionMeta.addCustomEffect(potionEffect, false);
         potion.setItemMeta(potionMeta);
 
-        Location targetLocation = LocationCopier.copy(e.getHitBlock().getLocation());
+        Location targetLocation = LocationUtils.copy(e.getHitBlock().getLocation());
         targetLocation.setY(targetLocation.getY() + 1);
         AreaEffectCloud lingeringPotion = (AreaEffectCloud)targetLocation.getWorld().spawnEntity(targetLocation, EntityType.AREA_EFFECT_CLOUD);
         lingeringPotion.addCustomEffect(potionEffect, false);

@@ -3,7 +3,7 @@ package me.brody.mazesurvival.listener;
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
-import me.brody.mazesurvival.utils.LocationCopier;
+import me.brody.mazesurvival.utils.LocationUtils;
 import me.brody.mazesurvival.utils.Vector2Int;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -77,7 +77,7 @@ public class TrapChestListener implements Listener {
 
         itemStack.setItemMeta(potionMeta);
 
-        Location splashPotionSpawnLoc = LocationCopier.copy(e.getClickedBlock().getLocation());
+        Location splashPotionSpawnLoc = LocationUtils.copy(e.getClickedBlock().getLocation());
         splashPotionSpawnLoc.setX(splashPotionSpawnLoc.getX() + 0.5);
         splashPotionSpawnLoc.setY(splashPotionSpawnLoc.getY() + 1);
         splashPotionSpawnLoc.setZ(splashPotionSpawnLoc.getZ() + 0.5);
@@ -108,7 +108,7 @@ public class TrapChestListener implements Listener {
         if(!tileState.getPersistentDataContainer().get(key, PersistentDataType.STRING).equals("tnt"))
             return;
 
-        Location tntSpawnLoc = LocationCopier.copy(e.getClickedBlock().getLocation());
+        Location tntSpawnLoc = LocationUtils.copy(e.getClickedBlock().getLocation());
         tntSpawnLoc.setX(tntSpawnLoc.getX() + 0.5);
         tntSpawnLoc.setY(tntSpawnLoc.getY() + 1);
         tntSpawnLoc.setZ(tntSpawnLoc.getZ() + 0.5);
@@ -132,7 +132,7 @@ public class TrapChestListener implements Listener {
 
         e.getClickedBlock().getWorld().strikeLightning(e.getClickedBlock().getLocation());
         for(int i = 0; i < 4; i++) {
-            Location spawnLocation = LocationCopier.copy(e.getClickedBlock().getLocation());
+            Location spawnLocation = LocationUtils.copy(e.getClickedBlock().getLocation());
             double blockCenterOffset = 0.5;
             spawnLocation.setX(spawnLocation.getX() + blockCenterOffset);
             spawnLocation.setZ(spawnLocation.getZ() + blockCenterOffset);

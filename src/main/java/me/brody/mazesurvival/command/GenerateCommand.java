@@ -2,7 +2,7 @@ package me.brody.mazesurvival.command;
 
 import me.brody.mazesurvival.maze.grid.MazeGridBase;
 import me.brody.mazesurvival.registry.Registry;
-import me.brody.mazesurvival.utils.LocationCopier;
+import me.brody.mazesurvival.utils.LocationUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -40,7 +40,7 @@ public class GenerateCommand implements SubCommand {
 			return;
 		}
 
-		Location gridOrigin = LocationCopier.copy(p.getLocation());
+		Location gridOrigin = LocationUtils.copy(p.getLocation());
 		gridOrigin.setX((int)gridOrigin.getX());
 		gridOrigin.setY((int)gridOrigin.getY() - 1);
 		gridOrigin.setZ((int)gridOrigin.getZ());

@@ -7,6 +7,7 @@ import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.utils.MazeSchematic;
 import me.brody.mazesurvival.utils.SchematicPaster;
+import me.brody.mazesurvival.utils.Vector2Int;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
@@ -39,9 +40,12 @@ public class GladeDoorListener {
         boolean isPlayerInMaze = false;
         for(Player p : plugin.getServer().getOnlinePlayers()) {
             MazeRegion region = grid.getRegionAt(p.getLocation());
-            if(region != null && grid.getRegionCellAt(region, p.getLocation()) != null) {
-                isPlayerInMaze = true;
-                break;
+            if(region != null) {
+                Vector2Int cellCoords = grid.getRegionCellAt(region, p.getLocation());
+                if(cellCoords != null && region.getMazeCells()[cellCoords.y][cellCoords.x] != null) {
+                    isPlayerInMaze = true;
+                    break;
+                }
             }
         }
         for(Player p : plugin.getServer().getOnlinePlayers()) {

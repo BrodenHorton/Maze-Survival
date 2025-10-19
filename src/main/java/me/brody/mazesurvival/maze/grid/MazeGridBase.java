@@ -24,7 +24,7 @@ public class MazeGridBase {
 
 	public static void register() {
 		Registry.GRID_BASE.register("standard", new MazeGridBase(9, 30, 2, 7, 25, 2, MazeSchematic.GLADE));
-		Registry.GRID_BASE.register("small", new MazeGridBase(9, 3, 2, 7, 9, 2, MazeSchematic.GLADE));
+		Registry.GRID_BASE.register("small", new MazeGridBase(9, 6, 2, 7, 9, 2, MazeSchematic.GLADE));
 	}
 
 	public int getMarginInBlocks() {

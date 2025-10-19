@@ -6,7 +6,7 @@ import me.brody.mazesurvival.event.eventargs.EventArgs;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.player.PlayerProfile;
-import me.brody.mazesurvival.utils.LocationCopier;
+import me.brody.mazesurvival.utils.LocationUtils;
 import me.brody.mazesurvival.utils.MathUtils;
 import me.brody.mazesurvival.utils.Vector2Int;
 import org.bukkit.Location;
@@ -92,7 +92,7 @@ public class MobManager implements Listener {
 
             int spawnCount = RNG.nextInt(1, maxSpawnCount + 1);
             for(int i = 0; i < spawnCount; i++) {
-                Location spawnLocation = LocationCopier.copy(spawnLocations.get(RNG.nextInt(0, spawnLocations.size())));
+                Location spawnLocation = LocationUtils.copy(spawnLocations.get(RNG.nextInt(0, spawnLocations.size())));
                 int maxSpawnOffset = grid.getRegionCellSize() / 2 - 1;
                 int xOffset = RNG.nextInt(-maxSpawnOffset, maxSpawnOffset + 1);
                 int zOffset = RNG.nextInt(-3, 4);
@@ -117,8 +117,6 @@ public class MobManager implements Listener {
         MazeGrid grid = plugin.getMazeManager().getGrid();
         List<UUID> mobsInRange = new ArrayList<>();
         for(Player player : plugin.getServer().getOnlinePlayers()) {
-            if(plugin.getProfileManager().getProfileOf(player) == null)
-                continue;
             MazeRegion region = grid.getRegionAt(player.getLocation());
             if(region == null)
                 continue;

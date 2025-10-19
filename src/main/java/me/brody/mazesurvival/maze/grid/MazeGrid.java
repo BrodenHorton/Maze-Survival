@@ -4,10 +4,12 @@ import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.maze.Direction;
 import me.brody.mazesurvival.maze.region.CellExtension;
 import me.brody.mazesurvival.maze.region.MazeRegion;
-import me.brody.mazesurvival.utils.LocationCopier;
+import me.brody.mazesurvival.utils.LocationUtils;
 import me.brody.mazesurvival.utils.MazeSchematic;
 import me.brody.mazesurvival.utils.Vector2Int;
+import me.brody.mazesurvival.utils.Vector3Int;
 import org.bukkit.Location;
+import org.bukkit.World;
 
 import java.util.*;
 
@@ -169,6 +171,14 @@ public class MazeGrid {
 		return gladeCenter;
 	}
 
+	public Location getGladeRespawnLocation() {
+		Location respawnLocation = getGladeWorldCenter();
+		respawnLocation.setX(respawnLocation.getX() + 0.5);
+		respawnLocation.setY(respawnLocation.getY() + 1);
+		respawnLocation.setZ(respawnLocation.getZ() + 0.5);
+		return respawnLocation;
+	}
+
 	public MazeRegion getRegionByUuid(UUID uuid) {
 		for(MazeRegion region : regions) {
 			if(region.getUuid().equals(uuid))
@@ -192,6 +202,21 @@ public class MazeGrid {
 		return getRegionCellExtensionWorldOrigin(region, region.getBossRoom());
 	}
 
+	public Location getRegionBossRoomWorldCenter(MazeRegion region) {
+		if(region == null)
+			return null;
+		Location bossRoomOrigin = getRegionBossRoomWorldOrigin(region);
+		if(bossRoomOrigin == null)
+			return null;
+
+		Vector3Int bossRoomCenterOffset = new Vector3Int(0, 0, -getMarginInBlocks());
+		bossRoomCenterOffset.rotateY(region.getBossRoom().getDirection().id * -90);
+		System.out.println("boss room center offset: " + bossRoomCenterOffset);
+
+		return LocationUtils.shift(bossRoomOrigin, bossRoomCenterOffset);
+	}
+
+	// TODO: Refactor to use vector rotation instead of checking each direction
 	private Location getRegionCellExtensionWorldOrigin(MazeRegion region, CellExtension cellExtension) {
 		if(regionOriginByRegion.get(region) == null)
 			return null;
@@ -200,7 +225,7 @@ public class MazeGrid {
 
 		Vector2Int cellExtensionGridCell = new Vector2Int(regionOriginByRegion.get(region).x + cellExtension.getCellPosition().x, regionOriginByRegion.get(region).y + cellExtension.getCellPosition().y);
 		Location cellExtensionGridCellOrigin = getGridCellWorldOrigin(cellExtensionGridCell);
-		Location cellExtensionOrigin = LocationCopier.copy(cellExtensionGridCellOrigin);
+		Location cellExtensionOrigin = LocationUtils.copy(cellExtensionGridCellOrigin);
 		if(cellExtension.getDirection() == Direction.NORTH) {
 			cellExtensionOrigin.setX(cellExtensionGridCellOrigin.getX() + ((getGridCellSize() / 2) * getRegionCellSize()) + (getRegionCellSize() - getWallWidth()) / 2);
 			cellExtensionOrigin.setZ(cellExtensionGridCellOrigin.getZ() + getMarginInBlocks() + (getRegionCellSize() - getWallWidth()) / 2);
@@ -224,26 +249,19 @@ public class MazeGrid {
 	public Location getRegionHavenWorldCenter(MazeRegion region) {
 		if(region == null)
 			return null;
-		Location havenCenter = getRegionHavenWorldOrigin(region);
-		if(havenCenter == null)
+		Location havenOrigin = getRegionHavenWorldOrigin(region);
+		if(havenOrigin == null)
 			return null;
 
-		switch(region.getHaven().getDirection()) {
-			case NORTH:
-				havenCenter.setZ(havenCenter.getZ() - getMarginInBlocks());
-				break;
-			case EAST:
-				havenCenter.setX(havenCenter.getX() + getMarginInBlocks());
-				break;
-			case SOUTH:
-				havenCenter.setZ(havenCenter.getZ() + getMarginInBlocks());
-				break;
-			case WEST:
-				havenCenter.setX(havenCenter.getX() - getMarginInBlocks());
-				break;
-		}
+		Vector3Int havenCenterOffset = new Vector3Int(0, 0, -getMarginInBlocks());
+		havenCenterOffset.rotateY(region.getHaven().getDirection().id * -90);
+		System.out.println("haven center offset: " + havenCenterOffset);
 
-		return havenCenter;
+		return LocationUtils.shift(havenOrigin, havenCenterOffset);
+	}
+
+	public World getWorld() {
+		return gridOrigin.getWorld();
 	}
 
 	public int getMarginInBlocks() {

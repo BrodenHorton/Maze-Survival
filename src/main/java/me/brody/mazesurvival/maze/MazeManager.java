@@ -1,5 +1,6 @@
 package me.brody.mazesurvival.maze;
 
+import me.brody.mazesurvival.boss.*;
 import me.brody.mazesurvival.event.Event;
 import me.brody.mazesurvival.event.eventargs.EventArgs;
 import me.brody.mazesurvival.maze.builder.*;
@@ -13,6 +14,7 @@ import me.brody.mazesurvival.utils.Vector2Int;
 import org.bukkit.Location;
 
 import me.brody.mazesurvival.Main;
+import org.bukkit.event.Listener;
 
 public class MazeManager {
 	public Event<EventArgs> onMazeConstructionFinished;
@@ -33,27 +35,31 @@ public class MazeManager {
 	public void generateMaze(MazeGridBase gridBase, Location gridOrigin) {
 		grid = new MazeGrid(plugin, gridBase, gridOrigin);
 
-		MazeRegion central = new MazeRegion(MazeRegionBase.STRONGHOLD, new Vector2Int(3, 3), null, null);
+		MazeRegion central = new MazeRegion(MazeRegionBase.STRONGHOLD, new Vector2Int(3, 3), null, null, null);
 		grid.addMazeRegion(central, new Vector2Int(-1, 1));
 
 		CellExtension desertHaven = new CellExtension(new Vector2Int(0, 0), Direction.WEST, MazeSchematic.DESERT_HAVEN);
 		CellExtension desertBossRoom = new CellExtension(new Vector2Int(1, 0), Direction.EAST, MazeSchematic.DESERT_BOSS_ROOM);
-		MazeRegion desert = new MazeRegion(MazeRegionBase.DESERT, new Vector2Int(2, 1), desertHaven, desertBossRoom);
+		BossFight desertBossFight = new DesertBossFight(plugin);
+		MazeRegion desert = new MazeRegion(MazeRegionBase.DESERT, new Vector2Int(2, 1), desertHaven, desertBossRoom, desertBossFight);
 		grid.addMazeRegion(desert, new Vector2Int(2, 0));
 
 		CellExtension swampHaven = new CellExtension(new Vector2Int(1, 0), Direction.EAST, MazeSchematic.SWAMP_HAVEN);
 		CellExtension swampBossRoom = new CellExtension(new Vector2Int(0, 0), Direction.NORTH, MazeSchematic.SWAMP_BOSS_ROOM);
-		MazeRegion swamp = new MazeRegion(MazeRegionBase.SWAMP, new Vector2Int(2, 2), swampHaven, swampBossRoom);
+		BossFight swampBossFight = new SwampBossFight(plugin);
+		MazeRegion swamp = new MazeRegion(MazeRegionBase.SWAMP, new Vector2Int(2, 2), swampHaven, swampBossRoom, swampBossFight);
 		grid.addMazeRegion(swamp, new Vector2Int(-3, 1));
 
 		CellExtension netherHaven = new CellExtension(new Vector2Int(0, 0), Direction.NORTH, MazeSchematic.NETHER_HAVEN);
 		CellExtension netherBossRoom = new CellExtension(new Vector2Int(0, 0), Direction.WEST, MazeSchematic.NETHER_BOSS_ROOM);
-		MazeRegion nether = new MazeRegion(MazeRegionBase.NETHER, new Vector2Int(1, 2), netherHaven, netherBossRoom);
+		BossFight netherBossFight = new NetherBossFight(plugin);
+		MazeRegion nether = new MazeRegion(MazeRegionBase.NETHER, new Vector2Int(1, 2), netherHaven, netherBossRoom, netherBossFight);
 		grid.addMazeRegion(nether, new Vector2Int(0, -2));
 
 		CellExtension deepDarkHaven = new CellExtension(new Vector2Int(1, 0), Direction.EAST, MazeSchematic.DEEP_DARK_HAVEN);
 		CellExtension deepDarkBossRoom = new CellExtension(new Vector2Int(0, -1), Direction.SOUTH, MazeSchematic.DEEP_DARK_BOSS_ROOM);
-		MazeRegion deepDark = new MazeRegion(MazeRegionBase.DEEP_DARK, new Vector2Int(2, 2), deepDarkHaven, deepDarkBossRoom);
+		BossFight deepDarkBossFight = new DeepDarkBossFight(plugin);
+		MazeRegion deepDark = new MazeRegion(MazeRegionBase.DEEP_DARK, new Vector2Int(2, 2), deepDarkHaven, deepDarkBossRoom, deepDarkBossFight);
 		grid.addMazeRegion(deepDark, new Vector2Int(-5, 0));
 
 		grid.generateRegionMazes();

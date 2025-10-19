@@ -40,6 +40,8 @@ public class Main extends JavaPlugin {
 	private AreaProtectionManager areaProtectionManager;
 	private CollisionManager collisionManager;
 	private GladeDoorListener gladeDoorListener;
+	private RespawnManager respawnManager;
+	private BossListener bossListener;
 
 	@Override
 	public void onEnable() {
@@ -65,6 +67,8 @@ public class Main extends JavaPlugin {
 		areaProtectionManager = new AreaProtectionManager(this);
 		collisionManager = new CollisionManager(this);
 		gladeDoorListener = new GladeDoorListener(this, dayNightCycle);
+		respawnManager = new RespawnManager(this);
+		bossListener = new BossListener(this);
 
 		// Registering the executor for the "ms" command
 		getCommand("ms").setExecutor(new CommandManager(this));
@@ -76,6 +80,8 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(enchantingController.getNavigationMenu(), this);
 		getServer().getPluginManager().registerEvents(areaProtectionManager, this);
 		getServer().getPluginManager().registerEvents(collisionManager, this);
+		getServer().getPluginManager().registerEvents(respawnManager, this);
+		getServer().getPluginManager().registerEvents(bossListener, this);
 		getServer().getPluginManager().registerEvents(new CrusaderEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new LingeringShotEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new SoulBoundEnchantmentListener(this), this);
@@ -130,5 +136,9 @@ public class Main extends JavaPlugin {
 
 	public CollisionManager getCollisionManager() {
 		return collisionManager;
+	}
+
+	public RespawnManager getRespawnManager() {
+		return respawnManager;
 	}
 }

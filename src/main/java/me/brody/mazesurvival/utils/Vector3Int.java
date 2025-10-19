@@ -17,6 +17,15 @@ public class Vector3Int {
         z += addition.z;
     }
 
+    public void rotateY(int rotation) {
+        double rotationInRad = Math.toRadians(rotation);
+        int xEval = (int)(x * Math.cos(rotationInRad) + z * Math.sin(rotationInRad));
+        int zEval = (int)(-x * Math.sin(rotationInRad) + z * Math.cos(rotationInRad));
+        System.out.println("rotation: " + rotation + ", xEval: " + xEval + ", zEval: " + zEval);
+        x = xEval;
+        z = zEval;
+    }
+
     public Vector3Int clone() {
         return new Vector3Int(x, y, z);
     }

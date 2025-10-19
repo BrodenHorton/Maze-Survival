@@ -3,6 +3,9 @@ package me.brody.mazesurvival.bounds;
 import me.brody.mazesurvival.utils.Vector3Int;
 import org.bukkit.Location;
 
+/**
+ * Represents a rectangular bounds between a min and max location
+ */
 public class BoundsInt {
     private Vector3Int min;
     private Vector3Int max;
@@ -18,8 +21,8 @@ public class BoundsInt {
     }
 
     public boolean containsLocation(Location location) {
-        return Math.floor(location.getX()) >= min.x && Math.floor(location.getY()) >= min.y && Math.floor(location.getZ()) >= min.z
-                && Math.floor(location.getX()) <= max.x && Math.floor(location.getY()) <= max.y && Math.floor(location.getZ()) <= max.z;
+        return location.getX() >= min.x && location.getY() >= min.y && location.getZ() >= min.z
+                && location.getX() < max.x && location.getY() < max.y && location.getZ() < max.z;
     }
 
     public void shift(Vector3Int shift) {
