@@ -49,54 +49,33 @@ public class BossRoomStructure implements MazeStructureGenerator {
         MazeGrid grid = plugin.getMazeManager().getGrid();
         final int triggerWidth = 7;
         final int triggerHeight = 10;
-        final BoundsInt meridionalTrigger = new BoundsInt(new Vector3Int(-(triggerWidth / 2), 0, 0), new Vector3Int(triggerWidth / 2 + 1, triggerHeight, 1));
-        final BoundsInt zonalTrigger = new BoundsInt(new Vector3Int(0, 0, -(triggerWidth / 2)), new Vector3Int(1, triggerHeight, triggerWidth / 2 + 1));
         final int distanceToCellCenter = (grid.getRegionCellSize() - grid.getWallWidth()) / 2;
         final int entranceToExitDistance = 4;
         final int teleportDistance = 7;
         final float primaryDirectionYaw = (bossRoom.getDirection().id - 2) * 90;
         final float secondaryDirectionYaw = ((bossRoom.getDirection().id + 2 % 4) - 2) * 90;
         final float halfBlockOffset = 0.5f;
+        Location bossRoomOrigin = grid.getRegionBossRoomWorldOrigin(region);
+        float cellCenterToEntranceTeleport = distanceToCellCenter + teleportDistance + halfBlockOffset;
+        float cellCenterToExitTeleport = distanceToCellCenter - 3 + halfBlockOffset;
 
-        boolean isMeridional = bossRoom.getDirection().id % 2 == 0;
-        int directionFactor = bossRoom.getDirection().id == 1 || bossRoom.getDirection().id == 2 ? 1 : -1;
-        BoundsInt startingTrigger = isMeridional ? meridionalTrigger : zonalTrigger;
-
-        Location cellExtensionOrigin = grid.getRegionBossRoomWorldOrigin(region);
-        BoundsInt entrance = startingTrigger.clone();
-        entrance.shift(cellExtensionOrigin);
-        float cellCenterToEntranceTeleport = ((distanceToCellCenter + teleportDistance) * directionFactor) + halfBlockOffset;
-        Location entranceTeleportLocation = LocationUtils.copy(cellExtensionOrigin);
-        if(isMeridional) {
-            entrance.shiftZ(distanceToCellCenter * directionFactor);
-            entranceTeleportLocation.setX(entranceTeleportLocation.getX() + halfBlockOffset);
-            entranceTeleportLocation.setZ(entranceTeleportLocation.getZ() + cellCenterToEntranceTeleport);
-        }
-        else {
-            entrance.shiftX(distanceToCellCenter * directionFactor);
-            entranceTeleportLocation.setX(entranceTeleportLocation.getX() + cellCenterToEntranceTeleport);
-            entranceTeleportLocation.setZ(entranceTeleportLocation.getZ() + halfBlockOffset);
-        }
-        entranceTeleportLocation.setY(entranceTeleportLocation.getY() + 1);
-        entranceTeleportLocation.setYaw((primaryDirectionYaw));
+        BoundsInt entrance = new BoundsInt(new Vector3Int(-(triggerWidth / 2), 0, 0), new Vector3Int(triggerWidth / 2, triggerHeight, 0));
+        entrance.shiftZ(-distanceToCellCenter);
+        entrance.rotateY(-bossRoom.getDirection().rotation);
+        entrance.shift(bossRoomOrigin);
+        Location entranceTeleportLocation = new Location(grid.getWorld(), halfBlockOffset, 1, -cellCenterToEntranceTeleport, primaryDirectionYaw, 0);
+        entranceTeleportLocation = LocationUtils.rotate(entranceTeleportLocation, -bossRoom.getDirection().rotation);
+        entranceTeleportLocation = LocationUtils.shift(entranceTeleportLocation, bossRoomOrigin);
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(entrance, getBossRoomEntranceConsumer(entranceTeleportLocation), null));
 
-        BoundsInt primaryExit = entrance.clone();
-        float cellCenterToPrimaryExitTeleport = ((distanceToCellCenter - 3) * directionFactor) + halfBlockOffset;
-        Location exitTeleportLocation = LocationUtils.copy(cellExtensionOrigin);
-        if(isMeridional) {
-            primaryExit.shiftZ(entranceToExitDistance * directionFactor);
-            exitTeleportLocation.setX(exitTeleportLocation.getX() + halfBlockOffset);
-            exitTeleportLocation.setZ(exitTeleportLocation.getZ() + cellCenterToPrimaryExitTeleport);
-        }
-        else {
-            primaryExit.shiftX(entranceToExitDistance * directionFactor);
-            exitTeleportLocation.setX(exitTeleportLocation.getX() + cellCenterToPrimaryExitTeleport);
-            exitTeleportLocation.setZ(exitTeleportLocation.getZ() + halfBlockOffset);
-        }
-        exitTeleportLocation.setY(exitTeleportLocation.getY() + 1);
-        exitTeleportLocation.setYaw((secondaryDirectionYaw));
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(primaryExit, getBossRoomExitConsumer(exitTeleportLocation), null));
+        BoundsInt exit = new BoundsInt(new Vector3Int(-(triggerWidth / 2), 0, 0), new Vector3Int(triggerWidth / 2, triggerHeight, 0));
+        exit.shiftZ(-distanceToCellCenter - entranceToExitDistance);
+        exit.rotateY(-bossRoom.getDirection().rotation);
+        exit.shift(bossRoomOrigin);
+        Location exitTeleportLocation = new Location(grid.getWorld(), halfBlockOffset, 1, cellCenterToExitTeleport, secondaryDirectionYaw, 0);
+        exitTeleportLocation = LocationUtils.rotate(exitTeleportLocation, -bossRoom.getDirection().rotation);
+        exitTeleportLocation = LocationUtils.shift(exitTeleportLocation, bossRoomOrigin);
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(exit, getBossRoomExitConsumer(exitTeleportLocation), null));
     }
 
     private Consumer<Player> getBossRoomEntranceConsumer(Location teleportLocation) {
@@ -124,21 +103,16 @@ public class BossRoomStructure implements MazeStructureGenerator {
     private void generateProtectionBounds() {
         MazeGrid grid = plugin.getMazeManager().getGrid();
         final int bossRoomWidth = 25;
+        final int bossRoomDepth = 4;
         final int bossRoomWallWidth = 1;
         final int bossRoomLength = grid.getMarginInBlocks() * 2 - grid.getWallWidth() - (bossRoomWallWidth * 2);
         final int distanceToCellCenter = (grid.getRegionCellSize() - grid.getWallWidth()) / 2;
         final int cellOriginToProtectionBounds = distanceToCellCenter + grid.getWallWidth() + bossRoomWallWidth;
         CellExtension bossRoom = region.getBossRoom();
         Location bossRoomOrigin = grid.getRegionBossRoomWorldOrigin(region);
-        BoundsInt bossRoomBounds;
-        if(bossRoom.getDirection() == Direction.NORTH)
-            bossRoomBounds = new BoundsInt(new Vector3Int(-(bossRoomWidth / 2), 0, -cellOriginToProtectionBounds - bossRoomLength), new Vector3Int(bossRoomWidth / 2 + 1, grid.getWallHeight(), -cellOriginToProtectionBounds));
-        else if(bossRoom.getDirection() == Direction.EAST)
-            bossRoomBounds = new BoundsInt(new Vector3Int(cellOriginToProtectionBounds + 1, 0, -(bossRoomWidth / 2)), new Vector3Int(cellOriginToProtectionBounds + bossRoomLength + 1, grid.getWallHeight(), bossRoomWidth / 2 + 1));
-        else if(bossRoom.getDirection() == Direction.SOUTH)
-            bossRoomBounds = new BoundsInt(new Vector3Int(-(bossRoomWidth / 2), 0, cellOriginToProtectionBounds + 1), new Vector3Int(bossRoomWidth / 2 + 1, grid.getWallHeight(), cellOriginToProtectionBounds + bossRoomLength + 1));
-        else
-            bossRoomBounds = new BoundsInt(new Vector3Int(-cellOriginToProtectionBounds - bossRoomLength, 0, -(bossRoomWidth / 2)), new Vector3Int(-cellOriginToProtectionBounds, grid.getWallHeight(), bossRoomWidth / 2 + 1));
+
+        BoundsInt bossRoomBounds = new BoundsInt(new Vector3Int(-bossRoomWidth / 2, -bossRoomDepth, -cellOriginToProtectionBounds - bossRoomLength), new Vector3Int(bossRoomWidth / 2, grid.getWallHeight(), -cellOriginToProtectionBounds - 1));
+        bossRoomBounds.rotateY(-bossRoom.getDirection().rotation);
         bossRoomBounds.shift(bossRoomOrigin);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(0, bossRoomBounds, ProtectionType.PROTECTED));
     }

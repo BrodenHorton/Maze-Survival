@@ -41,6 +41,8 @@ public class Remains extends CustomArmorMob {
             skeleton = (Stray) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.STRAY);
         else
             skeleton = (Skeleton) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.SKELETON);
+        plugin.getLogger().info("teleporting remains with yaw: " + location.getYaw());
+        skeleton.teleport(location);
         skeleton.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         skeleton.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         skeleton.setHealth(maxHealth);

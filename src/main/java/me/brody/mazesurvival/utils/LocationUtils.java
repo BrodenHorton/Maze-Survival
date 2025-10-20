@@ -4,7 +4,7 @@ import org.bukkit.Location;
 
 public class LocationUtils {
     public static Location copy(Location location) {
-        return new Location(location.getWorld(), location.getX(), location.getY(), location.getZ());
+        return new Location(location.getWorld(), location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
     }
 
     public static Location shift(Location location, Vector3Int shift) {
@@ -30,6 +30,14 @@ public class LocationUtils {
         double rotationInRad = Math.toRadians(rotation);
         result.setX(location.getX() * Math.cos(rotationInRad) + location.getZ() * Math.sin(rotationInRad));
         result.setZ(-location.getX() * Math.sin(rotationInRad) + location.getZ() * Math.cos(rotationInRad));
+
+        return result;
+    }
+
+    public static Location centerOnBlock(Location location) {
+        Location result = copy(location);
+        result.setX(result.getX() + 0.5);
+        result.setZ(result.getZ() + 0.5);
 
         return result;
     }

@@ -108,7 +108,6 @@ public class MobManager implements Listener {
                 // Temp Glowing effect
                 entity.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 100000, 0, false));
                 mobs.add(entity.getUniqueId());
-                plugin.getLogger().info("Mob spawned at: " + spawnLocation.getX() + ", " + spawnLocation.getZ());
             }
         }
     }
@@ -220,7 +219,6 @@ public class MobManager implements Listener {
         else
             mobSpawningCooldownByPlayerUuid.put(player.getUniqueId(), new ArrayList<>(currentSpawnConfig.getMobRespawnCooldownInSeconds()));
 
-        plugin.getLogger().info(player.getDisplayName() + "'s Mob resapwn cooldowns: ");
         for(int i = 0; i < mobSpawningCooldownByPlayerUuid.get(player.getUniqueId()).size(); i++)
             plugin.getLogger().info(i + ": " + mobSpawningCooldownByPlayerUuid.get(player.getUniqueId()).get(i));
     }

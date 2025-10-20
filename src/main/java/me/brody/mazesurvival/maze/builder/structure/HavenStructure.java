@@ -52,90 +52,59 @@ public class HavenStructure implements MazeStructureGenerator {
         MazeGrid grid = plugin.getMazeManager().getGrid();
         final int triggerWidth = 7;
         final int triggerHeight = 10;
-        final BoundsInt meridionalTrigger = new BoundsInt(new Vector3Int(-(triggerWidth / 2), 0, 0), new Vector3Int(triggerWidth / 2 + 1, triggerHeight, 1));
-        final BoundsInt zonalTrigger = new BoundsInt(new Vector3Int(0, 0, -(triggerWidth / 2)), new Vector3Int(1, triggerHeight, triggerWidth / 2 + 1));
         final int distanceToCellCenter = (grid.getRegionCellSize() - grid.getWallWidth()) / 2;
         final int entranceToExitDistance = 4;
         final int doorCellCentersDistance = (grid.getMarginInBlocks() * 2) + grid.getRegionCellSize();
         final int teleportDistance = 7;
         final float primaryDirectionYaw = (haven.getDirection().id - 2) * 90;
         final float secondaryDirectionYaw = ((haven.getDirection().id + 2 % 4) - 2) * 90;
-        final float halfBlockOffset = 0.5f;
+        Location havenOrigin = grid.getRegionHavenWorldOrigin(region);
 
-        boolean isMeridional = haven.getDirection().id % 2 == 0;
-        int directionFactor = haven.getDirection().id == 1 || haven.getDirection().id == 2 ? 1 : -1;
-        BoundsInt startingTrigger = isMeridional ? meridionalTrigger : zonalTrigger;
+        BoundsInt doorBounds =  new BoundsInt(new Vector3Int(-(triggerWidth / 2), 0, 0), new Vector3Int(triggerWidth / 2, triggerHeight, 0));
 
-        Location cellExtensionOrigin = grid.getRegionHavenWorldOrigin(region);
-        BoundsInt primaryEntrance = startingTrigger.clone();
-        primaryEntrance.shift(cellExtensionOrigin);
-        float cellCenterToPrimaryEntranceTeleport = ((distanceToCellCenter + teleportDistance) * directionFactor) + halfBlockOffset;
-        Location primaryEntranceTeleportLocation = LocationUtils.copy(cellExtensionOrigin);
-        if(isMeridional) {
-            primaryEntrance.shiftZ(distanceToCellCenter * directionFactor);
-            primaryEntranceTeleportLocation.setX(primaryEntranceTeleportLocation.getX() + halfBlockOffset);
-            primaryEntranceTeleportLocation.setZ(primaryEntranceTeleportLocation.getZ() + cellCenterToPrimaryEntranceTeleport);
-        }
-        else {
-            primaryEntrance.shiftX(distanceToCellCenter * directionFactor);
-            primaryEntranceTeleportLocation.setX(primaryEntranceTeleportLocation.getX() + cellCenterToPrimaryEntranceTeleport);
-            primaryEntranceTeleportLocation.setZ(primaryEntranceTeleportLocation.getZ() + halfBlockOffset);
-        }
-        primaryEntranceTeleportLocation.setY(primaryEntranceTeleportLocation.getY() + 1);
-        primaryEntranceTeleportLocation.setYaw((primaryDirectionYaw));
+        BoundsInt primaryEntrance = doorBounds.clone();
+        primaryEntrance.shiftZ(-distanceToCellCenter);
+        primaryEntrance.rotateY(-haven.getDirection().rotation);
+        primaryEntrance.shift(havenOrigin);
+        float cellCenterToPrimaryEntranceTeleport = distanceToCellCenter + teleportDistance;
+        Location primaryEntranceTeleportLocation = new Location(grid.getWorld(), 0, 1, -cellCenterToPrimaryEntranceTeleport, primaryDirectionYaw, 0);
+        primaryEntranceTeleportLocation = LocationUtils.rotate(primaryEntranceTeleportLocation, -haven.getDirection().rotation);
+        primaryEntranceTeleportLocation = LocationUtils.shift(primaryEntranceTeleportLocation, havenOrigin);
+        primaryEntranceTeleportLocation = LocationUtils.centerOnBlock(primaryEntranceTeleportLocation);
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(primaryEntrance, getHavenEntranceTriggerConsumer(primaryEntranceTeleportLocation), null));
 
-        BoundsInt primaryExit = primaryEntrance.clone();
-        float cellCenterToPrimaryExitTeleport = ((distanceToCellCenter - 3) * directionFactor) + halfBlockOffset;
-        Location primaryExitTeleportLocation = LocationUtils.copy(cellExtensionOrigin);
-        if(isMeridional) {
-            primaryExit.shiftZ(entranceToExitDistance * directionFactor);
-            primaryExitTeleportLocation.setX(primaryExitTeleportLocation.getX() + halfBlockOffset);
-            primaryExitTeleportLocation.setZ(primaryExitTeleportLocation.getZ() + cellCenterToPrimaryExitTeleport);
-        }
-        else {
-            primaryExit.shiftX(entranceToExitDistance * directionFactor);
-            primaryExitTeleportLocation.setX(primaryExitTeleportLocation.getX() + cellCenterToPrimaryExitTeleport);
-            primaryExitTeleportLocation.setZ(primaryExitTeleportLocation.getZ() + halfBlockOffset);
-        }
-        primaryExitTeleportLocation.setY(primaryExitTeleportLocation.getY() + 1);
-        primaryExitTeleportLocation.setYaw((secondaryDirectionYaw));
+        BoundsInt primaryExit = doorBounds.clone();
+        primaryExit.shiftZ(-distanceToCellCenter - entranceToExitDistance);
+        primaryExit.rotateY(-haven.getDirection().rotation);
+        primaryExit.shift(havenOrigin);
+        float cellCenterToPrimaryExitTeleport = distanceToCellCenter - 3;
+        Location primaryExitTeleportLocation = new Location(grid.getWorld(), 0, 1, -cellCenterToPrimaryExitTeleport, secondaryDirectionYaw, 0);
+        primaryExitTeleportLocation = LocationUtils.rotate(primaryExitTeleportLocation, -haven.getDirection().rotation);
+        primaryExitTeleportLocation = LocationUtils.shift(primaryExitTeleportLocation, havenOrigin);
+        primaryExitTeleportLocation = LocationUtils.centerOnBlock(primaryExitTeleportLocation);
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(primaryExit, getHavenExitTriggerConsumer(primaryExitTeleportLocation), null));
 
-        BoundsInt secondaryEntrance = startingTrigger.clone();
-        secondaryEntrance.shift(cellExtensionOrigin);
-        int secondaryEntranceShift = (doorCellCentersDistance * directionFactor) + (distanceToCellCenter * (-directionFactor));
-        float cellCenterToSecondaryEntranceTeleport = (secondaryEntranceShift - (teleportDistance * directionFactor)) + halfBlockOffset;
-        Location secondaryEntranceTeleportLocation = LocationUtils.copy(cellExtensionOrigin);
-        if(isMeridional) {
-            secondaryEntrance.shiftZ(secondaryEntranceShift);
-            secondaryEntranceTeleportLocation.setX(secondaryEntranceTeleportLocation.getX() + halfBlockOffset);
-            secondaryEntranceTeleportLocation.setZ(secondaryEntranceTeleportLocation.getZ() + cellCenterToSecondaryEntranceTeleport);
-        }
-        else {
-            secondaryEntrance.shiftX(secondaryEntranceShift);
-            secondaryEntranceTeleportLocation.setX(secondaryEntranceTeleportLocation.getX() + cellCenterToSecondaryEntranceTeleport);
-            secondaryEntranceTeleportLocation.setZ(secondaryEntranceTeleportLocation.getZ() + halfBlockOffset);
-        }
-        secondaryEntranceTeleportLocation.setY(secondaryEntranceTeleportLocation.getY() + 1);
-        secondaryEntranceTeleportLocation.setYaw((secondaryDirectionYaw));
+        final int secondaryEntranceShift = doorCellCentersDistance - distanceToCellCenter;
+        BoundsInt secondaryEntrance = doorBounds.clone();
+        secondaryEntrance.shiftZ(-secondaryEntranceShift);
+        secondaryEntrance.rotateY(-haven.getDirection().rotation);
+        secondaryEntrance.shift(havenOrigin);
+        final float cellCenterToSecondaryEntranceTeleport = secondaryEntranceShift - teleportDistance;
+        Location secondaryEntranceTeleportLocation = new Location(grid.getWorld(), 0, 1, -cellCenterToSecondaryEntranceTeleport, secondaryDirectionYaw, 0);
+        secondaryEntranceTeleportLocation = LocationUtils.rotate(secondaryEntranceTeleportLocation, -haven.getDirection().rotation);
+        secondaryEntranceTeleportLocation = LocationUtils.shift(secondaryEntranceTeleportLocation, havenOrigin);
+        secondaryEntranceTeleportLocation = LocationUtils.centerOnBlock(secondaryEntranceTeleportLocation);
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(secondaryEntrance, getHavenEntranceTriggerConsumer(secondaryEntranceTeleportLocation), null));
 
-        BoundsInt secondaryExit = secondaryEntrance.clone();
-        float cellCenterToSecondaryExitTeleport = (secondaryEntranceShift + (3 * directionFactor)) + halfBlockOffset;
-        Location secondaryExitTeleportLocation = LocationUtils.copy(cellExtensionOrigin);
-        if(isMeridional) {
-            secondaryExit.shiftZ(entranceToExitDistance * (-directionFactor));
-            secondaryExitTeleportLocation.setX(secondaryExitTeleportLocation.getX() + halfBlockOffset);
-            secondaryExitTeleportLocation.setZ(secondaryExitTeleportLocation.getZ() + cellCenterToSecondaryExitTeleport);
-        }
-        else {
-            secondaryExit.shiftX(entranceToExitDistance * (-directionFactor));
-            secondaryExitTeleportLocation.setX(secondaryExitTeleportLocation.getX() + cellCenterToSecondaryExitTeleport);
-            secondaryExitTeleportLocation.setZ(secondaryExitTeleportLocation.getZ() + halfBlockOffset);
-        }
-        secondaryExitTeleportLocation.setY(secondaryExitTeleportLocation.getY() + 1);
-        secondaryExitTeleportLocation.setYaw((primaryDirectionYaw));
+        BoundsInt secondaryExit = doorBounds.clone();
+        secondaryExit.shiftZ(-secondaryEntranceShift + entranceToExitDistance);
+        secondaryExit.rotateY(-haven.getDirection().rotation);
+        secondaryExit.shift(havenOrigin);
+        final float cellCenterToSecondaryExitTeleport = secondaryEntranceShift + 3;
+        Location secondaryExitTeleportLocation = new Location(grid.getWorld(), 0, 1, -cellCenterToSecondaryExitTeleport, primaryDirectionYaw, 0);
+        secondaryExitTeleportLocation = LocationUtils.rotate(secondaryExitTeleportLocation, -haven.getDirection().rotation);
+        secondaryExitTeleportLocation = LocationUtils.shift(secondaryExitTeleportLocation, havenOrigin);
+        secondaryExitTeleportLocation = LocationUtils.centerOnBlock(secondaryExitTeleportLocation);
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(secondaryExit, getHavenExitTriggerConsumer(secondaryExitTeleportLocation), null));
     }
 
@@ -174,42 +143,30 @@ public class HavenStructure implements MazeStructureGenerator {
         final int cellOriginToProtectionBounds = distanceToCellCenter + grid.getWallWidth() + havenWallWidth;
         CellExtension haven = region.getHaven();
         Location havenOrigin = grid.getRegionHavenWorldOrigin(region);
-        BoundsInt havenBounds;
-        if(haven.getDirection() == Direction.NORTH)
-            havenBounds = new BoundsInt(new Vector3Int(-(havenWidth / 2), -havenDepth, -cellOriginToProtectionBounds - havenLength), new Vector3Int(havenWidth / 2 + 1, grid.getWallHeight(), -cellOriginToProtectionBounds));
-        else if(haven.getDirection() == Direction.EAST)
-            havenBounds = new BoundsInt(new Vector3Int(cellOriginToProtectionBounds + 1, -havenDepth, -(havenWidth / 2)), new Vector3Int(cellOriginToProtectionBounds + havenLength + 1, grid.getWallHeight(), havenWidth / 2 + 1));
-        else if(haven.getDirection() == Direction.SOUTH)
-            havenBounds = new BoundsInt(new Vector3Int(-(havenWidth / 2), -havenDepth, cellOriginToProtectionBounds + 1), new Vector3Int(havenWidth / 2 + 1, grid.getWallHeight(), cellOriginToProtectionBounds + havenLength + 1));
-        else
-            havenBounds = new BoundsInt(new Vector3Int(-cellOriginToProtectionBounds - havenLength, -havenDepth, -(havenWidth / 2)), new Vector3Int(-cellOriginToProtectionBounds, grid.getWallHeight(), havenWidth / 2 + 1));
-        havenBounds.shift(havenOrigin);
-        plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(0, havenBounds, ProtectionType.BUILDABLE));
+
+        BoundsInt buildableBounds = new BoundsInt(new Vector3Int(-(havenWidth / 2), -havenDepth, -havenLength), new Vector3Int(havenWidth / 2, grid.getWallHeight(), -1));
+        buildableBounds.shiftZ(-cellOriginToProtectionBounds);
+        buildableBounds.rotateY(-haven.getDirection().rotation);
+        buildableBounds.shift(havenOrigin);
+        plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(0, buildableBounds, ProtectionType.BUILDABLE));
 
         final int doorWidth = 7;
         final int doorLength = 3;
         final int doorHeight = 20;
-        final BoundsInt meridionalBounds = new BoundsInt(new Vector3Int(-doorWidth / 2, 0, -doorLength / 2), new Vector3Int(doorWidth / 2 + 1, doorHeight, doorLength / 2 + 1));
-        final BoundsInt zonalBounds = new BoundsInt(new Vector3Int(-doorLength / 2, 0, -doorWidth / 2), new Vector3Int(doorLength / 2 + 1, doorHeight, doorWidth / 2 + 1));
-        final boolean isMeridional = haven.getDirection().id % 2 == 0;
-        final int directionFactor = haven.getDirection().id == 1 || haven.getDirection().id == 2 ? 1 : -1;
         final int cellCenterToDoorBoundsCenter = distanceToCellCenter + grid.getWallWidth() + havenWallWidth + 1;
         final int doorCellCentersDistance = (grid.getMarginInBlocks() * 2) + grid.getRegionCellSize();
-        BoundsInt primaryDoorBounds = isMeridional ? meridionalBounds.clone() : zonalBounds.clone();
+
+        BoundsInt doorBounds = new BoundsInt(new Vector3Int(-doorWidth / 2, 1, -doorLength / 2), new Vector3Int(doorWidth / 2, doorHeight, doorLength / 2));
+        BoundsInt primaryDoorBounds = doorBounds.clone();
+        primaryDoorBounds.shiftZ(-cellCenterToDoorBoundsCenter);
+        primaryDoorBounds.rotateY(-haven.getDirection().rotation);
         primaryDoorBounds.shift(havenOrigin);
-        primaryDoorBounds.shiftY(1);
-        BoundsInt secondaryDoorBounds = primaryDoorBounds.clone();
-        if(isMeridional) {
-            primaryDoorBounds.shiftZ(cellCenterToDoorBoundsCenter * directionFactor);
-            secondaryDoorBounds.shiftZ(doorCellCentersDistance * directionFactor);
-            secondaryDoorBounds.shiftZ(cellCenterToDoorBoundsCenter * (-directionFactor));
-        }
-        else {
-            primaryDoorBounds.shiftX(cellCenterToDoorBoundsCenter * directionFactor);
-            secondaryDoorBounds.shiftX(doorCellCentersDistance * directionFactor);
-            secondaryDoorBounds.shiftX(cellCenterToDoorBoundsCenter * (-directionFactor));
-        }
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, primaryDoorBounds, ProtectionType.PROTECTED));
+
+        BoundsInt secondaryDoorBounds = doorBounds.clone();
+        secondaryDoorBounds.shiftZ(-doorCellCentersDistance + cellCenterToDoorBoundsCenter);
+        secondaryDoorBounds.rotateY(-haven.getDirection().rotation);
+        secondaryDoorBounds.shift(havenOrigin);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, secondaryDoorBounds, ProtectionType.PROTECTED));
     }
 }

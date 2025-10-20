@@ -211,7 +211,6 @@ public class MazeGrid {
 
 		Vector3Int bossRoomCenterOffset = new Vector3Int(0, 0, -getMarginInBlocks());
 		bossRoomCenterOffset.rotateY(region.getBossRoom().getDirection().id * -90);
-		System.out.println("boss room center offset: " + bossRoomCenterOffset);
 
 		return LocationUtils.shift(bossRoomOrigin, bossRoomCenterOffset);
 	}
@@ -255,7 +254,6 @@ public class MazeGrid {
 
 		Vector3Int havenCenterOffset = new Vector3Int(0, 0, -getMarginInBlocks());
 		havenCenterOffset.rotateY(region.getHaven().getDirection().id * -90);
-		System.out.println("haven center offset: " + havenCenterOffset);
 
 		return LocationUtils.shift(havenOrigin, havenCenterOffset);
 	}

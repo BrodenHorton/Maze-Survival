@@ -27,19 +27,18 @@ public class SwampBossFight implements BossFight {
             return;
 
         MazeGrid grid = plugin.getMazeManager().getGrid();
-        Location bossRoomCenter = grid.getRegionBossRoomWorldCenter(region);
+        Location bossRoomCenter = LocationUtils.centerOnBlock(grid.getRegionBossRoomWorldCenter(region));
         final float yaw = bossRoom.getDirection().id * 90;
         Location bossSpawnLocation = new Location(bossRoomCenter.getWorld(), 0, 1, -5, yaw, 0);
+        bossSpawnLocation = LocationUtils.rotate(bossSpawnLocation, bossRoom.getDirection().id * -90);
         bossSpawnLocation = LocationUtils.shift(bossSpawnLocation, bossRoomCenter);
         Location enemySpawnLocation1 = new Location(bossRoomCenter.getWorld(), -3, 1, -3, yaw, 0);
-        enemySpawnLocation1 = LocationUtils.rotate(enemySpawnLocation1, bossRoom.getDirection().id * 90);
+        enemySpawnLocation1 = LocationUtils.rotate(enemySpawnLocation1, bossRoom.getDirection().id * -90);
         enemySpawnLocation1 = LocationUtils.shift(enemySpawnLocation1, bossRoomCenter);
         Location enemySpawnLocation2 = new Location(bossRoomCenter.getWorld(), 3, 1, -3, yaw, 0);
-        enemySpawnLocation2 = LocationUtils.rotate(enemySpawnLocation2, bossRoom.getDirection().id * 90);
+        enemySpawnLocation2 = LocationUtils.rotate(enemySpawnLocation2, bossRoom.getDirection().id * -90);
         enemySpawnLocation2 = LocationUtils.shift(enemySpawnLocation2, bossRoomCenter);
 
-        plugin.getLogger().info("=== Boss Mobs being summoned ===");
-        plugin.getLogger().info("Location: " + bossSpawnLocation.getX() + ", " + bossSpawnLocation.getY() + ", " + bossSpawnLocation.getZ());
         CustomMob.DEATH_KNIGHT.summon(bossSpawnLocation).getPersistentDataContainer().set(NamespacedKeys.BOSS, PersistentDataType.STRING, bossType.getBossId());
         CustomMob.MAN_EATER.summon(enemySpawnLocation1).getPersistentDataContainer().set(NamespacedKeys.BOSS, PersistentDataType.STRING, bossType.getBossId());
         CustomMob.MAN_EATER.summon(enemySpawnLocation2).getPersistentDataContainer().set(NamespacedKeys.BOSS, PersistentDataType.STRING, bossType.getBossId());

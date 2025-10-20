@@ -4,25 +4,27 @@ import me.brody.mazesurvival.utils.Vector3Int;
 import org.bukkit.Location;
 
 /**
- * Represents a rectangular bounds between a min and max location
+ * Represents a rectangular bounds between a min and max location. Both min and max are inclusive.
+ *
+ * Example: A bounds of min 0,0,0 and max 0,0,0 will represent a 1x1x1 cube region at the location 0,0,0
  */
 public class BoundsInt {
     private Vector3Int min;
     private Vector3Int max;
 
     public BoundsInt(Vector3Int p1, Vector3Int p2) {
-        min = new Vector3Int(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math.min(p1.z, p2.z));
-        max = new Vector3Int(Math.max(p1.x, p2.x), Math.max(p1.y, p2.y), Math.max(p1.z, p2.z));
+        recalculateMinAndMax(p1, p2);
     }
 
     public BoundsInt(Location p1, Location p2) {
-        min = new Vector3Int((int)Math.min(p1.getX(), p2.getX()), (int)Math.min(p1.getY(), p2.getY()), (int)Math.min(p1.getZ(), p2.getZ()));
-        max = new Vector3Int((int)Math.max(p1.getX(), p2.getX()), (int)Math.max(p1.getY(), p2.getY()), (int)Math.max(p1.getZ(), p2.getZ()));
+        recalculateMinAndMax(
+                new Vector3Int((int)p1.getX(), (int)p1.getY(), (int)p1.getZ()),
+                new Vector3Int((int)p2.getX(), (int)p2.getY(), (int)p2.getZ()));
     }
 
     public boolean containsLocation(Location location) {
         return location.getX() >= min.x && location.getY() >= min.y && location.getZ() >= min.z
-                && location.getX() < max.x && location.getY() < max.y && location.getZ() < max.z;
+                && Math.floor(location.getX()) <= max.x && Math.floor(location.getY()) <= max.y && Math.floor(location.getZ()) <= max.z;
     }
 
     public void shift(Vector3Int shift) {
@@ -51,8 +53,19 @@ public class BoundsInt {
         max.z += zShift;
     }
 
+    public void rotateY(int rotation) {
+        min.rotateY(rotation);
+        max.rotateY(rotation);
+        recalculateMinAndMax(min, max);
+    }
+
     public BoundsInt clone() {
         return new BoundsInt(min, max);
+    }
+
+    private void recalculateMinAndMax(Vector3Int p1, Vector3Int p2) {
+        min = new Vector3Int(Math.min(p1.x, p2.x), Math.min(p1.y, p2.y), Math.min(p1.z, p2.z));
+        max = new Vector3Int(Math.max(p1.x, p2.x), Math.max(p1.y, p2.y), Math.max(p1.z, p2.z));
     }
 
     public Vector3Int getMin() {
@@ -69,5 +82,10 @@ public class BoundsInt {
 
     public void setMax(Vector3Int max) {
         this.max = max;
+    }
+
+    @Override
+    public String toString() {
+        return min.toString() + ", " + max.toString();
     }
 }

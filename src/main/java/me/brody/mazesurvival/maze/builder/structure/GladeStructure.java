@@ -36,44 +36,40 @@ public class GladeStructure implements MazeStructureGenerator {
 
     private void generateProtectionBounds() {
         MazeGrid grid = plugin.getMazeManager().getGrid();
-        int gladeBuildableWidth = grid.getRegionCellSize() * grid.getGladeSize() - grid.getWallWidth();
-        int gladeDepth = 10;
-        Vector3Int min = new Vector3Int((int)origin.getX(), (int)origin.getY() - gladeDepth, (int)origin.getZ());
-        Vector3Int max = new Vector3Int((int)origin.getX() + gladeBuildableWidth, (int)origin.getY() + grid.getWallHeight(), (int)origin.getZ() + gladeBuildableWidth);
-        BoundsInt bounds = new BoundsInt(min, max);
-        plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(0, bounds, ProtectionType.BUILDABLE));
-
+        final int gladeBuildableWidth = grid.getRegionCellSize() * grid.getGladeSize() - grid.getWallWidth();
+        final int gladeDepth = 10;
+        final int gateBoundsWidth = 17;
+        final int gateBoundsLength = 3;
+        final int gladeCenterToGateBoundsCenter = (grid.getRegionCellSize() * grid.getGladeSize() / 2) - grid.getWallWidth();
         Location gladeCenter = grid.getGladeWorldCenter();
-        gladeCenter.setY(gladeCenter.getY() + 1);
-        int gateBoundsWidth = 17;
-        int gateBoundsLength = 3;
-        int gladeCenterToGateBoundsCenter = (grid.getRegionCellSize() * grid.getGladeSize() / 2) - grid.getWallWidth();
-        Vector3Int minMeridionalGate = new Vector3Int(-gateBoundsWidth / 2, 0, -gateBoundsLength / 2);
-        Vector3Int maxMeridionalGate = new Vector3Int(gateBoundsWidth / 2 + 1, grid.getWallHeight(), gateBoundsLength / 2 + 1);
-        BoundsInt meridionalGateBounds = new BoundsInt(minMeridionalGate, maxMeridionalGate);
-        meridionalGateBounds.shift(gladeCenter);
-        Vector3Int minZonalGate = new Vector3Int(-gateBoundsLength / 2, 0, -gateBoundsWidth / 2);
-        Vector3Int maxZonalGate = new Vector3Int(gateBoundsLength / 2 + 1, grid.getWallHeight(), gateBoundsWidth / 2 + 1);
-        BoundsInt zonalGateBounds = new BoundsInt(minZonalGate, maxZonalGate);
-        zonalGateBounds.shift(gladeCenter);
 
-        BoundsInt northGateBounds = meridionalGateBounds.clone();
-        northGateBounds.shiftZ(-gladeCenterToGateBoundsCenter);
+        BoundsInt buildableBounds = new BoundsInt(new Vector3Int(-gladeBuildableWidth / 2, -gladeDepth, -gladeBuildableWidth / 2), new Vector3Int(gladeBuildableWidth / 2, grid.getWallHeight(), gladeBuildableWidth / 2));
+        buildableBounds.shift(gladeCenter);
+        plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(0, buildableBounds, ProtectionType.BUILDABLE));
+
+        BoundsInt gateBounds = new BoundsInt(new Vector3Int(-gateBoundsWidth / 2, 1, -gateBoundsLength / 2), new Vector3Int(gateBoundsWidth / 2, grid.getWallHeight(), gateBoundsLength / 2));
+        gateBounds.shiftZ(-gladeCenterToGateBoundsCenter);
+
+        BoundsInt northGateBounds = gateBounds.clone();
+        northGateBounds.shift(gladeCenter);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, northGateBounds, ProtectionType.PROTECTED));
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(northGateBounds, playerSpawnPointConsumer(grid.getGladeRespawnLocation()), null));
 
-        BoundsInt eastGateBounds = zonalGateBounds.clone();
-        eastGateBounds.shiftX(gladeCenterToGateBoundsCenter);
+        BoundsInt eastGateBounds = gateBounds.clone();
+        eastGateBounds.rotateY(270);
+        eastGateBounds.shift(gladeCenter);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, eastGateBounds, ProtectionType.PROTECTED));
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(eastGateBounds, playerSpawnPointConsumer(grid.getGladeRespawnLocation()), null));
 
-        BoundsInt southGateBounds = meridionalGateBounds.clone();
-        southGateBounds.shiftZ(gladeCenterToGateBoundsCenter);
+        BoundsInt southGateBounds = gateBounds.clone();
+        southGateBounds.rotateY(180);
+        southGateBounds.shift(gladeCenter);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, southGateBounds, ProtectionType.PROTECTED));
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(southGateBounds, playerSpawnPointConsumer(grid.getGladeRespawnLocation()), null));
 
-        BoundsInt westGateBounds = zonalGateBounds.clone();
-        westGateBounds.shiftX(-gladeCenterToGateBoundsCenter);
+        BoundsInt westGateBounds = gateBounds.clone();
+        westGateBounds.rotateY(90);
+        westGateBounds.shift(gladeCenter);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, westGateBounds, ProtectionType.PROTECTED));
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(westGateBounds, playerSpawnPointConsumer(grid.getGladeRespawnLocation()), null));
     }

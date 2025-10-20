@@ -30,6 +30,7 @@ public class MazeBrute extends CustomArmorMob {
     @Override
     public LivingEntity summon(Location location) {
         PiglinBrute brute = (PiglinBrute) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.PIGLIN_BRUTE);
+        brute.teleport(location);
         brute.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         brute.setImmuneToZombification(true);
         brute.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);

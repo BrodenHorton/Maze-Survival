@@ -27,6 +27,7 @@ public class MazeHoglin extends CustomArmorMob {
     @Override
     public LivingEntity summon(Location location) {
         Hoglin hoglin = (Hoglin) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.HOGLIN);
+        hoglin.teleport(location);
         hoglin.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         hoglin.setImmuneToZombification(true);
         hoglin.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);

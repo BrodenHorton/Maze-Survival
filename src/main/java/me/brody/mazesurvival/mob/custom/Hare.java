@@ -28,6 +28,7 @@ public class Hare extends CustomMob {
     @Override
     public LivingEntity summon(Location location) {
         Rabbit rabbit = (Rabbit) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.RABBIT);
+        rabbit.teleport(location);
         rabbit.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         rabbit.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         rabbit.setHealth(maxHealth);

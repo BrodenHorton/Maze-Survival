@@ -37,6 +37,7 @@ public class Revenant extends CustomArmorMob {
             zombie = (Husk) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.HUSK);
         else
             zombie = (Zombie) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.ZOMBIE);
+        zombie.teleport(location);
         zombie.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
         zombie.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         zombie.setHealth(maxHealth);

@@ -23,7 +23,6 @@ public class BossListener implements Listener {
         if(!e.getEntity().getPersistentDataContainer().has(NamespacedKeys.BOSS, PersistentDataType.STRING))
             return;
 
-        plugin.getLogger().info("Boss mob defeated!");
         Bukkit.broadcastMessage(ChatColor.GREEN + "Boss mob defeated!");
         MazeGrid grid = plugin.getMazeManager().getGrid();
         String bossId = e.getEntity().getPersistentDataContainer().get(NamespacedKeys.BOSS, PersistentDataType.STRING);
@@ -34,7 +33,6 @@ public class BossListener implements Listener {
             }
         }
 
-        plugin.getLogger().info(bossId + " Defeated!");
         Bukkit.broadcastMessage(ChatColor.GREEN + bossId + " Defeated!");
     }
 }

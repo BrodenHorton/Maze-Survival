@@ -19,9 +19,8 @@ public class Vector3Int {
 
     public void rotateY(int rotation) {
         double rotationInRad = Math.toRadians(rotation);
-        int xEval = (int)(x * Math.cos(rotationInRad) + z * Math.sin(rotationInRad));
-        int zEval = (int)(-x * Math.sin(rotationInRad) + z * Math.cos(rotationInRad));
-        System.out.println("rotation: " + rotation + ", xEval: " + xEval + ", zEval: " + zEval);
+        int xEval = (int)Math.round(x * Math.cos(rotationInRad) + z * Math.sin(rotationInRad));
+        int zEval = (int)Math.round(-x * Math.sin(rotationInRad) + z * Math.cos(rotationInRad));
         x = xEval;
         z = zEval;
     }
