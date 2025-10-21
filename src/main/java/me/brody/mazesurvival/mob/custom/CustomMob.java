@@ -17,8 +17,6 @@ import org.bukkit.entity.Rabbit;
 import org.bukkit.inventory.ItemStack;
 import me.brody.mazesurvival.mob.custom.SimpleCustomMob.SimpleCustomMobBuilder;
 import me.brody.mazesurvival.mob.custom.SimpleCustomArmorMob.SimpleCustomArmorMobBuilder;
-import me.brody.mazesurvival.mob.custom.Revenant.RevenantBuilder;
-import me.brody.mazesurvival.mob.custom.Remains.RemainsBuilder;
 import me.brody.mazesurvival.mob.custom.Bomber.BomberBuilder;
 import me.brody.mazesurvival.mob.custom.MazePiglin.MazePiglinBuilder;
 import me.brody.mazesurvival.mob.custom.MazeBrute.MazeBruteBuilder;
@@ -42,6 +40,7 @@ public abstract class CustomMob {
     public static CustomMob ARCTIC_REMAINS;
     public static CustomMob ARACHNID;
     public static CustomMob SWIFT_ARACHNID;
+    public static CustomMob DESERT_ARACHNID;
     public static CustomMob TURBO_ARACHNID;
     public static CustomMob MAN_EATER;
     public static CustomMob KING_ARACHNID;
@@ -97,16 +96,17 @@ public abstract class CustomMob {
         revenantDropTable.addRareDrop(new ItemStack(Material.LEATHER), 10);
         revenantDropTable.addRareDrop(CustomItem.WORN_HELMET.getItemStack(), 5);
         revenantDropTable.addRareDrop(CustomItem.SPLINTERED_SWORD.getItemStack(), 5);
-        REVENANT = new RevenantBuilder(plugin, "Revenant")
+        REVENANT = new SimpleCustomArmorMobBuilder(plugin, "Revenant")
                 .withDropTable(revenantDropTable)
                 .withHelmet(CustomItem.WORN_HELMET.getItemStack())
+                .withEntityType(EntityType.ZOMBIE)
                 .build();
 
         SimpleMobDropTable arisenRevenantDropTable = new SimpleMobDropTable();
         arisenRevenantDropTable.addBasicDrop(new ItemStack(Material.ROTTEN_FLESH), 2);
         arisenRevenantDropTable.addRareDrop(CustomItem.MISTSTEEL_INGOT.getItemStack(), 5);
         arisenRevenantDropTable.addRareDrop(CustomItem.ARISEN_REVENANT_SWORD.getItemStack(), 4);
-        ARISEN_REVENANT = new RevenantBuilder(plugin, "Arisen Revenant")
+        ARISEN_REVENANT = new SimpleCustomArmorMobBuilder(plugin, "Arisen Revenant")
                 .withMaxHealth(40)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(0)
@@ -114,13 +114,14 @@ public abstract class CustomMob {
                 .withMainHand(new ItemStack(Material.WOODEN_SWORD))
                 .withHelmet(new ItemStack(Material.LEATHER_HELMET))
                 .withChestplate(new ItemStack(Material.LEATHER_CHESTPLATE))
+                .withEntityType(EntityType.ZOMBIE)
                 .build();
 
         SimpleMobDropTable fortifiedRevenantDropTable = new SimpleMobDropTable();
         fortifiedRevenantDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.ROTTEN_FLESH), ItemGrade.GOLD), 2);
         fortifiedRevenantDropTable.addRareDrop(CustomItem.MISTSTEEL_INGOT.getItemStack(), 5);
         fortifiedRevenantDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.IRON), 1);
-        FORTIFIED_REVENANT = new RevenantBuilder(plugin, "Fortified Revenant")
+        FORTIFIED_REVENANT = new SimpleCustomArmorMobBuilder(plugin, "Fortified Revenant")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(2)
@@ -130,6 +131,7 @@ public abstract class CustomMob {
                 .withChestplate(new ItemStack(Material.IRON_CHESTPLATE))
                 .withLeggings(new ItemStack(Material.IRON_LEGGINGS))
                 .withBoots(new ItemStack(Material.IRON_BOOTS))
+                .withEntityType(EntityType.ZOMBIE)
                 .build();
 
         SimpleMobDropTable deathKnightDropTable = new SimpleMobDropTable();
@@ -137,7 +139,7 @@ public abstract class CustomMob {
         deathKnightDropTable.addBasicDrop(new ItemStack(Material.ECHO_SHARD), 1);
         deathKnightDropTable.addBasicDrop(new ItemStack(Material.DIAMOND), 1);
         deathKnightDropTable.addRareDrop(CustomItem.ADAMANTITE_INGOT.getItemStack(), 1);
-        DEATH_KNIGHT = new RevenantBuilder(plugin, "Death Knight")
+        DEATH_KNIGHT = new SimpleCustomArmorMobBuilder(plugin, "Death Knight")
                 .withMaxHealth(80)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(5)
@@ -147,6 +149,7 @@ public abstract class CustomMob {
                 .withChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE))
                 .withLeggings(new ItemStack(Material.NETHERITE_LEGGINGS))
                 .withBoots(new ItemStack(Material.NETHERITE_BOOTS))
+                .withEntityType(EntityType.ZOMBIE)
                 .build();
 
         SimpleMobDropTable hungryHorrorDropTable = new SimpleMobDropTable();
@@ -157,13 +160,13 @@ public abstract class CustomMob {
         hungryHorrorDropTable.addRareDrop(CustomItem.TIN.getItemStack(), 5);
         hungryHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.RAW_COPPER), ItemGrade.IRON), 1);
         hungryHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.TIN.getItemStack(), ItemGrade.IRON), 1);
-        HUNGRY_HORROR = new RevenantBuilder(plugin, "Hungry Horror")
+        HUNGRY_HORROR = new SimpleCustomArmorMobBuilder(plugin, "Hungry Horror")
                 .withMaxHealth(30)
                 .withMovementSpeed(0.25)
                 .withPowerAmplifier(0)
                 .withDropTable(hungryHorrorDropTable)
                 .withHelmet(new ItemStack(Material.LEATHER_HELMET))
-                .withHusk(true)
+                .withEntityType(EntityType.HUSK)
                 .build();
 
         SimpleMobDropTable starvedHorrorDropTable = new SimpleMobDropTable();
@@ -174,7 +177,7 @@ public abstract class CustomMob {
         starvedHorrorDropTable.addBasicDrop(CustomItem.TIN.getItemStack(), 1);
         starvedHorrorDropTable.addRareDrop(new ItemStack(Material.LAPIS_LAZULI), 5);
         starvedHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.LAPIS_LAZULI), ItemGrade.IRON), 1);
-        STARVED_HORROR = new RevenantBuilder(plugin, "Starved Horror")
+        STARVED_HORROR = new SimpleCustomArmorMobBuilder(plugin, "Starved Horror")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(2)
@@ -182,7 +185,7 @@ public abstract class CustomMob {
                 .withMainHand(new ItemStack(Material.STONE_SWORD))
                 .withHelmet(new ItemStack(Material.IRON_HELMET))
                 .withChestplate(new ItemStack(Material.LEATHER_CHESTPLATE))
-                .withHusk(true)
+                .withEntityType(EntityType.HUSK)
                 .build();
 
         SimpleMobDropTable remainsDropTable = new SimpleMobDropTable();
@@ -190,10 +193,11 @@ public abstract class CustomMob {
         remainsDropTable.addBasicDrop(new ItemStack(Material.ARROW), 1);
         remainsDropTable.addRareDrop(CustomItem.WORN_HELMET.getItemStack(), 1);
         remainsDropTable.addRareDrop(CustomItem.SHORT_BOW.getItemStack(), 1);
-        REMAINS = new RemainsBuilder(plugin, "Remains")
+        REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Remains")
                 .withMovementSpeed(0.3)
                 .withDropTable(remainsDropTable)
                 .withHelmet(CustomItem.WORN_HELMET.getItemStack())
+                .withEntityType(EntityType.SKELETON)
                 .build();
 
         SimpleMobDropTable infusedRemainsDropTable = new SimpleMobDropTable();
@@ -202,7 +206,7 @@ public abstract class CustomMob {
         infusedRemainsDropTable.addRareDrop(CustomItem.SHORT_BOW.getItemStack(), 1);
         ItemStack infusedBow = new ItemStack(Material.BOW);
         infusedBow.addEnchantment(Enchantment.POWER, 1);
-        INFUSED_REMAINS = new RemainsBuilder(plugin, "Infused Remains")
+        INFUSED_REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Infused Remains")
                 .withMaxHealth(30)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(2)
@@ -210,11 +214,12 @@ public abstract class CustomMob {
                 .withMainHand(infusedBow)
                 .withHelmet(new ItemStack(Material.CHAINMAIL_HELMET))
                 .withChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE))
+                .withEntityType(EntityType.SKELETON)
                 .build();
 
         SimpleMobDropTable boneCrusherDropTable = new SimpleMobDropTable();
         boneCrusherDropTable.addBasicDrop(new ItemStack(Material.BONE), 2);
-        BONE_CRUSHER = new RemainsBuilder(plugin, "Bone Crusher")
+        BONE_CRUSHER = new SimpleCustomArmorMobBuilder(plugin, "Bone Crusher")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(3)
@@ -222,6 +227,7 @@ public abstract class CustomMob {
                 .withMainHand(new ItemStack(Material.IRON_AXE))
                 .withHelmet(new ItemStack(Material.IRON_HELMET))
                 .withChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE))
+                .withEntityType(EntityType.SKELETON)
                 .build();
 
         SimpleMobDropTable immortalLegionaryDropTable = new SimpleMobDropTable();
@@ -229,7 +235,7 @@ public abstract class CustomMob {
         immortalLegionaryDropTable.addBasicDrop(new ItemStack(Material.ARROW), 1);
         immortalLegionaryDropTable.addRareDrop(new ItemStack(Material.ECHO_SHARD), 5);
         immortalLegionaryDropTable.addRareDrop(CustomItem.LEGIONARY_BOW.getItemStack(), 2);
-        IMMORTAL_LEGIONARY = new RemainsBuilder(plugin, "Immortal Legionary")
+        IMMORTAL_LEGIONARY = new SimpleCustomArmorMobBuilder(plugin, "Immortal Legionary")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(3)
@@ -237,9 +243,10 @@ public abstract class CustomMob {
                 .withMainHand(new ItemStack(Material.IRON_SWORD))
                 .withHelmet(new ItemStack(Material.GOLDEN_HELMET))
                 .withChestplate(new ItemStack(Material.IRON_CHESTPLATE))
+                .withEntityType(EntityType.SKELETON)
                 .build();
 
-        ROYAL_REMAINS = new RemainsBuilder(plugin, "Royal Remains")
+        ROYAL_REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Royal Remains")
                 .withMaxHealth(80)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(2)
@@ -248,24 +255,25 @@ public abstract class CustomMob {
                 .withChestplate(new ItemStack(Material.IRON_CHESTPLATE))
                 .withLeggings(new ItemStack(Material.IRON_LEGGINGS))
                 .withBoots(new ItemStack(Material.IRON_BOOTS))
+                .withEntityType(EntityType.SKELETON)
                 .build();
 
         SimpleMobDropTable boggedRemainsDropTable = new SimpleMobDropTable();
         boggedRemainsDropTable.addBasicDrop(new ItemStack(Material.BONE), 1);
         boggedRemainsDropTable.addBasicDrop(new ItemStack(Material.ARROW), 1);
-        BOGGED_REMAINS = new RemainsBuilder(plugin, "Bogged Remains")
+        BOGGED_REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Bogged Remains")
                 .withMaxHealth(40)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(2)
                 .withDropTable(boggedRemainsDropTable)
                 .withHelmet(new ItemStack(Material.LEATHER_HELMET))
-                .withBogged(true)
+                .withEntityType(EntityType.BOGGED)
                 .build();
 
         SimpleMobDropTable forgottenRemainsDropTable = new SimpleMobDropTable();
         forgottenRemainsDropTable.addBasicDrop(new ItemStack(Material.BONE), 1);
         forgottenRemainsDropTable.addBasicDrop(new ItemStack(Material.COAL), 1);
-        FORGOTTEN_REMAINS = new RemainsBuilder(plugin, "Forgotten Remains")
+        FORGOTTEN_REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Forgotten Remains")
                 .withMaxHealth(80)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(5)
@@ -274,7 +282,7 @@ public abstract class CustomMob {
                 .withChestplate(new ItemStack(Material.LEATHER_CHESTPLATE))
                 .withLeggings(new ItemStack(Material.LEATHER_LEGGINGS))
                 .withBoots(new ItemStack(Material.LEATHER_BOOTS))
-                .withBogged(true)
+                .withEntityType(EntityType.BOGGED)
                 .build();
 
         SimpleMobDropTable arcticRemainsDropTable = new SimpleMobDropTable();
@@ -282,14 +290,14 @@ public abstract class CustomMob {
         arcticRemainsDropTable.addBasicDrop(new ItemStack(Material.ARROW), 2);
         ItemStack arcticBow = new ItemStack(Material.BOW);
         infusedBow.addEnchantment(Enchantment.POWER, 3);
-        ARCTIC_REMAINS = new RemainsBuilder(plugin, "Arctic Remains")
+        ARCTIC_REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Arctic Remains")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(3)
                 .withDropTable(arcticRemainsDropTable)
                 .withMainHand(arcticBow)
                 .withHelmet(new ItemStack(Material.CHAINMAIL_HELMET))
-                .withStray(true)
+                .withEntityType(EntityType.STRAY)
                 .build();
 
         SimpleMobDropTable arachnidDropTable = new SimpleMobDropTable();
@@ -312,6 +320,17 @@ public abstract class CustomMob {
                 .withPowerAmplifier(0)
                 .withDropTable(swiftArachnidDropTable)
                 .withEntityType(EntityType.SPIDER)
+                .build();
+
+        SimpleMobDropTable desertArachnidDropTable = new SimpleMobDropTable();
+        desertArachnidDropTable.addBasicDrop(new ItemStack(Material.STRING), 1);
+        desertArachnidDropTable.addBasicDrop(new ItemStack(Material.SPIDER_EYE), 1);
+        DESERT_ARACHNID = new SimpleCustomMobBuilder(plugin, "Desert Arachnid")
+                .withMaxHealth(50)
+                .withMovementSpeed(0.4)
+                .withPowerAmplifier(1)
+                .withDropTable(desertArachnidDropTable)
+                .withEntityType(EntityType.CAVE_SPIDER)
                 .build();
 
         SimpleMobDropTable turboArachnidDropTable = new SimpleMobDropTable();
@@ -743,6 +762,7 @@ public abstract class CustomMob {
         registerCustomMob(ARCTIC_REMAINS);
         registerCustomMob(ARACHNID);
         registerCustomMob(SWIFT_ARACHNID);
+        registerCustomMob(DESERT_ARACHNID);
         registerCustomMob(TURBO_ARACHNID);
         registerCustomMob(MAN_EATER);
         registerCustomMob(KING_ARACHNID);

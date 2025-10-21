@@ -2,6 +2,7 @@ package me.brody.mazesurvival.registry;
 
 import me.brody.mazesurvival.item.CustomItem;
 import me.brody.mazesurvival.item.ItemGrade;
+import me.brody.mazesurvival.item.recipe.CustomRecipe;
 import me.brody.mazesurvival.maze.grid.MazeGridBase;
 import me.brody.mazesurvival.mob.custom.CustomMob;
 
@@ -14,6 +15,7 @@ public class Registry<T, K> {
     public static Registry<String, ItemGrade> ITEM_GRADE = new Registry<>();
     public static Registry<String, CustomItem> CUSTOM_ITEM = new Registry<>();
     public static Registry<String, CustomMob> CUSTOM_MOB = new Registry<>();
+    public static Registry<String, CustomRecipe> CUSTOM_RECIPE = new Registry<>();
 
     private Map<T, K> resources;
 

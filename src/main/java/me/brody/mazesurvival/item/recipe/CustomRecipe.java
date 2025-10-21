@@ -6,4 +6,6 @@ public interface CustomRecipe {
     boolean isMatchingRecipe(ItemStack[] matrix);
 
     ItemStack getResult();
+
+    ItemStack[][] getRecipeDisplay();
 }

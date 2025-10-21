@@ -40,7 +40,7 @@ public class CustomShapedRecipe implements CustomRecipe {
 
     private void processRecipeLine(String str) {
         if(str != null && !str.isEmpty()) {
-            String recipeLine =  str.length() > 3 ? str.substring(0, 3) : str;
+            String recipeLine = str.length() > 3 ? str.substring(0, 3) : str;
             recipe.add(recipeLine);
         }
     }
@@ -49,13 +49,13 @@ public class CustomShapedRecipe implements CustomRecipe {
         ingredientByChar.put(ingredientCharacter, ingredient);
     }
 
+    @Override
     public boolean isMatchingRecipe(ItemStack[] matrix) {
         if(matrix == null)
             return false;
         if(!hasMatchingIngredients(matrix))
             return false;
 
-        System.out.println("Matching ingredients found!");
         int rowLength = (int)Math.sqrt(matrix.length);
         int recipeHeight = recipe.size();
         int recipeWidth = 0;
@@ -63,9 +63,6 @@ public class CustomShapedRecipe implements CustomRecipe {
             if(recipeLine.length() > recipeWidth)
                 recipeWidth = recipeLine.length();
         }
-        System.out.println("Crafting matrix row length: " + rowLength);
-        System.out.println("Recipe width: " + recipeWidth);
-        System.out.println("Recipe height: " + recipeHeight);
         for(int i = 0; i < rowLength - recipeHeight + 1; i++) {
             for(int j = 0; j < rowLength - recipeWidth + 1; j++) {
                 if(isMatchingRecipeAtIndex(matrix, i, j))
@@ -133,7 +130,30 @@ public class CustomShapedRecipe implements CustomRecipe {
         return true;
     }
 
+    @Override
     public ItemStack getResult() {
         return result.clone();
+    }
+
+    @Override
+    public ItemStack[][] getRecipeDisplay() {
+        if(recipe.isEmpty())
+            return new ItemStack[0][0];
+
+        int rows = recipe.size();
+        int columns = 0;
+        for(int i = 0; i < recipe.size(); i++) {
+            if(recipe.get(i).length() > columns)
+                columns = recipe.get(i).length();
+        }
+        ItemStack[][] result = new ItemStack[rows][columns];
+        for(int i = 0; i < result.length; i++) {
+            for(int j = 0; j < result[0].length; j++) {
+                if(recipe.get(i).length() >= j && recipe.get(i).charAt(j) != BLANK_SLOT)
+                    result[i][j] = recipe.get(i).charAt(j) != BLANK_SLOT ? ingredientByChar.get(recipe.get(i).charAt(j)) : null;
+            }
+        }
+
+        return result;
     }
 }

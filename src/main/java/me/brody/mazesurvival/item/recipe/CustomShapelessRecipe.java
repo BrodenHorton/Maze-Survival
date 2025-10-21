@@ -1,5 +1,6 @@
 package me.brody.mazesurvival.item.recipe;
 
+import me.brody.mazesurvival.utils.MathUtils;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class CustomShapelessRecipe implements CustomRecipe {
         this.result = result;
     }
 
+    @Override
     public boolean isMatchingRecipe(ItemStack[] matrix) {
         List<ItemStack> remainingIngredients = new ArrayList<>(ingredients);
         for(int i = 0; i < matrix.length; i++) {
@@ -35,7 +37,25 @@ public class CustomShapelessRecipe implements CustomRecipe {
         return remainingIngredients.isEmpty();
     }
 
+    @Override
     public ItemStack getResult() {
         return result.clone();
+    }
+
+    @Override
+    public ItemStack[][] getRecipeDisplay() {
+        if(ingredients.isEmpty())
+            return new ItemStack[0][0];
+
+        int rows = ingredients.size() / 3 + 1;
+        int columns = MathUtils.clamp(ingredients.size(), 0, 3);
+        ItemStack[][] result = new ItemStack[rows][columns];
+        for(int i = 0; i < result.length; i++) {
+            for(int j = 0; j < result[0].length; j++) {
+                result[i][j] = ingredients.get(i * result.length + j);
+            }
+        }
+
+        return result;
     }
 }

@@ -7,7 +7,9 @@ import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.mob.custom.CustomMob;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import me.brody.mazesurvival.utils.LocationUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.persistence.PersistentDataType;
 
 public class SwampBossFight implements BossFight {
@@ -26,6 +28,8 @@ public class SwampBossFight implements BossFight {
         if(bossRoom == null)
             return;
 
+        clearExistingBossMobs();
+
         MazeGrid grid = plugin.getMazeManager().getGrid();
         Location bossRoomCenter = LocationUtils.centerOnBlock(grid.getRegionBossRoomWorldCenter(region));
         final float yaw = bossRoom.getDirection().id * 90;
@@ -42,5 +46,15 @@ public class SwampBossFight implements BossFight {
         CustomMob.DEATH_KNIGHT.summon(bossSpawnLocation).getPersistentDataContainer().set(NamespacedKeys.BOSS, PersistentDataType.STRING, bossType.getBossId());
         CustomMob.MAN_EATER.summon(enemySpawnLocation1).getPersistentDataContainer().set(NamespacedKeys.BOSS, PersistentDataType.STRING, bossType.getBossId());
         CustomMob.MAN_EATER.summon(enemySpawnLocation2).getPersistentDataContainer().set(NamespacedKeys.BOSS, PersistentDataType.STRING, bossType.getBossId());
+    }
+
+    private void clearExistingBossMobs() {
+        for(Entity entity : plugin.getMazeManager().getGrid().getWorld().getEntities()) {
+            if(entity.getPersistentDataContainer().has(NamespacedKeys.BOSS, PersistentDataType.STRING)
+                    && entity.getPersistentDataContainer().get(NamespacedKeys.BOSS, PersistentDataType.STRING).equals(bossType.getBossId())) {
+                entity.remove();
+                Bukkit.broadcastMessage("&eBoss mob removed!");
+            }
+        }
     }
 }

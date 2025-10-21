@@ -116,10 +116,6 @@ public class CustomItem {
     public static final CustomItem SUN_GOLD_AXE;
     public static final CustomItem SUN_GOLD_MACE;
     public static final CustomItem SUN_GOLD_PICKAXE;
-    public static final CustomItem ORICHALCUM_SWORD;
-    public static final CustomItem ORICHALCUM_AXE;
-    public static final CustomItem ORICHALCUM_MACE;
-    public static final CustomItem ORICHALCUM_PICKAXE;
     public static final CustomItem CORRUPTED_DIAMOND_SWORD;
     public static final CustomItem CORRUPTED_DIAMOND_AXE;
     public static final CustomItem CORRUPTED_DIAMOND_MACE;
@@ -803,29 +799,6 @@ public class CustomItem {
                 .withToolLevel(sunGoldPickaxeToolLevel)
                 .build();
 
-        int orichalcumBaseAttack = 24;
-        ORICHALCUM_SWORD = new CustomToolBuilder(new ItemStack(Material.IRON_SWORD), "orichalcum_sword")
-                .withDisplayName(ChatColor.WHITE + "Orichalcum Sword")
-                .withBaseDamage(Math.round(orichalcumBaseAttack * swordMultiplier))
-                .build();
-
-        ORICHALCUM_AXE = new CustomToolBuilder(new ItemStack(Material.IRON_AXE), "orichalcum_axe")
-                .withDisplayName(ChatColor.WHITE + "Orichalcum Axe")
-                .withBaseDamage(Math.round(orichalcumBaseAttack * axeMultiplier))
-                .build();
-
-        ORICHALCUM_MACE = new CustomToolBuilder(new ItemStack(Material.IRON_SHOVEL), "orichalcum_mace")
-                .withDisplayName(ChatColor.WHITE + "Orichalcum Mace")
-                .withBaseDamage(Math.round(orichalcumBaseAttack * shovelMultiplier))
-                .build();
-
-        int orichalcumPickaxeToolLevel = 6;
-        ORICHALCUM_PICKAXE = new CustomToolBuilder(new ItemStack(Material.IRON_PICKAXE), "orichalcum_pickaxe")
-                .withDisplayName(ChatColor.WHITE + "Orichalcum Pickaxe")
-                .withBaseDamage(Math.round(orichalcumBaseAttack * pickaxeMultiplier))
-                .withToolLevel(orichalcumPickaxeToolLevel)
-                .build();
-
         int corruptedDiamondBaseAttack = 30;
         CORRUPTED_DIAMOND_SWORD = new CustomToolBuilder(new ItemStack(Material.DIAMOND_SWORD), "corrupted_diamond_sword")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Sword")
@@ -1196,10 +1169,6 @@ public class CustomItem {
         Registry.CUSTOM_ITEM.register(SUN_GOLD_AXE.getItemName(), SUN_GOLD_AXE);
         Registry.CUSTOM_ITEM.register(SUN_GOLD_MACE.getItemName(), SUN_GOLD_MACE);
         Registry.CUSTOM_ITEM.register(SUN_GOLD_PICKAXE.getItemName(), SUN_GOLD_PICKAXE);
-        Registry.CUSTOM_ITEM.register(ORICHALCUM_SWORD.getItemName(), ORICHALCUM_SWORD);
-        Registry.CUSTOM_ITEM.register(ORICHALCUM_AXE.getItemName(), ORICHALCUM_AXE);
-        Registry.CUSTOM_ITEM.register(ORICHALCUM_MACE.getItemName(), ORICHALCUM_MACE);
-        Registry.CUSTOM_ITEM.register(ORICHALCUM_PICKAXE.getItemName(), ORICHALCUM_PICKAXE);
         Registry.CUSTOM_ITEM.register(CORRUPTED_DIAMOND_SWORD.getItemName(), CORRUPTED_DIAMOND_SWORD);
         Registry.CUSTOM_ITEM.register(CORRUPTED_DIAMOND_AXE.getItemName(), CORRUPTED_DIAMOND_AXE);
         Registry.CUSTOM_ITEM.register(CORRUPTED_DIAMOND_MACE.getItemName(), CORRUPTED_DIAMOND_MACE);

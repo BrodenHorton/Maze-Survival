@@ -3,6 +3,7 @@ package me.brody.mazesurvival.item.recipe;
 import me.brody.mazesurvival.item.CustomItem;
 import me.brody.mazesurvival.item.ItemGrade;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
+import me.brody.mazesurvival.registry.Registry;
 import me.brody.mazesurvival.utils.ItemGradeUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -114,173 +115,179 @@ public class CustomRecipes {
                 recipeIterator.remove();
         }
 
-        // Custom recipes
         recipes = new ArrayList<>();
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.LEATHER));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.COBBLESTONE));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.DEEPSLATE));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.APPLE));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.WHEAT));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.CARROT));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.POTATO));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.CACTUS));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.BEETROOT));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.BROWN_MUSHROOM));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_MUSHROOM));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.PORKCHOP));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_SAND));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.SOUL_SAND));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.FEATHER));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.STRING));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.SPIDER_EYE));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.HONEYCOMB));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.INK_SAC));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.SLIME_BALL));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.BLAZE_ROD));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.BREEZE_ROD));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.ECHO_SHARD));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.NETHER_WART));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.GLOWSTONE_DUST));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.SUGAR));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.GUNPOWDER));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.ROTTEN_FLESH));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.GHAST_TEAR));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.BLUE_DYE));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_DYE));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.YELLOW_DYE));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.PURPLE_DYE));
-        registerTwoByTwoGradedRecipes(CustomItem.TIN.getItemStack());
-        registerTwoByTwoGradedRecipes(CustomItem.BRONZE_INGOT.getItemStack());
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.IRON_INGOT));
-        registerTwoByTwoGradedRecipes(CustomItem.SUN_GOLD_NUGGET.getItemStack());
-        registerTwoByTwoGradedRecipes(CustomItem.SUN_GOLD_INGOT.getItemStack());
-        registerTwoByTwoGradedRecipes(CustomItem.ORICHALCUM.getItemStack());
-        registerTwoByTwoGradedRecipes(CustomItem.CORRUPTED_DIAMOND.getItemStack());
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.AMETHYST_SHARD));
-        registerTwoByTwoGradedRecipes(new ItemStack(Material.LAPIS_LAZULI));
-        registerTwoByTwoGradedRecipes(CustomItem.MISTSTEEL_INGOT.getItemStack());
-        registerTwoByTwoGradedRecipes(CustomItem.MITHRIL.getItemStack());
-        registerTwoByTwoGradedRecipes(CustomItem.SOLARIUM.getItemStack());
-        registerTwoByTwoGradedRecipes(CustomItem.ADAMANTITE_INGOT.getItemStack());
+        registerTwoByTwoRecipe(new ItemStack(Material.OAK_LOG), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "oak_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.BIRCH_LOG), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "birch_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.SPRUCE_LOG), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "spruce_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.DARK_OAK_LOG), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "dark_oak_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.JUNGLE_LOG), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "jungle_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.ACACIA_LOG), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "acacia_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.CHERRY_LOG), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "cherry_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.PALE_OAK_LOG), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "pale_oak_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.MANGROVE_LOG), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "mangrove_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.CRIMSON_STEM), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "crimson_stem_to_log_iron_grade");
+        registerTwoByTwoRecipe(new ItemStack(Material.WARPED_STEM), ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON), "warped_stem_to_log_iron_grade");
+
+        registerThreeByThreeRecipe(new ItemStack(Material.STRING), new ItemStack(Material.WHITE_WOOL), "wool");
+        registerThreeByThreeRecipe(new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.GLOWSTONE), "glowstone");
+
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.LEATHER), "leather");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.COBBLESTONE), "cobblestone");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.DEEPSLATE), "deepslate");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.APPLE), "apple");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.WHEAT), "wheat");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.CARROT), "carrot");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.POTATO), "potato");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.CACTUS), "cactus");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.BEETROOT), "beetroot");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.BROWN_MUSHROOM), "brown_mushroom");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_MUSHROOM), "red_mushroom");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.PORKCHOP), "porkchop");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_SAND), "red_sand");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.SOUL_SAND), "soul_sand");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.FEATHER), "feather");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.STRING), "string");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.SPIDER_EYE), "spider_eye");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.HONEYCOMB), "honeycomb");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.GLOW_INK_SAC), "glow_ink_sac");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.SLIME_BALL), "slime_ball");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.BLAZE_ROD), "blaze_rod");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.BREEZE_ROD), "breeze_rod");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.ECHO_SHARD), "echo_shard");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.NETHER_WART), "nether_wart");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.GLOWSTONE_DUST), "glowstone_dust");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.SUGAR), "sugar");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.GUNPOWDER), "gunpowder");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.ROTTEN_FLESH), "rotten_flesh");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.GHAST_TEAR), "ghast_tear");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.BLUE_DYE), "blue_dye");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_DYE), "red_dye");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.YELLOW_DYE), "yellow_dye");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.PURPLE_DYE), "purple_dye");
+        registerTwoByTwoGradedRecipes(CustomItem.BRONZE_INGOT.getItemStack(), "bronze_ingot");
+        registerTwoByTwoGradedRecipes(CustomItem.SUN_GOLD_NUGGET.getItemStack(), "sun_gold_nugget");
+        registerTwoByTwoGradedRecipes(CustomItem.SUN_GOLD_INGOT.getItemStack(), "sun_gold_ingot");
+        registerTwoByTwoGradedRecipes(CustomItem.ORICHALCUM.getItemStack(), "orichalcum");
+        registerTwoByTwoGradedRecipes(CustomItem.CORRUPTED_DIAMOND.getItemStack(), "corrupted_diamond");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.AMETHYST_SHARD), "amethyst_shard");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.LAPIS_LAZULI), "lapis");
+        registerTwoByTwoGradedRecipes(CustomItem.MISTSTEEL_INGOT.getItemStack(), "miststeel_ingot");
+        registerTwoByTwoGradedRecipes(CustomItem.MITHRIL.getItemStack(), "mithril");
+        registerTwoByTwoGradedRecipes(CustomItem.SOLARIUM.getItemStack(), "solarium");
+        registerTwoByTwoGradedRecipes(CustomItem.ADAMANTITE_INGOT.getItemStack(), "adamantite_ingot");
 
         // Armor
         ItemStack leatherGoldGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.LEATHER), ItemGrade.GOLD);
-        registerHelmetRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_HELMET.getItemStack());
-        registerChestplateRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_LEGGIGNS.getItemStack());
-        registerBootsRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_BOOTS.getItemStack());
+        registerHelmetRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_HELMET.getItemStack(), "hard_leather_helmet");
+        registerChestplateRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_CHESTPLATE.getItemStack(), "hard_leather_chestplate");
+        registerLeggingsRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_LEGGIGNS.getItemStack(), "hard_leather_leggings");
+        registerBootsRecipe(leatherGoldGrade, CustomItem.HARD_LEATHER_BOOTS.getItemStack(), "hard_leather_boots");
 
         ItemStack bronzeIngotGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.BRONZE_INGOT.getItemStack(), ItemGrade.GOLD);
-        registerHelmetRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_HELMET.getItemStack());
-        registerChestplateRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_LEGGINGS.getItemStack());
-        registerBootsRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_BOOTS.getItemStack());
+        registerHelmetRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_HELMET.getItemStack(), "bronze_helmet");
+        registerChestplateRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_CHESTPLATE.getItemStack(), "bronze_chestplate");
+        registerLeggingsRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_LEGGINGS.getItemStack(), "bronze_leggings");
+        registerBootsRecipe(bronzeIngotGoldGrade, CustomItem.BRONZE_BOOTS.getItemStack(), "bronze_boots");
 
         ItemStack miststeelIngotGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.GOLD);
-        registerHelmetRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_HELMET.getItemStack());
-        registerChestplateRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_LEGGINGS.getItemStack());
-        registerBootsRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_BOOTS.getItemStack());
+        registerHelmetRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_HELMET.getItemStack(), "miststeel_helmet");
+        registerChestplateRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_CHESTPLATE.getItemStack(), "miststeel_chestplate");
+        registerLeggingsRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_LEGGINGS.getItemStack(), "miststeel_leggings");
+        registerBootsRecipe(miststeelIngotGoldGrade, CustomItem.MISTSTEEL_BOOTS.getItemStack(), "miststeel_boots");
 
         ItemStack sunGoldIngotGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.SUN_GOLD_INGOT.getItemStack(), ItemGrade.GOLD);
-        registerHelmetRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_HELMET.getItemStack());
-        registerChestplateRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_LEGGINGS.getItemStack());
-        registerBootsRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_BOOTS.getItemStack());
-
-        ItemStack orichalcumGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.ORICHALCUM.getItemStack(), ItemGrade.GOLD);
-        registerHelmetRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_HELMET.getItemStack());
-        registerChestplateRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_LEGGINGS.getItemStack());
-        registerBootsRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_BOOTS.getItemStack());
+        registerHelmetRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_HELMET.getItemStack(), "sun_gold_helmet");
+        registerChestplateRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_CHESTPLATE.getItemStack(), "sun_gold_chestplate");
+        registerLeggingsRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_LEGGINGS.getItemStack(), "sun_gold_leggings");
+        registerBootsRecipe(sunGoldIngotGoldGrade, CustomItem.SUN_GOLD_BOOTS.getItemStack(), "sun_gold_boots");
 
         ItemStack corruptedDiamondGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.CORRUPTED_DIAMOND.getItemStack(), ItemGrade.GOLD);
-        registerHelmetRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_HELMET.getItemStack());
-        registerChestplateRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_LEGGINGS.getItemStack());
-        registerBootsRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_BOOTS.getItemStack());
+        registerHelmetRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_HELMET.getItemStack(), "corrupted_diamond_helmet");
+        registerChestplateRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_CHESTPLATE.getItemStack(), "corrupted_diamond_chestplate");
+        registerLeggingsRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_LEGGINGS.getItemStack(), "corrupted_diamond_leggings");
+        registerBootsRecipe(corruptedDiamondGoldGrade, CustomItem.CORRUPTED_DIAMOND_BOOTS.getItemStack(), "corrupted_diamond_boots");
 
         ItemStack amethystGoldGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.AMETHYST_SHARD), ItemGrade.GOLD);
-        registerHelmetRecipe(amethystGoldGrade, CustomItem.AMETHYST_HELMET.getItemStack());
-        registerChestplateRecipe(amethystGoldGrade, CustomItem.AMETHYST_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(amethystGoldGrade, CustomItem.AMETHYST_LEGGINGS.getItemStack());
-        registerBootsRecipe(amethystGoldGrade, CustomItem.AMETHYST_BOOTS.getItemStack());
+        registerHelmetRecipe(amethystGoldGrade, CustomItem.AMETHYST_HELMET.getItemStack(), "amethyst_helmet");
+        registerChestplateRecipe(amethystGoldGrade, CustomItem.AMETHYST_CHESTPLATE.getItemStack(), "amethyst_chestplate");
+        registerLeggingsRecipe(amethystGoldGrade, CustomItem.AMETHYST_LEGGINGS.getItemStack(), "amethyst_leggings");
+        registerBootsRecipe(amethystGoldGrade, CustomItem.AMETHYST_BOOTS.getItemStack(), "amethyst_boots");
 
         ItemStack lapisGoldGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.LAPIS_LAZULI), ItemGrade.GOLD);
-        registerHelmetRecipe(lapisGoldGrade, CustomItem.LAPIS_HELMET.getItemStack());
-        registerChestplateRecipe(lapisGoldGrade, CustomItem.LAPIS_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(lapisGoldGrade, CustomItem.LAPIS_LEGGINGS.getItemStack());
-        registerBootsRecipe(lapisGoldGrade, CustomItem.LAPIS_BOOTS.getItemStack());
+        registerHelmetRecipe(lapisGoldGrade, CustomItem.LAPIS_HELMET.getItemStack(), "lapis_helmet");
+        registerChestplateRecipe(lapisGoldGrade, CustomItem.LAPIS_CHESTPLATE.getItemStack(), "lapis_chestplate");
+        registerLeggingsRecipe(lapisGoldGrade, CustomItem.LAPIS_LEGGINGS.getItemStack(), "lapis_leggings");
+        registerBootsRecipe(lapisGoldGrade, CustomItem.LAPIS_BOOTS.getItemStack(), "lapis_boots");
+
+        ItemStack orichalcumGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.ORICHALCUM.getItemStack(), ItemGrade.GOLD);
+        registerHelmetRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_HELMET.getItemStack(), "orichalcum_helmet");
+        registerChestplateRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_CHESTPLATE.getItemStack(), "orichalcum_chestplate");
+        registerLeggingsRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_LEGGINGS.getItemStack(), "orichalcum_leggings");
+        registerBootsRecipe(orichalcumGoldGrade, CustomItem.ORICHALCUM_BOOTS.getItemStack(), "orichalcum_boots");
 
         ItemStack mithrilGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.MITHRIL.getItemStack(), ItemGrade.GOLD);
-        registerHelmetRecipe(mithrilGoldGrade, CustomItem.MITHRIL_HELMET.getItemStack());
-        registerChestplateRecipe(mithrilGoldGrade, CustomItem.MITHRIL_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(mithrilGoldGrade, CustomItem.MITHRIL_LEGGINGS.getItemStack());
-        registerBootsRecipe(mithrilGoldGrade, CustomItem.MITHRIL_BOOTS.getItemStack());
+        registerHelmetRecipe(mithrilGoldGrade, CustomItem.MITHRIL_HELMET.getItemStack(), "mithril_helmet");
+        registerChestplateRecipe(mithrilGoldGrade, CustomItem.MITHRIL_CHESTPLATE.getItemStack(), "mithril_chestplate");
+        registerLeggingsRecipe(mithrilGoldGrade, CustomItem.MITHRIL_LEGGINGS.getItemStack(), "mithril_leggings");
+        registerBootsRecipe(mithrilGoldGrade, CustomItem.MITHRIL_BOOTS.getItemStack(), "mithril_boots");
 
         ItemStack solariumGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.SOLARIUM.getItemStack(), ItemGrade.GOLD);
-        registerHelmetRecipe(solariumGoldGrade, CustomItem.SOLARIUM_HELMET.getItemStack());
-        registerChestplateRecipe(solariumGoldGrade, CustomItem.SOLARIUM_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(solariumGoldGrade, CustomItem.SOLARIUM_LEGGINGS.getItemStack());
-        registerBootsRecipe(solariumGoldGrade, CustomItem.SOLARIUM_BOOTS.getItemStack());
+        registerHelmetRecipe(solariumGoldGrade, CustomItem.SOLARIUM_HELMET.getItemStack(), "solarium_helmet");
+        registerChestplateRecipe(solariumGoldGrade, CustomItem.SOLARIUM_CHESTPLATE.getItemStack(), "solarium_chestplate");
+        registerLeggingsRecipe(solariumGoldGrade, CustomItem.SOLARIUM_LEGGINGS.getItemStack(), "solarium_leggings");
+        registerBootsRecipe(solariumGoldGrade, CustomItem.SOLARIUM_BOOTS.getItemStack(), "solarium_boots");
 
         ItemStack adamantiteGoldGrade = ItemGradeUtils.createGradedItem(CustomItem.ADAMANTITE_INGOT.getItemStack(), ItemGrade.GOLD);
-        registerHelmetRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_HELMET.getItemStack());
-        registerChestplateRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_CHESTPLATE.getItemStack());
-        registerLeggingsRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_LEGGINGS.getItemStack());
-        registerBootsRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_BOOTS.getItemStack());
+        registerHelmetRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_HELMET.getItemStack(), "adamantite_helmet");
+        registerChestplateRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_CHESTPLATE.getItemStack(), "adamantite_chestplate");
+        registerLeggingsRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_LEGGINGS.getItemStack(), "adamantite_leggings");
+        registerBootsRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_BOOTS.getItemStack(), "adamantite_boots");
 
         // Tools
         ItemStack logTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.TITANIUM);
-        registerSwordRecipe(logTitaniumGrade, CustomItem.WOODEN_SHORT_SWORD.getItemStack());
-        registerAxeRecipe(logTitaniumGrade, CustomItem.WOODEN_HATCHET.getItemStack());
-        registerShovelRecipe(logTitaniumGrade, CustomItem.WOODEN_SPADE.getItemStack());
-        registerHoeRecipe(logTitaniumGrade, CustomItem.WOODEN_SCYTHE.getItemStack());
-        registerPickaxeRecipe(logTitaniumGrade, CustomItem.WORN_WOODEN_PICKAXE.getItemStack());
+        registerSwordRecipe(logTitaniumGrade, CustomItem.WOODEN_SHORT_SWORD.getItemStack(), "wooden_short_sword");
+        registerAxeRecipe(logTitaniumGrade, CustomItem.WOODEN_HATCHET.getItemStack(), "wooden_hatchet");
+        registerShovelRecipe(logTitaniumGrade, CustomItem.WOODEN_SPADE.getItemStack(), "wooden_spade");
+        registerHoeRecipe(logTitaniumGrade, CustomItem.WOODEN_SCYTHE.getItemStack(), "wooden_scythe");
+        registerPickaxeRecipe(logTitaniumGrade, CustomItem.WORN_WOODEN_PICKAXE.getItemStack(), "worn_wooden_pickaxe");
 
         ItemStack cobblestoneTitaniumGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.COBBLESTONE), ItemGrade.TITANIUM);
-        registerSwordRecipe(cobblestoneTitaniumGrade, CustomItem.BASTARD_SWORD.getItemStack());
-        registerAxeRecipe(cobblestoneTitaniumGrade, CustomItem.BATTLE_AXE.getItemStack());
-        registerShovelRecipe(cobblestoneTitaniumGrade, CustomItem.MACE.getItemStack());
-        registerPickaxeRecipe(cobblestoneTitaniumGrade, CustomItem.COBBLESTONE_PICKAXE.getItemStack());
+        registerSwordRecipe(cobblestoneTitaniumGrade, CustomItem.BASTARD_SWORD.getItemStack(), "bastard_sword");
+        registerAxeRecipe(cobblestoneTitaniumGrade, CustomItem.BATTLE_AXE.getItemStack(), "battle_axe");
+        registerShovelRecipe(cobblestoneTitaniumGrade, CustomItem.MACE.getItemStack(), "mace");
+        registerPickaxeRecipe(cobblestoneTitaniumGrade, CustomItem.COBBLESTONE_PICKAXE.getItemStack(), "cobblestone_pickaxe");
 
         ItemStack bronzeIngotTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.BRONZE_INGOT.getItemStack(), ItemGrade.TITANIUM);
-        registerSwordRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_SWORD.getItemStack());
-        registerAxeRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_AXE.getItemStack());
-        registerShovelRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_MACE.getItemStack());
-        registerPickaxeRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_PICKAXE.getItemStack());
+        registerSwordRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_SWORD.getItemStack(), "bronze_sword");
+        registerAxeRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_AXE.getItemStack(), "bronze_axe");
+        registerShovelRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_MACE.getItemStack(), "bronze_mace");
+        registerPickaxeRecipe(bronzeIngotTitaniumGrade, CustomItem.BRONZE_PICKAXE.getItemStack(), "bronze_pickaxe");
 
         ItemStack miststeelIngotTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.TITANIUM);
-        registerSwordRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_SWORD.getItemStack());
-        registerAxeRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_AXE.getItemStack());
-        registerShovelRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_MACE.getItemStack());
-        registerHoeRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_SCYTHE.getItemStack());
-        registerPickaxeRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_PICKAXE.getItemStack());
+        registerSwordRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_SWORD.getItemStack(), "miststeel_sword");
+        registerAxeRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_AXE.getItemStack(), "miststeel_axe");
+        registerShovelRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_MACE.getItemStack(), "miststeel_mace");
+        registerHoeRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_SCYTHE.getItemStack(), "miststeel_scythe");
+        registerPickaxeRecipe(miststeelIngotTitaniumGrade, CustomItem.MISTSTEEL_PICKAXE.getItemStack(), "miststeel_pickaxe");
 
         ItemStack sunGoldIngotTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.SUN_GOLD_INGOT.getItemStack(), ItemGrade.TITANIUM);
-        registerSwordRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_SWORD.getItemStack());
-        registerAxeRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_AXE.getItemStack());
-        registerShovelRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_MACE.getItemStack());
-        registerPickaxeRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_PICKAXE.getItemStack());
-
-        ItemStack orichalcumTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.ORICHALCUM.getItemStack(), ItemGrade.TITANIUM);
-        registerSwordRecipe(orichalcumTitaniumGrade, CustomItem.ORICHALCUM_SWORD.getItemStack());
-        registerAxeRecipe(orichalcumTitaniumGrade, CustomItem.ORICHALCUM_AXE.getItemStack());
-        registerShovelRecipe(orichalcumTitaniumGrade, CustomItem.ORICHALCUM_MACE.getItemStack());
-        registerPickaxeRecipe(orichalcumTitaniumGrade, CustomItem.ORICHALCUM_PICKAXE.getItemStack());
+        registerSwordRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_SWORD.getItemStack(), "sun_gold_sword");
+        registerAxeRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_AXE.getItemStack(), "sun_gold_axe");
+        registerShovelRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_MACE.getItemStack(), "sun_gold_mace");
+        registerPickaxeRecipe(sunGoldIngotTitaniumGrade, CustomItem.SUN_GOLD_PICKAXE.getItemStack(), "sun_gold_pickaxe");
 
         ItemStack corruptedDiamondTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.CORRUPTED_DIAMOND.getItemStack(), ItemGrade.TITANIUM);
-        registerSwordRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_SWORD.getItemStack());
-        registerAxeRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_AXE.getItemStack());
-        registerShovelRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_MACE.getItemStack());
-        registerHoeRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_SCYTHE.getItemStack());
-        registerPickaxeRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_PICKAXE.getItemStack());
+        registerSwordRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_SWORD.getItemStack(), "corrupted_diamond_sword");
+        registerAxeRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_AXE.getItemStack(), "corrupted_diamond_axe");
+        registerShovelRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_MACE.getItemStack(), "corrupted_diamond_mace");
+        registerHoeRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_SCYTHE.getItemStack(), "corrupted_diamond_scythe");
+        registerPickaxeRecipe(corruptedDiamondTitaniumGrade, CustomItem.CORRUPTED_DIAMOND_PICKAXE.getItemStack(), "corrupted_diamond_pickaxe");
 
         ItemStack adamantiteIngotTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.ADAMANTITE_INGOT.getItemStack(), ItemGrade.TITANIUM);
-        registerSwordRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_EDGE.getItemStack());
-        registerAxeRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_CLEAVER.getItemStack());
-        registerShovelRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_GRAVEDIGGER.getItemStack());
-        registerHoeRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_REAPER.getItemStack());
+        registerSwordRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_EDGE.getItemStack(), "abyssal_edge");
+        registerAxeRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_CLEAVER.getItemStack(), "abyssal_cleaver");
+        registerShovelRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_GRAVEDIGGER.getItemStack(), "abyssal_gravedigger");
+        registerHoeRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_REAPER.getItemStack(), "abyssal_reaper");
 
         ItemStack enchantingTable = new ItemStack(Material.ENCHANTING_TABLE);
         CustomShapedRecipe customEnchantingTableRecipe = new CustomShapedRecipe("LCL", "CMC", "LCL", enchantingTable);
@@ -288,6 +295,7 @@ public class CustomRecipes {
         customEnchantingTableRecipe.addIngredient('C', ItemGradeUtils.createGradedItem(new ItemStack(Material.COBBLESTONE), ItemGrade.TITANIUM));
         customEnchantingTableRecipe.addIngredient('M', ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.TITANIUM));
         recipes.add(customEnchantingTableRecipe);
+        Registry.CUSTOM_RECIPE.register("enchanting_table", customEnchantingTableRecipe);
         ShapedRecipe enchantingTableRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         enchantingTableRecipe.shape("LCL", "CMC", "LCL");
         enchantingTableRecipe.setIngredient('L', Material.LAPIS_LAZULI);
@@ -295,11 +303,12 @@ public class CustomRecipes {
         enchantingTableRecipe.setIngredient('M', Material.IRON_INGOT);
         Bukkit.addRecipe(enchantingTableRecipe);
 
-        ItemStack brewingStand = new ItemStack(Material.ENCHANTING_TABLE);
+        ItemStack brewingStand = new ItemStack(Material.BREWING_STAND);
         CustomShapedRecipe customBrewingStandRecipe = new CustomShapedRecipe(" B ", "MMM", brewingStand);
         customBrewingStandRecipe.addIngredient('B', ItemGradeUtils.createGradedItem(new ItemStack(Material.BLAZE_ROD), ItemGrade.GOLD));
         customBrewingStandRecipe.addIngredient('M', ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.GOLD));
         recipes.add(customBrewingStandRecipe);
+        Registry.CUSTOM_RECIPE.register("brewing_stand", customBrewingStandRecipe);
         ShapedRecipe brewingStandRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         brewingStandRecipe.shape(" B ", "MMM");
         brewingStandRecipe.setIngredient('B', Material.BLAZE_ROD);
@@ -309,56 +318,50 @@ public class CustomRecipes {
         List<ItemStack> bronzeIngotIngredients = new ArrayList<>(List.of(
                 new ItemStack(Material.COPPER_INGOT),
                 CustomItem.TIN.getItemStack()));
-        registerShapelessRecipe(bronzeIngotIngredients, CustomItem.BRONZE_INGOT.getItemStack());
+        registerShapelessRecipe(bronzeIngotIngredients, CustomItem.BRONZE_INGOT.getItemStack(), "bronze_ingot");
 
         List<ItemStack> sunGoldIngotIngredients = new ArrayList<>(List.of(
                 CustomItem.SUN_GOLD_NUGGET.getItemStack(),
                 CustomItem.BRONZE_INGOT.getItemStack()));
-        registerShapelessRecipe(sunGoldIngotIngredients, CustomItem.SUN_GOLD_INGOT.getItemStack());
+        registerShapelessRecipe(sunGoldIngotIngredients, CustomItem.SUN_GOLD_INGOT.getItemStack(), "sun_gold_ingot");
 
         List<ItemStack> mithrilIngredients = new ArrayList<>(List.of(
                 new ItemStack(Material.QUARTZ),
                 new ItemStack(Material.LAPIS_LAZULI)));
-        registerShapelessRecipe(mithrilIngredients, CustomItem.MITHRIL.getItemStack());
+        registerShapelessRecipe(mithrilIngredients, CustomItem.MITHRIL.getItemStack(), "mithril");
 
         ItemStack echoShardGoldGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.ECHO_SHARD), ItemGrade.GOLD);
         List<ItemStack> corruptedDiamondIngredients = new ArrayList<>(List.of(
                 new ItemStack(Material.DIAMOND),
                 echoShardGoldGrade));
-        registerShapelessRecipe(corruptedDiamondIngredients, CustomItem.CORRUPTED_DIAMOND.getItemStack());
-
-        ItemStack logIronGrade = ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON);
-        ShapedRecipe logIronGradeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), logIronGrade);
-        logIronGradeRecipe.shape("LL", "LL");
-        RecipeChoice.MaterialChoice logMaterialChoice = new RecipeChoice.MaterialChoice(
-                Material.OAK_LOG,
-                Material.BIRCH_LOG,
-                Material.SPRUCE_LOG,
-                Material.DARK_OAK_LOG,
-                Material.JUNGLE_LOG,
-                Material.ACACIA_LOG,
-                Material.CHERRY_LOG,
-                Material.PALE_OAK_LOG,
-                Material.MANGROVE_LOG,
-                Material.CRIMSON_STEM,
-                Material.WARPED_STEM);
-        logIronGradeRecipe.setIngredient('L', logMaterialChoice);
-        Bukkit.addRecipe(logIronGradeRecipe);
-
-        ItemStack wool = new ItemStack(Material.WHITE_WOOL);
-        ShapedRecipe woolRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), wool);
-        woolRecipe.shape("LLL", "LLL", "LLL");
-        woolRecipe.setIngredient('L', Material.STRING);
-        Bukkit.addRecipe(woolRecipe);
-
-        ItemStack glowstone = new ItemStack(Material.GLOWSTONE);
-        ShapedRecipe glowstoneRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), glowstone);
-        glowstoneRecipe.shape("LLL", "LLL", "LLL");
-        glowstoneRecipe.setIngredient('L', Material.GLOWSTONE_DUST);
-        Bukkit.addRecipe(glowstoneRecipe);
+        registerShapelessRecipe(corruptedDiamondIngredients, CustomItem.CORRUPTED_DIAMOND.getItemStack(), "corrupted_diamond");
     }
 
-    private static void registerTwoByTwoGradedRecipes(ItemStack item) {
+    private static void registerTwoByTwoRecipe(ItemStack item, ItemStack result, String recipeId) {
+        CustomShapedRecipe customRecipe = new CustomShapedRecipe("LL", "LL", "LL", result);
+        customRecipe.addIngredient('L', item);
+        recipes.add(customRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customRecipe);
+
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
+        recipe.shape("LL", "LL", "LL");
+        recipe.setIngredient('L', item.getType());
+        Bukkit.addRecipe(recipe);
+    }
+
+    private static void registerThreeByThreeRecipe(ItemStack item, ItemStack result, String recipeId) {
+        CustomShapedRecipe customRecipe = new CustomShapedRecipe("LLL", "LLL", "LLL", result);
+        customRecipe.addIngredient('L', item);
+        recipes.add(customRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customRecipe);
+
+        ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
+        recipe.shape("LLL", "LLL", "LLL");
+        recipe.setIngredient('L', item.getType());
+        Bukkit.addRecipe(recipe);
+    }
+
+    private static void registerTwoByTwoGradedRecipes(ItemStack item, String recipeId) {
         ItemStack itemIronGrade = ItemGradeUtils.createGradedItem(item.clone(), ItemGrade.IRON);
         ItemStack itemGoldGrade = ItemGradeUtils.createGradedItem(item.clone(), ItemGrade.GOLD);
         ItemStack itemTitaniumGrade = ItemGradeUtils.createGradedItem(item.clone(), ItemGrade.TITANIUM);
@@ -366,12 +369,15 @@ public class CustomRecipes {
         CustomShapedRecipe ironGradeRecipe = new CustomShapedRecipe("LL", "LL", itemIronGrade);
         ironGradeRecipe.addIngredient('L', item);
         recipes.add(ironGradeRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId + "_iron_grade", ironGradeRecipe);
         CustomShapedRecipe goldGradeRecipe = new CustomShapedRecipe("LL", "LL", itemGoldGrade);
         goldGradeRecipe.addIngredient('L', itemIronGrade);
         recipes.add(goldGradeRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId + "_gold_grade", ironGradeRecipe);
         CustomShapedRecipe titaniumGradeRecipe = new CustomShapedRecipe("LL", "LL", itemTitaniumGrade);
         titaniumGradeRecipe.addIngredient('L', itemGoldGrade);
         recipes.add(titaniumGradeRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId + "_titanium_grade", ironGradeRecipe);
 
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         recipe.shape("LL", "LL");
@@ -379,10 +385,11 @@ public class CustomRecipes {
         Bukkit.addRecipe(recipe);
     }
 
-    private static void registerHelmetRecipe(ItemStack mineral, ItemStack result) {
+    private static void registerHelmetRecipe(ItemStack mineral, ItemStack result, String recipeId) {
         CustomShapedRecipe customHelmetRecipe = new CustomShapedRecipe("LLL", "L L", result);
         customHelmetRecipe.addIngredient('L', mineral);
         recipes.add(customHelmetRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customHelmetRecipe);
 
         ShapedRecipe helmetRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         helmetRecipe.shape("LLL", "L L");
@@ -390,10 +397,11 @@ public class CustomRecipes {
         Bukkit.addRecipe(helmetRecipe);
     }
 
-    private static void registerChestplateRecipe(ItemStack mineral, ItemStack result) {
+    private static void registerChestplateRecipe(ItemStack mineral, ItemStack result, String recipeId) {
         CustomShapedRecipe customChestplateRecipe = new CustomShapedRecipe("L L", "LLL", "LLL", result);
         customChestplateRecipe.addIngredient('L', mineral);
         recipes.add(customChestplateRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customChestplateRecipe);
 
         ShapedRecipe chestplateRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         chestplateRecipe.shape("L L", "LLL", "LLL");
@@ -401,10 +409,11 @@ public class CustomRecipes {
         Bukkit.addRecipe(chestplateRecipe);
     }
 
-    private static void registerLeggingsRecipe(ItemStack mineral, ItemStack result) {
+    private static void registerLeggingsRecipe(ItemStack mineral, ItemStack result, String recipeId) {
         CustomShapedRecipe customLeggingsRecipe = new CustomShapedRecipe("LLL", "L L", "L L", result);
         customLeggingsRecipe.addIngredient('L', mineral);
         recipes.add(customLeggingsRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customLeggingsRecipe);
 
         ShapedRecipe leggingsRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         leggingsRecipe.shape("LLL", "L L", "L L");
@@ -412,10 +421,11 @@ public class CustomRecipes {
         Bukkit.addRecipe(leggingsRecipe);
     }
 
-    private static void registerBootsRecipe(ItemStack mineral, ItemStack result) {
+    private static void registerBootsRecipe(ItemStack mineral, ItemStack result, String recipeId) {
         CustomShapedRecipe customBootsRecipe = new CustomShapedRecipe("L L", "L L", result);
         customBootsRecipe.addIngredient('L', mineral);
         recipes.add(customBootsRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customBootsRecipe);
 
         ShapedRecipe bootsRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         bootsRecipe.shape("L L", "L L");
@@ -423,11 +433,12 @@ public class CustomRecipes {
         Bukkit.addRecipe(bootsRecipe);
     }
 
-    private static void registerSwordRecipe(ItemStack mineral, ItemStack result) {
+    private static void registerSwordRecipe(ItemStack mineral, ItemStack result, String recipeId) {
         CustomShapedRecipe customSwordRecipe = new CustomShapedRecipe("L", "L", "S", result);
         customSwordRecipe.addIngredient('L', mineral);
         customSwordRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customSwordRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customSwordRecipe);
 
         ShapedRecipe swordRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         swordRecipe.shape("L", "L", "S");
@@ -436,11 +447,12 @@ public class CustomRecipes {
         Bukkit.addRecipe(swordRecipe);
     }
 
-    private static void registerAxeRecipe(ItemStack mineral, ItemStack result) {
+    private static void registerAxeRecipe(ItemStack mineral, ItemStack result, String recipeId) {
         CustomShapedRecipe customAxeRecipe = new CustomShapedRecipe("LL", "LS", " S", result);
         customAxeRecipe.addIngredient('L', mineral);
         customAxeRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customAxeRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customAxeRecipe);
 
         ShapedRecipe axeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         axeRecipe.shape("LL", "LS", " S");
@@ -449,11 +461,12 @@ public class CustomRecipes {
         Bukkit.addRecipe(axeRecipe);
     }
 
-    private static void registerShovelRecipe(ItemStack mineral, ItemStack result) {
+    private static void registerShovelRecipe(ItemStack mineral, ItemStack result, String recipeId) {
         CustomShapedRecipe customShovelRecipe = new CustomShapedRecipe("L", "S", "S", result);
         customShovelRecipe.addIngredient('L', mineral);
         customShovelRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customShovelRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customShovelRecipe);
 
         ShapedRecipe shovelRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         shovelRecipe.shape("L", "S", "S");
@@ -462,11 +475,12 @@ public class CustomRecipes {
         Bukkit.addRecipe(shovelRecipe);
     }
 
-    private static void registerHoeRecipe(ItemStack mineral, ItemStack result) {
+    private static void registerHoeRecipe(ItemStack mineral, ItemStack result, String recipeId) {
         CustomShapedRecipe customHoeRecipe = new CustomShapedRecipe("LL", " S", " S", result);
         customHoeRecipe.addIngredient('L', mineral);
         customHoeRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customHoeRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customHoeRecipe);
 
         ShapedRecipe hoeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         hoeRecipe.shape("LL", " S", " S");
@@ -475,11 +489,12 @@ public class CustomRecipes {
         Bukkit.addRecipe(hoeRecipe);
     }
 
-    private static void registerPickaxeRecipe(ItemStack mineral, ItemStack result) {
+    private static void registerPickaxeRecipe(ItemStack mineral, ItemStack result, String recipeId) {
         CustomShapedRecipe customPickaxeRecipe = new CustomShapedRecipe("LLL", " S ", " S ", result);
         customPickaxeRecipe.addIngredient('L', mineral);
         customPickaxeRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customPickaxeRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customPickaxeRecipe);
 
         ShapedRecipe pickaxeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         pickaxeRecipe.shape("LLL", " S ", " S ");
@@ -488,8 +503,10 @@ public class CustomRecipes {
         Bukkit.addRecipe(pickaxeRecipe);
     }
 
-    private static void registerShapelessRecipe(List<ItemStack> ingredients, ItemStack result) {
-        recipes.add(new CustomShapelessRecipe(ingredients, result));
+    private static void registerShapelessRecipe(List<ItemStack> ingredients, ItemStack result, String recipeId) {
+        CustomShapelessRecipe customShapelessRecipe = new CustomShapelessRecipe(ingredients, result);
+        recipes.add(customShapelessRecipe);
+        Registry.CUSTOM_RECIPE.register(recipeId, customShapelessRecipe);
 
         ShapelessRecipe recipe = new ShapelessRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         for(ItemStack ingredient : ingredients)
