@@ -1,7 +1,7 @@
 package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
-import me.brody.mazesurvival.mob.builder.CustomArmorMobBuilder;
+import me.brody.mazesurvival.mob.custom.SimpleCustomArmorMob.SimpleCustomArmorMobBuilder;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 public class MazeBrute extends CustomArmorMob {
     public final Main plugin;
 
-    protected MazeBrute(MazeBruteBuilder builder) {
+    protected MazeBrute(SimpleCustomArmorMobBuilder builder) {
         super(builder.mobName);
         this.plugin = builder.plugin;
         this.dropTable = builder.dropTable;
@@ -58,22 +58,5 @@ public class MazeBrute extends CustomArmorMob {
             brute.getEquipment().setBoots(armor[3]);
 
         return brute;
-    }
-
-    public static class MazeBruteBuilder extends CustomArmorMobBuilder<MazeBruteBuilder, MazeBrute> {
-
-        public MazeBruteBuilder(Main plugin, String mobName) {
-            super(plugin, mobName);
-        }
-
-        @Override
-        public MazeBruteBuilder link() {
-            return this;
-        }
-
-        @Override
-        public MazeBrute build() {
-            return new MazeBrute(this);
-        }
     }
 }

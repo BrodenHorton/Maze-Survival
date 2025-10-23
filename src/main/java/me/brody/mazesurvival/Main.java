@@ -6,10 +6,13 @@ import me.brody.mazesurvival.bounds.CollisionManager;
 import me.brody.mazesurvival.daynightcycle.DayNightCycle;
 import me.brody.mazesurvival.enchantment.EnchantingController;
 import me.brody.mazesurvival.enchantment.MazeEnchantment;
+import me.brody.mazesurvival.gamestate.GameState;
 import me.brody.mazesurvival.item.CustomItem;
 import me.brody.mazesurvival.item.recipe.CustomRecipes;
 import me.brody.mazesurvival.item.ItemGrade;
 import me.brody.mazesurvival.listener.*;
+import me.brody.mazesurvival.listener.boss.BossListener;
+import me.brody.mazesurvival.listener.boss.MarkerTeleportListener;
 import me.brody.mazesurvival.listener.enchantment.CrusaderEnchantmentListener;
 import me.brody.mazesurvival.listener.enchantment.LingeringShotEnchantmentListener;
 import me.brody.mazesurvival.listener.enchantment.SoulBoundEnchantmentListener;
@@ -42,6 +45,7 @@ public class Main extends JavaPlugin {
 	private GladeDoorListener gladeDoorListener;
 	private RespawnManager respawnManager;
 	private BossListener bossListener;
+	private GameState gameState;
 
 	@Override
 	public void onEnable() {
@@ -52,11 +56,11 @@ public class Main extends JavaPlugin {
 		LootTable.init(this);
 		CustomMob.init(this);
 		MobSpawnPool.init();
-		MazeRegionBase.initMazeBases();
 		ItemGrade.register();
 		CustomItem.register();
 		CustomMob.register();
 		CustomRecipes.register();
+		MazeRegionBase.initMazeBases();
 		MazeGridBase.register();
 		mazeManager = new MazeManager(this);
 		profileManager = new ProfileManager(this);
@@ -69,6 +73,7 @@ public class Main extends JavaPlugin {
 		gladeDoorListener = new GladeDoorListener(this, dayNightCycle);
 		respawnManager = new RespawnManager(this);
 		bossListener = new BossListener(this);
+		gameState = new GameState();
 
 		// Registering the executor for the "ms" command
 		getCommand("ms").setExecutor(new CommandManager(this));
@@ -97,6 +102,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new BrewingMenu(this), this);
 		getServer().getPluginManager().registerEvents(new CraftingRecipeListener(this), this);
 		getServer().getPluginManager().registerEvents(new MobDropListener(this), this);
+		getServer().getPluginManager().registerEvents(new MarkerTeleportListener(this), this);
 
 		PlayerHealthManager.getInstance().run(this);
 		MazeRunnerEnchantmentManager.getInstance().run(this);
@@ -140,5 +146,9 @@ public class Main extends JavaPlugin {
 
 	public RespawnManager getRespawnManager() {
 		return respawnManager;
+	}
+
+	public GameState getGameState() {
+		return gameState;
 	}
 }

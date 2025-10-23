@@ -1,7 +1,7 @@
 package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
-import me.brody.mazesurvival.mob.builder.CustomArmorMobBuilder;
+import me.brody.mazesurvival.mob.custom.SimpleCustomArmorMob.SimpleCustomArmorMobBuilder;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
@@ -10,12 +10,10 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Arrays;
-
 public class MazePiglin extends CustomArmorMob {
     public final Main plugin;
 
-    protected MazePiglin(MazePiglinBuilder builder) {
+    protected MazePiglin(SimpleCustomArmorMobBuilder builder) {
         super(builder.mobName);
         this.plugin = builder.plugin;
         this.dropTable = builder.dropTable;
@@ -59,22 +57,4 @@ public class MazePiglin extends CustomArmorMob {
 
         return piglin;
     }
-
-    public static class MazePiglinBuilder extends CustomArmorMobBuilder<MazePiglinBuilder, MazePiglin> {
-
-        public MazePiglinBuilder(Main plugin, String mobName) {
-            super(plugin, mobName);
-        }
-
-        @Override
-        public MazePiglinBuilder link() {
-            return this;
-        }
-
-        @Override
-        public MazePiglin build() {
-            return new MazePiglin(this);
-        }
-    }
-
 }

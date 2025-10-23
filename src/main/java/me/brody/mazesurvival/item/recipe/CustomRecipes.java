@@ -139,6 +139,7 @@ public class CustomRecipes {
         registerTwoByTwoGradedRecipes(new ItemStack(Material.CARROT), "carrot");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.POTATO), "potato");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.CACTUS), "cactus");
+        registerTwoByTwoGradedRecipes(new ItemStack(Material.SUGAR_CANE), "sugar_cane");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.BEETROOT), "beetroot");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.BROWN_MUSHROOM), "brown_mushroom");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.RED_MUSHROOM), "red_mushroom");

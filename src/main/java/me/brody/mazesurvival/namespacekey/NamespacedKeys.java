@@ -19,7 +19,10 @@ public class NamespacedKeys {
     public static final NamespacedKey CUSTOM_MOB = new NamespacedKey(PLUGIN_NAMESPACE, "custom-mob");
 
     // Boos keys
-    public static final NamespacedKey BOSS = new NamespacedKey(PLUGIN_NAMESPACE, "boss");
+    public static final NamespacedKey REGION_BOSS = new NamespacedKey(PLUGIN_NAMESPACE, "region-boss");
+
+    // Markers
+    public static final NamespacedKey HAVEN_TELEPORT_MARKER = new NamespacedKey(PLUGIN_NAMESPACE, "haven-teleport-marker");
 
     // Wandering Trader keys
     public static final NamespacedKey WANDERING_TRADER = new NamespacedKey(PLUGIN_NAMESPACE, "wandering-trader");

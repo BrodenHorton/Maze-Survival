@@ -18,9 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import me.brody.mazesurvival.mob.custom.SimpleCustomMob.SimpleCustomMobBuilder;
 import me.brody.mazesurvival.mob.custom.SimpleCustomArmorMob.SimpleCustomArmorMobBuilder;
 import me.brody.mazesurvival.mob.custom.Bomber.BomberBuilder;
-import me.brody.mazesurvival.mob.custom.MazePiglin.MazePiglinBuilder;
-import me.brody.mazesurvival.mob.custom.MazeBrute.MazeBruteBuilder;
-import me.brody.mazesurvival.mob.custom.MazeHoglin.MazeHoglinBuilder;
+import me.brody.mazesurvival.mob.custom.ChickenJockey.ChickenJockeyBuilder;
 import me.brody.mazesurvival.mob.custom.Hare.HareBuilder;
 
 public abstract class CustomMob {
@@ -78,6 +76,7 @@ public abstract class CustomMob {
     public static CustomMob GOLDEN_HARE_SWAMP;
     public static CustomMob GOLDEN_HARE_NETHER;
     public static CustomMob GOLDEN_HARE_DEEP_DARK;
+    public static CustomMob CHICKEN_JOCKEY;
 
     protected String mobName;
     protected MobDropTable dropTable;
@@ -519,7 +518,7 @@ public abstract class CustomMob {
         mazePiglinDropTable.addBasicDrop(CustomItem.SUN_GOLD_NUGGET.getItemStack(), 1);
         mazePiglinDropTable.addBasicDrop(new ItemStack(Material.NETHERRACK), 1);
         mazePiglinDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.SUN_GOLD_NUGGET.getItemStack(), ItemGrade.IRON), 1);
-        MAZE_PIGLIN = new MazePiglinBuilder(plugin, "Maze Piglin")
+        MAZE_PIGLIN = new SimpleCustomArmorMobBuilder(plugin, "Maze Piglin")
                 .withMaxHealth(45)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(2)
@@ -530,7 +529,7 @@ public abstract class CustomMob {
         SimpleMobDropTable barbarianDropTable = new SimpleMobDropTable();
         barbarianDropTable.addBasicDrop(new ItemStack(Material.PORKCHOP), 1);
         barbarianDropTable.addBasicDrop(CustomItem.SUN_GOLD_NUGGET.getItemStack(), 2);
-        BARBARIAN = new MazeBruteBuilder(plugin, "Barbarian")
+        BARBARIAN = new SimpleCustomArmorMobBuilder(plugin, "Barbarian")
                 .withMaxHealth(80)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(6)
@@ -548,7 +547,7 @@ public abstract class CustomMob {
         wraithDropTable.addRareDrop(CustomItem.WRAITH_CHESTPLATE.getItemStack(), 1);
         wraithDropTable.addRareDrop(CustomItem.WRAITH_LEGGINGS.getItemStack(), 1);
         wraithDropTable.addRareDrop(CustomItem.WRAITH_BOOTS.getItemStack(), 1);
-        WRAITH = new MazeBruteBuilder(plugin, "Wraith")
+        WRAITH = new SimpleCustomArmorMobBuilder(plugin, "Wraith")
                 .withMaxHealth(100)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(10)
@@ -561,7 +560,7 @@ public abstract class CustomMob {
         SimpleMobDropTable netherBeastDropTable = new SimpleMobDropTable();
         netherBeastDropTable.addBasicDrop(new ItemStack(Material.PORKCHOP), 2);
         netherBeastDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.PORKCHOP), ItemGrade.IRON), 1);
-        NETHER_BEAST = new MazeHoglinBuilder(plugin, "Nether Beast")
+        NETHER_BEAST = new SimpleCustomMobBuilder(plugin, "Nether Beast")
                 .withMaxHealth(60)
                 .withMovementSpeed(0.3)
                 .withDropTable(netherBeastDropTable)
@@ -572,7 +571,7 @@ public abstract class CustomMob {
         gluttonousBeastDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.PORKCHOP), ItemGrade.IRON), 1);
         gluttonousBeastDropTable.addBasicDrop(CustomItem.SUN_GOLD_NUGGET.getItemStack(), 1);
         gluttonousBeastDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.PORKCHOP), ItemGrade.TITANIUM), 1);
-        GLUTTONOUS_BEAST = new MazeHoglinBuilder(plugin, "Gluttonous Beast")
+        GLUTTONOUS_BEAST = new SimpleCustomMobBuilder(plugin, "Gluttonous Beast")
                 .withMaxHealth(100)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(4)
@@ -742,7 +741,12 @@ public abstract class CustomMob {
                 .withRabbitType(Rabbit.Type.GOLD)
                 .build();
 
-        // TODO: Add CHICKEN_JOCKEY
+        CHICKEN_JOCKEY = new ChickenJockeyBuilder(plugin, "Chicken Jockey")
+                .withMaxHealth(80)
+                .withMovementSpeed(0.4)
+                .withPowerAmplifier(3)
+                .withAdult(false)
+                .build();
     }
 
     public static void register() {
@@ -800,6 +804,7 @@ public abstract class CustomMob {
         registerCustomMob(GOLDEN_HARE_SWAMP);
         registerCustomMob(GOLDEN_HARE_NETHER);
         registerCustomMob(GOLDEN_HARE_DEEP_DARK);
+        registerCustomMob(CHICKEN_JOCKEY);
     }
 
     private static void registerCustomMob(CustomMob customMob) {

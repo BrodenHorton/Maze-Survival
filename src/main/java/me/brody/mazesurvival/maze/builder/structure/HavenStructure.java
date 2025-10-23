@@ -5,14 +5,10 @@ import me.brody.mazesurvival.bounds.BoundsInt;
 import me.brody.mazesurvival.bounds.CollisionBounds;
 import me.brody.mazesurvival.bounds.PriorityProtectionBounds;
 import me.brody.mazesurvival.bounds.ProtectionType;
-import me.brody.mazesurvival.maze.Direction;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.CellExtension;
 import me.brody.mazesurvival.maze.region.MazeRegion;
-import me.brody.mazesurvival.utils.LocationUtils;
-import me.brody.mazesurvival.utils.MazeSchematic;
-import me.brody.mazesurvival.utils.SchematicPaster;
-import me.brody.mazesurvival.utils.Vector3Int;
+import me.brody.mazesurvival.utils.*;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -110,7 +106,20 @@ public class HavenStructure implements MazeStructureGenerator {
 
     private Consumer<Player> getHavenEntranceTriggerConsumer(Location teleportLocation) {
         return (p) -> {
+            if(region.getRegionLevelRequirement() > plugin.getGameState().getClearedRegions().size()) {
+                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&cUnable to enter haven. Required region level is too high.")));
+                return;
+            }
+
             if(plugin.getDayNightCycle().isDay()) {
+                if(!plugin.getGameState().getDiscoveredRegions().contains(region.getUuid())) {
+                    plugin.getGameState().addDiscoveredRegion(region);
+                    for(Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
+                        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.2f, 1f);
+                        ChatUtils.msg(onlinePlayer, "&dNew Region discovered!");
+                        ChatUtils.msg(onlinePlayer, "&dNew recipes have been unlocked. View these new recipes with &e/ms recipes");
+                    }
+                }
                 p.teleport(teleportLocation);
                 p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
                 plugin.getRespawnManager().setPlayerRespawnLocation(p, teleportLocation);

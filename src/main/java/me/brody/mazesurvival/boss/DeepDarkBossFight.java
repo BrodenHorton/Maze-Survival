@@ -10,6 +10,7 @@ import me.brody.mazesurvival.utils.LocationUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataType;
 
 public class DeepDarkBossFight implements BossFight {
@@ -28,7 +29,7 @@ public class DeepDarkBossFight implements BossFight {
         if(bossRoom == null)
             return;
 
-        clearExistingBossMobs();
+        clearExistingBossMobs(region);
 
         MazeGrid grid = plugin.getMazeManager().getGrid();
         Location bossRoomCenter = LocationUtils.centerOnBlock(grid.getRegionBossRoomWorldCenter(region));
@@ -43,15 +44,18 @@ public class DeepDarkBossFight implements BossFight {
         enemySpawnLocation2 = LocationUtils.rotate(enemySpawnLocation2, bossRoom.getDirection().id * -90);
         enemySpawnLocation2 = LocationUtils.shift(enemySpawnLocation2, bossRoomCenter);
 
-        CustomMob.MAZE_WITHER.summon(bossSpawnLocation).getPersistentDataContainer().set(NamespacedKeys.BOSS, PersistentDataType.STRING, bossType.getBossId());
-        CustomMob.DEATH_KNIGHT.summon(enemySpawnLocation1).getPersistentDataContainer().set(NamespacedKeys.BOSS, PersistentDataType.STRING, bossType.getBossId());
-        CustomMob.DEATH_KNIGHT.summon(enemySpawnLocation2).getPersistentDataContainer().set(NamespacedKeys.BOSS, PersistentDataType.STRING, bossType.getBossId());
+        LivingEntity boss = CustomMob.MAZE_WITHER.summon(bossSpawnLocation);
+        boss.getPersistentDataContainer().set(NamespacedKeys.REGION_BOSS, PersistentDataType.STRING, region.getUuid().toString());
+        LivingEntity mob1 = CustomMob.DEATH_KNIGHT.summon(enemySpawnLocation1);
+        mob1.getPersistentDataContainer().set(NamespacedKeys.REGION_BOSS, PersistentDataType.STRING, region.getUuid().toString());
+        LivingEntity mob2 = CustomMob.DEATH_KNIGHT.summon(enemySpawnLocation2);
+        mob2.getPersistentDataContainer().set(NamespacedKeys.REGION_BOSS, PersistentDataType.STRING, region.getUuid().toString());
     }
 
-    private void clearExistingBossMobs() {
+    private void clearExistingBossMobs(MazeRegion region) {
         for(Entity entity : plugin.getMazeManager().getGrid().getWorld().getEntities()) {
-            if(entity.getPersistentDataContainer().has(NamespacedKeys.BOSS, PersistentDataType.STRING)
-                    && entity.getPersistentDataContainer().get(NamespacedKeys.BOSS, PersistentDataType.STRING).equals(bossType.getBossId())) {
+            if(entity.getPersistentDataContainer().has(NamespacedKeys.REGION_BOSS, PersistentDataType.STRING)
+                    && entity.getPersistentDataContainer().get(NamespacedKeys.REGION_BOSS, PersistentDataType.STRING).equals(region.getUuid().toString())) {
                 entity.remove();
                 Bukkit.broadcastMessage("&eBoss mob removed!");
             }

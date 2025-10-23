@@ -73,10 +73,9 @@ public class BossRoomStructure implements MazeStructureGenerator {
         final int teleportDistance = 7;
         final float primaryDirectionYaw = (bossRoom.getDirection().id - 2) * 90;
         final float secondaryDirectionYaw = ((bossRoom.getDirection().id + 2 % 4) - 2) * 90;
-        final float halfBlockOffset = 0.5f;
         Location bossRoomOrigin = grid.getRegionBossRoomWorldOrigin(region);
-        float cellCenterToEntranceTeleport = distanceToCellCenter + teleportDistance + halfBlockOffset;
-        float cellCenterToExitTeleport = distanceToCellCenter - 3 + halfBlockOffset;
+        float cellCenterToEntranceTeleport = distanceToCellCenter + teleportDistance;
+        float cellCenterToExitTeleport = distanceToCellCenter - 3;
 
         BoundsInt entrance = new BoundsInt(new Vector3Int(-(triggerWidth / 2), 0, 0), new Vector3Int(triggerWidth / 2, triggerHeight, 0));
         entrance.shiftZ(-distanceToCellCenter);
@@ -101,7 +100,7 @@ public class BossRoomStructure implements MazeStructureGenerator {
 
     private Consumer<Player> getBossRoomEntranceConsumer(Location teleportLocation, BoundsInt bossRoomBounds) {
         return (p) -> {
-            if(region.getBossFight() != null) {
+            if(region.getBossFight() != null && !plugin.getGameState().getClearedRegions().contains(region.getUuid())) {
                 boolean isPlayerInBounds = false;
                 for(Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
                     if(bossRoomBounds.containsLocation(onlinePlayer.getLocation())) {
@@ -122,7 +121,7 @@ public class BossRoomStructure implements MazeStructureGenerator {
 
     private Consumer<Player> getBossRoomExitConsumer(Location teleportLocation) {
         return (p) -> {
-            if(false) {
+            if(plugin.getGameState().getClearedRegions().contains(region.getUuid())) {
                 p.teleport(teleportLocation);
                 p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
             }

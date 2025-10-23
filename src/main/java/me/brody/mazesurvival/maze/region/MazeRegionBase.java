@@ -1,6 +1,5 @@
 package me.brody.mazesurvival.maze.region;
 
-import me.brody.mazesurvival.boss.BossFight;
 import me.brody.mazesurvival.item.recipe.CustomRecipe;
 import me.brody.mazesurvival.loot.chest.LootTable;
 import me.brody.mazesurvival.loot.trade.TradeTable;
@@ -27,15 +26,17 @@ public class MazeRegionBase {
     private MobSpawnPool dayMobs;
     private MobSpawnPool nightMobs;
     private List<CustomRecipe> accessibleRecipes;
+    private int regionLevelRequirement;
 
     private MazeRegionBase(BlockPalette wallPalette, BlockPalette floorPalette, RegionDecoration decoration,
-                           LootTable mazeChestLootTable, TradeTable tradeTable, MobSpawnPool dayMobs, MobSpawnPool nightMobs) {
-        this(wallPalette, floorPalette, decoration, mazeChestLootTable, tradeTable, dayMobs, nightMobs, new ArrayList<>());
+                           LootTable mazeChestLootTable, TradeTable tradeTable, MobSpawnPool dayMobs,
+                           MobSpawnPool nightMobs, int regionLevelRequirement) {
+        this(wallPalette, floorPalette, decoration, mazeChestLootTable, tradeTable, dayMobs, nightMobs, regionLevelRequirement, new ArrayList<>());
     }
 
     private MazeRegionBase(BlockPalette wallPalette, BlockPalette floorPalette, RegionDecoration decoration,
                            LootTable mazeChestLootTable, TradeTable tradeTable, MobSpawnPool dayMobs,
-                           MobSpawnPool nightMobs, List<CustomRecipe> accessibleRecipes) {
+                           MobSpawnPool nightMobs, int regionLevelRequirement, List<CustomRecipe> accessibleRecipes) {
         this.wallPalette = wallPalette;
         this.floorPalette = floorPalette;
         this.decoration = decoration;
@@ -43,6 +44,7 @@ public class MazeRegionBase {
         this.tradeTable = tradeTable;
         this.dayMobs = dayMobs;
         this.nightMobs = nightMobs;
+        this.regionLevelRequirement = regionLevelRequirement;
         this.accessibleRecipes = accessibleRecipes;
     }
 
@@ -87,6 +89,7 @@ public class MazeRegionBase {
                 TradeTable.STRONGHOLD_TRADE_TABLE,
                 MobSpawnPool.STRONGHOLD_DAY_MOBS,
                 MobSpawnPool.STRONGHOLD_NIGHT_MOBS,
+                0,
                 strongholdRecipes);
 
         List<CustomRecipe> desertRecipes = List.of(
@@ -121,6 +124,7 @@ public class MazeRegionBase {
                 TradeTable.DESERT_TRADE_TABLE,
                 MobSpawnPool.DESERT_DAY_MOBS,
                 MobSpawnPool.DESERT_NIGHT_MOBS,
+                0,
                 desertRecipes);
 
         List<CustomRecipe> swampRecipes = List.of(
@@ -158,6 +162,7 @@ public class MazeRegionBase {
                 TradeTable.SWAMP_TRADE_TABLE,
                 MobSpawnPool.SWAMP_DAY_MOBS,
                 MobSpawnPool.SWAMP_NIGHT_MOBS,
+                1,
                 swampRecipes);
 
         List<CustomRecipe> netherRecipes = List.of(
@@ -193,6 +198,7 @@ public class MazeRegionBase {
                 TradeTable.NETHER_TRADE_TABLE,
                 MobSpawnPool.NETHER_DAY_MOBS,
                 MobSpawnPool.NETHER_NIGHT_MOBS,
+                2,
                 netherRecipes);
 
         BASTION = new MazeRegionBase(
@@ -202,7 +208,8 @@ public class MazeRegionBase {
                 LootTable.STRONGHOLD_LOOT_TABLE,
                 TradeTable.STRONGHOLD_TRADE_TABLE,
                 MobSpawnPool.BASTION_DAY_MOBS,
-                MobSpawnPool.BASTION_NIGHT_MOBS);
+                MobSpawnPool.BASTION_NIGHT_MOBS,
+                3);
 
         List<CustomRecipe> deepDarkRecipes = List.of(
                 Registry.CUSTOM_RECIPE.get("corrupted_diamond"),
@@ -236,6 +243,7 @@ public class MazeRegionBase {
                 TradeTable.DEEP_DARK_TRADE_TABLE,
                 MobSpawnPool.DEEP_DARK_DAY_MOBS,
                 MobSpawnPool.DEEP_DARK_NIGHT_MOBS,
+                3,
                 deepDarkRecipes);
     }
 
@@ -277,6 +285,10 @@ public class MazeRegionBase {
 
     public List<CustomRecipe> getAccessibleRecipes() {
         return accessibleRecipes;
+    }
+
+    public int getRegionLevelRequirement() {
+        return regionLevelRequirement;
     }
 }
 

@@ -1,7 +1,7 @@
 package me.brody.mazesurvival.mob.custom;
 
 import me.brody.mazesurvival.Main;
-import me.brody.mazesurvival.mob.builder.CustomArmorMobBuilder;
+import me.brody.mazesurvival.mob.custom.SimpleCustomMob.SimpleCustomMobBuilder;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 public class MazeHoglin extends CustomArmorMob {
     public final Main plugin;
 
-    protected MazeHoglin(MazeHoglinBuilder builder) {
+    protected MazeHoglin(SimpleCustomMobBuilder builder) {
         super(builder.mobName);
         this.plugin = builder.plugin;
         this.dropTable = builder.dropTable;
@@ -37,22 +37,5 @@ public class MazeHoglin extends CustomArmorMob {
             hoglin.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
 
         return hoglin;
-    }
-
-    public static class MazeHoglinBuilder extends CustomArmorMobBuilder<MazeHoglinBuilder, MazeHoglin> {
-
-        public MazeHoglinBuilder(Main plugin, String mobName) {
-            super(plugin, mobName);
-        }
-
-        @Override
-        public MazeHoglinBuilder link() {
-            return this;
-        }
-
-        @Override
-        public MazeHoglin build() {
-            return new MazeHoglin(this);
-        }
     }
 }

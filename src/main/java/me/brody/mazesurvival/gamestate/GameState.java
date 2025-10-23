@@ -1,39 +1,40 @@
 package me.brody.mazesurvival.gamestate;
 
 import me.brody.mazesurvival.item.recipe.CustomRecipe;
+import me.brody.mazesurvival.maze.region.MazeRegion;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class GameState {
-    private int regionsCleared;
-    private List<UUID> havensDiscovered;
+    private Set<UUID> clearedRegions;
+    private List<UUID> discoveredRegions;
     private List<CustomRecipe> unlockedRecipes;
 
     public GameState() {
-        regionsCleared = 0;
-        havensDiscovered = new ArrayList<>();
+        clearedRegions = new HashSet<>();
+        discoveredRegions = new ArrayList<>();
+        unlockedRecipes = new ArrayList<>();
     }
 
-    public void incrementRegionsCleared() {
-        regionsCleared++;
+    public void addClearedRegion(MazeRegion region) {
+        clearedRegions.add(region.getUuid());
     }
 
-    public void addHavenDiscovered(UUID havenUuid) {
-        havensDiscovered.add(havenUuid);
+    public void addDiscoveredRegion(MazeRegion region) {
+        discoveredRegions.add(region.getUuid());
+        unlockedRecipes.addAll(region.getAccessibleRecipes());
     }
 
     public void addUnlockedRecipes(List<CustomRecipe> recipes) {
         unlockedRecipes.addAll(recipes);
     }
 
-    public int getRegionsCleared() {
-        return regionsCleared;
+    public Set<UUID> getClearedRegions() {
+        return clearedRegions;
     }
 
-    public List<UUID> getHavensDiscovered() {
-        return havensDiscovered;
+    public List<UUID> getDiscoveredRegions() {
+        return discoveredRegions;
     }
 
     public List<CustomRecipe> getUnlockedRecipes() {

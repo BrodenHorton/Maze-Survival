@@ -28,6 +28,9 @@ public class Registry<T, K> {
     }
 
     public K get(T key) {
+        if(resources.get(key) == null)
+            System.err.println("Registry key " + key.toString() + " is null.");
+
         return resources.get(key);
     }
 

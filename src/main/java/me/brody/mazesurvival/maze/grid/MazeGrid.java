@@ -215,34 +215,20 @@ public class MazeGrid {
 		return LocationUtils.shift(bossRoomOrigin, bossRoomCenterOffset);
 	}
 
-	// TODO: Refactor to use vector rotation instead of checking each direction
 	private Location getRegionCellExtensionWorldOrigin(MazeRegion region, CellExtension cellExtension) {
 		if(regionOriginByRegion.get(region) == null)
-			return null;
-		if(region.getHaven() == null)
 			return null;
 
 		Vector2Int cellExtensionGridCell = new Vector2Int(regionOriginByRegion.get(region).x + cellExtension.getCellPosition().x, regionOriginByRegion.get(region).y + cellExtension.getCellPosition().y);
 		Location cellExtensionGridCellOrigin = getGridCellWorldOrigin(cellExtensionGridCell);
-		Location cellExtensionOrigin = LocationUtils.copy(cellExtensionGridCellOrigin);
-		if(cellExtension.getDirection() == Direction.NORTH) {
-			cellExtensionOrigin.setX(cellExtensionGridCellOrigin.getX() + ((getGridCellSize() / 2) * getRegionCellSize()) + (getRegionCellSize() - getWallWidth()) / 2);
-			cellExtensionOrigin.setZ(cellExtensionGridCellOrigin.getZ() + getMarginInBlocks() + (getRegionCellSize() - getWallWidth()) / 2);
-		}
-		else if(cellExtension.getDirection() == Direction.EAST) {
-			cellExtensionOrigin.setX(cellExtensionGridCellOrigin.getX() + getGridCellSize() * getRegionCellSize() - getMarginInBlocks() - Math.ceil(getRegionCellSize() / 2f) - 1);
-			cellExtensionOrigin.setZ(cellExtensionGridCellOrigin.getZ() + ((getGridCellSize() / 2) * getRegionCellSize()) + ((getRegionCellSize() - getWallWidth()) / 2));
-		}
-		else if(cellExtension.getDirection() == Direction.SOUTH) {
-			cellExtensionOrigin.setX(cellExtensionGridCellOrigin.getX() + ((getGridCellSize() / 2) * getRegionCellSize()) + (getRegionCellSize() - getWallWidth()) / 2);
-			cellExtensionOrigin.setZ(cellExtensionGridCellOrigin.getZ() + getGridCellSize() * getRegionCellSize() - getMarginInBlocks() - Math.ceil(getRegionCellSize() / 2f) - 1);
-		}
-		else if(cellExtension.getDirection() == Direction.WEST) {
-			cellExtensionOrigin.setX(cellExtensionGridCellOrigin.getX() + getMarginInBlocks() + (getRegionCellSize() - getWallWidth()) / 2);
-			cellExtensionOrigin.setZ(cellExtensionGridCellOrigin.getZ() + ((getGridCellSize() / 2) * getRegionCellSize()) + (getRegionCellSize() - getWallWidth()) / 2);
-		}
+		Location cellExtensionGridCellCenter = LocationUtils.copy(cellExtensionGridCellOrigin);
+		int gridCellCenterOffset = ((getGridCellSize() / 2) * getRegionCellSize()) + (getRegionCellSize() - getWallWidth()) / 2;
+		cellExtensionGridCellCenter.setX(cellExtensionGridCellCenter.getX() + gridCellCenterOffset);
+		cellExtensionGridCellCenter.setZ(cellExtensionGridCellCenter.getZ() + gridCellCenterOffset);
+		Vector3Int gridCellCenterToCellExtensionCenter = new Vector3Int(0, 0, -(((getGridCellSize() / 2) - getGridCellMargins()) * getRegionCellSize()));
+		gridCellCenterToCellExtensionCenter.rotateY(-cellExtension.getDirection().rotation);
 
-		return cellExtensionOrigin;
+		return LocationUtils.shift(cellExtensionGridCellCenter, gridCellCenterToCellExtensionCenter);
 	}
 
 	public Location getRegionHavenWorldCenter(MazeRegion region) {

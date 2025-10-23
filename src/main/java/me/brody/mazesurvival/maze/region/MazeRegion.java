@@ -1,6 +1,7 @@
 package me.brody.mazesurvival.maze.region;
 
 import me.brody.mazesurvival.boss.BossFight;
+import me.brody.mazesurvival.item.recipe.CustomRecipe;
 import me.brody.mazesurvival.loot.chest.LootTable;
 import me.brody.mazesurvival.loot.trade.TradeTable;
 import me.brody.mazesurvival.maze.BlockPalette;
@@ -225,5 +226,13 @@ public class MazeRegion {
 
 	public MobSpawnPool getNightMobs() {
 		return regionBase.getNightMobs();
+	}
+
+	public List<CustomRecipe> getAccessibleRecipes() {
+		return regionBase.getAccessibleRecipes();
+	}
+
+	public int getRegionLevelRequirement() {
+		return regionBase.getRegionLevelRequirement();
 	}
 }
