@@ -11,6 +11,11 @@ public class NamespacedKeys {
     public static final NamespacedKey ARMOR_HEALTH_BOOST = new NamespacedKey(PLUGIN_NAMESPACE, "armor-health-boost");
     public static final NamespacedKey ITEM_GRADE = new NamespacedKey(PLUGIN_NAMESPACE, "item-grade");
 
+    // Custom Recipe Compendium Menu Keys
+    public static final NamespacedKey CUSTOM_RECIPE_INDEX = new NamespacedKey(PLUGIN_NAMESPACE, "custom-recipe-index");
+    public static final NamespacedKey CUSTOM_RECIPE_MENU = new NamespacedKey(PLUGIN_NAMESPACE, "custom-recipe-menu");
+    public static final NamespacedKey CUSTOM_RECIPE_MENU_PAGE = new NamespacedKey(PLUGIN_NAMESPACE, "custom-recipe-menu-page");
+
     // Item Enchantment keys
     public static final NamespacedKey SCRIPT = new NamespacedKey(PLUGIN_NAMESPACE, "script");
     public static final NamespacedKey CUSTOM_ENCHANTMENTS = new NamespacedKey(PLUGIN_NAMESPACE, "custom-enchantments");

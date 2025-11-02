@@ -128,7 +128,7 @@ public class EnchantingMenu implements Listener {
             ItemStack previousPageIcon = new ItemStack(Material.ARROW);
             ItemMeta previousPageIconMeta = previousPageIcon.getItemMeta();
             previousPageIconMeta.setDisplayName(ChatColor.WHITE + "<- Page " + (page - 1));
-            previousPageIconMeta.getPersistentDataContainer().set(NamespacedKeys.ENCHANTING_MENU, PersistentDataType.STRING, "previous-page");
+            previousPageIconMeta.getPersistentDataContainer().set(NamespacedKeys.ENCHANTING_MENU, PersistentDataType.STRING, "pagination");
             previousPageIconMeta.getPersistentDataContainer().set(NamespacedKeys.ENCHANTING_MENU_PAGE, PersistentDataType.INTEGER, page - 1);
             previousPageIcon.setItemMeta(previousPageIconMeta);
             inventory.setItem(inventory.getSize() - 8, previousPageIcon);
@@ -140,7 +140,7 @@ public class EnchantingMenu implements Listener {
             ItemStack nextPageIcon = new ItemStack(Material.ARROW);
             ItemMeta nextPageIconMeta = nextPageIcon.getItemMeta();
             nextPageIconMeta.setDisplayName(ChatColor.WHITE + "Page " + (page + 1) + " ->");
-            nextPageIconMeta.getPersistentDataContainer().set(NamespacedKeys.ENCHANTING_MENU, PersistentDataType.STRING, "next-page");
+            nextPageIconMeta.getPersistentDataContainer().set(NamespacedKeys.ENCHANTING_MENU, PersistentDataType.STRING, "pagination");
             nextPageIconMeta.getPersistentDataContainer().set(NamespacedKeys.ENCHANTING_MENU_PAGE, PersistentDataType.INTEGER, page + 1);
             nextPageIcon.setItemMeta(nextPageIconMeta);
             inventory.setItem(inventory.getSize() - 2, nextPageIcon);
@@ -251,7 +251,7 @@ public class EnchantingMenu implements Listener {
     }
 
     @EventHandler
-    public void previousPage(InventoryClickEvent e) {
+    public void paginate(InventoryClickEvent e) {
         if(!e.getInventory().equals(inventory))
             return;
         if(e.getRawSlot() >= INVENTORY_SIZE)
@@ -261,33 +261,7 @@ public class EnchantingMenu implements Listener {
         PersistentDataContainer persistentDataContainer = e.getCurrentItem().getItemMeta().getPersistentDataContainer();
         if(!persistentDataContainer.has(NamespacedKeys.ENCHANTING_MENU))
             return;
-        if(!persistentDataContainer.get(NamespacedKeys.ENCHANTING_MENU, PersistentDataType.STRING).equals("previous-page"))
-            return;
-        if(!persistentDataContainer.has(NamespacedKeys.ENCHANTING_MENU_PAGE, PersistentDataType.INTEGER))
-            return;
-
-        Player player = (Player)e.getWhoClicked();
-        ItemStack scriptingTomeSlotItem = e.getInventory().getItem(SCRIPTING_TOME_SLOT);
-
-        int page = persistentDataContainer.get(NamespacedKeys.ENCHANTING_MENU_PAGE, PersistentDataType.INTEGER);
-
-        openEnchantingMenu(plugin.getProfileManager().getProfileOf(player), page);
-        if(scriptingTomeSlotItem != null)
-            inventory.setItem(SCRIPTING_TOME_SLOT, scriptingTomeSlotItem);
-    }
-
-    @EventHandler
-    public void nextPage(InventoryClickEvent e) {
-        if(!e.getInventory().equals(inventory))
-            return;
-        if(e.getRawSlot() >= INVENTORY_SIZE)
-            return;
-        if(e.getCurrentItem() == null)
-            return;
-        PersistentDataContainer persistentDataContainer = e.getCurrentItem().getItemMeta().getPersistentDataContainer();
-        if(!persistentDataContainer.has(NamespacedKeys.ENCHANTING_MENU))
-            return;
-        if(!persistentDataContainer.get(NamespacedKeys.ENCHANTING_MENU, PersistentDataType.STRING).equals("next-page"))
+        if(!persistentDataContainer.get(NamespacedKeys.ENCHANTING_MENU, PersistentDataType.STRING).equals("pagination"))
             return;
         if(!persistentDataContainer.has(NamespacedKeys.ENCHANTING_MENU_PAGE, PersistentDataType.INTEGER))
             return;

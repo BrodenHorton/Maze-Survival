@@ -93,9 +93,7 @@ public class BrewingMenu implements Listener {
     }
 
     public static String formatIngredientName(String ingredientName) {
-        System.out.println("formatIngredientName Started");
         String[] words = ingredientName.toLowerCase().split("_");
-        System.out.println("number of words " + words.length);
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < words.length; i++) {
             String str1 = words[i].substring(0, 1).toUpperCase();

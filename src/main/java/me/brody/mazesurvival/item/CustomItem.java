@@ -476,8 +476,8 @@ public class CustomItem {
 
         List<String> mithrilArmorLore = List.of(
                 ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Evasion",
-                ChatColor.GRAY + "Small chance of negating all damage",
-                ChatColor.GRAY + "whenever damaged.");
+                ChatColor.GRAY + "Small chance of negating all incoming",
+                ChatColor.GRAY + "damage.");
         Color mithrilColor = Color.fromRGB(158, 232, 216);
         int mithrilHealthBoost = 30;
         MITHRIL_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "mithril_helmet")
@@ -793,7 +793,7 @@ public class CustomItem {
                 .build();
 
         int sunGoldPickaxeToolLevel = 5;
-        SUN_GOLD_PICKAXE = new CustomToolBuilder(new ItemStack(Material.GOLDEN_PICKAXE), "sun_gold_pickaxe")
+        SUN_GOLD_PICKAXE = new CustomToolBuilder(new ItemStack(Material.IRON_PICKAXE), "sun_gold_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Pickaxe")
                 .withBaseDamage(Math.round(sunGoldBaseAttack * pickaxeMultiplier))
                 .withToolLevel(sunGoldPickaxeToolLevel)

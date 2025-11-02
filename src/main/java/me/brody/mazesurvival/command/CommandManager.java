@@ -33,6 +33,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
 		subCommandByName.put(summonCommand.getName().toLowerCase(), summonCommand);
 		GradeCommand gradeCommand = new GradeCommand();
 		subCommandByName.put(gradeCommand.getName().toLowerCase(), gradeCommand);
+		RecipesCommand recipesCommand = new RecipesCommand();
+		subCommandByName.put(recipesCommand.getName().toLowerCase(), recipesCommand);
 		HelpCommand helpCommand = new HelpCommand();
 		subCommandByName.put(helpCommand.getName().toLowerCase(), helpCommand);
 

@@ -524,6 +524,7 @@ public abstract class CustomMob {
                 .withPowerAmplifier(2)
                 .withDropTable(mazePiglinDropTable)
                 .withMainHand(new ItemStack(Material.GOLDEN_SWORD))
+                .withEntityType(EntityType.PIGLIN)
                 .build();
 
         SimpleMobDropTable barbarianDropTable = new SimpleMobDropTable();
@@ -537,6 +538,7 @@ public abstract class CustomMob {
                 .withMainHand(new ItemStack(Material.GOLDEN_AXE))
                 .withHelmet(new ItemStack(Material.GOLDEN_HELMET))
                 .withChestplate(new ItemStack(Material.GOLDEN_CHESTPLATE))
+                .withEntityType(EntityType.PIGLIN_BRUTE)
                 .build();
 
         SimpleMobDropTable wraithDropTable = new SimpleMobDropTable();
@@ -555,6 +557,7 @@ public abstract class CustomMob {
                 .withMainHand(new ItemStack(Material.NETHERITE_AXE))
                 .withHelmet(new ItemStack(Material.NETHERITE_HELMET))
                 .withChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE))
+                .withEntityType(EntityType.PIGLIN_BRUTE)
                 .build();
 
         SimpleMobDropTable netherBeastDropTable = new SimpleMobDropTable();
@@ -565,6 +568,7 @@ public abstract class CustomMob {
                 .withMovementSpeed(0.3)
                 .withDropTable(netherBeastDropTable)
                 .withPowerAmplifier(3)
+                .withEntityType(EntityType.HOGLIN)
                 .build();
 
         SimpleMobDropTable gluttonousBeastDropTable = new SimpleMobDropTable();
@@ -576,6 +580,7 @@ public abstract class CustomMob {
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(4)
                 .withDropTable(gluttonousBeastDropTable)
+                .withEntityType(EntityType.HOGLIN)
                 .build();
 
         SimpleMobDropTable mazeGhastDropTable = new SimpleMobDropTable();

@@ -49,38 +49,6 @@ public class MazeRegionBase {
     }
 
     public static void initMazeBases() {
-        List<CustomRecipe> strongholdRecipes = List.of(
-                Registry.CUSTOM_RECIPE.get("oak_to_log_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("cobblestone_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("leather_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("amethyst_shard_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("wheat_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("apple_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("carrot_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("rotten_flesh_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("string_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("spider_eye_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("slime_ball_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("gunpowder_iron_grade"),
-                Registry.CUSTOM_RECIPE.get("wool"),
-                Registry.CUSTOM_RECIPE.get("hard_leather_helmet"),
-                Registry.CUSTOM_RECIPE.get("hard_leather_chestplate"),
-                Registry.CUSTOM_RECIPE.get("hard_leather_leggings"),
-                Registry.CUSTOM_RECIPE.get("hard_leather_boots"),
-                Registry.CUSTOM_RECIPE.get("wooden_short_sword"),
-                Registry.CUSTOM_RECIPE.get("wooden_hatchet"),
-                Registry.CUSTOM_RECIPE.get("wooden_spade"),
-                Registry.CUSTOM_RECIPE.get("wooden_scythe"),
-                Registry.CUSTOM_RECIPE.get("worn_wooden_pickaxe"),
-                Registry.CUSTOM_RECIPE.get("bastard_sword"),
-                Registry.CUSTOM_RECIPE.get("battle_axe"),
-                Registry.CUSTOM_RECIPE.get("mace"),
-                Registry.CUSTOM_RECIPE.get("cobblestone_pickaxe"),
-                Registry.CUSTOM_RECIPE.get("amethyst_helmet"),
-                Registry.CUSTOM_RECIPE.get("amethyst_chestplate"),
-                Registry.CUSTOM_RECIPE.get("amethyst_leggings"),
-                Registry.CUSTOM_RECIPE.get("amethyst_boots")
-        );
         STRONGHOLD = new MazeRegionBase(
                 BlockPalette.STRONGHOLD_WALL,
                 BlockPalette.STRONGHOLD_FLOOR,
@@ -89,8 +57,7 @@ public class MazeRegionBase {
                 TradeTable.STRONGHOLD_TRADE_TABLE,
                 MobSpawnPool.STRONGHOLD_DAY_MOBS,
                 MobSpawnPool.STRONGHOLD_NIGHT_MOBS,
-                0,
-                strongholdRecipes);
+                0);
 
         List<CustomRecipe> desertRecipes = List.of(
                 Registry.CUSTOM_RECIPE.get("bronze_ingot"),
