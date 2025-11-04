@@ -1,17 +1,11 @@
 package me.brody.mazesurvival.item.recipe;
 
 import me.brody.mazesurvival.Main;
-import me.brody.mazesurvival.brewing.persistentdata.BrewingIngredientEntry;
-import me.brody.mazesurvival.brewing.persistentdata.BrewingIngredientList;
-import me.brody.mazesurvival.brewing.persistentdata.BrewingIngredientListDataType;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
-import me.brody.mazesurvival.registry.Registry;
 import me.brody.mazesurvival.utils.ChatUtils;
-import me.brody.mazesurvival.utils.InventoryUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,6 +26,7 @@ public class CustomRecipeCompendium implements Listener {
     private static final ItemStack TRIM;
 
     private final Main plugin;
+    private CustomRecipeCraftingMenu craftingMenu;
 
     static {
         TRIM = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
@@ -42,6 +37,7 @@ public class CustomRecipeCompendium implements Listener {
 
     public CustomRecipeCompendium(Main plugin) {
         this.plugin = plugin;
+        craftingMenu = new CustomRecipeCraftingMenu(plugin);
     }
 
     public void open(Player player, int pageIndex) {
@@ -121,10 +117,11 @@ public class CustomRecipeCompendium implements Listener {
             return;
         }
 
+        e.setCancelled(true);
         int recipeIndex = dataContainer.get(NamespacedKeys.CUSTOM_RECIPE_INDEX, PersistentDataType.INTEGER);
         Player player = (Player)e.getWhoClicked();
+        craftingMenu.open(player, plugin.getGameState().getUnlockedRecipes().get(recipeIndex));
         ChatUtils.msg(player, "&aRecipe Index " + recipeIndex + " selected");
-        e.setCancelled(true);
     }
 
     @EventHandler
@@ -147,5 +144,13 @@ public class CustomRecipeCompendium implements Listener {
         int page = dataContainer.get(NamespacedKeys.CUSTOM_RECIPE_MENU_PAGE, PersistentDataType.INTEGER);
 
         open(player, page);
+    }
+
+    @EventHandler
+    public void cancelInventoryInteract(InventoryClickEvent e) {
+        if(!e.getView().getTitle().equals(INVENTORY_NAME))
+            return;
+
+        e.setCancelled(true);
     }
 }
