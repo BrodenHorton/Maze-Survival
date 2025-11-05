@@ -245,12 +245,12 @@ public class CustomRecipes {
         registerBootsRecipe(adamantiteGoldGrade, CustomItem.ADAMANTITE_BOOTS.getItemStack(), "adamantite_boots");
 
         // Tools
-        ItemStack logTitaniumGrade = ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.TITANIUM);
-        registerSwordRecipe(logTitaniumGrade, CustomItem.WOODEN_SHORT_SWORD.getItemStack(), "wooden_short_sword");
-        registerAxeRecipe(logTitaniumGrade, CustomItem.WOODEN_HATCHET.getItemStack(), "wooden_hatchet");
-        registerShovelRecipe(logTitaniumGrade, CustomItem.WOODEN_SPADE.getItemStack(), "wooden_spade");
-        registerHoeRecipe(logTitaniumGrade, CustomItem.WOODEN_SCYTHE.getItemStack(), "wooden_scythe");
-        registerPickaxeRecipe(logTitaniumGrade, CustomItem.WORN_WOODEN_PICKAXE.getItemStack(), "worn_wooden_pickaxe");
+        ItemStack logIronGrade = ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.IRON);
+        registerSwordRecipe(logIronGrade, CustomItem.WOODEN_SHORT_SWORD.getItemStack(), "wooden_short_sword");
+        registerAxeRecipe(logIronGrade, CustomItem.WOODEN_HATCHET.getItemStack(), "wooden_hatchet");
+        registerShovelRecipe(logIronGrade, CustomItem.WOODEN_SPADE.getItemStack(), "wooden_spade");
+        registerHoeRecipe(logIronGrade, CustomItem.WOODEN_SCYTHE.getItemStack(), "wooden_scythe");
+        registerPickaxeRecipe(logIronGrade, CustomItem.WORN_WOODEN_PICKAXE.getItemStack(), "worn_wooden_pickaxe");
 
         ItemStack cobblestoneTitaniumGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.COBBLESTONE), ItemGrade.TITANIUM);
         registerSwordRecipe(cobblestoneTitaniumGrade, CustomItem.BASTARD_SWORD.getItemStack(), "bastard_sword");
@@ -339,13 +339,13 @@ public class CustomRecipes {
     }
 
     private static void registerTwoByTwoRecipe(ItemStack item, ItemStack result, String recipeId) {
-        CustomShapedRecipe customRecipe = new CustomShapedRecipe("LL", "LL", "LL", result);
+        CustomShapedRecipe customRecipe = new CustomShapedRecipe("LL", "LL", result);
         customRecipe.addIngredient('L', item);
         recipes.add(customRecipe);
         Registry.CUSTOM_RECIPE.register(recipeId, customRecipe);
 
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
-        recipe.shape("LL", "LL", "LL");
+        recipe.shape("LL", "LL");
         recipe.setIngredient('L', item.getType());
         Bukkit.addRecipe(recipe);
     }

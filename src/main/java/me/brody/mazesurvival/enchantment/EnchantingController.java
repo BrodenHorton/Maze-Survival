@@ -122,7 +122,8 @@ public class EnchantingController implements Listener {
         ItemStack lootingIcon = new ItemStack(Material.GOLD_NUGGET);
         ItemMeta lootingIconMeta = lootingIcon.getItemMeta();
         lootingIconMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Looting");
-        List<String> lootingLore = List.of(ChatColor.GOLD + "Enemies drop more loot on death.");
+        List<String> lootingLore = List.of(ChatColor.GOLD + "Enemies drop more loot on death and" +
+                ChatColor.GOLD + "have the chance of dropping rare items.");
         lootingIconMeta.setLore(lootingLore);
         lootingIcon.setItemMeta(lootingIconMeta);
         weaponEnchantments.add(new TableEnchantment(MazeEnchantment.LOOTING, lootingIcon, List.of(10, 18, 26)));

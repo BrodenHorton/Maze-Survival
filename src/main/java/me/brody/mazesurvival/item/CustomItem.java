@@ -409,7 +409,7 @@ public class CustomItem {
 
         List<String> lapisArmorLore = List.of(
                 ChatColor.WHITE + "Set Bonus: " + ChatColor.GOLD + "Purification",
-                ChatColor.GRAY + "Immune to poison and wither damage.");
+                ChatColor.GRAY + "Immune to poison, wither, and hunger.");
         Color lapisColor = Color.fromRGB(41, 76, 255);
         int lapisHealthBoost = 12;
         LAPIS_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "lapis_helmet")

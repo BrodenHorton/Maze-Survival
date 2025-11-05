@@ -69,7 +69,15 @@ public class CustomRecipeCraftingMenu implements Listener {
         }
 
         ItemStack[][] recipeDisplay = recipe.getRecipeDisplay();
-        // TODO: Add recipe display
+        int startRow = 1;
+        int startColumn = 1;
+        for(int i = 0; i < recipeDisplay.length; i++) {
+            for(int j = 0; j < recipeDisplay[i].length; j++) {
+                inventory.setItem((i + startRow) * 9 + j + startColumn, recipeDisplay[i][j]);
+            }
+        }
+        int resultIndex = 25;
+        inventory.setItem(resultIndex, recipe.getResult());
 
         addInventoryActionBar(inventory);
 
