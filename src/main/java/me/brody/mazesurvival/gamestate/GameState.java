@@ -37,6 +37,7 @@ public class GameState {
                 Registry.CUSTOM_RECIPE.get("wooden_spade"),
                 Registry.CUSTOM_RECIPE.get("wooden_scythe"),
                 Registry.CUSTOM_RECIPE.get("worn_wooden_pickaxe"),
+                Registry.CUSTOM_RECIPE.get("short_bow"),
                 Registry.CUSTOM_RECIPE.get("bastard_sword"),
                 Registry.CUSTOM_RECIPE.get("battle_axe"),
                 Registry.CUSTOM_RECIPE.get("mace"),

@@ -97,6 +97,7 @@ public class CustomRecipes {
         REMOVED_RECIPE_MATERIALS.add(Material.NETHERITE_SHOVEL);
         REMOVED_RECIPE_MATERIALS.add(Material.NETHERITE_HOE);
         REMOVED_RECIPE_MATERIALS.add(Material.NETHERITE_PICKAXE);
+        REMOVED_RECIPE_MATERIALS.add(Material.BOW);
 
         INVALID_RECIPE_ITEM = new ItemStack(Material.BARRIER);
         ItemMeta meta = INVALID_RECIPE_ITEM.getItemMeta();
@@ -290,6 +291,18 @@ public class CustomRecipes {
         registerShovelRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_GRAVEDIGGER.getItemStack(), "abyssal_gravedigger");
         registerHoeRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_REAPER.getItemStack(), "abyssal_reaper");
 
+        ItemStack shortBow = CustomItem.SHORT_BOW.getItemStack();
+        CustomShapedRecipe customShortBowRecipe = new CustomShapedRecipe(" LS", "L S", " LS", shortBow);
+        customShortBowRecipe.addIngredient('L', ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.GOLD));
+        customShortBowRecipe.addIngredient('S', ItemGradeUtils.createGradedItem(new ItemStack(Material.STRING), ItemGrade.TITANIUM));
+        recipes.add(customShortBowRecipe);
+        Registry.CUSTOM_RECIPE.register("short_bow", customShortBowRecipe);
+        ShapedRecipe shortBowRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
+        shortBowRecipe.shape(" LS", "L S", " LS");
+        shortBowRecipe.setIngredient('L', Material.OAK_LOG);
+        shortBowRecipe.setIngredient('S', Material.STRING);
+        Bukkit.addRecipe(shortBowRecipe);
+
         ItemStack enchantingTable = new ItemStack(Material.ENCHANTING_TABLE);
         CustomShapedRecipe customEnchantingTableRecipe = new CustomShapedRecipe("LCL", "CMC", "LCL", enchantingTable);
         customEnchantingTableRecipe.addIngredient('L', ItemGradeUtils.createGradedItem(new ItemStack(Material.LAPIS_LAZULI), ItemGrade.GOLD));
@@ -336,6 +349,12 @@ public class CustomRecipes {
                 new ItemStack(Material.DIAMOND),
                 echoShardGoldGrade));
         registerShapelessRecipe(corruptedDiamondIngredients, CustomItem.CORRUPTED_DIAMOND.getItemStack(), "corrupted_diamond");
+
+        FurnaceRecipe miststeelIngotRecipe = new FurnaceRecipe(CustomItem.MISTSTEEL_INGOT.getItemStack(), Material.RAW_IRON);
+        Bukkit.addRecipe(miststeelIngotRecipe);
+
+        FurnaceRecipe adamantiteIngotRecipe = new FurnaceRecipe(CustomItem.ADAMANTITE_INGOT.getItemStack(), Material.ANCIENT_DEBRIS);
+        Bukkit.addRecipe(adamantiteIngotRecipe);
     }
 
     private static void registerTwoByTwoRecipe(ItemStack item, ItemStack result, String recipeId) {
