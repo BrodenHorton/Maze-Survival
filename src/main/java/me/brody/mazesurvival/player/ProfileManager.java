@@ -10,14 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class ProfileManager implements Listener {
+public class ProfileManager {
     private final Main plugin;
-
     private List<PlayerProfile> playerProfiles;
 
     public ProfileManager(Main plugin) {
         this.plugin = plugin;
         playerProfiles = new ArrayList<>();
+    }
+
+    public void createPlayerProfile(Player player) {
+        if(getProfileOf(player) != null)
+            return;
+
+        playerProfiles.add(new PlayerProfile(player.getUniqueId()));
+        plugin.getLogger().info("New Player Profile created for " + player.getName());
     }
 
     public List<PlayerProfile> getPlayerProfiles() {
@@ -35,15 +42,5 @@ public class ProfileManager implements Listener {
         }
 
         return null;
-    }
-
-    @EventHandler
-    public void createProfileOnJoin(PlayerJoinEvent e) {
-        PlayerProfile profile = getProfileOf(e.getPlayer().getUniqueId());
-        if(profile != null)
-            return;
-
-        playerProfiles.add(new PlayerProfile(e.getPlayer().getUniqueId()));
-        plugin.getLogger().info("New Player Profile created for " + e.getPlayer().getName());
     }
 }

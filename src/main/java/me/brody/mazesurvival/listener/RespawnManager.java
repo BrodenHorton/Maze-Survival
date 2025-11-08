@@ -24,7 +24,7 @@ public class RespawnManager implements Listener {
     }
 
     @EventHandler
-    public void setPlayerRespawnLocation(PlayerRespawnEvent e) {
+    public void setPlayerRespawnLocationEvent(PlayerRespawnEvent e) {
         if(e.getPlayer() == null)
             return;
         if(!respawnLocationByPlayer.containsKey(e.getPlayer()))

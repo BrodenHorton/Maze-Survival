@@ -350,11 +350,20 @@ public class CustomRecipes {
                 echoShardGoldGrade));
         registerShapelessRecipe(corruptedDiamondIngredients, CustomItem.CORRUPTED_DIAMOND.getItemStack(), "corrupted_diamond");
 
-        FurnaceRecipe miststeelIngotRecipe = new FurnaceRecipe(CustomItem.MISTSTEEL_INGOT.getItemStack(), Material.RAW_IRON);
-        Bukkit.addRecipe(miststeelIngotRecipe);
+        FurnaceRecipe copperIngotFurnaceRecipe = new FurnaceRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "furnace-recipe-" + UUID.randomUUID()), new ItemStack(Material.COPPER_INGOT), Material.RAW_COPPER, 3f, 2000);
+        Bukkit.addRecipe(copperIngotFurnaceRecipe);
+        BlastingRecipe copperIngotBastingRecipe = new BlastingRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "blasting-recipe-" + UUID.randomUUID()), new ItemStack(Material.COPPER_INGOT), Material.RAW_COPPER, 3f, 1000);
+        Bukkit.addRecipe(copperIngotBastingRecipe);
 
-        FurnaceRecipe adamantiteIngotRecipe = new FurnaceRecipe(CustomItem.ADAMANTITE_INGOT.getItemStack(), Material.ANCIENT_DEBRIS);
+        FurnaceRecipe miststeelIngotFurnaceRecipe = new FurnaceRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "furnace-recipe-" + UUID.randomUUID()), CustomItem.MISTSTEEL_INGOT.getItemStack(), Material.RAW_IRON, 3f, 2000);
+        Bukkit.addRecipe(miststeelIngotFurnaceRecipe);
+        BlastingRecipe miststeelIngotBastingRecipe = new BlastingRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "blasting-recipe-" + UUID.randomUUID()), CustomItem.MISTSTEEL_INGOT.getItemStack(), Material.RAW_IRON, 3f, 1000);
+        Bukkit.addRecipe(miststeelIngotBastingRecipe);
+
+        FurnaceRecipe adamantiteIngotRecipe = new FurnaceRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "furnace-recipe-" + UUID.randomUUID()), CustomItem.ADAMANTITE_INGOT.getItemStack(), Material.ANCIENT_DEBRIS, 3f, 2000);
         Bukkit.addRecipe(adamantiteIngotRecipe);
+        BlastingRecipe adamantiteIngotBastingRecipe = new BlastingRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "blasting-recipe-" + UUID.randomUUID()), CustomItem.ADAMANTITE_INGOT.getItemStack(), Material.ANCIENT_DEBRIS, 3f, 1000);
+        Bukkit.addRecipe(adamantiteIngotBastingRecipe);
     }
 
     private static void registerTwoByTwoRecipe(ItemStack item, ItemStack result, String recipeId) {

@@ -6,6 +6,7 @@ import me.brody.mazesurvival.bounds.CollisionManager;
 import me.brody.mazesurvival.daynightcycle.DayNightCycle;
 import me.brody.mazesurvival.enchantment.EnchantingController;
 import me.brody.mazesurvival.enchantment.MazeEnchantment;
+import me.brody.mazesurvival.event.eventargs.EventArgs;
 import me.brody.mazesurvival.gamestate.GameState;
 import me.brody.mazesurvival.item.CustomItem;
 import me.brody.mazesurvival.item.recipe.CustomRecipeCompendium;
@@ -29,6 +30,8 @@ import me.brody.mazesurvival.mob.MobManager;
 import me.brody.mazesurvival.player.ProfileManager;
 import me.brody.mazesurvival.wanderingtrader.WanderingTraderManager;
 import me.brody.mazesurvival.listener.enchantment.MazeRunnerEnchantmentManager;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.brody.mazesurvival.command.CommandManager;
@@ -47,6 +50,7 @@ public class Main extends JavaPlugin {
 	private RespawnManager respawnManager;
 	private BossListener bossListener;
 	private GameState gameState;
+	private InitializePlayersListener initializePlayersListener;
 
 	private CustomRecipeCompendium customRecipeCompendium;
 
@@ -78,11 +82,11 @@ public class Main extends JavaPlugin {
 		bossListener = new BossListener(this);
 		gameState = new GameState();
 		customRecipeCompendium = new CustomRecipeCompendium(this);
+		initializePlayersListener = new InitializePlayersListener(this, mazeManager);
 
 		// Registering the executor for the "ms" command
 		getCommand("ms").setExecutor(new CommandManager(this));
 		// Registering Listeners
-		getServer().getPluginManager().registerEvents(profileManager, this);
 		getServer().getPluginManager().registerEvents(mobManager, this);
 		getServer().getPluginManager().registerEvents(wanderingTraderManager, this);
 		getServer().getPluginManager().registerEvents(enchantingController, this);
@@ -92,6 +96,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(respawnManager, this);
 		getServer().getPluginManager().registerEvents(bossListener, this);
 		getServer().getPluginManager().registerEvents(customRecipeCompendium, this);
+		getServer().getPluginManager().registerEvents(initializePlayersListener, this);
 		getServer().getPluginManager().registerEvents(new CrusaderEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new LingeringShotEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new SoulBoundEnchantmentListener(this), this);
