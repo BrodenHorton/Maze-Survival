@@ -1,11 +1,11 @@
 package me.brody.mazesurvival.listener;
 
 import me.brody.mazesurvival.Main;
+import me.brody.mazesurvival.effects.WindBlowingSoundEffect;
 import me.brody.mazesurvival.event.eventargs.EventArgs;
 import me.brody.mazesurvival.maze.MazeManager;
 import me.brody.mazesurvival.utils.ChatUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,8 +23,7 @@ public class InitializePlayersListener implements Listener {
         plugin.getProfileManager().createPlayerProfile(player);
         player.teleport(plugin.getMazeManager().getGrid().getGladeRespawnLocation());
         plugin.getRespawnManager().setPlayerRespawnLocation(player, plugin.getMazeManager().getGrid().getGladeRespawnLocation());
-        // TODO: Make the sound effect a scheduled event that runs for 2 seconds
-        player.playSound(player.getLocation(), Sound.ENTITY_HORSE_BREATHE, 1f, 0.4f);
+        new WindBlowingSoundEffect(plugin).execute(player);
         ChatUtils.msg(player, "&aYou have been dropped into the Glade!");
         ChatUtils.msg(player, "&aView crafting recipes with &e/ms recipes");
     }

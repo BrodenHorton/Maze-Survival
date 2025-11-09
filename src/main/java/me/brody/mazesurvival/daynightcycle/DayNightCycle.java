@@ -8,6 +8,8 @@ import org.bukkit.GameRule;
 import org.bukkit.World;
 
 public class DayNightCycle {
+    private static final int GAME_START_TIME_IN_TICKS = 22000;
+    private static final int START_OF_DAY_IN_TICKS = 0;
     private static final int START_OF_NIGHT_IN_TICKS = 13500;
     private static final int TOTAL_TICKS_IN_CYCLE = 24000;
 
@@ -15,10 +17,12 @@ public class DayNightCycle {
     public Event<EventArgs> onStartOfNight;
 
     private final Main plugin;
+    private boolean isDay;
     private World world;
 
     public DayNightCycle(Main plugin, MazeManager mazeManager) {
         this.plugin = plugin;
+        isDay = false;
         mazeManager.onMazeConstructionFinished.addListener(this::startDayNightCycle);
 
         onStartOfDay = new Event<>();
@@ -29,31 +33,30 @@ public class DayNightCycle {
         plugin.getLogger().info("Day Night Cycle has started!");
         world = plugin.getMazeManager().getGrid().getGridOrigin().getWorld();
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
-        world.setTime(0L);
-        onStartOfDay.invoke(this, EventArgs.EMPTY);
+        isDay = false;
+        world.setTime(GAME_START_TIME_IN_TICKS);
 
-        // TODO: Change to check every tick to make sure day night cycle is correct
-        final int dayTimeMultiplier = 2;
-        final int nightTimeMultiplier = 4;
+        final int dayTimeStep = 2;
+        final int nightTimeStep = 4;
         final long tickTimeScale = 1;
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
-            if(world.getTime() + nightTimeMultiplier >= TOTAL_TICKS_IN_CYCLE) {
+            if(!isDay && world.getTime() >= START_OF_DAY_IN_TICKS && world.getTime() < START_OF_NIGHT_IN_TICKS) {
                 plugin.getLogger().info("Start of day invoked");
+                isDay = true;
                 onStartOfDay.invoke(this, EventArgs.EMPTY);
             }
-            else if(world.getTime() < START_OF_NIGHT_IN_TICKS && world.getTime() + dayTimeMultiplier >= START_OF_NIGHT_IN_TICKS) {
+            else if(isDay && (world.getTime() < START_OF_DAY_IN_TICKS || world.getTime() >= START_OF_NIGHT_IN_TICKS)) {
                 plugin.getLogger().info("Start of night invoked");
+                isDay = false;
                 onStartOfNight.invoke(this, EventArgs.EMPTY);
             }
 
-            if(world.getTime() < START_OF_NIGHT_IN_TICKS)
-                world.setTime(world.getTime() + dayTimeMultiplier);
-            else
-                world.setTime((world.getTime() + nightTimeMultiplier) % TOTAL_TICKS_IN_CYCLE);
+            int timeStep = isDay ? dayTimeStep : nightTimeStep;
+            world.setTime((world.getTime() + timeStep) % TOTAL_TICKS_IN_CYCLE);
         }, 0L, tickTimeScale);
     }
 
     public boolean isDay() {
-        return world.getTime() < START_OF_NIGHT_IN_TICKS;
+        return isDay;
     }
 }

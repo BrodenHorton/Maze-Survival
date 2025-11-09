@@ -172,10 +172,9 @@ public class MazeGrid {
 	}
 
 	public Location getGladeRespawnLocation() {
-		Location respawnLocation = getGladeWorldCenter();
-		respawnLocation.setX(respawnLocation.getX() + 0.5);
+		Location respawnLocation = LocationUtils.centerOnBlock(getGladeWorldCenter());
 		respawnLocation.setY(respawnLocation.getY() + 1);
-		respawnLocation.setZ(respawnLocation.getZ() + 0.5);
+		respawnLocation.setYaw(180);
 		return respawnLocation;
 	}
 

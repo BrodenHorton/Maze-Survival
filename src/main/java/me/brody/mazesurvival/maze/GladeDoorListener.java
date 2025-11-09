@@ -27,7 +27,7 @@ public class GladeDoorListener {
         SchematicPaster.paste(plugin.getMazeManager().getGrid().getGladeWorldCenter(), 270, false, MazeSchematic.GLADE_DOOR_OPENED.getSchematicInputStream());
 
         for(Player p : plugin.getServer().getOnlinePlayers())
-            p.playSound(p.getLocation(), Sound.BLOCK_GRINDSTONE_USE, 5f, 0.4f);
+            p.playSound(p.getLocation(), Sound.BLOCK_GRINDSTONE_USE, 2f, 0.5f);
     }
 
     private void closeGladeDoors(Object sender, EventArgs args) {
@@ -50,9 +50,9 @@ public class GladeDoorListener {
         }
         for(Player p : plugin.getServer().getOnlinePlayers()) {
             if(isPlayerInMaze)
-                p.playSound(p.getLocation(), Sound.BLOCK_END_PORTAL_SPAWN, 5f, 0.4f);
+                p.playSound(p.getLocation(), Sound.BLOCK_END_PORTAL_SPAWN, 2f, 0.5f);
             else
-                p.playSound(p.getLocation(), Sound.BLOCK_GRINDSTONE_USE, 5f, 0.4f);
+                p.playSound(p.getLocation(), Sound.BLOCK_GRINDSTONE_USE, 2f, 0.5f);
         }
     }
 
