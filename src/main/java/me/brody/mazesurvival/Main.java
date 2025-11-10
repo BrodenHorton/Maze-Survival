@@ -48,10 +48,8 @@ public class Main extends JavaPlugin {
 	private CollisionManager collisionManager;
 	private GladeDoorListener gladeDoorListener;
 	private RespawnManager respawnManager;
-	private BossListener bossListener;
 	private GameState gameState;
 	private InitializePlayersListener initializePlayersListener;
-
 	private CustomRecipeCompendium customRecipeCompendium;
 
 	@Override
@@ -79,7 +77,6 @@ public class Main extends JavaPlugin {
 		collisionManager = new CollisionManager(this);
 		gladeDoorListener = new GladeDoorListener(this, dayNightCycle);
 		respawnManager = new RespawnManager(this);
-		bossListener = new BossListener(this);
 		gameState = new GameState();
 		customRecipeCompendium = new CustomRecipeCompendium(this);
 		initializePlayersListener = new InitializePlayersListener(this, mazeManager);
@@ -94,9 +91,9 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(areaProtectionManager, this);
 		getServer().getPluginManager().registerEvents(collisionManager, this);
 		getServer().getPluginManager().registerEvents(respawnManager, this);
-		getServer().getPluginManager().registerEvents(bossListener, this);
 		getServer().getPluginManager().registerEvents(customRecipeCompendium, this);
 		getServer().getPluginManager().registerEvents(initializePlayersListener, this);
+		getServer().getPluginManager().registerEvents(new BossListener(this), this);
 		getServer().getPluginManager().registerEvents(new CrusaderEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new LingeringShotEnchantmentListener(this), this);
 		getServer().getPluginManager().registerEvents(new SoulBoundEnchantmentListener(this), this);

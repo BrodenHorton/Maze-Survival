@@ -26,30 +26,27 @@ public class MobManager implements Listener {
     private static final Random RNG = new Random();
 
     private final Main plugin;
-
+    private final DayNightCycle dayNightCycle;
     private MobSpawnConfig daySpawnConfig;
     private MobSpawnConfig nightSpawnConfig;
     private MobSpawnConfig currentSpawnConfig;
     private List<UUID> mobs;
-    private boolean isDay;
     private Map<UUID, List<Integer>> mobSpawningCooldownByPlayerUuid;
 
     public MobManager(Main plugin, DayNightCycle dayNightCycle) {
         this.plugin = plugin;
+        this.dayNightCycle = dayNightCycle;
         daySpawnConfig = MobSpawnConfig.DAY_SPAWN_CONFIG;
         nightSpawnConfig = MobSpawnConfig.NIGHT_SPAWN_CONFIG;
         currentSpawnConfig = daySpawnConfig;
         mobs = new ArrayList<>();
-        isDay = true;
         mobSpawningCooldownByPlayerUuid = new HashMap<>();
 
         dayNightCycle.onStartOfDay.addListener((sender, args) -> {
-            isDay = true;
             currentSpawnConfig = daySpawnConfig;
             despawnAllMobs();
         });
         dayNightCycle.onStartOfNight.addListener((sender, args) -> {
-            isDay = false;
             currentSpawnConfig = nightSpawnConfig;
             despawnAllMobs();
         });
@@ -101,7 +98,7 @@ public class MobManager implements Listener {
                 spawnLocation.setY(spawnLocation.getY() + 1);
                 spawnLocation.setZ(spawnLocation.getZ() + zOffset + blockCenterOffset);
                 LivingEntity entity;
-                if(isDay)
+                if(dayNightCycle.isDay())
                     entity = region.getDayMobs().getWeightedValue().summon(spawnLocation);
                 else
                     entity = region.getNightMobs().getWeightedValue().summon(spawnLocation);

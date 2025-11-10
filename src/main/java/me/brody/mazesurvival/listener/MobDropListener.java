@@ -15,7 +15,6 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.List;
 
 public class MobDropListener implements Listener {
-
     public final Main plugin;
 
     public MobDropListener(Main plugin) {
