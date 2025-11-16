@@ -5,11 +5,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollisionManager implements Listener {
-    private final Main plugin;
+public class CollisionManager implements Listener, Serializable {
+    private transient final Main plugin;
     private List<CollisionBounds> collisionBoundsList;
 
     public CollisionManager(Main plugin) {

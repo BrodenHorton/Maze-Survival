@@ -1,13 +1,15 @@
 package me.brody.mazesurvival.bounds;
 
+import me.brody.mazesurvival.utils.SerializableConsumer;
 import org.bukkit.entity.Player;
 
+import java.io.Serializable;
 import java.util.function.Consumer;
 
-public class CollisionBounds {
+public class CollisionBounds implements Serializable {
     private BoundsInt bounds;
-    private Consumer<Player> triggerEnterConsumer;
-    private Consumer<Player> triggerExitConsumer;
+    private SerializableConsumer<Player> triggerEnterConsumer;
+    private SerializableConsumer<Player> triggerExitConsumer;
 
     public CollisionBounds(BoundsInt bounds) {
         this.bounds = bounds;
@@ -15,7 +17,7 @@ public class CollisionBounds {
         triggerExitConsumer = null;
     }
 
-    public CollisionBounds(BoundsInt bounds, Consumer<Player> triggerEnterConsumer, Consumer<Player> triggerExitConsumer) {
+    public CollisionBounds(BoundsInt bounds, SerializableConsumer<Player> triggerEnterConsumer, SerializableConsumer<Player> triggerExitConsumer) {
         this.bounds = bounds;
         this.triggerEnterConsumer = triggerEnterConsumer;
         this.triggerExitConsumer = triggerExitConsumer;
@@ -39,11 +41,11 @@ public class CollisionBounds {
         triggerExitConsumer.accept(p);
     }
 
-    public void setTriggerEnterConsumer(Consumer<Player> consumer) {
+    public void setTriggerEnterConsumer(SerializableConsumer<Player> consumer) {
         this.triggerEnterConsumer = consumer;
     }
 
-    public void setTriggerExitConsumer(Consumer<Player> consumer) {
+    public void setTriggerExitConsumer(SerializableConsumer<Player> consumer) {
         this.triggerExitConsumer = consumer;
     }
 }

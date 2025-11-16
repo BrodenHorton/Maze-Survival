@@ -11,13 +11,14 @@ import me.brody.mazesurvival.utils.Vector3Int;
 import org.bukkit.Location;
 import org.bukkit.World;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class MazeGrid {
-	private final Main plugin;
+public class MazeGrid implements Serializable {
+	private transient final Main plugin;
 
-	private MazeGridBase gridBase;
-	private Location gridOrigin;
+	private transient MazeGridBase gridBase;
+	private transient Location gridOrigin;
 	private List<MazeRegion> regions;
 	private Map<MazeRegion, Vector2Int> regionOriginByRegion;
 	private Map<Vector2Int, MazeRegion> regionByGridCell;

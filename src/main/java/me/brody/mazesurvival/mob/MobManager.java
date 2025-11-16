@@ -20,16 +20,17 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class MobManager implements Listener {
+public class MobManager implements Listener, Serializable {
     private static final Random RNG = new Random();
 
-    private final Main plugin;
-    private final DayNightCycle dayNightCycle;
-    private MobSpawnConfig daySpawnConfig;
-    private MobSpawnConfig nightSpawnConfig;
-    private MobSpawnConfig currentSpawnConfig;
+    private transient final Main plugin;
+    private transient final DayNightCycle dayNightCycle;
+    private transient MobSpawnConfig daySpawnConfig;
+    private transient MobSpawnConfig nightSpawnConfig;
+    private transient MobSpawnConfig currentSpawnConfig;
     private List<UUID> mobs;
     private Map<UUID, List<Integer>> mobSpawningCooldownByPlayerUuid;
 

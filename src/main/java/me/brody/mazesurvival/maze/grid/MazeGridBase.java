@@ -3,7 +3,12 @@ package me.brody.mazesurvival.maze.grid;
 import me.brody.mazesurvival.registry.Registry;
 import me.brody.mazesurvival.utils.MazeSchematic;
 
-public class MazeGridBase {
+import java.io.Serializable;
+
+public class MazeGridBase implements Serializable {
+	public static final MazeGridBase SMALL;
+	public static final MazeGridBase STANDARD;
+
 	private int regionCellSize;
 	private int wallHeight;
 	private int wallWidth;
@@ -11,6 +16,11 @@ public class MazeGridBase {
 	private int gridCellSize;
 	private int gridCellMargins;
 	private MazeSchematic gladeSchema;
+
+	static {
+		SMALL = new MazeGridBase(9, 6, 2, 7, 9, 2, MazeSchematic.GLADE);
+		STANDARD = new MazeGridBase(9, 30, 2, 7, 25, 2, MazeSchematic.GLADE);
+	}
 
 	private MazeGridBase(int regionCellSize, int wallHeight, int wallWidth, int gladeSize, int gridCellSize, int gridCellMargins, MazeSchematic gladeSchema) {
 		this.regionCellSize = regionCellSize;
@@ -23,8 +33,8 @@ public class MazeGridBase {
 	}
 
 	public static void register() {
-		Registry.GRID_BASE.register("standard", new MazeGridBase(9, 30, 2, 7, 25, 2, MazeSchematic.GLADE));
-		Registry.GRID_BASE.register("small", new MazeGridBase(9, 6, 2, 7, 9, 2, MazeSchematic.GLADE));
+		Registry.GRID_BASE.register("small", SMALL);
+		Registry.GRID_BASE.register("standard", STANDARD);
 	}
 
 	public int getMarginInBlocks() {

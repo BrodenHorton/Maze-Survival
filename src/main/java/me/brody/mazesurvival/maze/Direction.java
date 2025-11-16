@@ -1,6 +1,8 @@
 package me.brody.mazesurvival.maze;
 
-public enum Direction {
+import java.io.Serializable;
+
+public enum Direction implements Serializable {
     NORTH(0, 0, -1),
     EAST(1, 1, 0),
     SOUTH(2, 0, 1),

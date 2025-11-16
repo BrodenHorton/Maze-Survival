@@ -1,6 +1,5 @@
 package me.brody.mazesurvival.command;
 
-import me.brody.mazesurvival.maze.grid.MazeGridBase;
 import me.brody.mazesurvival.registry.Registry;
 import me.brody.mazesurvival.utils.LocationUtils;
 import org.bukkit.Location;
@@ -10,9 +9,7 @@ import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.utils.ChatUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GenerateCommand implements SubCommand {
 	private static final String NAME = "generate";
@@ -20,22 +17,16 @@ public class GenerateCommand implements SubCommand {
 	private static final String ERROR_MSG =
 			String.format("%sInvalid args\nCommand Parameters: /ms generate <Grid Base>", ERROR_COLOR);
 
-	private Map<String, MazeGridBase> gridBaseByName;
 	private List<String> tabList;
 
 	public GenerateCommand() {
-		gridBaseByName = new HashMap<>();
-		gridBaseByName.put("standard", Registry.GRID_BASE.get("standard"));
-		gridBaseByName.put("small", Registry.GRID_BASE.get("small"));
-
 		tabList = new ArrayList<>();
-		tabList.add("standard");
-		tabList.add("small");
+		tabList.addAll(Registry.GRID_BASE.keySet());
 	}
 
 	@Override
 	public void executeCommand(Main plugin, Player p, String[] args) {
-		if(args.length != 2 || !gridBaseByName.containsKey(args[1].toLowerCase())) {
+		if(args.length != 2 || !Registry.GRID_BASE.containsKey(args[1].toLowerCase())) {
 			ChatUtils.msg(p, ERROR_MSG);
 			return;
 		}
@@ -45,7 +36,7 @@ public class GenerateCommand implements SubCommand {
 		gridOrigin.setY((int)gridOrigin.getY() - 1);
 		gridOrigin.setZ((int)gridOrigin.getZ());
 
-		plugin.getMazeManager().generateMaze(gridBaseByName.get(args[1]), gridOrigin);
+		plugin.getMazeManager().generateMaze(Registry.GRID_BASE.get(args[1]), gridOrigin);
 	}
 
 	@Override

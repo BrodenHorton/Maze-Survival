@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class ProfileManager {
-    private final Main plugin;
+    private transient final Main plugin;
     private List<PlayerProfile> playerProfiles;
 
     public ProfileManager(Main plugin) {

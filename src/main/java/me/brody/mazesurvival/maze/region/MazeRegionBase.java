@@ -7,6 +7,7 @@ import me.brody.mazesurvival.maze.BlockPalette;
 import me.brody.mazesurvival.mob.MobSpawnPool;
 import me.brody.mazesurvival.registry.Registry;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

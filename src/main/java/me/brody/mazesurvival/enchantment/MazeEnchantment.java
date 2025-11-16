@@ -3,6 +3,8 @@ package me.brody.mazesurvival.enchantment;
 import me.brody.mazesurvival.Main;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 

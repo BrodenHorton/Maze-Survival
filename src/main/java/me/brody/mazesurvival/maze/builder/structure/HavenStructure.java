@@ -5,6 +5,8 @@ import me.brody.mazesurvival.bounds.BoundsInt;
 import me.brody.mazesurvival.bounds.CollisionBounds;
 import me.brody.mazesurvival.bounds.PriorityProtectionBounds;
 import me.brody.mazesurvival.bounds.ProtectionType;
+import me.brody.mazesurvival.maze.builder.structure.consumer.HavenEntranceConsumer;
+import me.brody.mazesurvival.maze.builder.structure.consumer.HavenExitConsumer;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.CellExtension;
 import me.brody.mazesurvival.maze.region.MazeRegion;
@@ -19,9 +21,9 @@ import org.bukkit.entity.Player;
 import java.util.function.Consumer;
 
 public class HavenStructure implements MazeStructureGenerator {
-    private final Main plugin;
+    private transient final Main plugin;
     private MazeSchematic schematic;
-    private Location origin;
+    private transient Location origin;
     private double rotation;
     private MazeRegion region;
 
@@ -67,7 +69,7 @@ public class HavenStructure implements MazeStructureGenerator {
         primaryEntranceTeleportLocation = LocationUtils.rotate(primaryEntranceTeleportLocation, -haven.getDirection().rotation);
         primaryEntranceTeleportLocation = LocationUtils.shift(primaryEntranceTeleportLocation, havenOrigin);
         primaryEntranceTeleportLocation = LocationUtils.centerOnBlock(primaryEntranceTeleportLocation);
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(primaryEntrance, getHavenEntranceTriggerConsumer(primaryEntranceTeleportLocation), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(primaryEntrance, new HavenEntranceConsumer(plugin, region, primaryEntranceTeleportLocation), null));
 
         BoundsInt primaryExit = doorBounds.clone();
         primaryExit.shiftZ(-distanceToCellCenter - entranceToExitDistance);
@@ -78,7 +80,7 @@ public class HavenStructure implements MazeStructureGenerator {
         primaryExitTeleportLocation = LocationUtils.rotate(primaryExitTeleportLocation, -haven.getDirection().rotation);
         primaryExitTeleportLocation = LocationUtils.shift(primaryExitTeleportLocation, havenOrigin);
         primaryExitTeleportLocation = LocationUtils.centerOnBlock(primaryExitTeleportLocation);
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(primaryExit, getHavenExitTriggerConsumer(primaryExitTeleportLocation), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(primaryExit, new HavenExitConsumer(plugin, primaryExitTeleportLocation), null));
 
         final int secondaryEntranceShift = doorCellCentersDistance - distanceToCellCenter;
         BoundsInt secondaryEntrance = doorBounds.clone();
@@ -90,7 +92,7 @@ public class HavenStructure implements MazeStructureGenerator {
         secondaryEntranceTeleportLocation = LocationUtils.rotate(secondaryEntranceTeleportLocation, -haven.getDirection().rotation);
         secondaryEntranceTeleportLocation = LocationUtils.shift(secondaryEntranceTeleportLocation, havenOrigin);
         secondaryEntranceTeleportLocation = LocationUtils.centerOnBlock(secondaryEntranceTeleportLocation);
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(secondaryEntrance, getHavenEntranceTriggerConsumer(secondaryEntranceTeleportLocation), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(secondaryEntrance, new HavenEntranceConsumer(plugin, region, secondaryEntranceTeleportLocation), null));
 
         BoundsInt secondaryExit = doorBounds.clone();
         secondaryExit.shiftZ(-secondaryEntranceShift + entranceToExitDistance);
@@ -101,7 +103,7 @@ public class HavenStructure implements MazeStructureGenerator {
         secondaryExitTeleportLocation = LocationUtils.rotate(secondaryExitTeleportLocation, -haven.getDirection().rotation);
         secondaryExitTeleportLocation = LocationUtils.shift(secondaryExitTeleportLocation, havenOrigin);
         secondaryExitTeleportLocation = LocationUtils.centerOnBlock(secondaryExitTeleportLocation);
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(secondaryExit, getHavenExitTriggerConsumer(secondaryExitTeleportLocation), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(secondaryExit, new HavenExitConsumer(plugin, secondaryExitTeleportLocation), null));
     }
 
     private Consumer<Player> getHavenEntranceTriggerConsumer(Location teleportLocation) {

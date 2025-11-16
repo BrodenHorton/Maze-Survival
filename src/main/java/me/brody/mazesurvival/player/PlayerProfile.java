@@ -4,13 +4,14 @@ import me.brody.mazesurvival.enchantment.MazeEnchantment;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class PlayerProfile {
+public class PlayerProfile implements Serializable {
     private UUID uuid;
-    private Map<MazeEnchantment, Integer> upgradeLevelByEnchantment;
+    private transient Map<MazeEnchantment, Integer> upgradeLevelByEnchantment;
 
     public PlayerProfile(UUID uuid) {
         this.uuid = uuid;

@@ -1,5 +1,6 @@
 package me.brody.mazesurvival.maze;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;

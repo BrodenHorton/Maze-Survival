@@ -11,12 +11,13 @@ import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.mob.MobSpawnPool;
 import me.brody.mazesurvival.utils.Vector2Int;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class MazeRegion {
+public class MazeRegion implements Serializable {
 	private static final Random RNG = new Random();
 
-	private MazeRegionBase regionBase;
+	private transient MazeRegionBase regionBase;
 	private UUID uuid;
 	private Vector2Int regionDimensions;
 	private MazeCell[][] mazeCells;

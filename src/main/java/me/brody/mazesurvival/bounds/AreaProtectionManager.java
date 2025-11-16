@@ -19,12 +19,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class AreaProtectionManager implements Listener {
+public class AreaProtectionManager implements Listener, Serializable {
     private static final Map<Material, Integer> toolLevelByBreakableMaterial;
 
-    private final Main plugin;
+    private transient final Main plugin;
     private List<PriorityProtectionBounds> protectionBounds;
 
     static {

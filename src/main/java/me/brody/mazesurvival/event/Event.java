@@ -2,11 +2,12 @@ package me.brody.mazesurvival.event;
 
 import me.brody.mazesurvival.event.eventargs.EventArgs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event<T extends EventArgs> {
-    List<IListener<T>> listeners;
+public class Event<T extends EventArgs> implements Serializable {
+    private List<IListener<T>> listeners;
 
     public Event() {
         listeners = new ArrayList<>();

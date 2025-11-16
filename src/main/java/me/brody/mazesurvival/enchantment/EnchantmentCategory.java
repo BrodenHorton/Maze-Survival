@@ -2,6 +2,7 @@ package me.brody.mazesurvival.enchantment;
 
 import org.bukkit.Material;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 

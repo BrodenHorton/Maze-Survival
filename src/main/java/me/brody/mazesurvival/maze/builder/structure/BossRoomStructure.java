@@ -6,6 +6,8 @@ import me.brody.mazesurvival.bounds.CollisionBounds;
 import me.brody.mazesurvival.bounds.PriorityProtectionBounds;
 import me.brody.mazesurvival.bounds.ProtectionType;
 import me.brody.mazesurvival.maze.Direction;
+import me.brody.mazesurvival.maze.builder.structure.consumer.BossRoomEntranceConsumer;
+import me.brody.mazesurvival.maze.builder.structure.consumer.BossRoomExitConsumer;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.CellExtension;
 import me.brody.mazesurvival.maze.region.MazeRegion;
@@ -20,9 +22,9 @@ import org.bukkit.entity.Player;
 import java.util.function.Consumer;
 
 public class BossRoomStructure implements MazeStructureGenerator {
-    private final Main plugin;
+    private transient final Main plugin;
     private MazeSchematic schematic;
-    private Location origin;
+    private transient Location origin;
     private double rotation;
     private MazeRegion region;
 
@@ -85,7 +87,7 @@ public class BossRoomStructure implements MazeStructureGenerator {
         entranceTeleportLocation = LocationUtils.rotate(entranceTeleportLocation, -bossRoom.getDirection().rotation);
         entranceTeleportLocation = LocationUtils.shift(entranceTeleportLocation, bossRoomOrigin);
         entranceTeleportLocation = LocationUtils.centerOnBlock(entranceTeleportLocation);
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(entrance, getBossRoomEntranceConsumer(entranceTeleportLocation, bossRoomBounds), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(entrance, new BossRoomEntranceConsumer(plugin, region, entranceTeleportLocation, bossRoomBounds), null));
 
         BoundsInt exit = new BoundsInt(new Vector3Int(-(triggerWidth / 2), 0, 0), new Vector3Int(triggerWidth / 2, triggerHeight, 0));
         exit.shiftZ(-distanceToCellCenter - entranceToExitDistance);
@@ -95,7 +97,7 @@ public class BossRoomStructure implements MazeStructureGenerator {
         exitTeleportLocation = LocationUtils.rotate(exitTeleportLocation, -bossRoom.getDirection().rotation);
         exitTeleportLocation = LocationUtils.shift(exitTeleportLocation, bossRoomOrigin);
         exitTeleportLocation = LocationUtils.centerOnBlock(exitTeleportLocation);
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(exit, getBossRoomExitConsumer(exitTeleportLocation), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(exit, new BossRoomExitConsumer(plugin, region, exitTeleportLocation), null));
     }
 
     private Consumer<Player> getBossRoomEntranceConsumer(Location teleportLocation, BoundsInt bossRoomBounds) {

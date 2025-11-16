@@ -7,7 +7,9 @@ import me.brody.mazesurvival.maze.MazeManager;
 import org.bukkit.GameRule;
 import org.bukkit.World;
 
-public class DayNightCycle {
+import java.io.Serializable;
+
+public class DayNightCycle implements Serializable {
     private static final int GAME_START_TIME_IN_TICKS = 22000;
     private static final int START_OF_DAY_IN_TICKS = 0;
     private static final int START_OF_NIGHT_IN_TICKS = 13500;
@@ -16,9 +18,9 @@ public class DayNightCycle {
     public Event<EventArgs> onStartOfDay;
     public Event<EventArgs> onStartOfNight;
 
-    private final Main plugin;
+    private transient final Main plugin;
     private boolean isDay;
-    private World world;
+    private transient World world;
 
     public DayNightCycle(Main plugin, MazeManager mazeManager) {
         this.plugin = plugin;

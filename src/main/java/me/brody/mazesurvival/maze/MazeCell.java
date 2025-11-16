@@ -2,7 +2,9 @@ package me.brody.mazesurvival.maze;
 
 import me.brody.mazesurvival.maze.region.CellOrientation;
 
-public class MazeCell {
+import java.io.Serializable;
+
+public class MazeCell implements Serializable {
 	public boolean visited;
 	public boolean[] walls;
 	

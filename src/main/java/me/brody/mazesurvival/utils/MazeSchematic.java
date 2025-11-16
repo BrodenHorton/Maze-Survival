@@ -1,8 +1,9 @@
 package me.brody.mazesurvival.utils;
 
 import java.io.InputStream;
+import java.io.Serializable;
 
-public class MazeSchematic {
+public class MazeSchematic implements Serializable {
     private static final String SCHEMATICS_FOLDER_PATH = "/schematics";
     private static final String STRONGHOLD_FOLDER_PATH = SCHEMATICS_FOLDER_PATH + "/stronghold";
     private static final String DESERT_FOLDER_PATH = SCHEMATICS_FOLDER_PATH + "/desert";

@@ -39,7 +39,7 @@ public class MazeLootGenerator {
     private WeightedList<String> trapChestWeights;
     private boolean isRunning;
 
-    private class LootNode {
+    private static class LootNode {
         public Material material;
         public Location location;
         public BlockFace facing;

@@ -28,6 +28,7 @@ import me.brody.mazesurvival.mob.MobSpawnPool;
 import me.brody.mazesurvival.mob.custom.CustomMob;
 import me.brody.mazesurvival.mob.MobManager;
 import me.brody.mazesurvival.player.ProfileManager;
+import me.brody.mazesurvival.save.SaveData;
 import me.brody.mazesurvival.wanderingtrader.WanderingTraderManager;
 import me.brody.mazesurvival.listener.enchantment.MazeRunnerEnchantmentManager;
 import org.bukkit.Bukkit;
@@ -36,6 +37,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.brody.mazesurvival.command.CommandManager;
 import me.brody.mazesurvival.maze.MazeManager;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class Main extends JavaPlugin {
 	private MazeManager mazeManager;
@@ -127,6 +133,54 @@ public class Main extends JavaPlugin {
 		getLogger().info("****************************************");
 		getLogger().info("MazeSurvival has been disabled");
 		getLogger().info("****************************************");
+	}
+
+	public void save() {
+		SaveData saveData = new SaveData();
+		saveData.mazeManager = mazeManager;
+		saveData.profileManager = profileManager;
+		saveData.dayNightCycle = dayNightCycle;
+		saveData.mobManager = mobManager;
+		saveData.wanderingTraderManager = wanderingTraderManager;
+		saveData.areaProtectionManager = areaProtectionManager;
+		saveData.collisionManager = collisionManager;
+		saveData.respawnManager = respawnManager;
+		saveData.gameState = gameState;
+
+		try {
+			FileOutputStream fileOutputSteam = new FileOutputStream("./resources/save.dat");
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputSteam);
+			objectOutputStream.writeObject(saveData);
+			fileOutputSteam.close();
+			objectOutputStream.close();
+			System.out.println("File Saved");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Saving game data failed ...");
+		}
+	}
+
+	public void load() {
+		try {
+			FileInputStream fileInputStream = new FileInputStream("./resources/save.dat");
+			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+			SaveData saveData = (SaveData) objectInputStream.readObject();
+			mazeManager = saveData.mazeManager;
+			profileManager = saveData.profileManager;
+			dayNightCycle = saveData.dayNightCycle;
+			mobManager = saveData.mobManager;
+			wanderingTraderManager = saveData.wanderingTraderManager;
+			areaProtectionManager = saveData.areaProtectionManager;
+			collisionManager = saveData.collisionManager;
+			respawnManager = saveData.respawnManager;
+			gameState = saveData.gameState;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Loading game data failed ...");
+			System.exit(1);
+		}
 	}
 	
 	public MazeManager getMazeManager() {

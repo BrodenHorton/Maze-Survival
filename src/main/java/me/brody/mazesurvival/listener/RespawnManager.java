@@ -7,12 +7,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
-public class RespawnManager implements Listener {
-    private final Main plugin;
-    private Map<Player, Location> respawnLocationByPlayer;
+public class RespawnManager implements Listener, Serializable {
+    private transient final Main plugin;
+    private transient Map<UUID, Location> respawnLocationByPlayer;
 
     public RespawnManager(Main plugin) {
         this.plugin = plugin;
@@ -20,14 +22,14 @@ public class RespawnManager implements Listener {
     }
 
     public void setPlayerRespawnLocation(Player p, Location location) {
-        respawnLocationByPlayer.put(p, location);
+        respawnLocationByPlayer.put(p.getUniqueId(), location);
     }
 
     @EventHandler
     public void setPlayerRespawnLocationEvent(PlayerRespawnEvent e) {
-        if(!respawnLocationByPlayer.containsKey(e.getPlayer()))
+        if(!respawnLocationByPlayer.containsKey(e.getPlayer().getUniqueId()))
             return;
 
-        e.setRespawnLocation(respawnLocationByPlayer.get(e.getPlayer()));
+        e.setRespawnLocation(respawnLocationByPlayer.get(e.getPlayer().getUniqueId()));
     }
 }

@@ -20,13 +20,14 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.function.Supplier;
 
-public class WanderingTraderManager implements Listener {
+public class WanderingTraderManager implements Listener, Serializable {
     private static final Random RNG = new Random();
 
-    private final Main plugin;
+    private transient final Main plugin;
 
     private List<UUID> traderUuids;
     private Map<UUID, Integer> havenTraderAmountByRegionId;

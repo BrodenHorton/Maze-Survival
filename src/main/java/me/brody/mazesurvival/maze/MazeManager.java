@@ -14,18 +14,14 @@ import me.brody.mazesurvival.utils.Vector2Int;
 import org.bukkit.Location;
 
 import me.brody.mazesurvival.Main;
-import org.bukkit.event.Listener;
 
-public class MazeManager {
+import java.io.Serializable;
+
+public class MazeManager implements Serializable {
 	public Event<EventArgs> onMazeConstructionFinished;
 
-	private final Main plugin;
-
+	private transient final Main plugin;
 	private MazeGrid grid;
-	private MazeBuilder mazeBuilder;
-	private MazeLootGenerator lootGenerator;
-	private DecoratorGenerator mazeDecorator;
-	private StructureGenerator structureGenerator;
 	
 	public MazeManager(Main plugin) {
 		this.plugin = plugin;
@@ -64,10 +60,10 @@ public class MazeManager {
 
 		grid.generateRegionMazes();
 
-		mazeBuilder = new MazeBuilder(plugin, grid);
-		lootGenerator = new MazeLootGenerator(plugin, grid);
-		mazeDecorator = new DecoratorGenerator(plugin, grid);
-		structureGenerator = new StructureGenerator(plugin, grid);
+		MazeBuilder mazeBuilder = new MazeBuilder(plugin, grid);
+		MazeLootGenerator lootGenerator = new MazeLootGenerator(plugin, grid);
+		DecoratorGenerator mazeDecorator = new DecoratorGenerator(plugin, grid);
+		StructureGenerator structureGenerator = new StructureGenerator(plugin, grid);
 		mazeBuilder.onMazeBuilt.addListener((sender, args) -> lootGenerator.start());
 		lootGenerator.onLootGenerationFinished.addListener((sender, args) -> mazeDecorator.start());
 		mazeDecorator.onMazeDecoratorFinished.addListener((sender, args) -> structureGenerator.start());

@@ -12,6 +12,8 @@ import org.bukkit.Material;
 
 import me.brody.mazesurvival.Main;
 
+import java.io.Serializable;
+
 public class MazeBuilder {
 	private static final int MAZE_CELL_GENERATION_LIMIT = 30;
 

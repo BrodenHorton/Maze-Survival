@@ -1,6 +1,8 @@
 package me.brody.mazesurvival.bounds;
 
-public class PriorityProtectionBounds implements Comparable<PriorityProtectionBounds> {
+import java.io.Serializable;
+
+public class PriorityProtectionBounds implements Comparable<PriorityProtectionBounds>, Serializable {
     private int priority;
     private BoundsInt bounds;
     private ProtectionType protectionType;

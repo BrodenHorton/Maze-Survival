@@ -10,18 +10,21 @@ import java.util.Map;
 public class CustomShapedRecipe implements CustomRecipe {
     private static final char BLANK_SLOT = ' ';
 
+    private String id;
     private List<String> recipe;
     private Map<Character, ItemStack> ingredientByChar;
     private ItemStack result;
 
-    public CustomShapedRecipe(String s1, ItemStack result) {
+    public CustomShapedRecipe(String s1, ItemStack result, String id) {
+        this.id = id;
         recipe = new ArrayList<>();
         processRecipeLine(s1);
         ingredientByChar = new HashMap<>();
         this.result = result;
     }
 
-    public CustomShapedRecipe(String s1, String s2, ItemStack result) {
+    public CustomShapedRecipe(String s1, String s2, ItemStack result, String id) {
+        this.id = id;
         recipe = new ArrayList<>();
         processRecipeLine(s1);
         processRecipeLine(s2);
@@ -29,7 +32,8 @@ public class CustomShapedRecipe implements CustomRecipe {
         this.result = result;
     }
 
-    public CustomShapedRecipe(String s1, String s2, String s3, ItemStack result) {
+    public CustomShapedRecipe(String s1, String s2, String s3, ItemStack result, String id) {
+        this.id = id;
         recipe = new ArrayList<>();
         processRecipeLine(s1);
         processRecipeLine(s2);
@@ -155,5 +159,10 @@ public class CustomShapedRecipe implements CustomRecipe {
         }
 
         return result;
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 }

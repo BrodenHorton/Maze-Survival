@@ -292,11 +292,11 @@ public class CustomRecipes {
         registerHoeRecipe(adamantiteIngotTitaniumGrade, CustomItem.ABYSSAL_REAPER.getItemStack(), "abyssal_reaper");
 
         ItemStack shortBow = CustomItem.SHORT_BOW.getItemStack();
-        CustomShapedRecipe customShortBowRecipe = new CustomShapedRecipe(" LS", "L S", " LS", shortBow);
+        CustomShapedRecipe customShortBowRecipe = new CustomShapedRecipe(" LS", "L S", " LS", shortBow, "short_bow");
         customShortBowRecipe.addIngredient('L', ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(), ItemGrade.GOLD));
         customShortBowRecipe.addIngredient('S', ItemGradeUtils.createGradedItem(new ItemStack(Material.STRING), ItemGrade.TITANIUM));
         recipes.add(customShortBowRecipe);
-        Registry.CUSTOM_RECIPE.register("short_bow", customShortBowRecipe);
+        Registry.CUSTOM_RECIPE.register(customShortBowRecipe.getId(), customShortBowRecipe);
         ShapedRecipe shortBowRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         shortBowRecipe.shape(" LS", "L S", " LS");
         shortBowRecipe.setIngredient('L', Material.OAK_LOG);
@@ -304,12 +304,12 @@ public class CustomRecipes {
         Bukkit.addRecipe(shortBowRecipe);
 
         ItemStack enchantingTable = new ItemStack(Material.ENCHANTING_TABLE);
-        CustomShapedRecipe customEnchantingTableRecipe = new CustomShapedRecipe("LCL", "CMC", "LCL", enchantingTable);
+        CustomShapedRecipe customEnchantingTableRecipe = new CustomShapedRecipe("LCL", "CMC", "LCL", enchantingTable, "enchanting_table");
         customEnchantingTableRecipe.addIngredient('L', ItemGradeUtils.createGradedItem(new ItemStack(Material.LAPIS_LAZULI), ItemGrade.GOLD));
         customEnchantingTableRecipe.addIngredient('C', ItemGradeUtils.createGradedItem(new ItemStack(Material.COBBLESTONE), ItemGrade.TITANIUM));
         customEnchantingTableRecipe.addIngredient('M', ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.TITANIUM));
         recipes.add(customEnchantingTableRecipe);
-        Registry.CUSTOM_RECIPE.register("enchanting_table", customEnchantingTableRecipe);
+        Registry.CUSTOM_RECIPE.register(customEnchantingTableRecipe.getId(), customEnchantingTableRecipe);
         ShapedRecipe enchantingTableRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         enchantingTableRecipe.shape("LCL", "CMC", "LCL");
         enchantingTableRecipe.setIngredient('L', Material.LAPIS_LAZULI);
@@ -318,11 +318,11 @@ public class CustomRecipes {
         Bukkit.addRecipe(enchantingTableRecipe);
 
         ItemStack brewingStand = new ItemStack(Material.BREWING_STAND);
-        CustomShapedRecipe customBrewingStandRecipe = new CustomShapedRecipe(" B ", "MMM", brewingStand);
+        CustomShapedRecipe customBrewingStandRecipe = new CustomShapedRecipe(" B ", "MMM", brewingStand, "brewing_stand");
         customBrewingStandRecipe.addIngredient('B', ItemGradeUtils.createGradedItem(new ItemStack(Material.BLAZE_ROD), ItemGrade.GOLD));
         customBrewingStandRecipe.addIngredient('M', ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.GOLD));
         recipes.add(customBrewingStandRecipe);
-        Registry.CUSTOM_RECIPE.register("brewing_stand", customBrewingStandRecipe);
+        Registry.CUSTOM_RECIPE.register(customBrewingStandRecipe.getId(), customBrewingStandRecipe);
         ShapedRecipe brewingStandRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         brewingStandRecipe.shape(" B ", "MMM");
         brewingStandRecipe.setIngredient('B', Material.BLAZE_ROD);
@@ -366,6 +366,7 @@ public class CustomRecipes {
         Bukkit.addRecipe(adamantiteIngotBastingRecipe);
     }
 
+    // TODO: Start here
     private static void registerTwoByTwoRecipe(ItemStack item, ItemStack result, String recipeId) {
         CustomShapedRecipe customRecipe = new CustomShapedRecipe("LL", "LL", result);
         customRecipe.addIngredient('L', item);

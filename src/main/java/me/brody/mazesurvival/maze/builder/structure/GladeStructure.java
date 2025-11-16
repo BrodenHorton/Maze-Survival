@@ -5,6 +5,7 @@ import me.brody.mazesurvival.bounds.BoundsInt;
 import me.brody.mazesurvival.bounds.CollisionBounds;
 import me.brody.mazesurvival.bounds.PriorityProtectionBounds;
 import me.brody.mazesurvival.bounds.ProtectionType;
+import me.brody.mazesurvival.maze.builder.structure.consumer.GladeEntranceConsumer;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.utils.ChatUtils;
 import me.brody.mazesurvival.utils.MazeSchematic;
@@ -16,9 +17,9 @@ import org.bukkit.entity.Player;
 import java.util.function.Consumer;
 
 public class GladeStructure implements MazeStructureGenerator {
-    private final Main plugin;
+    private transient final Main plugin;
     private MazeSchematic schematic;
-    private Location origin;
+    private transient Location origin;
     private double rotation;
 
     public GladeStructure(Main plugin, MazeSchematic schematic, Location origin, double rotation) {
@@ -53,25 +54,25 @@ public class GladeStructure implements MazeStructureGenerator {
         BoundsInt northGateBounds = gateBounds.clone();
         northGateBounds.shift(gladeCenter);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, northGateBounds, ProtectionType.PROTECTED));
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(northGateBounds, playerSpawnPointConsumer(grid.getGladeRespawnLocation()), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(northGateBounds, new GladeEntranceConsumer(plugin, grid.getGladeRespawnLocation()), null));
 
         BoundsInt eastGateBounds = gateBounds.clone();
         eastGateBounds.rotateY(270);
         eastGateBounds.shift(gladeCenter);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, eastGateBounds, ProtectionType.PROTECTED));
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(eastGateBounds, playerSpawnPointConsumer(grid.getGladeRespawnLocation()), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(eastGateBounds, new GladeEntranceConsumer(plugin, grid.getGladeRespawnLocation()), null));
 
         BoundsInt southGateBounds = gateBounds.clone();
         southGateBounds.rotateY(180);
         southGateBounds.shift(gladeCenter);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, southGateBounds, ProtectionType.PROTECTED));
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(southGateBounds, playerSpawnPointConsumer(grid.getGladeRespawnLocation()), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(southGateBounds, new GladeEntranceConsumer(plugin, grid.getGladeRespawnLocation()), null));
 
         BoundsInt westGateBounds = gateBounds.clone();
         westGateBounds.rotateY(90);
         westGateBounds.shift(gladeCenter);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, westGateBounds, ProtectionType.PROTECTED));
-        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(westGateBounds, playerSpawnPointConsumer(grid.getGladeRespawnLocation()), null));
+        plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(westGateBounds, new GladeEntranceConsumer(plugin, grid.getGladeRespawnLocation()), null));
     }
 
     private Consumer<Player> playerSpawnPointConsumer(Location location) {

@@ -1,5 +1,7 @@
 package me.brody.mazesurvival.maze.builder.structure;
 
-public interface MazeStructureGenerator {
+import java.io.Serializable;
+
+public interface MazeStructureGenerator extends Serializable {
     void generateStructure();
 }

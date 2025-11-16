@@ -3,12 +3,14 @@ package me.brody.mazesurvival.bounds;
 import me.brody.mazesurvival.utils.Vector3Int;
 import org.bukkit.Location;
 
+import java.io.Serializable;
+
 /**
  * Represents a rectangular bounds between a min and max location. Both min and max are inclusive.
  *
  * Example: A bounds of min 0,0,0 and max 0,0,0 will represent a 1x1x1 cube region at the location 0,0,0
  */
-public class BoundsInt {
+public class BoundsInt implements Serializable {
     private Vector3Int min;
     private Vector3Int max;
 

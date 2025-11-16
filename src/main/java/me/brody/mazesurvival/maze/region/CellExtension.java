@@ -4,7 +4,9 @@ import me.brody.mazesurvival.maze.Direction;
 import me.brody.mazesurvival.utils.MazeSchematic;
 import me.brody.mazesurvival.utils.Vector2Int;
 
-public class CellExtension {
+import java.io.Serializable;
+
+public class CellExtension implements Serializable {
     private Vector2Int cellPosition;
     private Direction direction;
     private MazeSchematic schematic;
