@@ -6,7 +6,6 @@ import me.brody.mazesurvival.bounds.CollisionManager;
 import me.brody.mazesurvival.daynightcycle.DayNightCycle;
 import me.brody.mazesurvival.enchantment.EnchantingController;
 import me.brody.mazesurvival.enchantment.MazeEnchantment;
-import me.brody.mazesurvival.event.eventargs.EventArgs;
 import me.brody.mazesurvival.gamestate.GameState;
 import me.brody.mazesurvival.item.CustomItem;
 import me.brody.mazesurvival.item.recipe.CustomRecipeCompendium;
@@ -31,8 +30,6 @@ import me.brody.mazesurvival.player.ProfileManager;
 import me.brody.mazesurvival.save.SaveData;
 import me.brody.mazesurvival.wanderingtrader.WanderingTraderManager;
 import me.brody.mazesurvival.listener.enchantment.MazeRunnerEnchantmentManager;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.brody.mazesurvival.command.CommandManager;
@@ -42,6 +39,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Main extends JavaPlugin {
 	private MazeManager mazeManager;
@@ -60,8 +60,9 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-		getConfig().options().copyDefaults();
-		saveDefaultConfig();
+		getLogger().info("****************************************");
+		getLogger().info("MazeSurvival has been enabled");
+		getLogger().info("****************************************");
 
 		MazeEnchantment.init(this);
 		LootTable.init(this);
@@ -73,17 +74,25 @@ public class Main extends JavaPlugin {
 		CustomRecipes.register();
 		MazeRegionBase.initMazeBases();
 		MazeGridBase.register();
-		mazeManager = new MazeManager(this);
-		profileManager = new ProfileManager(this);
-		dayNightCycle = new DayNightCycle(this, mazeManager);
-		mobManager = new MobManager(this, dayNightCycle);
-		wanderingTraderManager = new WanderingTraderManager(this, dayNightCycle);
+
+		if(hasSaveFile()) {
+			getLogger().info("Loading MazeSurvival Save File ...");
+			loadSaveFile();
+		}
+		else {
+			getLogger().info("No Save File Found.");
+			mazeManager = new MazeManager(this);
+			profileManager = new ProfileManager(this);
+			dayNightCycle = new DayNightCycle(this, mazeManager);
+			mobManager = new MobManager(this, dayNightCycle);
+			wanderingTraderManager = new WanderingTraderManager(this, dayNightCycle);
+			areaProtectionManager = new AreaProtectionManager();
+			collisionManager = new CollisionManager();
+			respawnManager = new RespawnManager();
+			gameState = new GameState();
+		}
 		enchantingController = new EnchantingController(this);
-		areaProtectionManager = new AreaProtectionManager(this);
-		collisionManager = new CollisionManager(this);
 		gladeDoorListener = new GladeDoorListener(this, dayNightCycle);
-		respawnManager = new RespawnManager(this);
-		gameState = new GameState();
 		customRecipeCompendium = new CustomRecipeCompendium(this);
 		initializePlayersListener = new InitializePlayersListener(this, mazeManager);
 
@@ -122,20 +131,19 @@ public class Main extends JavaPlugin {
 		PlayerHealthManager.getInstance().run(this);
 		MazeRunnerEnchantmentManager.getInstance().run(this);
 		AmethystSetBonusManager.getInstance().run(this);
-
-		getLogger().info("****************************************");
-		getLogger().info("MazeSurvival has been enabled");
-		getLogger().info("****************************************");
 	}
 	
 	@Override
 	public void onDisable() {
+		getLogger().info("Saving Game Data ...");
+		saveGameData();
+
 		getLogger().info("****************************************");
 		getLogger().info("MazeSurvival has been disabled");
 		getLogger().info("****************************************");
 	}
 
-	public void save() {
+	public void saveGameData() {
 		SaveData saveData = new SaveData();
 		saveData.mazeManager = mazeManager;
 		saveData.profileManager = profileManager;
@@ -148,7 +156,7 @@ public class Main extends JavaPlugin {
 		saveData.gameState = gameState;
 
 		try {
-			FileOutputStream fileOutputSteam = new FileOutputStream("./resources/save.dat");
+			FileOutputStream fileOutputSteam = new FileOutputStream(getDataFolder() + "/save.dat");
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputSteam);
 			objectOutputStream.writeObject(saveData);
 			fileOutputSteam.close();
@@ -161,15 +169,18 @@ public class Main extends JavaPlugin {
 		}
 	}
 
-	public void load() {
+	public void loadSaveFile() {
 		try {
-			FileInputStream fileInputStream = new FileInputStream("./resources/save.dat");
+			FileInputStream fileInputStream = new FileInputStream(getDataFolder() + "/save.dat");
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 			SaveData saveData = (SaveData) objectInputStream.readObject();
 			mazeManager = saveData.mazeManager;
 			profileManager = saveData.profileManager;
 			dayNightCycle = saveData.dayNightCycle;
 			mobManager = saveData.mobManager;
+			Field dayNightCycleField = mobManager.getClass().getField("dayNightCycle");
+			dayNightCycleField.setAccessible(true);
+			dayNightCycleField.set(mobManager, dayNightCycle);
 			wanderingTraderManager = saveData.wanderingTraderManager;
 			areaProtectionManager = saveData.areaProtectionManager;
 			collisionManager = saveData.collisionManager;
@@ -181,6 +192,10 @@ public class Main extends JavaPlugin {
 			System.out.println("Loading game data failed ...");
 			System.exit(1);
 		}
+	}
+
+	private boolean hasSaveFile() {
+		return Files.exists(Paths.get(getDataFolder() + "/save.dat"));
 	}
 	
 	public MazeManager getMazeManager() {

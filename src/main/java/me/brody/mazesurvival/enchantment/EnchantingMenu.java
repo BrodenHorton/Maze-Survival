@@ -5,11 +5,9 @@ import me.brody.mazesurvival.enchantment.persistentdata.Script;
 import me.brody.mazesurvival.enchantment.persistentdata.ScriptDataType;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import me.brody.mazesurvival.player.PlayerProfile;
+import me.brody.mazesurvival.registry.Registry;
 import me.brody.mazesurvival.utils.RomanNumeralUtils;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -188,7 +186,7 @@ public class EnchantingMenu implements Listener {
             return;
         }
         String enchantmentName = enchantDataContainer.get(NamespacedKeys.ENCHANTING_MENU_ENCHANTMENT_TYPE, PersistentDataType.STRING);
-        MazeEnchantment mazeEnchantment = MazeEnchantment.MAZE_ENCHANTMENT_BY_NAME.get(enchantmentName);
+        MazeEnchantment mazeEnchantment = Registry.ENCHANTMENT.get(enchantmentName);
         if(mazeEnchantment.containsEnchant(scriptingItem)) {
             player.playSound(player, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             return;

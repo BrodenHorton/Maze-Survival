@@ -14,13 +14,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataType;
 
 public class NetherBossFight implements BossFight {
-    private final Main plugin;
-
-    private BossType bossType;
+    private transient final Main plugin;
 
     public NetherBossFight(Main plugin) {
         this.plugin = plugin;
-        bossType = BossType.NETHER;
     }
 
     @Override

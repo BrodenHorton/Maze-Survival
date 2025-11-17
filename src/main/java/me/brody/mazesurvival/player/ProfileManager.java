@@ -5,13 +5,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class ProfileManager {
-    private transient final Main plugin;
+public class ProfileManager implements Serializable {
+    private transient Main plugin;
     private List<PlayerProfile> playerProfiles;
 
     public ProfileManager(Main plugin) {
@@ -42,5 +47,10 @@ public class ProfileManager {
         }
 
         return null;
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        plugin = JavaPlugin.getPlugin(Main.class);
     }
 }

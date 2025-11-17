@@ -19,7 +19,11 @@ import org.bukkit.event.entity.VillagerCareerChangeEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 import java.util.function.Supplier;
@@ -27,7 +31,7 @@ import java.util.function.Supplier;
 public class WanderingTraderManager implements Listener, Serializable {
     private static final Random RNG = new Random();
 
-    private transient final Main plugin;
+    private transient Main plugin;
 
     private List<UUID> traderUuids;
     private Map<UUID, Integer> havenTraderAmountByRegionId;
@@ -119,6 +123,11 @@ public class WanderingTraderManager implements Listener, Serializable {
             plugin.getLogger().warning("Not all Wandering Traders were properly despawned in WanderingTraderManager#despawnWanderingTraders.");
             traderUuids.clear();
         }
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        plugin = JavaPlugin.getPlugin(Main.class);
     }
 
     @EventHandler

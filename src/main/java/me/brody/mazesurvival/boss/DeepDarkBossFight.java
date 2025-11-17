@@ -14,13 +14,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataType;
 
 public class DeepDarkBossFight implements BossFight {
-    private final Main plugin;
-
-    private BossType bossType;
+    private transient final Main plugin;
 
     public DeepDarkBossFight(Main plugin) {
         this.plugin = plugin;
-        bossType = BossType.DEEP_DARK;
     }
 
     @Override

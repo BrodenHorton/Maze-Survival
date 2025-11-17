@@ -9,9 +9,10 @@ import me.brody.mazesurvival.maze.Direction;
 import me.brody.mazesurvival.maze.MazeCell;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.mob.MobSpawnPool;
+import me.brody.mazesurvival.registry.Registry;
 import me.brody.mazesurvival.utils.Vector2Int;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 
 public class MazeRegion implements Serializable {
@@ -155,6 +156,18 @@ public class MazeRegion implements Serializable {
 		}
 
 		return destinationCell;
+	}
+
+	@Serial
+	private void writeObject(ObjectOutputStream oos) throws IOException {
+		oos.defaultWriteObject();
+		oos.writeUTF(regionBase.getId());
+	}
+
+	@Serial
+	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+		ois.defaultReadObject();
+		regionBase = Registry.REGION_BASE.get(ois.readUTF());
 	}
 
 	public UUID getUuid() {

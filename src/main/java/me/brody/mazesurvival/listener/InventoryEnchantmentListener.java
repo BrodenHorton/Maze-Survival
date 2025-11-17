@@ -5,6 +5,7 @@ import me.brody.mazesurvival.enchantment.MazeEnchantment;
 import me.brody.mazesurvival.enchantment.persistentdata.*;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import me.brody.mazesurvival.player.PlayerProfile;
+import me.brody.mazesurvival.registry.Registry;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.*;
@@ -51,7 +52,7 @@ public class InventoryEnchantmentListener implements Listener {
         }
         Map<MazeEnchantment, Integer> compatibleEnchantments = new HashMap<>();
         for(int i = 0; i < script.getEnchantmentEntries().size(); i++) {
-            MazeEnchantment mazeEnchantment = MazeEnchantment.MAZE_ENCHANTMENT_BY_NAME.get(script.getEnchantmentEntries().get(i).getEnchantmentName());
+            MazeEnchantment mazeEnchantment = Registry.ENCHANTMENT.get(script.getEnchantmentEntries().get(i).getEnchantmentName());
             if(mazeEnchantment != null && mazeEnchantment.getCategory().contains(e.getCurrentItem().getType()))
                 compatibleEnchantments.put(mazeEnchantment, script.getEnchantmentEntries().get(i).getLevel());
         }

@@ -1,10 +1,9 @@
 package me.brody.mazesurvival.mob;
 
-public class MobSpawnConfig {
-    public static final long MOB_SPAWNING_UPDATE_IN_TICKS = 20L;
+import java.io.Serializable;
 
-    public static final MobSpawnConfig DAY_SPAWN_CONFIG;
-    public static final MobSpawnConfig NIGHT_SPAWN_CONFIG;
+public class MobSpawnConfig implements Serializable {
+    public static final long MOB_SPAWNING_UPDATE_IN_TICKS = 20L;
 
     private int maxMobsNearPlayer;
     private int maxConcurrentSpawnCount;
@@ -13,12 +12,7 @@ public class MobSpawnConfig {
     private int despawnRadius;
     private int mobRespawnCooldownInSeconds;
 
-    static {
-        DAY_SPAWN_CONFIG = new MobSpawnConfig(7, 3, 8, 3, 80, 15);
-        NIGHT_SPAWN_CONFIG = new MobSpawnConfig(10, 3, 6, 2, 65, 10);
-    }
-
-    private MobSpawnConfig(int maxMobsNearPlayer, int maxConcurrentSpawnCount, int maxCellSpawnDistance, int minCellSpawnDistance, int despawnRadius, int mobRespawnCooldownInSeconds) {
+    public MobSpawnConfig(int maxMobsNearPlayer, int maxConcurrentSpawnCount, int maxCellSpawnDistance, int minCellSpawnDistance, int despawnRadius, int mobRespawnCooldownInSeconds) {
         this.maxMobsNearPlayer = maxMobsNearPlayer;
         this.maxConcurrentSpawnCount = maxConcurrentSpawnCount;
         this.maxCellSpawnDistance = maxCellSpawnDistance;

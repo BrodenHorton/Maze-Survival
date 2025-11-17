@@ -25,7 +25,6 @@ import java.util.*;
 public class AreaProtectionManager implements Listener, Serializable {
     private static final Map<Material, Integer> toolLevelByBreakableMaterial;
 
-    private transient final Main plugin;
     private List<PriorityProtectionBounds> protectionBounds;
 
     static {
@@ -62,8 +61,7 @@ public class AreaProtectionManager implements Listener, Serializable {
         toolLevelByBreakableMaterial.put(Material.DEEPSLATE, 0);
     }
 
-    public AreaProtectionManager(Main plugin) {
-        this.plugin = plugin;
+    public AreaProtectionManager() {
         protectionBounds = new ArrayList<>();
     }
 
@@ -77,10 +75,10 @@ public class AreaProtectionManager implements Listener, Serializable {
             if(eval == 0)
                 break;
 
-            if(eval == 1) {
+            if(eval > 0) {
                 rightIndex = middleIndex - 1;
             }
-            else if(eval == -1)
+            else
                 leftIndex = middleIndex + 1;
 
             middleIndex = (rightIndex + leftIndex) / 2;
@@ -100,8 +98,6 @@ public class AreaProtectionManager implements Listener, Serializable {
 
     @EventHandler
     public void protectionBoundsBlockInteract(PlayerInteractEvent e) {
-        if(e.getPlayer() == null)
-            return;
         if(e.getAction() != Action.LEFT_CLICK_BLOCK)
             return;
         if(e.getPlayer().getGameMode() == GameMode.CREATIVE)
@@ -129,8 +125,6 @@ public class AreaProtectionManager implements Listener, Serializable {
 
     @EventHandler
     public void protectionBoundsBlockBreak(BlockBreakEvent e) {
-        if(e.getPlayer() == null)
-            return;
         if(e.getPlayer().getGameMode() == GameMode.CREATIVE)
             return;
 
@@ -160,8 +154,6 @@ public class AreaProtectionManager implements Listener, Serializable {
 
     @EventHandler
     public void protectionBoundsBlockPlace(BlockPlaceEvent e) {
-        if(e.getPlayer() == null)
-            return;
         if(e.getPlayer().getGameMode() == GameMode.CREATIVE)
             return;
 

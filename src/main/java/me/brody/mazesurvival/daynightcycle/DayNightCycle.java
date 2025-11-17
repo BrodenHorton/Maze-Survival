@@ -4,10 +4,15 @@ import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.event.Event;
 import me.brody.mazesurvival.event.eventargs.EventArgs;
 import me.brody.mazesurvival.maze.MazeManager;
+import me.brody.mazesurvival.registry.Registry;
+import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
+import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.Serializable;
+import java.io.*;
+import java.util.UUID;
 
 public class DayNightCycle implements Serializable {
     private static final int GAME_START_TIME_IN_TICKS = 22000;
@@ -18,7 +23,7 @@ public class DayNightCycle implements Serializable {
     public Event<EventArgs> onStartOfDay;
     public Event<EventArgs> onStartOfNight;
 
-    private transient final Main plugin;
+    private transient Main plugin;
     private boolean isDay;
     private transient World world;
 
@@ -56,6 +61,20 @@ public class DayNightCycle implements Serializable {
             int timeStep = isDay ? dayTimeStep : nightTimeStep;
             world.setTime((world.getTime() + timeStep) % TOTAL_TICKS_IN_CYCLE);
         }, 0L, tickTimeScale);
+    }
+
+    @Serial
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        oos.writeObject(world.getUID());
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        plugin = JavaPlugin.getPlugin(Main.class);
+        UUID worldUuid = (UUID) ois.readObject();
+        world = Bukkit.getWorld(worldUuid);
     }
 
     public boolean isDay() {

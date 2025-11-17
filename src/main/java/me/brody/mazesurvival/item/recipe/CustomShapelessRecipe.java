@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomShapelessRecipe implements CustomRecipe {
+    private String id;
     private List<ItemStack> ingredients;
     private ItemStack result;
 
-    public CustomShapelessRecipe(List<ItemStack> ingredients, ItemStack result) {
+    public CustomShapelessRecipe(List<ItemStack> ingredients, ItemStack result, String id) {
         this.ingredients = ingredients;
         this.result = result;
     }
@@ -57,5 +58,10 @@ public class CustomShapelessRecipe implements CustomRecipe {
         }
 
         return result;
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 }

@@ -4,18 +4,21 @@ import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.maze.Direction;
 import me.brody.mazesurvival.maze.region.CellExtension;
 import me.brody.mazesurvival.maze.region.MazeRegion;
+import me.brody.mazesurvival.registry.Registry;
 import me.brody.mazesurvival.utils.LocationUtils;
 import me.brody.mazesurvival.utils.MazeSchematic;
 import me.brody.mazesurvival.utils.Vector2Int;
 import me.brody.mazesurvival.utils.Vector3Int;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 
 public class MazeGrid implements Serializable {
-	private transient final Main plugin;
+	private transient Main plugin;
 
 	private transient MazeGridBase gridBase;
 	private transient Location gridOrigin;
@@ -242,6 +245,32 @@ public class MazeGrid implements Serializable {
 		havenCenterOffset.rotateY(region.getHaven().getDirection().id * -90);
 
 		return LocationUtils.shift(havenOrigin, havenCenterOffset);
+	}
+
+	@Serial
+	private void writeObject(ObjectOutputStream oos) throws IOException {
+		oos.defaultWriteObject();
+		oos.writeUTF(gridBase.getId());
+		oos.writeObject(gridOrigin.getWorld().getUID());
+		oos.writeDouble(gridOrigin.getX());
+		oos.writeDouble(gridOrigin.getY());
+		oos.writeDouble(gridOrigin.getZ());
+		oos.writeFloat(gridOrigin.getYaw());
+		oos.writeFloat(gridOrigin.getPitch());
+	}
+
+	@Serial
+	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+		ois.defaultReadObject();
+		plugin = JavaPlugin.getPlugin(Main.class);
+		gridBase = Registry.GRID_BASE.get(ois.readUTF());
+		UUID worldUuid = (UUID) ois.readObject();
+		double x = ois.readDouble();
+		double y = ois.readDouble();
+		double z = ois.readDouble();
+		float yaw = ois.readFloat();
+		float pitch = ois.readFloat();
+		gridOrigin = new Location(Bukkit.getWorld(worldUuid), x, y, z, yaw, pitch);
 	}
 
 	public World getWorld() {

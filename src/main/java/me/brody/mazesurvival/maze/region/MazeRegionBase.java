@@ -19,6 +19,7 @@ public class MazeRegionBase {
     public static MazeRegionBase BASTION;
     public static MazeRegionBase DEEP_DARK;
 
+    private String id;
     private BlockPalette floorPalette;
     private BlockPalette wallPalette;
     private RegionDecoration decoration;
@@ -29,15 +30,16 @@ public class MazeRegionBase {
     private List<CustomRecipe> accessibleRecipes;
     private int regionLevelRequirement;
 
-    private MazeRegionBase(BlockPalette wallPalette, BlockPalette floorPalette, RegionDecoration decoration,
+    private MazeRegionBase(String id, BlockPalette wallPalette, BlockPalette floorPalette, RegionDecoration decoration,
                            LootTable mazeChestLootTable, TradeTable tradeTable, MobSpawnPool dayMobs,
                            MobSpawnPool nightMobs, int regionLevelRequirement) {
-        this(wallPalette, floorPalette, decoration, mazeChestLootTable, tradeTable, dayMobs, nightMobs, regionLevelRequirement, new ArrayList<>());
+        this(id, wallPalette, floorPalette, decoration, mazeChestLootTable, tradeTable, dayMobs, nightMobs, regionLevelRequirement, new ArrayList<>());
     }
 
-    private MazeRegionBase(BlockPalette wallPalette, BlockPalette floorPalette, RegionDecoration decoration,
+    private MazeRegionBase(String id, BlockPalette wallPalette, BlockPalette floorPalette, RegionDecoration decoration,
                            LootTable mazeChestLootTable, TradeTable tradeTable, MobSpawnPool dayMobs,
                            MobSpawnPool nightMobs, int regionLevelRequirement, List<CustomRecipe> accessibleRecipes) {
+        this.id = id;
         this.wallPalette = wallPalette;
         this.floorPalette = floorPalette;
         this.decoration = decoration;
@@ -51,6 +53,7 @@ public class MazeRegionBase {
 
     public static void initMazeBases() {
         STRONGHOLD = new MazeRegionBase(
+                "stronghold",
                 BlockPalette.STRONGHOLD_WALL,
                 BlockPalette.STRONGHOLD_FLOOR,
                 RegionDecoration.STRONGHOLD_DECORATIONS,
@@ -59,6 +62,7 @@ public class MazeRegionBase {
                 MobSpawnPool.STRONGHOLD_DAY_MOBS,
                 MobSpawnPool.STRONGHOLD_NIGHT_MOBS,
                 0);
+        register(STRONGHOLD);
 
         List<CustomRecipe> desertRecipes = List.of(
                 Registry.CUSTOM_RECIPE.get("bronze_ingot"),
@@ -85,6 +89,7 @@ public class MazeRegionBase {
                 Registry.CUSTOM_RECIPE.get("lapis_boots")
         );
         DESERT = new MazeRegionBase(
+                "desert",
                 BlockPalette.DESERT_WALL,
                 BlockPalette.DESERT_FLOOR,
                 RegionDecoration.DESERT_DECORATIONS,
@@ -94,6 +99,7 @@ public class MazeRegionBase {
                 MobSpawnPool.DESERT_NIGHT_MOBS,
                 0,
                 desertRecipes);
+        register(DESERT);
 
         List<CustomRecipe> swampRecipes = List.of(
                 Registry.CUSTOM_RECIPE.get("miststeel_ingot_iron_grade"),
@@ -123,6 +129,7 @@ public class MazeRegionBase {
                 Registry.CUSTOM_RECIPE.get("brewing_stand")
         );
         SWAMP = new MazeRegionBase(
+                "swamp",
                 BlockPalette.SWAMP_WALL,
                 BlockPalette.SWAMP_FLOOR,
                 RegionDecoration.SWAMP_DECORATIONS,
@@ -132,6 +139,7 @@ public class MazeRegionBase {
                 MobSpawnPool.SWAMP_NIGHT_MOBS,
                 1,
                 swampRecipes);
+        register(SWAMP);
 
         List<CustomRecipe> netherRecipes = List.of(
                 Registry.CUSTOM_RECIPE.get("sun_gold_nugget_iron_grade"),
@@ -159,6 +167,7 @@ public class MazeRegionBase {
                 Registry.CUSTOM_RECIPE.get("mithril_boots")
         );
         NETHER = new MazeRegionBase(
+                "nether",
                 BlockPalette.NETHER_WALL,
                 BlockPalette.NETHER_FLOOR,
                 RegionDecoration.NETHER_DECORATIONS,
@@ -168,8 +177,10 @@ public class MazeRegionBase {
                 MobSpawnPool.NETHER_NIGHT_MOBS,
                 2,
                 netherRecipes);
+        register(NETHER);
 
         BASTION = new MazeRegionBase(
+                "bastion",
                 BlockPalette.BASTION_WALL,
                 BlockPalette.BASTION_FLOOR,
                 RegionDecoration.BASTION_DECORATIONS,
@@ -178,6 +189,7 @@ public class MazeRegionBase {
                 MobSpawnPool.BASTION_DAY_MOBS,
                 MobSpawnPool.BASTION_NIGHT_MOBS,
                 3);
+        register(BASTION);
 
         List<CustomRecipe> deepDarkRecipes = List.of(
                 Registry.CUSTOM_RECIPE.get("corrupted_diamond"),
@@ -204,6 +216,7 @@ public class MazeRegionBase {
                 Registry.CUSTOM_RECIPE.get("abyssal_reaper")
         );
         DEEP_DARK = new MazeRegionBase(
+                "deep_dark",
                 BlockPalette.DEEP_DARK_WALL,
                 BlockPalette.DEEP_DARK_FLOOR,
                 RegionDecoration.DEEP_DARK_DECORATIONS,
@@ -213,6 +226,15 @@ public class MazeRegionBase {
                 MobSpawnPool.DEEP_DARK_NIGHT_MOBS,
                 3,
                 deepDarkRecipes);
+        register(DEEP_DARK);
+    }
+
+    private static void register(MazeRegionBase regionBase) {
+        Registry.REGION_BASE.register(regionBase.id, regionBase);
+    }
+
+    public String getId() {
+        return id;
     }
 
     public BlockPalette getFloorPalette() {

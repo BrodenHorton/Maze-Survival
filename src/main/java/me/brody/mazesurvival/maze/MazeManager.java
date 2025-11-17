@@ -14,13 +14,17 @@ import me.brody.mazesurvival.utils.Vector2Int;
 import org.bukkit.Location;
 
 import me.brody.mazesurvival.Main;
+import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.io.Serializable;
 
 public class MazeManager implements Serializable {
 	public Event<EventArgs> onMazeConstructionFinished;
 
-	private transient final Main plugin;
+	private transient Main plugin;
 	private MazeGrid grid;
 	
 	public MazeManager(Main plugin) {
@@ -70,6 +74,12 @@ public class MazeManager implements Serializable {
 		structureGenerator.onStructureGenerationFinished.addListener((sender, args) -> onMazeConstructionFinished.invoke(this, EventArgs.EMPTY));
 
 		mazeBuilder.build();
+	}
+
+	@Serial
+	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+		ois.defaultReadObject();
+		plugin = JavaPlugin.getPlugin(Main.class);
 	}
 
 	public MazeGrid getGrid() {

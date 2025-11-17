@@ -1,8 +1,11 @@
 package me.brody.mazesurvival.enchantment;
 
 import me.brody.mazesurvival.Main;
+import me.brody.mazesurvival.registry.Registry;
+import net.royawesome.jlibnoise.module.combiner.Power;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.PoweredRail;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -28,8 +31,6 @@ public abstract class MazeEnchantment {
     public static MazeEnchantment UNBREAKING;
     public static MazeEnchantment SOUL_BOUND;
 
-    public static Map<String, MazeEnchantment> MAZE_ENCHANTMENT_BY_NAME;
-
     protected Main plugin;
     protected String enchantmentName;
     protected EnchantmentCategory category;
@@ -43,50 +44,48 @@ public abstract class MazeEnchantment {
     public static void init(Main plugin) {
         // Armor Enchantments
         PROTECTION = new SimpleEnchantment(plugin, Enchantment.PROTECTION, EnchantmentCategory.ARMOR);
+        register(PROTECTION);
         THORNS = new SimpleEnchantment(plugin, Enchantment.THORNS, EnchantmentCategory.ARMOR);
+        register(THORNS);
         SOUL_SPEED = new SimpleEnchantment(plugin, Enchantment.SOUL_SPEED, EnchantmentCategory.BOOTS);
+        register(SOUL_SPEED);
         VITALITY = new CustomEnchantment(plugin, "Vitality", EnchantmentCategory.ARMOR);
+        register(VITALITY);
         MAZE_RUNNER = new CustomEnchantment(plugin, "Maze Runner", EnchantmentCategory.BOOTS);
+        register(MAZE_RUNNER);
         // Weapon enchantments
         SHARPNESS = new SimpleEnchantment(plugin, Enchantment.SHARPNESS, EnchantmentCategory.WEAPONS);
+        register(SHARPNESS);
         SMITE = new SimpleEnchantment(plugin, Enchantment.SMITE, EnchantmentCategory.WEAPONS);
+        register(SMITE);
         BANE_OF_ARTHROPODS = new SimpleEnchantment(plugin, Enchantment.BANE_OF_ARTHROPODS, EnchantmentCategory.WEAPONS);
+        register(BANE_OF_ARTHROPODS);
         FIRE_ASPECT = new SimpleEnchantment(plugin, Enchantment.FIRE_ASPECT, EnchantmentCategory.WEAPONS);
+        register(FIRE_ASPECT);
         KNOCKBACK = new SimpleEnchantment(plugin, Enchantment.KNOCKBACK, EnchantmentCategory.WEAPONS);
+        register(KNOCKBACK);
         LOOTING = new SimpleEnchantment(plugin, Enchantment.LOOTING, EnchantmentCategory.WEAPONS);
+        register(LOOTING);
         CRUSADER = new CustomEnchantment(plugin, "Crusader", EnchantmentCategory.WEAPONS);
+        register(CRUSADER);
         // Bow Enchantments
         POWER = new SimpleEnchantment(plugin, Enchantment.POWER, EnchantmentCategory.BOWS);
+        register(POWER);
         PUNCH = new SimpleEnchantment(plugin, Enchantment.PUNCH, EnchantmentCategory.BOWS);
+        register(PUNCH);
         FLAME = new SimpleEnchantment(plugin, Enchantment.FLAME, EnchantmentCategory.BOWS);
+        register(FLAME);
         LINGERING_SHOT = new CustomEnchantment(plugin, "Lingering Shot", EnchantmentCategory.BOWS);
+        register(LINGERING_SHOT);
         // Universal Enchantments
         UNBREAKING = new SimpleEnchantment(plugin, Enchantment.UNBREAKING, EnchantmentCategory.UNIVERSAL);
+        register(UNBREAKING);
         SOUL_BOUND = new CustomEnchantment(plugin, "Soul Bound", EnchantmentCategory.UNIVERSAL);
+        register(SOUL_BOUND);
+    }
 
-        MAZE_ENCHANTMENT_BY_NAME = new HashMap<>();
-        // Armor
-        MAZE_ENCHANTMENT_BY_NAME.put(PROTECTION.getEnchantmentName(), PROTECTION);
-        MAZE_ENCHANTMENT_BY_NAME.put(THORNS.getEnchantmentName(), THORNS);
-        MAZE_ENCHANTMENT_BY_NAME.put(SOUL_SPEED.getEnchantmentName(), SOUL_SPEED);
-        MAZE_ENCHANTMENT_BY_NAME.put(VITALITY.getEnchantmentName(), VITALITY);
-        MAZE_ENCHANTMENT_BY_NAME.put(MAZE_RUNNER.getEnchantmentName(), MAZE_RUNNER);
-        // Weapon
-        MAZE_ENCHANTMENT_BY_NAME.put(SHARPNESS.getEnchantmentName(), SHARPNESS);
-        MAZE_ENCHANTMENT_BY_NAME.put(SMITE.getEnchantmentName(), SMITE);
-        MAZE_ENCHANTMENT_BY_NAME.put(BANE_OF_ARTHROPODS.getEnchantmentName(), BANE_OF_ARTHROPODS);
-        MAZE_ENCHANTMENT_BY_NAME.put(FIRE_ASPECT.getEnchantmentName(), FIRE_ASPECT);
-        MAZE_ENCHANTMENT_BY_NAME.put(KNOCKBACK.getEnchantmentName(), KNOCKBACK);
-        MAZE_ENCHANTMENT_BY_NAME.put(LOOTING.getEnchantmentName(), LOOTING);
-        MAZE_ENCHANTMENT_BY_NAME.put(CRUSADER.getEnchantmentName(), CRUSADER);
-        // Bow
-        MAZE_ENCHANTMENT_BY_NAME.put(POWER.getEnchantmentName(), POWER);
-        MAZE_ENCHANTMENT_BY_NAME.put(PUNCH.getEnchantmentName(), PUNCH);
-        MAZE_ENCHANTMENT_BY_NAME.put(FLAME.getEnchantmentName(), FLAME);
-        MAZE_ENCHANTMENT_BY_NAME.put(LINGERING_SHOT.getEnchantmentName(), LINGERING_SHOT);
-        // Universal
-        MAZE_ENCHANTMENT_BY_NAME.put(UNBREAKING.getEnchantmentName(), UNBREAKING);
-        MAZE_ENCHANTMENT_BY_NAME.put(SOUL_BOUND.getEnchantmentName(), SOUL_BOUND);
+    private static void register(MazeEnchantment enchantment) {
+        Registry.ENCHANTMENT.register(enchantment.enchantmentName, enchantment);
     }
 
     public abstract void enchantScript(ItemStack itemStack, int level);

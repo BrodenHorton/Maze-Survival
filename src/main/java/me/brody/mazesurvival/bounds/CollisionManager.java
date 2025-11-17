@@ -10,11 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CollisionManager implements Listener, Serializable {
-    private transient final Main plugin;
     private List<CollisionBounds> collisionBoundsList;
 
-    public CollisionManager(Main plugin) {
-        this.plugin = plugin;
+    public CollisionManager() {
         collisionBoundsList = new ArrayList<>();
     }
 

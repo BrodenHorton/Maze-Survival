@@ -365,13 +365,12 @@ public class CustomRecipes {
         BlastingRecipe adamantiteIngotBastingRecipe = new BlastingRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "blasting-recipe-" + UUID.randomUUID()), CustomItem.ADAMANTITE_INGOT.getItemStack(), Material.ANCIENT_DEBRIS, 3f, 1000);
         Bukkit.addRecipe(adamantiteIngotBastingRecipe);
     }
-
-    // TODO: Start here
+    
     private static void registerTwoByTwoRecipe(ItemStack item, ItemStack result, String recipeId) {
-        CustomShapedRecipe customRecipe = new CustomShapedRecipe("LL", "LL", result);
+        CustomShapedRecipe customRecipe = new CustomShapedRecipe("LL", "LL", result, recipeId);
         customRecipe.addIngredient('L', item);
         recipes.add(customRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customRecipe);
+        Registry.CUSTOM_RECIPE.register(customRecipe.getId(), customRecipe);
 
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         recipe.shape("LL", "LL");
@@ -380,10 +379,10 @@ public class CustomRecipes {
     }
 
     private static void registerThreeByThreeRecipe(ItemStack item, ItemStack result, String recipeId) {
-        CustomShapedRecipe customRecipe = new CustomShapedRecipe("LLL", "LLL", "LLL", result);
+        CustomShapedRecipe customRecipe = new CustomShapedRecipe("LLL", "LLL", "LLL", result, recipeId);
         customRecipe.addIngredient('L', item);
         recipes.add(customRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customRecipe);
+        Registry.CUSTOM_RECIPE.register(customRecipe.getId(), customRecipe);
 
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         recipe.shape("LLL", "LLL", "LLL");
@@ -396,18 +395,18 @@ public class CustomRecipes {
         ItemStack itemGoldGrade = ItemGradeUtils.createGradedItem(item.clone(), ItemGrade.GOLD);
         ItemStack itemTitaniumGrade = ItemGradeUtils.createGradedItem(item.clone(), ItemGrade.TITANIUM);
 
-        CustomShapedRecipe ironGradeRecipe = new CustomShapedRecipe("LL", "LL", itemIronGrade);
+        CustomShapedRecipe ironGradeRecipe = new CustomShapedRecipe("LL", "LL", itemIronGrade, recipeId + "_iron_grade");
         ironGradeRecipe.addIngredient('L', item);
         recipes.add(ironGradeRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId + "_iron_grade", ironGradeRecipe);
-        CustomShapedRecipe goldGradeRecipe = new CustomShapedRecipe("LL", "LL", itemGoldGrade);
+        Registry.CUSTOM_RECIPE.register(ironGradeRecipe.getId(), ironGradeRecipe);
+        CustomShapedRecipe goldGradeRecipe = new CustomShapedRecipe("LL", "LL", itemGoldGrade, recipeId + "_gold_grade");
         goldGradeRecipe.addIngredient('L', itemIronGrade);
         recipes.add(goldGradeRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId + "_gold_grade", ironGradeRecipe);
-        CustomShapedRecipe titaniumGradeRecipe = new CustomShapedRecipe("LL", "LL", itemTitaniumGrade);
+        Registry.CUSTOM_RECIPE.register(goldGradeRecipe.getId(), ironGradeRecipe);
+        CustomShapedRecipe titaniumGradeRecipe = new CustomShapedRecipe("LL", "LL", itemTitaniumGrade, recipeId + "_titanium_grade");
         titaniumGradeRecipe.addIngredient('L', itemGoldGrade);
         recipes.add(titaniumGradeRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId + "_titanium_grade", ironGradeRecipe);
+        Registry.CUSTOM_RECIPE.register(titaniumGradeRecipe.getId(), ironGradeRecipe);
 
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         recipe.shape("LL", "LL");
@@ -416,10 +415,10 @@ public class CustomRecipes {
     }
 
     private static void registerHelmetRecipe(ItemStack mineral, ItemStack result, String recipeId) {
-        CustomShapedRecipe customHelmetRecipe = new CustomShapedRecipe("LLL", "L L", result);
+        CustomShapedRecipe customHelmetRecipe = new CustomShapedRecipe("LLL", "L L", result, recipeId);
         customHelmetRecipe.addIngredient('L', mineral);
         recipes.add(customHelmetRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customHelmetRecipe);
+        Registry.CUSTOM_RECIPE.register(customHelmetRecipe.getId(), customHelmetRecipe);
 
         ShapedRecipe helmetRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         helmetRecipe.shape("LLL", "L L");
@@ -428,10 +427,10 @@ public class CustomRecipes {
     }
 
     private static void registerChestplateRecipe(ItemStack mineral, ItemStack result, String recipeId) {
-        CustomShapedRecipe customChestplateRecipe = new CustomShapedRecipe("L L", "LLL", "LLL", result);
+        CustomShapedRecipe customChestplateRecipe = new CustomShapedRecipe("L L", "LLL", "LLL", result, recipeId);
         customChestplateRecipe.addIngredient('L', mineral);
         recipes.add(customChestplateRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customChestplateRecipe);
+        Registry.CUSTOM_RECIPE.register(customChestplateRecipe.getId(), customChestplateRecipe);
 
         ShapedRecipe chestplateRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         chestplateRecipe.shape("L L", "LLL", "LLL");
@@ -440,10 +439,10 @@ public class CustomRecipes {
     }
 
     private static void registerLeggingsRecipe(ItemStack mineral, ItemStack result, String recipeId) {
-        CustomShapedRecipe customLeggingsRecipe = new CustomShapedRecipe("LLL", "L L", "L L", result);
+        CustomShapedRecipe customLeggingsRecipe = new CustomShapedRecipe("LLL", "L L", "L L", result, recipeId);
         customLeggingsRecipe.addIngredient('L', mineral);
         recipes.add(customLeggingsRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customLeggingsRecipe);
+        Registry.CUSTOM_RECIPE.register(customLeggingsRecipe.getId(), customLeggingsRecipe);
 
         ShapedRecipe leggingsRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         leggingsRecipe.shape("LLL", "L L", "L L");
@@ -452,10 +451,10 @@ public class CustomRecipes {
     }
 
     private static void registerBootsRecipe(ItemStack mineral, ItemStack result, String recipeId) {
-        CustomShapedRecipe customBootsRecipe = new CustomShapedRecipe("L L", "L L", result);
+        CustomShapedRecipe customBootsRecipe = new CustomShapedRecipe("L L", "L L", result, recipeId);
         customBootsRecipe.addIngredient('L', mineral);
         recipes.add(customBootsRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customBootsRecipe);
+        Registry.CUSTOM_RECIPE.register(customBootsRecipe.getId(), customBootsRecipe);
 
         ShapedRecipe bootsRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         bootsRecipe.shape("L L", "L L");
@@ -464,11 +463,11 @@ public class CustomRecipes {
     }
 
     private static void registerSwordRecipe(ItemStack mineral, ItemStack result, String recipeId) {
-        CustomShapedRecipe customSwordRecipe = new CustomShapedRecipe("L", "L", "S", result);
+        CustomShapedRecipe customSwordRecipe = new CustomShapedRecipe("L", "L", "S", result, recipeId);
         customSwordRecipe.addIngredient('L', mineral);
         customSwordRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customSwordRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customSwordRecipe);
+        Registry.CUSTOM_RECIPE.register(customSwordRecipe.getId(), customSwordRecipe);
 
         ShapedRecipe swordRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         swordRecipe.shape("L", "L", "S");
@@ -478,11 +477,11 @@ public class CustomRecipes {
     }
 
     private static void registerAxeRecipe(ItemStack mineral, ItemStack result, String recipeId) {
-        CustomShapedRecipe customAxeRecipe = new CustomShapedRecipe("LL", "LS", " S", result);
+        CustomShapedRecipe customAxeRecipe = new CustomShapedRecipe("LL", "LS", " S", result, recipeId);
         customAxeRecipe.addIngredient('L', mineral);
         customAxeRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customAxeRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customAxeRecipe);
+        Registry.CUSTOM_RECIPE.register(customAxeRecipe.getId(), customAxeRecipe);
 
         ShapedRecipe axeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         axeRecipe.shape("LL", "LS", " S");
@@ -492,11 +491,11 @@ public class CustomRecipes {
     }
 
     private static void registerShovelRecipe(ItemStack mineral, ItemStack result, String recipeId) {
-        CustomShapedRecipe customShovelRecipe = new CustomShapedRecipe("L", "S", "S", result);
+        CustomShapedRecipe customShovelRecipe = new CustomShapedRecipe("L", "S", "S", result, recipeId);
         customShovelRecipe.addIngredient('L', mineral);
         customShovelRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customShovelRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customShovelRecipe);
+        Registry.CUSTOM_RECIPE.register(customShovelRecipe.getId(), customShovelRecipe);
 
         ShapedRecipe shovelRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         shovelRecipe.shape("L", "S", "S");
@@ -506,11 +505,11 @@ public class CustomRecipes {
     }
 
     private static void registerHoeRecipe(ItemStack mineral, ItemStack result, String recipeId) {
-        CustomShapedRecipe customHoeRecipe = new CustomShapedRecipe("LL", " S", " S", result);
+        CustomShapedRecipe customHoeRecipe = new CustomShapedRecipe("LL", " S", " S", result, recipeId);
         customHoeRecipe.addIngredient('L', mineral);
         customHoeRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customHoeRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customHoeRecipe);
+        Registry.CUSTOM_RECIPE.register(customHoeRecipe.getId(), customHoeRecipe);
 
         ShapedRecipe hoeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         hoeRecipe.shape("LL", " S", " S");
@@ -520,11 +519,11 @@ public class CustomRecipes {
     }
 
     private static void registerPickaxeRecipe(ItemStack mineral, ItemStack result, String recipeId) {
-        CustomShapedRecipe customPickaxeRecipe = new CustomShapedRecipe("LLL", " S ", " S ", result);
+        CustomShapedRecipe customPickaxeRecipe = new CustomShapedRecipe("LLL", " S ", " S ", result, recipeId);
         customPickaxeRecipe.addIngredient('L', mineral);
         customPickaxeRecipe.addIngredient('S', new ItemStack(Material.STICK));
         recipes.add(customPickaxeRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customPickaxeRecipe);
+        Registry.CUSTOM_RECIPE.register(customPickaxeRecipe.getId(), customPickaxeRecipe);
 
         ShapedRecipe pickaxeRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         pickaxeRecipe.shape("LLL", " S ", " S ");
@@ -534,9 +533,9 @@ public class CustomRecipes {
     }
 
     private static void registerShapelessRecipe(List<ItemStack> ingredients, ItemStack result, String recipeId) {
-        CustomShapelessRecipe customShapelessRecipe = new CustomShapelessRecipe(ingredients, result);
+        CustomShapelessRecipe customShapelessRecipe = new CustomShapelessRecipe(ingredients, result, recipeId);
         recipes.add(customShapelessRecipe);
-        Registry.CUSTOM_RECIPE.register(recipeId, customShapelessRecipe);
+        Registry.CUSTOM_RECIPE.register(customShapelessRecipe.getId(), customShapelessRecipe);
 
         ShapelessRecipe recipe = new ShapelessRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
         for(ItemStack ingredient : ingredients)

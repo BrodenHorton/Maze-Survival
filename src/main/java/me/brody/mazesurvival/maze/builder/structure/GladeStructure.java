@@ -7,13 +7,20 @@ import me.brody.mazesurvival.bounds.PriorityProtectionBounds;
 import me.brody.mazesurvival.bounds.ProtectionType;
 import me.brody.mazesurvival.maze.builder.structure.consumer.GladeEntranceConsumer;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
+import me.brody.mazesurvival.registry.Registry;
 import me.brody.mazesurvival.utils.ChatUtils;
 import me.brody.mazesurvival.utils.MazeSchematic;
 import me.brody.mazesurvival.utils.SchematicPaster;
 import me.brody.mazesurvival.utils.Vector3Int;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serial;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 public class GladeStructure implements MazeStructureGenerator {
@@ -73,6 +80,29 @@ public class GladeStructure implements MazeStructureGenerator {
         westGateBounds.shift(gladeCenter);
         plugin.getAreaProtectionManager().addProtectionBounds(new PriorityProtectionBounds(1, westGateBounds, ProtectionType.PROTECTED));
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(westGateBounds, new GladeEntranceConsumer(plugin, grid.getGladeRespawnLocation()), null));
+    }
+
+    @Serial
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        oos.writeObject(origin.getWorld().getUID());
+        oos.writeDouble(origin.getX());
+        oos.writeDouble(origin.getY());
+        oos.writeDouble(origin.getZ());
+        oos.writeFloat(origin.getYaw());
+        oos.writeFloat(origin.getPitch());
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        UUID worldUuid = (UUID) ois.readObject();
+        double x = ois.readDouble();
+        double y = ois.readDouble();
+        double z = ois.readDouble();
+        float yaw = ois.readFloat();
+        float pitch = ois.readFloat();
+        origin = new Location(Bukkit.getWorld(worldUuid), x, y, z, yaw, pitch);
     }
 
     private Consumer<Player> playerSpawnPointConsumer(Location location) {

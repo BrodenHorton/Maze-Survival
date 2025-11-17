@@ -16,13 +16,10 @@ import org.bukkit.persistence.PersistentDataType;
 
 
 public class DesertBossFight implements BossFight, Listener {
-    private final Main plugin;
-
-    private BossType bossType;
+    private transient final Main plugin;
 
     public DesertBossFight(Main plugin) {
         this.plugin = plugin;
-        bossType = BossType.DESERT;
     }
 
     @Override

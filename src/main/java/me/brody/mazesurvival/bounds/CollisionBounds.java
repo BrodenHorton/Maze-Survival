@@ -11,12 +11,6 @@ public class CollisionBounds implements Serializable {
     private SerializableConsumer<Player> triggerEnterConsumer;
     private SerializableConsumer<Player> triggerExitConsumer;
 
-    public CollisionBounds(BoundsInt bounds) {
-        this.bounds = bounds;
-        triggerEnterConsumer = null;
-        triggerExitConsumer = null;
-    }
-
     public CollisionBounds(BoundsInt bounds, SerializableConsumer<Player> triggerEnterConsumer, SerializableConsumer<Player> triggerExitConsumer) {
         this.bounds = bounds;
         this.triggerEnterConsumer = triggerEnterConsumer;

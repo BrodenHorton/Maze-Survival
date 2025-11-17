@@ -3,15 +3,18 @@ package me.brody.mazesurvival.gamestate;
 import me.brody.mazesurvival.item.recipe.CustomRecipe;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.registry.Registry;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
+import java.io.*;
 import java.util.*;
 
-public class GameState {
+public class GameState implements Serializable {
     private static final List<CustomRecipe> BASE_RECIPES;
 
     private Set<UUID> clearedRegions;
     private List<UUID> discoveredRegions;
-    private List<CustomRecipe> unlockedRecipes;
+    private transient List<CustomRecipe> unlockedRecipes;
 
     static {
         BASE_RECIPES = List.of(
@@ -67,6 +70,25 @@ public class GameState {
 
     public void addUnlockedRecipes(List<CustomRecipe> recipes) {
         unlockedRecipes.addAll(recipes);
+    }
+
+    @Serial
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        oos.writeInt(unlockedRecipes.size());
+        for(CustomRecipe recipe : unlockedRecipes)
+            oos.writeUTF(recipe.getId());
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        unlockedRecipes = new ArrayList<>();
+        int recipeCount = ois.readInt();
+        for(int i = 0; i < recipeCount; i++) {
+            CustomRecipe recipe = Registry.CUSTOM_RECIPE.get(ois.readUTF());
+            unlockedRecipes.add(recipe);
+        }
     }
 
     public Set<UUID> getClearedRegions() {

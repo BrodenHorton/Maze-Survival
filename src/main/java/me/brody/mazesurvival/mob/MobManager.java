@@ -17,28 +17,32 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 
 public class MobManager implements Listener, Serializable {
     private static final Random RNG = new Random();
 
-    private transient final Main plugin;
-    private transient final DayNightCycle dayNightCycle;
-    private transient MobSpawnConfig daySpawnConfig;
-    private transient MobSpawnConfig nightSpawnConfig;
-    private transient MobSpawnConfig currentSpawnConfig;
+    private transient Main plugin;
+    private transient DayNightCycle dayNightCycle;
+    private MobSpawnConfig daySpawnConfig;
+    private MobSpawnConfig nightSpawnConfig;
+    private MobSpawnConfig currentSpawnConfig;
     private List<UUID> mobs;
     private Map<UUID, List<Integer>> mobSpawningCooldownByPlayerUuid;
 
     public MobManager(Main plugin, DayNightCycle dayNightCycle) {
         this.plugin = plugin;
         this.dayNightCycle = dayNightCycle;
-        daySpawnConfig = MobSpawnConfig.DAY_SPAWN_CONFIG;
-        nightSpawnConfig = MobSpawnConfig.NIGHT_SPAWN_CONFIG;
+        daySpawnConfig = new MobSpawnConfig(7, 3, 8, 3, 80, 15);
+        nightSpawnConfig = new MobSpawnConfig(10, 3, 6, 2, 65, 10);
         currentSpawnConfig = daySpawnConfig;
         mobs = new ArrayList<>();
         mobSpawningCooldownByPlayerUuid = new HashMap<>();
@@ -199,6 +203,11 @@ public class MobManager implements Listener, Serializable {
                     entry.getValue().set(i, entry.getValue().get(i) - decrementInSeconds);
             }
         }
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        plugin = JavaPlugin.getPlugin(Main.class);
     }
 
     @EventHandler

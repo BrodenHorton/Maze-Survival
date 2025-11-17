@@ -15,10 +15,16 @@ import me.brody.mazesurvival.utils.*;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serial;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 public class BossRoomStructure implements MazeStructureGenerator {
@@ -98,6 +104,29 @@ public class BossRoomStructure implements MazeStructureGenerator {
         exitTeleportLocation = LocationUtils.shift(exitTeleportLocation, bossRoomOrigin);
         exitTeleportLocation = LocationUtils.centerOnBlock(exitTeleportLocation);
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(exit, new BossRoomExitConsumer(plugin, region, exitTeleportLocation), null));
+    }
+
+    @Serial
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        oos.writeObject(origin.getWorld().getUID());
+        oos.writeDouble(origin.getX());
+        oos.writeDouble(origin.getY());
+        oos.writeDouble(origin.getZ());
+        oos.writeFloat(origin.getYaw());
+        oos.writeFloat(origin.getPitch());
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        UUID worldUuid = (UUID) ois.readObject();
+        double x = ois.readDouble();
+        double y = ois.readDouble();
+        double z = ois.readDouble();
+        float yaw = ois.readFloat();
+        float pitch = ois.readFloat();
+        origin = new Location(Bukkit.getWorld(worldUuid), x, y, z, yaw, pitch);
     }
 
     private Consumer<Player> getBossRoomEntranceConsumer(Location teleportLocation, BoundsInt bossRoomBounds) {

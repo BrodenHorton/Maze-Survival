@@ -9,6 +9,7 @@ public class MazeGridBase implements Serializable {
 	public static final MazeGridBase SMALL;
 	public static final MazeGridBase STANDARD;
 
+	private String id;
 	private int regionCellSize;
 	private int wallHeight;
 	private int wallWidth;
@@ -18,11 +19,12 @@ public class MazeGridBase implements Serializable {
 	private MazeSchematic gladeSchema;
 
 	static {
-		SMALL = new MazeGridBase(9, 6, 2, 7, 9, 2, MazeSchematic.GLADE);
-		STANDARD = new MazeGridBase(9, 30, 2, 7, 25, 2, MazeSchematic.GLADE);
+		SMALL = new MazeGridBase("small", 9, 6, 2, 7, 9, 2, MazeSchematic.GLADE);
+		STANDARD = new MazeGridBase("standard", 9, 30, 2, 7, 25, 2, MazeSchematic.GLADE);
 	}
 
-	private MazeGridBase(int regionCellSize, int wallHeight, int wallWidth, int gladeSize, int gridCellSize, int gridCellMargins, MazeSchematic gladeSchema) {
+	private MazeGridBase(String id, int regionCellSize, int wallHeight, int wallWidth, int gladeSize, int gridCellSize, int gridCellMargins, MazeSchematic gladeSchema) {
+		this.id = id;
 		this.regionCellSize = regionCellSize;
 		this.wallHeight = wallHeight;
 		this.wallWidth = wallWidth;
@@ -33,8 +35,12 @@ public class MazeGridBase implements Serializable {
 	}
 
 	public static void register() {
-		Registry.GRID_BASE.register("small", SMALL);
-		Registry.GRID_BASE.register("standard", STANDARD);
+		Registry.GRID_BASE.register(SMALL.id, SMALL);
+		Registry.GRID_BASE.register(STANDARD.id, STANDARD);
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public int getMarginInBlocks() {

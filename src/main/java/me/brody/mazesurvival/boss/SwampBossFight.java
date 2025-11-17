@@ -14,13 +14,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataType;
 
 public class SwampBossFight implements BossFight {
-    private final Main plugin;
-
-    private BossType bossType;
+    private transient final Main plugin;
 
     public SwampBossFight(Main plugin) {
         this.plugin = plugin;
-        bossType = BossType.SWAMP;
     }
 
     @Override
