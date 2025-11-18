@@ -21,6 +21,18 @@ public class MobSpawnConfig implements Serializable {
         this.mobRespawnCooldownInSeconds = mobRespawnCooldownInSeconds;
     }
 
+    @Override
+    public String toString() {
+        return "MobSpawnConfig{" +
+                "maxMobsNearPlayer=" + maxMobsNearPlayer +
+                ", maxConcurrentSpawnCount=" + maxConcurrentSpawnCount +
+                ", maxCellSpawnDistance=" + maxCellSpawnDistance +
+                ", minCellSpawnDistance=" + minCellSpawnDistance +
+                ", despawnRadius=" + despawnRadius +
+                ", mobRespawnCooldownInSeconds=" + mobRespawnCooldownInSeconds +
+                '}';
+    }
+
     public int getMaxMobsNearPlayer() {
         return maxMobsNearPlayer;
     }

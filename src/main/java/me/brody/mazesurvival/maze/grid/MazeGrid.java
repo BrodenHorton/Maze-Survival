@@ -273,6 +273,16 @@ public class MazeGrid implements Serializable {
 		gridOrigin = new Location(Bukkit.getWorld(worldUuid), x, y, z, yaw, pitch);
 	}
 
+	@Override
+	public String toString() {
+		return "MazeGrid{" +
+				"gridBase=" + gridBase.getId() +
+				", gridOrigin=" + gridOrigin +
+				", regionCount=" + regions.size() +
+				", startingCell=" + startingCell +
+				'}';
+	}
+
 	public World getWorld() {
 		return gridOrigin.getWorld();
 	}

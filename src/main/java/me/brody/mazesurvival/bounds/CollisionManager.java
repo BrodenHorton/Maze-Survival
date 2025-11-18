@@ -20,6 +20,13 @@ public class CollisionManager implements Listener, Serializable {
         collisionBoundsList.add(collisionBounds);
     }
 
+    @Override
+    public String toString() {
+        return "CollisionManager{" +
+                "collisionBoundsListSize=" + collisionBoundsList.size() +
+                '}';
+    }
+
     @EventHandler
     public void onTriggerEnter(PlayerMoveEvent e) {
         for(CollisionBounds entry : collisionBoundsList) {

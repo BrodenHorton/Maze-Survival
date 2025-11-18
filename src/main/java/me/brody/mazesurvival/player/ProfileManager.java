@@ -53,4 +53,11 @@ public class ProfileManager implements Serializable {
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         plugin = JavaPlugin.getPlugin(Main.class);
     }
+
+    @Override
+    public String toString() {
+        return "ProfileManager{" +
+                "playerProfiles=" + playerProfiles +
+                '}';
+    }
 }

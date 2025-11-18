@@ -44,6 +44,14 @@ public class PlayerProfile implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "PlayerProfile{" +
+                "uuid=" + uuid +
+                ", upgradeLevelByEnchantment=" + upgradeLevelByEnchantment +
+                '}';
+    }
+
     public Player getPlayer() {
         return Bukkit.getPlayer(uuid);
     }

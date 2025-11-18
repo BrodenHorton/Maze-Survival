@@ -210,6 +210,15 @@ public class MobManager implements Listener, Serializable {
         plugin = JavaPlugin.getPlugin(Main.class);
     }
 
+    @Override
+    public String toString() {
+        return "MobManager{" +
+                "currentSpawnConfig=" + currentSpawnConfig +
+                ", mobs=" + mobs +
+                ", mobSpawningCooldownByPlayerUuid=" + mobSpawningCooldownByPlayerUuid +
+                '}';
+    }
+
     @EventHandler
     public void addPlayerMobSpawningCooldown(EntityDeathEvent e) {
         if(!mobs.contains(e.getEntity().getUniqueId()))

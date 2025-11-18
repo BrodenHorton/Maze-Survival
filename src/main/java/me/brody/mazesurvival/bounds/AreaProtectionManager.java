@@ -96,6 +96,13 @@ public class AreaProtectionManager implements Listener, Serializable {
         return ProtectionType.RESOURCE_GATHERING;
     }
 
+    @Override
+    public String toString() {
+        return "AreaProtectionManager{" +
+                "protectionBoundsSize=" + protectionBounds.size() +
+                '}';
+    }
+
     @EventHandler
     public void protectionBoundsBlockInteract(PlayerInteractEvent e) {
         if(e.getAction() != Action.LEFT_CLICK_BLOCK)

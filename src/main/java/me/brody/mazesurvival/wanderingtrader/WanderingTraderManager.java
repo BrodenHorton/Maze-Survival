@@ -130,6 +130,14 @@ public class WanderingTraderManager implements Listener, Serializable {
         plugin = JavaPlugin.getPlugin(Main.class);
     }
 
+    @Override
+    public String toString() {
+        return "WanderingTraderManager{" +
+                "traderUuids=" + traderUuids +
+                ", havenTraderAmountByRegionId=" + havenTraderAmountByRegionId +
+                '}';
+    }
+
     @EventHandler
     public void mazeTraderInteraction(PlayerInteractEntityEvent e) {
         if(plugin.getMazeManager().getGrid() == null)

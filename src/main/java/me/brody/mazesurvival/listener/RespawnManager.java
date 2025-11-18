@@ -57,6 +57,13 @@ public class RespawnManager implements Listener, Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "RespawnManager{" +
+                "respawnLocationByPlayer=" + respawnLocationByPlayer +
+                '}';
+    }
+
     @EventHandler
     public void setPlayerRespawnLocationEvent(PlayerRespawnEvent e) {
         if(!respawnLocationByPlayer.containsKey(e.getPlayer().getUniqueId()))

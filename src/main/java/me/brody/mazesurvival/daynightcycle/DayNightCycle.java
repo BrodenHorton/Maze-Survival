@@ -77,6 +77,14 @@ public class DayNightCycle implements Serializable {
         world = Bukkit.getWorld(worldUuid);
     }
 
+    @Override
+    public String toString() {
+        return "DayNightCycle{" +
+                "isDay=" + isDay +
+                ", world=" + world +
+                '}';
+    }
+
     public boolean isDay() {
         return isDay;
     }

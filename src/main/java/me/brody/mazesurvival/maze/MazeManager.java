@@ -82,6 +82,13 @@ public class MazeManager implements Serializable {
 		plugin = JavaPlugin.getPlugin(Main.class);
 	}
 
+	@Override
+	public String toString() {
+		return "MazeManager{" +
+				"grid=" + grid +
+				'}';
+	}
+
 	public MazeGrid getGrid() {
 		return grid;
 	}

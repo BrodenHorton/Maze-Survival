@@ -3,8 +3,6 @@ package me.brody.mazesurvival.gamestate;
 import me.brody.mazesurvival.item.recipe.CustomRecipe;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.registry.Registry;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 
 import java.io.*;
 import java.util.*;
@@ -13,7 +11,7 @@ public class GameState implements Serializable {
     private static final List<CustomRecipe> BASE_RECIPES;
 
     private Set<UUID> clearedRegions;
-    private List<UUID> discoveredRegions;
+    private Set<UUID> discoveredRegions;
     private transient List<CustomRecipe> unlockedRecipes;
 
     static {
@@ -54,7 +52,7 @@ public class GameState implements Serializable {
 
     public GameState() {
         clearedRegions = new HashSet<>();
-        discoveredRegions = new ArrayList<>();
+        discoveredRegions = new HashSet<>();
         unlockedRecipes = new ArrayList<>();
         unlockedRecipes.addAll(BASE_RECIPES);
     }
@@ -91,11 +89,20 @@ public class GameState implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return "GameState{" +
+                "clearedRegionsCount=" + clearedRegions.size() +
+                ", discoveredRegionsCount=" + discoveredRegions.size() +
+                ", unlockedRecipesCount=" + unlockedRecipes.size() +
+                '}';
+    }
+
     public Set<UUID> getClearedRegions() {
         return clearedRegions;
     }
 
-    public List<UUID> getDiscoveredRegions() {
+    public Set<UUID> getDiscoveredRegions() {
         return discoveredRegions;
     }
 
