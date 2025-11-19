@@ -214,6 +214,14 @@ public class Main extends JavaPlugin {
 		return enchantingController;
 	}
 
+	public MobManager getMobManager() {
+		return mobManager;
+	}
+
+	public WanderingTraderManager getWanderingTraderManager() {
+		return wanderingTraderManager;
+	}
+
 	public AreaProtectionManager getAreaProtectionManager() {
 		return areaProtectionManager;
 	}

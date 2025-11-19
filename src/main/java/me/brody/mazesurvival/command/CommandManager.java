@@ -24,21 +24,22 @@ public class CommandManager implements CommandExecutor, TabCompleter {
 		this.plugin = plugin;
 		subCommandByName = new HashMap<>();
 		
-		// Add all String, SubCommand pairs to the command map
-		GenerateCommand generateCommand = new GenerateCommand();
-		subCommandByName.put(generateCommand.getName().toLowerCase(), generateCommand);
-		GiveCommand giveCommand = new GiveCommand();
-		subCommandByName.put(giveCommand.getName().toLowerCase(), giveCommand);
-		SummonCommand summonCommand = new SummonCommand();
-		subCommandByName.put(summonCommand.getName().toLowerCase(), summonCommand);
-		GradeCommand gradeCommand = new GradeCommand();
-		subCommandByName.put(gradeCommand.getName().toLowerCase(), gradeCommand);
-		RecipesCommand recipesCommand = new RecipesCommand();
-		subCommandByName.put(recipesCommand.getName().toLowerCase(), recipesCommand);
+		addSubCommand(new GenerateCommand());
+		addSubCommand(new GiveCommand());
+		addSubCommand(new SummonCommand());
+		addSubCommand(new GradeCommand());
+		addSubCommand(new RecipesCommand());
+		addSubCommand(new DebugCommand());
 		HelpCommand helpCommand = new HelpCommand();
-		subCommandByName.put(helpCommand.getName().toLowerCase(), helpCommand);
-
+		addSubCommand(helpCommand);
 		helpCommand.init(subCommandByName);
+	}
+
+	private void addSubCommand(SubCommand subCommand) {
+		if(subCommand == null)
+			return;
+
+		subCommandByName.put(subCommand.getName().toLowerCase(), subCommand);
 	}
 
 	@Override

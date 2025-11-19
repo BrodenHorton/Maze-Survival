@@ -12,6 +12,7 @@ public class CustomShapelessRecipe implements CustomRecipe {
     private ItemStack result;
 
     public CustomShapelessRecipe(List<ItemStack> ingredients, ItemStack result, String id) {
+        this.id = id;
         this.ingredients = ingredients;
         this.result = result;
     }

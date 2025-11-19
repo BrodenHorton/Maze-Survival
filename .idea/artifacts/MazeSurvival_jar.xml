@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="MazeSurvival:jar">
-    <output-path>$PROJECT_DIR$/../../Paper Server/plugins</output-path>
+    <output-path>$PROJECT_DIR$/../../../../Paper Server/plugins</output-path>
     <root id="archive" name="MazeSurvival.jar">
       <element id="module-output" name="MazeSurvival" />
     </root>
