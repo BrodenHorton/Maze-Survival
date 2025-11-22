@@ -5,6 +5,7 @@ import me.brody.mazesurvival.bounds.CollisionManager;
 import me.brody.mazesurvival.daynightcycle.DayNightCycle;
 import me.brody.mazesurvival.gamestate.GameState;
 import me.brody.mazesurvival.listener.RespawnManager;
+import me.brody.mazesurvival.maze.GladeDoorListener;
 import me.brody.mazesurvival.maze.MazeManager;
 import me.brody.mazesurvival.mob.MobManager;
 import me.brody.mazesurvival.player.ProfileManager;
@@ -21,6 +22,7 @@ public class SaveData implements Serializable {
     public AreaProtectionManager areaProtectionManager;
     public CollisionManager collisionManager;
     public RespawnManager respawnManager;
+    public GladeDoorListener gladeDoorListener;
     public GameState gameState;
 
     public SaveData() {}

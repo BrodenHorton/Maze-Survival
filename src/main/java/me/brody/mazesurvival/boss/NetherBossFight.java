@@ -12,9 +12,14 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serial;
 
 public class NetherBossFight implements BossFight {
-    private transient final Main plugin;
+    private transient Main plugin;
 
     public NetherBossFight(Main plugin) {
         this.plugin = plugin;
@@ -57,5 +62,10 @@ public class NetherBossFight implements BossFight {
                 Bukkit.broadcastMessage("&eBoss mob removed!");
             }
         }
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        plugin = JavaPlugin.getPlugin(Main.class);
     }
 }

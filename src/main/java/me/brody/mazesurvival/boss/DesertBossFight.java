@@ -13,10 +13,15 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Listener;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serial;
 
 
 public class DesertBossFight implements BossFight, Listener {
-    private transient final Main plugin;
+    private transient Main plugin;
 
     public DesertBossFight(Main plugin) {
         this.plugin = plugin;
@@ -59,5 +64,10 @@ public class DesertBossFight implements BossFight, Listener {
                 Bukkit.broadcastMessage("&eBoss mob removed!");
             }
         }
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        plugin = JavaPlugin.getPlugin(Main.class);
     }
 }

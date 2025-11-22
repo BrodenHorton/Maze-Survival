@@ -30,15 +30,13 @@ import me.brody.mazesurvival.player.ProfileManager;
 import me.brody.mazesurvival.save.SaveData;
 import me.brody.mazesurvival.wanderingtrader.WanderingTraderManager;
 import me.brody.mazesurvival.listener.enchantment.MazeRunnerEnchantmentManager;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.brody.mazesurvival.command.CommandManager;
 import me.brody.mazesurvival.maze.MazeManager;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -63,6 +61,15 @@ public class Main extends JavaPlugin {
 		getLogger().info("****************************************");
 		getLogger().info("MazeSurvival has been enabled");
 		getLogger().info("****************************************");
+
+		try {
+			if(!getDataFolder().exists())
+				Files.createDirectory(getDataFolder().toPath());
+		}
+		catch(IOException e) {
+			getLogger().severe("Data Folder could not be created");
+			e.printStackTrace();
+		}
 
 		MazeEnchantment.init(this);
 		LootTable.init(this);
@@ -89,10 +96,10 @@ public class Main extends JavaPlugin {
 			areaProtectionManager = new AreaProtectionManager();
 			collisionManager = new CollisionManager();
 			respawnManager = new RespawnManager();
+			gladeDoorListener = new GladeDoorListener(this, dayNightCycle);
 			gameState = new GameState();
 		}
 		enchantingController = new EnchantingController(this);
-		gladeDoorListener = new GladeDoorListener(this, dayNightCycle);
 		customRecipeCompendium = new CustomRecipeCompendium(this);
 		initializePlayersListener = new InitializePlayersListener(this, mazeManager);
 
@@ -153,6 +160,7 @@ public class Main extends JavaPlugin {
 		saveData.areaProtectionManager = areaProtectionManager;
 		saveData.collisionManager = collisionManager;
 		saveData.respawnManager = respawnManager;
+		saveData.gladeDoorListener = gladeDoorListener;
 		saveData.gameState = gameState;
 
 		try {
@@ -178,19 +186,25 @@ public class Main extends JavaPlugin {
 			profileManager = saveData.profileManager;
 			dayNightCycle = saveData.dayNightCycle;
 			mobManager = saveData.mobManager;
-			Field dayNightCycleField = mobManager.getClass().getField("dayNightCycle");
+			Field dayNightCycleField = mobManager.getClass().getDeclaredField("dayNightCycle");
 			dayNightCycleField.setAccessible(true);
 			dayNightCycleField.set(mobManager, dayNightCycle);
 			wanderingTraderManager = saveData.wanderingTraderManager;
 			areaProtectionManager = saveData.areaProtectionManager;
 			collisionManager = saveData.collisionManager;
 			respawnManager = saveData.respawnManager;
+			gladeDoorListener = saveData.gladeDoorListener;
 			gameState = saveData.gameState;
+
+			dayNightCycle.registerEvents(mazeManager);
+			mobManager.registerEvents();
+			wanderingTraderManager.registerEvents(dayNightCycle);
+			gladeDoorListener.registerEvents(dayNightCycle);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Loading game data failed ...");
-			System.exit(1);
+			Bukkit.getPluginManager().disablePlugin(this);
 		}
 	}
 

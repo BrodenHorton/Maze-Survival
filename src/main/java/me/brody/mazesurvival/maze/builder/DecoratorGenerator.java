@@ -24,7 +24,6 @@ public class DecoratorGenerator {
     public Event<EventArgs> onMazeDecoratorFinished;
 
     private final Main plugin;
-    private final Random RNG;
 
     private MazeGrid grid;
     private Queue<MazeStructureGenerator> decorations;
@@ -34,7 +33,6 @@ public class DecoratorGenerator {
     public DecoratorGenerator(Main plugin, MazeGrid grid) {
         onMazeDecoratorFinished = new Event<>();
         this.plugin = plugin;
-        RNG = new Random();
         this.grid = grid;
         decorations = new ArrayDeque<>();
         weightedTraps = new WeightedList<>();

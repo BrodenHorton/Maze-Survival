@@ -10,9 +10,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class InitializePlayersListener implements Listener {
-    private final Main plugin;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serial;
+import java.io.Serializable;
+
+public class InitializePlayersListener implements Listener, Serializable {
+    private transient Main plugin;
 
     public InitializePlayersListener(Main plugin, MazeManager mazeManager) {
         this.plugin = plugin;
@@ -34,8 +40,15 @@ public class InitializePlayersListener implements Listener {
         }
     }
 
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        plugin = JavaPlugin.getPlugin(Main.class);
+    }
+
     @EventHandler
     public void initializePlayerOnJoin(PlayerJoinEvent e) {
+        if(plugin.getMazeManager().getGrid() == null)
+            return;
         if(plugin.getProfileManager().getProfileOf(e.getPlayer()) != null)
             return;
 

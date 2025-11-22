@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,7 +19,7 @@ import java.io.Serial;
 import java.util.UUID;
 
 public class BossRoomExitConsumer implements SerializableConsumer<Player> {
-    private transient final Main plugin;
+    private transient Main plugin;
     private MazeRegion region;
     private transient Location teleportLocation;
 
@@ -52,6 +53,7 @@ public class BossRoomExitConsumer implements SerializableConsumer<Player> {
 
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        plugin = JavaPlugin.getPlugin(Main.class);
         ois.defaultReadObject();
         UUID worldUuid = (UUID) ois.readObject();
         double x = ois.readDouble();

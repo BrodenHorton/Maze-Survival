@@ -34,7 +34,7 @@ public class MobManager implements Listener, Serializable {
     private transient DayNightCycle dayNightCycle;
     private MobSpawnConfig daySpawnConfig;
     private MobSpawnConfig nightSpawnConfig;
-    private MobSpawnConfig currentSpawnConfig;
+    private transient MobSpawnConfig currentSpawnConfig;
     private List<UUID> mobs;
     private Map<UUID, List<Integer>> mobSpawningCooldownByPlayerUuid;
 
@@ -46,12 +46,15 @@ public class MobManager implements Listener, Serializable {
         currentSpawnConfig = daySpawnConfig;
         mobs = new ArrayList<>();
         mobSpawningCooldownByPlayerUuid = new HashMap<>();
+        registerEvents();
+    }
 
-        dayNightCycle.onStartOfDay.addListener((sender, args) -> {
+    public void registerEvents() {
+        dayNightCycle.onStartOfDay.addListener((o, e) -> {
             currentSpawnConfig = daySpawnConfig;
             despawnAllMobs();
         });
-        dayNightCycle.onStartOfNight.addListener((sender, args) -> {
+        dayNightCycle.onStartOfNight.addListener((o, e) -> {
             currentSpawnConfig = nightSpawnConfig;
             despawnAllMobs();
         });
@@ -207,7 +210,9 @@ public class MobManager implements Listener, Serializable {
 
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
         plugin = JavaPlugin.getPlugin(Main.class);
+        currentSpawnConfig = daySpawnConfig;
     }
 
     @Override

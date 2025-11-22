@@ -20,8 +20,8 @@ public class DayNightCycle implements Serializable {
     private static final int START_OF_NIGHT_IN_TICKS = 13500;
     private static final int TOTAL_TICKS_IN_CYCLE = 24000;
 
-    public Event<EventArgs> onStartOfDay;
-    public Event<EventArgs> onStartOfNight;
+    public transient Event<EventArgs> onStartOfDay;
+    public transient Event<EventArgs> onStartOfNight;
 
     private transient Main plugin;
     private boolean isDay;
@@ -30,10 +30,13 @@ public class DayNightCycle implements Serializable {
     public DayNightCycle(Main plugin, MazeManager mazeManager) {
         this.plugin = plugin;
         isDay = false;
-        mazeManager.onMazeConstructionFinished.addListener(this::startDayNightCycle);
-
         onStartOfDay = new Event<>();
         onStartOfNight = new Event<>();
+        registerEvents(mazeManager);
+    }
+
+    public void registerEvents(MazeManager mazeManager) {
+        mazeManager.onMazeConstructionFinished.addListener(this::startDayNightCycle);
     }
 
     public void startDayNightCycle(Object sender, EventArgs e) {
@@ -75,6 +78,8 @@ public class DayNightCycle implements Serializable {
         plugin = JavaPlugin.getPlugin(Main.class);
         UUID worldUuid = (UUID) ois.readObject();
         world = Bukkit.getWorld(worldUuid);
+        onStartOfDay = new Event<>();
+        onStartOfNight = new Event<>();
     }
 
     @Override

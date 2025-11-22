@@ -51,6 +51,7 @@ public class ProfileManager implements Serializable {
 
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
         plugin = JavaPlugin.getPlugin(Main.class);
     }
 

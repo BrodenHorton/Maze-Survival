@@ -1,8 +1,9 @@
 package me.brody.mazesurvival.utils;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Vector3Int {
+public class Vector3Int implements Serializable {
     public int x, y, z;
 
     public Vector3Int(int x, int y, int z) {

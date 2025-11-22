@@ -22,7 +22,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 public class MazeManager implements Serializable {
-	public Event<EventArgs> onMazeConstructionFinished;
+	public transient Event<EventArgs> onMazeConstructionFinished;
 
 	private transient Main plugin;
 	private MazeGrid grid;
@@ -80,6 +80,7 @@ public class MazeManager implements Serializable {
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
 		ois.defaultReadObject();
 		plugin = JavaPlugin.getPlugin(Main.class);
+		onMazeConstructionFinished = new Event<>();
 	}
 
 	@Override

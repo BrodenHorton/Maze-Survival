@@ -19,6 +19,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -28,7 +29,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 public class BossRoomStructure implements MazeStructureGenerator {
-    private transient final Main plugin;
+    private transient Main plugin;
     private MazeSchematic schematic;
     private transient Location origin;
     private double rotation;
@@ -120,6 +121,7 @@ public class BossRoomStructure implements MazeStructureGenerator {
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         ois.defaultReadObject();
+        plugin = JavaPlugin.getPlugin(Main.class);
         UUID worldUuid = (UUID) ois.readObject();
         double x = ois.readDouble();
         double y = ois.readDouble();
@@ -127,38 +129,5 @@ public class BossRoomStructure implements MazeStructureGenerator {
         float yaw = ois.readFloat();
         float pitch = ois.readFloat();
         origin = new Location(Bukkit.getWorld(worldUuid), x, y, z, yaw, pitch);
-    }
-
-    private Consumer<Player> getBossRoomEntranceConsumer(Location teleportLocation, BoundsInt bossRoomBounds) {
-        return (p) -> {
-            if(region.getBossFight() != null && !plugin.getGameState().getClearedRegions().contains(region.getUuid())) {
-                boolean isPlayerInBounds = false;
-                for(Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
-                    if(bossRoomBounds.containsLocation(onlinePlayer.getLocation())) {
-                        isPlayerInBounds = true;
-                        break;
-                    }
-                }
-
-                if(!isPlayerInBounds) {
-                    region.getBossFight().start(region);
-                    ChatUtils.msg(p, "&aYou have triggered the boss fight!");
-                }
-            }
-            p.teleport(teleportLocation);
-            p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
-        };
-    }
-
-    private Consumer<Player> getBossRoomExitConsumer(Location teleportLocation) {
-        return (p) -> {
-            if(plugin.getGameState().getClearedRegions().contains(region.getUuid())) {
-                p.teleport(teleportLocation);
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
-            }
-            else {
-                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&bYou cannot exit until the boss is defeated")));
-            }
-        };
     }
 }

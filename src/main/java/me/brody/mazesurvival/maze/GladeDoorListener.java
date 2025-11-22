@@ -10,12 +10,22 @@ import me.brody.mazesurvival.utils.SchematicPaster;
 import me.brody.mazesurvival.utils.Vector2Int;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class GladeDoorListener {
-    private final Main plugin;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serial;
+import java.io.Serializable;
+
+public class GladeDoorListener implements Serializable {
+    private transient Main plugin;
 
     public GladeDoorListener(Main plugin, DayNightCycle dayNightCycle) {
         this.plugin = plugin;
+        registerEvents(dayNightCycle);
+    }
+
+    public void registerEvents(DayNightCycle dayNightCycle) {
         dayNightCycle.onStartOfDay.addListener(this::openGladeDoors);
         dayNightCycle.onStartOfNight.addListener(this::closeGladeDoors);
     }
@@ -54,6 +64,12 @@ public class GladeDoorListener {
             else
                 p.playSound(p.getLocation(), Sound.BLOCK_GRINDSTONE_USE, 2f, 0.5f);
         }
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        plugin = JavaPlugin.getPlugin(Main.class);
     }
 
 }

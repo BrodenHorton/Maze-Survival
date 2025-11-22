@@ -18,6 +18,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -27,7 +28,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 public class HavenStructure implements MazeStructureGenerator {
-    private transient final Main plugin;
+    private transient Main plugin;
     private MazeSchematic schematic;
     private transient Location origin;
     private double rotation;
@@ -112,44 +113,6 @@ public class HavenStructure implements MazeStructureGenerator {
         plugin.getCollisionManager().addTriggerBounds(new CollisionBounds(secondaryExit, new HavenExitConsumer(plugin, secondaryExitTeleportLocation), null));
     }
 
-    private Consumer<Player> getHavenEntranceTriggerConsumer(Location teleportLocation) {
-        return (p) -> {
-            if(region.getRegionLevelRequirement() > plugin.getGameState().getClearedRegions().size()) {
-                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&cUnable to enter haven. Required region level is too high.")));
-                return;
-            }
-
-            if(plugin.getDayNightCycle().isDay()) {
-                if(!plugin.getGameState().getDiscoveredRegions().contains(region.getUuid())) {
-                    plugin.getGameState().addDiscoveredRegion(region);
-                    for(Player onlinePlayer : plugin.getServer().getOnlinePlayers()) {
-                        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.2f, 1f);
-                        ChatUtils.msg(onlinePlayer, "&dNew Region discovered!");
-                        ChatUtils.msg(onlinePlayer, "&dNew recipes have been unlocked. View these new recipes with &e/ms recipes");
-                    }
-                }
-                p.teleport(teleportLocation);
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
-                plugin.getRespawnManager().setPlayerRespawnLocation(p, teleportLocation);
-            }
-            else {
-                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&bYou cannot enter a Haven at night")));
-            }
-        };
-    }
-
-    private Consumer<Player> getHavenExitTriggerConsumer(Location teleportLocation) {
-        return (p) -> {
-            if(plugin.getDayNightCycle().isDay()) {
-                p.teleport(teleportLocation);
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 0.8f, 1f);
-            }
-            else {
-                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', "&bYou cannot exit a Haven at night")));
-            }
-        };
-    }
-
     private void generateProtectionBounds() {
         MazeGrid grid = plugin.getMazeManager().getGrid();
         final int havenWidth = 25;
@@ -201,6 +164,7 @@ public class HavenStructure implements MazeStructureGenerator {
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         ois.defaultReadObject();
+        plugin = JavaPlugin.getPlugin(Main.class);
         UUID worldUuid = (UUID) ois.readObject();
         double x = ois.readDouble();
         double y = ois.readDouble();

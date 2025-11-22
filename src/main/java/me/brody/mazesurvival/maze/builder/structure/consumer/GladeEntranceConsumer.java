@@ -5,6 +5,7 @@ import me.brody.mazesurvival.utils.SerializableConsumer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,7 +14,7 @@ import java.io.Serial;
 import java.util.UUID;
 
 public class GladeEntranceConsumer implements SerializableConsumer<Player> {
-    private transient final Main plugin;
+    private transient Main plugin;
     private transient Location teleportLocation;
 
     public GladeEntranceConsumer(Main plugin, Location teleportLocation) {
@@ -39,6 +40,7 @@ public class GladeEntranceConsumer implements SerializableConsumer<Player> {
 
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        plugin = JavaPlugin.getPlugin(Main.class);
         ois.defaultReadObject();
         UUID worldUuid = (UUID) ois.readObject();
         double x = ois.readDouble();

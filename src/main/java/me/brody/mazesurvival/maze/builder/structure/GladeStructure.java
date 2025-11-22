@@ -15,6 +15,7 @@ import me.brody.mazesurvival.utils.Vector3Int;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -24,7 +25,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 public class GladeStructure implements MazeStructureGenerator {
-    private transient final Main plugin;
+    private transient Main plugin;
     private MazeSchematic schematic;
     private transient Location origin;
     private double rotation;
@@ -96,6 +97,7 @@ public class GladeStructure implements MazeStructureGenerator {
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         ois.defaultReadObject();
+        plugin = JavaPlugin.getPlugin(Main.class);
         UUID worldUuid = (UUID) ois.readObject();
         double x = ois.readDouble();
         double y = ois.readDouble();
@@ -103,9 +105,5 @@ public class GladeStructure implements MazeStructureGenerator {
         float yaw = ois.readFloat();
         float pitch = ois.readFloat();
         origin = new Location(Bukkit.getWorld(worldUuid), x, y, z, yaw, pitch);
-    }
-
-    private Consumer<Player> playerSpawnPointConsumer(Location location) {
-        return (p) -> plugin.getRespawnManager().setPlayerRespawnLocation(p, location);
     }
 }

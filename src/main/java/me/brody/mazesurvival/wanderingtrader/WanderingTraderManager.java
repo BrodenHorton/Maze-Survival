@@ -38,10 +38,12 @@ public class WanderingTraderManager implements Listener, Serializable {
 
     public WanderingTraderManager(Main plugin, DayNightCycle dayNightCycle) {
         this.plugin = plugin;
-
         traderUuids = new ArrayList<>();
         havenTraderAmountByRegionId = new HashMap<>();
+        registerEvents(dayNightCycle);
+    }
 
+    public void registerEvents(DayNightCycle dayNightCycle) {
         dayNightCycle.onStartOfDay.addListener(this::updateDayWanderingTraders);
         dayNightCycle.onStartOfNight.addListener(this::updateNightWanderingTraders);
     }
@@ -127,6 +129,7 @@ public class WanderingTraderManager implements Listener, Serializable {
 
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
         plugin = JavaPlugin.getPlugin(Main.class);
     }
 
