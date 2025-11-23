@@ -24,6 +24,7 @@ public class SaveData implements Serializable {
     public RespawnManager respawnManager;
     public GladeDoorListener gladeDoorListener;
     public GameState gameState;
+    public boolean isDebugModeEnabled;
 
     public SaveData() {}
 

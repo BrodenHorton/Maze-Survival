@@ -44,10 +44,10 @@ public class GenerateCommand implements SubCommand {
 			}
 		}
 
-		boolean isDebugMode = false;
+		boolean shouldEnableDebugMode = false;
 		for(int i = 2; i < args.length; i++) {
 			if(args[i].equalsIgnoreCase("debug")) {
-				isDebugMode = true;
+				shouldEnableDebugMode = true;
 				break;
 			}
 		}
@@ -57,7 +57,7 @@ public class GenerateCommand implements SubCommand {
 		gridOrigin.setY((int)gridOrigin.getY() - 1);
 		gridOrigin.setZ((int)gridOrigin.getZ());
 
-		plugin.getMazeManager().generateMaze(Registry.GRID_BASE.get(args[1]), gridOrigin);
+		plugin.getGameManager().startGame(Registry.GRID_BASE.get(args[1]), gridOrigin, shouldEnableDebugMode);
 	}
 
 	@Override

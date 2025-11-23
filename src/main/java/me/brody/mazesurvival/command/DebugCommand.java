@@ -21,6 +21,11 @@ public class DebugCommand implements SubCommand {
 
         String noData = "-";
         ChatUtils.msg(p, "&a===== Debug Info =====");
+        ChatUtils.msg(p, "&eGameManager");
+        String isGameRunningInfo = plugin.getGameManager() != null && plugin.getGameManager().isGameRunning() ? "true" : "false";
+        ChatUtils.msg(p, "Is Game Running: " + isGameRunningInfo);
+        String isDebugModeEnabled = plugin.getGameManager() != null && plugin.getGameManager().isDebugModeEnabled() ? "true" : "false";
+        ChatUtils.msg(p, "Is Debug Mode Enabled: " + isDebugModeEnabled);
         ChatUtils.msg(p, "&eMazeManager:");
         String mazeManagerInfo = plugin.getMazeManager() != null ? plugin.getMazeManager().toString() : noData;
         ChatUtils.msg(p, mazeManagerInfo);

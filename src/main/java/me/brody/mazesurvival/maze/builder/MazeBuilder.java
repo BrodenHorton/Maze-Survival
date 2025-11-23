@@ -114,7 +114,7 @@ public class MazeBuilder {
 			for(int x = 0; x < grid.getRegionCellSize(); x++) {
 				Location loc = new Location(cellCorner.getWorld(),
 						cellCorner.getX() + x, cellCorner.getY(), cellCorner.getZ() + z);
-				if(x == 0 && z == 0)
+				if(plugin.getGameManager().isDebugModeEnabled() && x == 0 && z == 0)
 					loc.getBlock().setType(Material.DIAMOND_BLOCK);
 				else
 					loc.getBlock().setType(region.getFloorPalette().pickBlockFromPalette());
