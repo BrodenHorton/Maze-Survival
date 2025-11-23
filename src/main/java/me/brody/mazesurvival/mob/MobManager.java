@@ -2,7 +2,6 @@ package me.brody.mazesurvival.mob;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.daynightcycle.DayNightCycle;
-import me.brody.mazesurvival.event.eventargs.EventArgs;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.player.PlayerProfile;
@@ -58,10 +57,10 @@ public class MobManager implements Listener, Serializable {
             currentSpawnConfig = nightSpawnConfig;
             despawnAllMobs();
         });
-        plugin.getMazeManager().onMazeConstructionFinished.addListener(this::initMobSpawning);
+        plugin.getMazeManager().onMazeConstructionFinished.addListener((o, e) -> startMobSpawning());
     }
 
-    public void initMobSpawning(Object sender, EventArgs args) {
+    public void startMobSpawning() {
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, this::despawnOutOfRangeMobs, 0L, MobSpawnConfig.MOB_SPAWNING_UPDATE_IN_TICKS);
 
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
@@ -98,13 +97,14 @@ public class MobManager implements Listener, Serializable {
             int spawnCount = RNG.nextInt(1, maxSpawnCount + 1);
             for(int i = 0; i < spawnCount; i++) {
                 Location spawnLocation = LocationUtils.copy(spawnLocations.get(RNG.nextInt(0, spawnLocations.size())));
-                int maxSpawnOffset = grid.getRegionCellSize() / 2 - 1;
+
+                int maxSpawnOffset = (grid.getRegionCellSize() - grid.getWallWidth()) / 2 - 1;
                 int xOffset = RNG.nextInt(-maxSpawnOffset, maxSpawnOffset + 1);
-                int zOffset = RNG.nextInt(-3, 4);
-                float blockCenterOffset = 0.5f;
-                spawnLocation.setX(spawnLocation.getX() + xOffset + blockCenterOffset);
+                int zOffset = RNG.nextInt(-maxSpawnOffset, maxSpawnOffset + 1);
+                spawnLocation.setX(spawnLocation.getX() + xOffset);
                 spawnLocation.setY(spawnLocation.getY() + 1);
-                spawnLocation.setZ(spawnLocation.getZ() + zOffset + blockCenterOffset);
+                spawnLocation.setZ(spawnLocation.getZ() + zOffset);
+                spawnLocation = LocationUtils.centerOnBlock(spawnLocation);
                 LivingEntity entity;
                 if(dayNightCycle.isDay())
                     entity = region.getDayMobs().getWeightedValue().summon(spawnLocation);

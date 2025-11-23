@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import me.brody.mazesurvival.mob.custom.SimpleCustomMob.SimpleCustomMobBuilder;
 import me.brody.mazesurvival.mob.custom.SimpleCustomArmorMob.SimpleCustomArmorMobBuilder;
 import me.brody.mazesurvival.mob.custom.Bomber.BomberBuilder;
+import me.brody.mazesurvival.mob.custom.Ooze.OozeBuilder;
 import me.brody.mazesurvival.mob.custom.ChickenJockey.ChickenJockeyBuilder;
 import me.brody.mazesurvival.mob.custom.Hare.HareBuilder;
 
@@ -195,6 +196,7 @@ public abstract class CustomMob {
         REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Remains")
                 .withMovementSpeed(0.3)
                 .withDropTable(remainsDropTable)
+                .withMainHand(new ItemStack(Material.BOW))
                 .withHelmet(CustomItem.WORN_HELMET.getItemStack())
                 .withEntityType(EntityType.SKELETON)
                 .build();
@@ -404,82 +406,86 @@ public abstract class CustomMob {
 
         SimpleMobDropTable oozeDropTable = new SimpleMobDropTable();
         oozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 1);
-        OOZE = new SimpleCustomMobBuilder(plugin, "Ooze")
+        OOZE = new OozeBuilder(plugin, "Ooze")
                 .withMaxHealth(30)
                 .withMovementSpeed(0.25)
                 .withPowerAmplifier(0)
                 .withDropTable(oozeDropTable)
-                .withEntityType(EntityType.SLIME)
+                .withSize(2)
                 .build();
 
         SimpleMobDropTable bigOozeDropTable = new SimpleMobDropTable();
         bigOozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 1);
-        BIG_OOZE = new SimpleCustomMobBuilder(plugin, "Big Ooze")
+        BIG_OOZE = new OozeBuilder(plugin, "Big Ooze")
                 .withMaxHealth(50)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(2)
                 .withDropTable(bigOozeDropTable)
-                .withEntityType(EntityType.SLIME)
+                .withSize(3)
                 .build();
 
         SimpleMobDropTable megaOozeDropTable = new SimpleMobDropTable();
         megaOozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 2);
-        MEGA_OOZE = new SimpleCustomMobBuilder(plugin, "Mega Ooze")
+        MEGA_OOZE = new OozeBuilder(plugin, "Mega Ooze")
                 .withMaxHealth(60)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(3)
                 .withDropTable(megaOozeDropTable)
-                .withEntityType(EntityType.SLIME)
+                .withSize(4)
                 .build();
 
         SimpleMobDropTable ultraOozeDropTable = new SimpleMobDropTable();
         ultraOozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 2);
-        ULTRA_OOZE = new SimpleCustomMobBuilder(plugin, "Ultra Ooze")
+        ULTRA_OOZE = new OozeBuilder(plugin, "Ultra Ooze")
                 .withMaxHealth(80)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(5)
                 .withDropTable(ultraOozeDropTable)
-                .withEntityType(EntityType.SLIME)
+                .withSize(5)
                 .build();
 
         SimpleMobDropTable magmaOozeDropTable = new SimpleMobDropTable();
         magmaOozeDropTable.addBasicDrop(new ItemStack(Material.COAL), 1);
-        MAGMA_OOZE = new SimpleCustomMobBuilder(plugin, "Magma Ooze")
+        MAGMA_OOZE = new OozeBuilder(plugin, "Magma Ooze")
                 .withMaxHealth(30)
                 .withMovementSpeed(0.25)
                 .withPowerAmplifier(0)
                 .withDropTable(magmaOozeDropTable)
-                .withEntityType(EntityType.MAGMA_CUBE)
+                .withSize(2)
+                .withMagmaCube(true)
                 .build();
 
         SimpleMobDropTable bigMagmaOozeDropTable = new SimpleMobDropTable();
         bigMagmaOozeDropTable.addBasicDrop(new ItemStack(Material.COAL), 1);
-        BIG_MAGMA_OOZE = new SimpleCustomMobBuilder(plugin, "Big Magma Ooze")
+        BIG_MAGMA_OOZE = new OozeBuilder(plugin, "Big Magma Ooze")
                 .withMaxHealth(40)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(2)
                 .withDropTable(bigMagmaOozeDropTable)
-                .withEntityType(EntityType.MAGMA_CUBE)
+                .withSize(3)
+                .withMagmaCube(true)
                 .build();
 
         SimpleMobDropTable megaMagmaOozeDropTable = new SimpleMobDropTable();
         megaMagmaOozeDropTable.addBasicDrop(new ItemStack(Material.COAL), 2);
-        MEGA_MAGMA_OOZE = new SimpleCustomMobBuilder(plugin, "Mega Magma Ooze")
+        MEGA_MAGMA_OOZE = new OozeBuilder(plugin, "Mega Magma Ooze")
                 .withMaxHealth(60)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(4)
                 .withDropTable(megaMagmaOozeDropTable)
-                .withEntityType(EntityType.MAGMA_CUBE)
+                .withSize(4)
+                .withMagmaCube(true)
                 .build();
 
         SimpleMobDropTable ultraMagmaOozeDropTable = new SimpleMobDropTable();
         ultraMagmaOozeDropTable.addBasicDrop(new ItemStack(Material.COAL), 2);
-        ULTRA_MAGMA_OOZE = new SimpleCustomMobBuilder(plugin, "Ultra Magma Ooze")
+        ULTRA_MAGMA_OOZE = new OozeBuilder(plugin, "Ultra Magma Ooze")
                 .withMaxHealth(80)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(6)
                 .withDropTable(ultraMagmaOozeDropTable)
-                .withEntityType(EntityType.MAGMA_CUBE)
+                .withSize(5)
+                .withMagmaCube(true)
                 .build();
 
         SimpleMobDropTable mazeBlazeDropTable = new SimpleMobDropTable();
@@ -750,6 +756,7 @@ public abstract class CustomMob {
                 .withMaxHealth(80)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(3)
+                .withHelmet(CustomItem.ORICHALCUM_HELMET.getItemStack())
                 .withAdult(false)
                 .build();
     }

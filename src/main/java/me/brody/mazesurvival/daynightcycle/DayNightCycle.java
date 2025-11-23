@@ -4,10 +4,8 @@ import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.event.Event;
 import me.brody.mazesurvival.event.eventargs.EventArgs;
 import me.brody.mazesurvival.maze.MazeManager;
-import me.brody.mazesurvival.registry.Registry;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,15 +34,21 @@ public class DayNightCycle implements Serializable {
     }
 
     public void registerEvents(MazeManager mazeManager) {
-        mazeManager.onMazeConstructionFinished.addListener(this::startDayNightCycle);
+        mazeManager.onMazeConstructionFinished.addListener((o, e) -> {
+            initDayNightCycle(mazeManager.getGrid().getWorld());
+        });
     }
 
-    public void startDayNightCycle(Object sender, EventArgs e) {
-        plugin.getLogger().info("Day Night Cycle has started!");
-        world = plugin.getMazeManager().getGrid().getGridOrigin().getWorld();
-        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+    private void initDayNightCycle(World world) {
+        this.world = world;
         isDay = false;
         world.setTime(GAME_START_TIME_IN_TICKS);
+        startDayNightCycle();
+    }
+
+    public void startDayNightCycle() {
+        plugin.getLogger().info("Day Night Cycle has started!");
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 
         final int dayTimeStep = 2;
         final int nightTimeStep = 4;

@@ -99,6 +99,7 @@ public class TrapListener implements Listener {
         Vector2Int sourceCell = grid.getRegionCellAt(region, e.getPlayer().getLocation());
         Vector2Int destinationCell = region.getTileTeleportationDestinationCell(sourceCell);
         Location tpLocation = grid.getRegionCellWorldCenter(region, destinationCell);
+        tpLocation = LocationUtils.centerOnBlock(tpLocation);
         tpLocation.setY(tpLocation.getY() + 1);
 
         if(tpLocation != null) {

@@ -134,6 +134,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new MarkerTeleportListener(this), this);
 		getServer().getPluginManager().registerEvents(new OreDropListener(this), this);
 		getServer().getPluginManager().registerEvents(new MobCaptureListener(this), this);
+		getServer().getPluginManager().registerEvents(new SlimeSplitListener(), this);
 
 		PlayerHealthManager.getInstance().run(this);
 		MazeRunnerEnchantmentManager.getInstance().run(this);
@@ -200,6 +201,9 @@ public class Main extends JavaPlugin {
 			mobManager.registerEvents();
 			wanderingTraderManager.registerEvents(dayNightCycle);
 			gladeDoorListener.registerEvents(dayNightCycle);
+
+			dayNightCycle.startDayNightCycle();
+			mobManager.startMobSpawning();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
