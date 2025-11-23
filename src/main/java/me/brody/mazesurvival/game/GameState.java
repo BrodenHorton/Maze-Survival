@@ -1,4 +1,4 @@
-package me.brody.mazesurvival.gamestate;
+package me.brody.mazesurvival.game;
 
 import me.brody.mazesurvival.item.recipe.CustomRecipe;
 import me.brody.mazesurvival.maze.region.MazeRegion;

@@ -39,10 +39,10 @@ public class NetherBossFight implements BossFight {
         Location bossSpawnLocation = new Location(bossRoomCenter.getWorld(), 0, 1, -5, yaw, 0);
         bossSpawnLocation = LocationUtils.rotate(bossSpawnLocation, bossRoom.getDirection().id * -90);
         bossSpawnLocation = LocationUtils.shift(bossSpawnLocation, bossRoomCenter);
-        Location enemySpawnLocation1 = new Location(bossRoomCenter.getWorld(), -3, 1, -3, yaw, 0);
+        Location enemySpawnLocation1 = new Location(bossRoomCenter.getWorld(), -3, 8, -8, yaw, 0);
         enemySpawnLocation1 = LocationUtils.rotate(enemySpawnLocation1, bossRoom.getDirection().id * -90);
         enemySpawnLocation1 = LocationUtils.shift(enemySpawnLocation1, bossRoomCenter);
-        Location enemySpawnLocation2 = new Location(bossRoomCenter.getWorld(), 3, 1, -3, yaw, 0);
+        Location enemySpawnLocation2 = new Location(bossRoomCenter.getWorld(), 3, 8, -8, yaw, 0);
         enemySpawnLocation2 = LocationUtils.rotate(enemySpawnLocation2, bossRoom.getDirection().id * -90);
         enemySpawnLocation2 = LocationUtils.shift(enemySpawnLocation2, bossRoomCenter);
 

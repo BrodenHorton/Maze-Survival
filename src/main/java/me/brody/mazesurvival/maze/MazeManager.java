@@ -30,6 +30,7 @@ public class MazeManager implements Serializable {
 	public MazeManager(Main plugin) {
 		this.plugin = plugin;
 		onMazeConstructionFinished = new Event<>();
+		grid = null;
 	}
 	
 	public void generateMaze(MazeGridBase gridBase, Location gridOrigin) {

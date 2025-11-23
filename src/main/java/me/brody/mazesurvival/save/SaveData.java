@@ -3,7 +3,7 @@ package me.brody.mazesurvival.save;
 import me.brody.mazesurvival.bounds.AreaProtectionManager;
 import me.brody.mazesurvival.bounds.CollisionManager;
 import me.brody.mazesurvival.daynightcycle.DayNightCycle;
-import me.brody.mazesurvival.gamestate.GameState;
+import me.brody.mazesurvival.game.GameState;
 import me.brody.mazesurvival.listener.RespawnManager;
 import me.brody.mazesurvival.maze.GladeDoorListener;
 import me.brody.mazesurvival.maze.MazeManager;

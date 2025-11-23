@@ -6,7 +6,7 @@ import me.brody.mazesurvival.bounds.CollisionManager;
 import me.brody.mazesurvival.daynightcycle.DayNightCycle;
 import me.brody.mazesurvival.enchantment.EnchantingController;
 import me.brody.mazesurvival.enchantment.MazeEnchantment;
-import me.brody.mazesurvival.gamestate.GameState;
+import me.brody.mazesurvival.game.GameState;
 import me.brody.mazesurvival.item.CustomItem;
 import me.brody.mazesurvival.item.recipe.CustomRecipeCompendium;
 import me.brody.mazesurvival.item.recipe.CustomRecipes;
@@ -55,6 +55,7 @@ public class Main extends JavaPlugin {
 	private GameState gameState;
 	private InitializePlayersListener initializePlayersListener;
 	private CustomRecipeCompendium customRecipeCompendium;
+	private boolean isGameRunning;
 
 	@Override
 	public void onEnable() {
@@ -83,7 +84,6 @@ public class Main extends JavaPlugin {
 		MazeGridBase.register();
 
 		if(hasSaveFile()) {
-			getLogger().info("Loading MazeSurvival Save File ...");
 			loadSaveFile();
 		}
 		else {
@@ -139,6 +139,8 @@ public class Main extends JavaPlugin {
 		PlayerHealthManager.getInstance().run(this);
 		MazeRunnerEnchantmentManager.getInstance().run(this);
 		AmethystSetBonusManager.getInstance().run(this);
+
+		isGameRunning = hasSaveFile();
 	}
 	
 	@Override
@@ -179,6 +181,7 @@ public class Main extends JavaPlugin {
 	}
 
 	public void loadSaveFile() {
+		getLogger().info("Loading MazeSurvival Save File ...");
 		try {
 			FileInputStream fileInputStream = new FileInputStream(getDataFolder() + "/save.dat");
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -258,5 +261,9 @@ public class Main extends JavaPlugin {
 
 	public CustomRecipeCompendium getCustomRecipeCompendium() {
 		return customRecipeCompendium;
+	}
+
+	public boolean isGameRunning() {
+		return isGameRunning;
 	}
 }

@@ -21,26 +21,26 @@ public class MobSpawnPool extends WeightedList<CustomMob> {
 
     public static void init() {
         STRONGHOLD_DAY_MOBS = new MobSpawnPool();
-        STRONGHOLD_DAY_MOBS.add(CustomMob.REVENANT, 50);
+        STRONGHOLD_DAY_MOBS.add(CustomMob.REVENANT, 60);
         STRONGHOLD_DAY_MOBS.add(CustomMob.ARACHNID, 40);
         STRONGHOLD_DAY_MOBS.add(CustomMob.REMAINS, 35);
         STRONGHOLD_DAY_MOBS.add(CustomMob.BOMBER, 10);
         STRONGHOLD_DAY_MOBS.add(CustomMob.OOZE, 8);
-        STRONGHOLD_DAY_MOBS.add(CustomMob.SWIFT_ARACHNID, 3);
+        STRONGHOLD_DAY_MOBS.add(CustomMob.BIG_OOZE, 1);
         STRONGHOLD_DAY_MOBS.add(CustomMob.GOLDEN_HARE_STRONGHOLD, 1);
 
         STRONGHOLD_NIGHT_MOBS = new MobSpawnPool();
         STRONGHOLD_NIGHT_MOBS.add(CustomMob.FORTIFIED_REVENANT, 20);
-        STRONGHOLD_NIGHT_MOBS.add(CustomMob.BONE_CRUSHER, 15);
         STRONGHOLD_NIGHT_MOBS.add(CustomMob.TURBO_ARACHNID, 20);
+        STRONGHOLD_NIGHT_MOBS.add(CustomMob.BONE_CRUSHER, 15);
         STRONGHOLD_NIGHT_MOBS.add(CustomMob.SUPER_BOMBER, 10);
-        STRONGHOLD_NIGHT_MOBS.add(CustomMob.MEGA_MAGMA_OOZE, 5);
+        STRONGHOLD_NIGHT_MOBS.add(CustomMob.MEGA_OOZE, 5);
         STRONGHOLD_NIGHT_MOBS.add(CustomMob.WITHERED_REMAINS, 2);
 
         DESERT_DAY_MOBS = new MobSpawnPool();
-        DESERT_DAY_MOBS.add(CustomMob.HUNGRY_HORROR, 50);
-        DESERT_DAY_MOBS.add(CustomMob.DESERT_ARACHNID, 40);
+        DESERT_DAY_MOBS.add(CustomMob.HUNGRY_HORROR, 60);
         DESERT_DAY_MOBS.add(CustomMob.INFUSED_REMAINS, 30);
+        DESERT_DAY_MOBS.add(CustomMob.DESERT_ARACHNID, 30);
         DESERT_DAY_MOBS.add(CustomMob.BOMBER, 10);
         DESERT_DAY_MOBS.add(CustomMob.MAZE_BLAZE, 5);
         DESERT_DAY_MOBS.add(CustomMob.MAZE_BREEZE, 2);
@@ -58,12 +58,11 @@ public class MobSpawnPool extends WeightedList<CustomMob> {
         SWAMP_DAY_MOBS = new MobSpawnPool();
         SWAMP_DAY_MOBS.add(CustomMob.BOGGED_REMAINS, 50);
         SWAMP_DAY_MOBS.add(CustomMob.SWIFT_ARACHNID, 50);
-        SWAMP_DAY_MOBS.add(CustomMob.OOZE, 20);
-        SWAMP_DAY_MOBS.add(CustomMob.BIG_OOZE, 15);
-        SWAMP_DAY_MOBS.add(CustomMob.ARISEN_REVENANT, 10);
-        SWAMP_DAY_MOBS.add(CustomMob.SUPER_BOMBER, 5);
+        SWAMP_DAY_MOBS.add(CustomMob.BIG_OOZE, 30);
+        SWAMP_DAY_MOBS.add(CustomMob.ARISEN_REVENANT, 20);
+        SWAMP_DAY_MOBS.add(CustomMob.SUPER_BOMBER, 8);
         SWAMP_DAY_MOBS.add(CustomMob.HURRICANE, 5);
-        SWAMP_DAY_MOBS.add(CustomMob.ALCHEMIST, 2);
+        SWAMP_DAY_MOBS.add(CustomMob.ALCHEMIST, 4);
         SWAMP_DAY_MOBS.add(CustomMob.GOLDEN_HARE_SWAMP, 1);
 
         SWAMP_NIGHT_MOBS = new MobSpawnPool();
@@ -71,7 +70,7 @@ public class MobSpawnPool extends WeightedList<CustomMob> {
         SWAMP_NIGHT_MOBS.add(CustomMob.FORGOTTEN_REMAINS, 25);
         SWAMP_NIGHT_MOBS.add(CustomMob.MEGA_OOZE, 20);
         SWAMP_NIGHT_MOBS.add(CustomMob.CHARGED_BOMBER, 10);
-        SWAMP_NIGHT_MOBS.add(CustomMob.ALCHEMIST, 2);
+        SWAMP_NIGHT_MOBS.add(CustomMob.ALCHEMIST, 5);
 
         NETHER_DAY_MOBS = new MobSpawnPool();
         NETHER_DAY_MOBS.add(CustomMob.MAZE_PIGLIN, 50);
