@@ -59,11 +59,13 @@ public class GameManager {
     private CustomRecipeCompendium customRecipeCompendium;
     private boolean isGameRunning;
     private boolean isDebugModeEnabled;
+    private boolean shouldSaveGameData;
 
     public GameManager(Main plugin) {
         this.plugin = plugin;
         isGameRunning = false;
         isDebugModeEnabled = false;
+        shouldSaveGameData = true;
     }
 
     public void init() {
@@ -160,7 +162,7 @@ public class GameManager {
     }
 
     public void saveGameData() {
-        if(!isGameRunning)
+        if(!isGameRunning || !shouldSaveGameData)
             return;
 
         plugin.getLogger().info("Saving Game Data ...");
@@ -227,11 +229,13 @@ public class GameManager {
             registerListeners();
             mazeManager.onMazeConstructionFinished.addListener((o, e) -> isGameRunning = true);
 
+            shouldSaveGameData = true;
             isGameRunning = true;
         }
         catch(Exception e) {
-            e.printStackTrace();
             System.out.println("Loading game data failed ...");
+            shouldSaveGameData = false;
+            e.printStackTrace();
             Bukkit.getPluginManager().disablePlugin(plugin);
         }
     }

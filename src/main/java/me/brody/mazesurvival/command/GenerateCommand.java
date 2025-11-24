@@ -52,10 +52,8 @@ public class GenerateCommand implements SubCommand {
 			}
 		}
 
-		Location gridOrigin = LocationUtils.copy(p.getLocation());
-		gridOrigin.setX((int)gridOrigin.getX());
+		Location gridOrigin = LocationUtils.alignToBlockOrigin(p.getLocation());
 		gridOrigin.setY((int)gridOrigin.getY() - 1);
-		gridOrigin.setZ((int)gridOrigin.getZ());
 
 		plugin.getGameManager().startGame(Registry.GRID_BASE.get(args[1]), gridOrigin, shouldEnableDebugMode);
 	}

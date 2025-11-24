@@ -41,4 +41,15 @@ public class LocationUtils {
 
         return result;
     }
+
+    public static Location alignToBlockOrigin(Location location) {
+        Location result = copy(location);
+        result.setX((int)result.getX());
+        result.setY((int)result.getY());
+        result.setZ((int)result.getZ());
+        result.setYaw(0f);
+        result.setPitch(0f);
+
+        return result;
+    }
 }

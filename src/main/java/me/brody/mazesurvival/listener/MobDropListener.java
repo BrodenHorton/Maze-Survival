@@ -25,6 +25,8 @@ public class MobDropListener implements Listener {
     public void customMobDrops(EntityDeathEvent e) {
         if(!e.getEntity().getPersistentDataContainer().has(NamespacedKeys.CUSTOM_MOB))
             return;
+        if(e.getEntity().getPersistentDataContainer().has(NamespacedKeys.REGION_BOSS, PersistentDataType.STRING))
+            return;
 
         String customMobName = e.getEntity().getPersistentDataContainer().get(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING).toLowerCase().replace('-', '_');
         CustomMob customMob = Registry.CUSTOM_MOB.get(customMobName);
