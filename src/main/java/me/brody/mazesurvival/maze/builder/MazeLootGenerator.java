@@ -67,7 +67,7 @@ public class MazeLootGenerator {
         trapChestWeights = new WeightedList<>();
         trapChestWeights.add("splash-potion", 2);
         trapChestWeights.add("tnt", 2);
-        trapChestWeights.add("ambush", 10);
+        trapChestWeights.add("ambush", 2);
         trapChestWeights.add("teleportation", 1);
     }
 

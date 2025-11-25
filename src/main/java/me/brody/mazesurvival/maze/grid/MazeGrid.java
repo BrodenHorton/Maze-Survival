@@ -27,10 +27,12 @@ public class MazeGrid implements Serializable {
 	private Map<Vector2Int, MazeRegion> regionByGridCell;
 	private Vector2Int startingCell;
 
-	public MazeGrid(Main plugin, MazeGridBase gridBase, Location gridOrigin) {
+	public MazeGrid(Main plugin, MazeGridBase gridBase, Location generationLocation) {
 		this.plugin = plugin;
 		this.gridBase = gridBase;
-		this.gridOrigin = gridOrigin;
+		this.gridOrigin = LocationUtils.copy(generationLocation);
+		gridOrigin.setX(gridOrigin.getX() - (getGridCellSizeInBlocks() / 2));
+		gridOrigin.setZ(gridOrigin.getZ() - (getGridCellSizeInBlocks() / 2));
 		regions = new ArrayList<>();
 		regionOriginByRegion = new HashMap<>();
 		regionByGridCell = new HashMap<>();

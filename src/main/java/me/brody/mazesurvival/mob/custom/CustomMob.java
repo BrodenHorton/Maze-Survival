@@ -30,6 +30,7 @@ public abstract class CustomMob {
     public static CustomMob HUNGRY_HORROR;
     public static CustomMob STARVED_HORROR;
     public static CustomMob REMAINS;
+    public static CustomMob GUARDIAN_REMAINS;
     public static CustomMob INFUSED_REMAINS;
     public static CustomMob BONE_CRUSHER;
     public static CustomMob IMMORTAL_LEGIONARY;
@@ -198,6 +199,14 @@ public abstract class CustomMob {
                 .withDropTable(remainsDropTable)
                 .withMainHand(new ItemStack(Material.BOW))
                 .withHelmet(CustomItem.WORN_HELMET.getItemStack())
+                .withEntityType(EntityType.SKELETON)
+                .build();
+
+        GUARDIAN_REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Guardian Remains")
+                .withMaxHealth(30)
+                .withMovementSpeed(0.3)
+                .withMainHand(new ItemStack(Material.STONE_SWORD))
+                .withHelmet(new ItemStack(Material.IRON_HELMET))
                 .withEntityType(EntityType.SKELETON)
                 .build();
 
@@ -769,6 +778,7 @@ public abstract class CustomMob {
         registerCustomMob(HUNGRY_HORROR);
         registerCustomMob(STARVED_HORROR);
         registerCustomMob(REMAINS);
+        registerCustomMob(GUARDIAN_REMAINS);
         registerCustomMob(INFUSED_REMAINS);
         registerCustomMob(BONE_CRUSHER);
         registerCustomMob(IMMORTAL_LEGIONARY);

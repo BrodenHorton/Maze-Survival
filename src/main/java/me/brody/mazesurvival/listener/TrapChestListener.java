@@ -3,6 +3,7 @@ package me.brody.mazesurvival.listener;
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
+import me.brody.mazesurvival.mob.custom.CustomMob;
 import me.brody.mazesurvival.utils.LocationUtils;
 import me.brody.mazesurvival.utils.Vector2Int;
 import org.bukkit.Location;
@@ -131,16 +132,10 @@ public class TrapChestListener implements Listener {
             return;
 
         e.getClickedBlock().getWorld().strikeLightning(e.getClickedBlock().getLocation());
+        Location spawnLocation = LocationUtils.copy(e.getClickedBlock().getLocation());
+        spawnLocation = LocationUtils.centerOnBlock(spawnLocation);
         for(int i = 0; i < 4; i++) {
-            Location spawnLocation = LocationUtils.copy(e.getClickedBlock().getLocation());
-            double blockCenterOffset = 0.5;
-            spawnLocation.setX(spawnLocation.getX() + blockCenterOffset);
-            spawnLocation.setZ(spawnLocation.getZ() + blockCenterOffset);
-            Skeleton skeleton = (Skeleton) e.getClickedBlock().getWorld().spawnEntity(e.getClickedBlock().getLocation(), EntityType.SKELETON);
-            skeleton.getAttribute(Attribute.MAX_HEALTH).setBaseValue(40);
-            skeleton.setHealth(40);
-            skeleton.getEquipment().setHelmet(new ItemStack(Material.IRON_HELMET));
-            skeleton.getEquipment().setItemInMainHand(new ItemStack(Material.IRON_SWORD));
+            LivingEntity skeleton = CustomMob.GUARDIAN_REMAINS.summon(spawnLocation);
             skeleton.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 200, 0, true));
         }
     }
