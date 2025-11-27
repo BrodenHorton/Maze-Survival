@@ -43,10 +43,6 @@ public class Main extends JavaPlugin {
 		gameManager.init();
 
 		getCommand("ms").setExecutor(new CommandManager(this));
-
-		PlayerHealthManager.getInstance().run(this);
-		MazeRunnerEnchantmentManager.getInstance().run(this);
-		AmethystSetBonusManager.getInstance().run(this);
 	}
 	
 	@Override

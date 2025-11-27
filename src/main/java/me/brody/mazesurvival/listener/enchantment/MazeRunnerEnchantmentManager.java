@@ -5,6 +5,8 @@ import me.brody.mazesurvival.enchantment.CustomEnchantment;
 import me.brody.mazesurvival.enchantment.persistentdata.EnchantmentEntry;
 import me.brody.mazesurvival.enchantment.persistentdata.EnchantmentList;
 import me.brody.mazesurvival.enchantment.persistentdata.EnchantmentListDataType;
+import me.brody.mazesurvival.maze.grid.MazeGrid;
+import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -26,6 +28,9 @@ public class MazeRunnerEnchantmentManager {
     }
 
     private void updateMazeRunnerEnchantment() {
+        if(!plugin.getGameManager().isGameRunning())
+            return;
+
         for(Player player : plugin.getServer().getOnlinePlayers()) {
             ItemStack boots = player.getInventory().getBoots();
             if( boots == null || boots.getType() == Material.AIR)
@@ -33,15 +38,25 @@ public class MazeRunnerEnchantmentManager {
             ItemMeta meta = boots.getItemMeta();
             if(!meta.getPersistentDataContainer().has(NamespacedKeys.CUSTOM_ENCHANTMENTS, new EnchantmentListDataType()))
                 continue;
-
+            boolean shouldApplyMazeRunnerEffect = false;
             EnchantmentList enchantmentList = meta.getPersistentDataContainer().get(NamespacedKeys.CUSTOM_ENCHANTMENTS, new EnchantmentListDataType());
             for(EnchantmentEntry enchantment : enchantmentList.getEnchantmentEntries()) {
                 if(enchantment.getEnchantmentName().equals(CustomEnchantment.MAZE_RUNNER.getEnchantmentName())) {
                     if(player.getPotionEffect(PotionEffectType.SPEED) == null || player.getPotionEffect(PotionEffectType.SPEED).getAmplifier() < 2)
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1, true));
+                        shouldApplyMazeRunnerEffect = true;
                     break;
                 }
             }
+            if(!shouldApplyMazeRunnerEffect)
+                return;
+            MazeGrid grid = plugin.getMazeManager().getGrid();
+            MazeRegion region = grid.getRegionAt(player.getLocation());
+            if(region == null)
+                continue;
+            if(grid.getRegionCellAt(region, player.getLocation()) == null)
+                continue;
+
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1, true));
         }
     }
 

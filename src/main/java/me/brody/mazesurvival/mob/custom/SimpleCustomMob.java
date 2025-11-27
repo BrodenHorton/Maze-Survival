@@ -12,6 +12,8 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.List;
+
 public class SimpleCustomMob extends CustomMob {
     public final Main plugin;
 

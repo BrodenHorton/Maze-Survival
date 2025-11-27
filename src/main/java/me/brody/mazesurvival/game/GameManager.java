@@ -16,12 +16,10 @@ import me.brody.mazesurvival.listener.boss.BossListener;
 import me.brody.mazesurvival.listener.boss.MarkerTeleportListener;
 import me.brody.mazesurvival.listener.enchantment.CrusaderEnchantmentListener;
 import me.brody.mazesurvival.listener.enchantment.LingeringShotEnchantmentListener;
+import me.brody.mazesurvival.listener.enchantment.MazeRunnerEnchantmentManager;
 import me.brody.mazesurvival.listener.enchantment.SoulBoundEnchantmentListener;
 import me.brody.mazesurvival.listener.recipe.CraftingRecipeListener;
-import me.brody.mazesurvival.listener.setbonus.AdamantiteSetBonusListener;
-import me.brody.mazesurvival.listener.setbonus.LapisSetBonusListener;
-import me.brody.mazesurvival.listener.setbonus.MithrilSetBonusListener;
-import me.brody.mazesurvival.listener.setbonus.OrichalcumSetBonusListener;
+import me.brody.mazesurvival.listener.setbonus.*;
 import me.brody.mazesurvival.loot.chest.LootTable;
 import me.brody.mazesurvival.maze.GladeDoorListener;
 import me.brody.mazesurvival.maze.MazeManager;
@@ -122,6 +120,7 @@ public class GameManager {
         initializePlayersListener = new InitializePlayersListener(plugin, mazeManager);
 
         registerListeners();
+        runScheduledTasks();
         mazeManager.onMazeConstructionFinished.addListener((o, e) -> isGameRunning = true);
     }
 
@@ -159,6 +158,12 @@ public class GameManager {
 
     private void registerListener(Listener listener) {
         plugin.getServer().getPluginManager().registerEvents(listener, plugin);
+    }
+
+    private void runScheduledTasks() {
+        PlayerHealthManager.getInstance().run(plugin);
+        MazeRunnerEnchantmentManager.getInstance().run(plugin);
+        AmethystSetBonusManager.getInstance().run(plugin);
     }
 
     public void saveGameData() {

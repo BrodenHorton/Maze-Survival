@@ -39,7 +39,7 @@ public class MobSpawnPool extends WeightedList<CustomMob> {
 
         DESERT_DAY_MOBS = new MobSpawnPool();
         DESERT_DAY_MOBS.add(CustomMob.HUNGRY_HORROR, 60);
-        DESERT_DAY_MOBS.add(CustomMob.INFUSED_REMAINS, 30);
+        DESERT_DAY_MOBS.add(CustomMob.DESOLATE_REMAINS, 30);
         DESERT_DAY_MOBS.add(CustomMob.DESERT_ARACHNID, 30);
         DESERT_DAY_MOBS.add(CustomMob.BOMBER, 10);
         DESERT_DAY_MOBS.add(CustomMob.MAZE_BLAZE, 5);

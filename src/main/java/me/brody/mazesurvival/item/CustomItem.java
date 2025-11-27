@@ -445,7 +445,7 @@ public class CustomItem {
                 ChatColor.GRAY + "Negate all damage from fire, lava,",
                 ChatColor.GRAY + "and magma blocks.");
         Color orichalcumColor = Color.fromRGB(118, 176, 142);
-        int orichalcumHealthBoost = 34;
+        int orichalcumHealthBoost = 20;
         ORICHALCUM_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "orichalcum_helmet")
                 .withDisplayName(ChatColor.WHITE + "Orichalcum Helmet")
                 .withLore(orichalcumArmorLore)
