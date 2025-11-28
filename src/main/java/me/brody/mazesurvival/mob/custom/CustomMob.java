@@ -45,9 +45,8 @@ public abstract class CustomMob {
     public static CustomMob MAN_EATER;
     public static CustomMob KING_ARACHNID;
     public static CustomMob BOMBER;
-    public static CustomMob SUPER_BOMBER;
-    public static CustomMob CHARGED_BOMBER;
-    public static CustomMob SUPER_CHARGED_BOMBER;
+    public static CustomMob SWIFT_BOMBER;
+    public static CustomMob TURBO_BOMBER;
     public static CustomMob OOZE;
     public static CustomMob BIG_OOZE;
     public static CustomMob MEGA_OOZE;
@@ -379,79 +378,63 @@ public abstract class CustomMob {
                 .withDropTable(bomberDropTable)
                 .build();
 
-        SimpleMobDropTable superBomberDropTable = new SimpleMobDropTable();
-        superBomberDropTable.addBasicDrop(new ItemStack(Material.GUNPOWDER), 2);
-        SUPER_BOMBER = new BomberBuilder(plugin, "Super Bomber")
+        SimpleMobDropTable swiftBomberDropTable = new SimpleMobDropTable();
+        swiftBomberDropTable.addBasicDrop(new ItemStack(Material.GUNPOWDER), 2);
+        SWIFT_BOMBER = new BomberBuilder(plugin, "Swift Bomber")
                 .withMaxHealth(30)
                 .withMovementSpeed(0.3)
-                .withDropTable(superBomberDropTable)
+                .withDropTable(swiftBomberDropTable)
                 .build();
 
-        SimpleMobDropTable chargedBomberDropTable = new SimpleMobDropTable();
-        chargedBomberDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.GUNPOWDER), ItemGrade.IRON), 1);
-        CHARGED_BOMBER = new BomberBuilder(plugin, "Charged Bomber")
+        SimpleMobDropTable turboBomberDropTable = new SimpleMobDropTable();
+        turboBomberDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.GUNPOWDER), ItemGrade.IRON), 1);
+        TURBO_BOMBER = new BomberBuilder(plugin, "Turbo Bomber")
                 .withMaxHealth(30)
-                .withMovementSpeed(0.25)
-                .withDropTable(chargedBomberDropTable)
-                .withPowered(true)
-                .build();
-
-        SimpleMobDropTable superChargedBomberDropTable = new SimpleMobDropTable();
-        superChargedBomberDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.GUNPOWDER), ItemGrade.GOLD), 1);
-        superChargedBomberDropTable.addRareDrop(new ItemStack(Material.DIAMOND), 1);
-        SUPER_CHARGED_BOMBER = new BomberBuilder(plugin, "Super Charged Bomber")
-                .withMaxHealth(40)
-                .withMovementSpeed(0.3)
-                .withDropTable(superChargedBomberDropTable)
-                .withPowered(true)
+                .withMovementSpeed(0.35)
+                .withDropTable(turboBomberDropTable)
                 .build();
 
         SimpleMobDropTable oozeDropTable = new SimpleMobDropTable();
         oozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 1);
         OOZE = new OozeBuilder(plugin, "Ooze")
-                .withMaxHealth(100)
                 .withMovementSpeed(0.25)
                 .withDropTable(oozeDropTable)
-                .withSize(2)
+                .withSize(3)
                 .build();
 
         SimpleMobDropTable bigOozeDropTable = new SimpleMobDropTable();
         bigOozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 1);
         BIG_OOZE = new OozeBuilder(plugin, "Big Ooze")
-                .withMaxHealth(80)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(0)
                 .withDropTable(bigOozeDropTable)
-                .withSize(3)
+                .withSize(5)
                 .build();
 
         SimpleMobDropTable megaOozeDropTable = new SimpleMobDropTable();
         megaOozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 2);
         MEGA_OOZE = new OozeBuilder(plugin, "Mega Ooze")
-                .withMaxHealth(60)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(1)
                 .withDropTable(megaOozeDropTable)
-                .withSize(4)
+                .withSize(6)
                 .build();
 
         SimpleMobDropTable ultraOozeDropTable = new SimpleMobDropTable();
         ultraOozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 2);
         ULTRA_OOZE = new OozeBuilder(plugin, "Ultra Ooze")
-                .withMaxHealth(80)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(3)
                 .withDropTable(ultraOozeDropTable)
-                .withSize(5)
+                .withSize(7)
                 .build();
 
         SimpleMobDropTable magmaOozeDropTable = new SimpleMobDropTable();
         magmaOozeDropTable.addBasicDrop(new ItemStack(Material.COAL), 1);
         MAGMA_OOZE = new OozeBuilder(plugin, "Magma Ooze")
-                .withMaxHealth(30)
                 .withMovementSpeed(0.25)
                 .withDropTable(magmaOozeDropTable)
-                .withSize(2)
+                .withSize(3)
                 .withMagmaCube(true)
                 .build();
 
@@ -462,7 +445,7 @@ public abstract class CustomMob {
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(0)
                 .withDropTable(bigMagmaOozeDropTable)
-                .withSize(3)
+                .withSize(5)
                 .withMagmaCube(true)
                 .build();
 
@@ -473,7 +456,7 @@ public abstract class CustomMob {
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(1)
                 .withDropTable(megaMagmaOozeDropTable)
-                .withSize(4)
+                .withSize(6)
                 .withMagmaCube(true)
                 .build();
 
@@ -484,7 +467,7 @@ public abstract class CustomMob {
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(2)
                 .withDropTable(ultraMagmaOozeDropTable)
-                .withSize(5)
+                .withSize(7)
                 .withMagmaCube(true)
                 .build();
 
@@ -779,9 +762,8 @@ public abstract class CustomMob {
         registerCustomMob(MAN_EATER);
         registerCustomMob(KING_ARACHNID);
         registerCustomMob(BOMBER);
-        registerCustomMob(SUPER_BOMBER);
-        registerCustomMob(CHARGED_BOMBER);
-        registerCustomMob(SUPER_CHARGED_BOMBER);
+        registerCustomMob(SWIFT_BOMBER);
+        registerCustomMob(TURBO_BOMBER);
         registerCustomMob(OOZE);
         registerCustomMob(BIG_OOZE);
         registerCustomMob(MEGA_OOZE);

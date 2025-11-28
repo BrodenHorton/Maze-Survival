@@ -31,6 +31,7 @@ public class MazeRunnerEnchantmentManager {
         if(!plugin.getGameManager().isGameRunning())
             return;
 
+        MazeGrid grid = plugin.getMazeManager().getGrid();
         for(Player player : plugin.getServer().getOnlinePlayers()) {
             ItemStack boots = player.getInventory().getBoots();
             if( boots == null || boots.getType() == Material.AIR)
@@ -38,18 +39,17 @@ public class MazeRunnerEnchantmentManager {
             ItemMeta meta = boots.getItemMeta();
             if(!meta.getPersistentDataContainer().has(NamespacedKeys.CUSTOM_ENCHANTMENTS, new EnchantmentListDataType()))
                 continue;
-            boolean shouldApplyMazeRunnerEffect = false;
+            boolean hasMazeRunnerEnchantment = false;
             EnchantmentList enchantmentList = meta.getPersistentDataContainer().get(NamespacedKeys.CUSTOM_ENCHANTMENTS, new EnchantmentListDataType());
             for(EnchantmentEntry enchantment : enchantmentList.getEnchantmentEntries()) {
                 if(enchantment.getEnchantmentName().equals(CustomEnchantment.MAZE_RUNNER.getEnchantmentName())) {
                     if(player.getPotionEffect(PotionEffectType.SPEED) == null || player.getPotionEffect(PotionEffectType.SPEED).getAmplifier() < 2)
-                        shouldApplyMazeRunnerEffect = true;
+                        hasMazeRunnerEnchantment = true;
                     break;
                 }
             }
-            if(!shouldApplyMazeRunnerEffect)
+            if(!hasMazeRunnerEnchantment)
                 return;
-            MazeGrid grid = plugin.getMazeManager().getGrid();
             MazeRegion region = grid.getRegionAt(player.getLocation());
             if(region == null)
                 continue;

@@ -5,6 +5,7 @@ import me.brody.mazesurvival.maze.grid.MazeGrid;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import me.brody.mazesurvival.utils.ChatUtils;
+import me.brody.mazesurvival.utils.LocationUtils;
 import me.brody.mazesurvival.utils.PlayerRotationUtils;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -36,6 +37,7 @@ public class MarkerTeleportListener implements Listener {
             return;
 
         Location havenCenter = grid.getRegionHavenWorldCenter(region);
+        havenCenter = LocationUtils.centerOnBlock(havenCenter);
         havenCenter.setY(havenCenter.getY() + 1);
         havenCenter.setYaw(PlayerRotationUtils.getYaw(region.getHaven().getDirection()));
         e.getPlayer().teleport(havenCenter);

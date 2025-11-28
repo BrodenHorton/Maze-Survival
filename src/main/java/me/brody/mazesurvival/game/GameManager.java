@@ -18,6 +18,7 @@ import me.brody.mazesurvival.listener.enchantment.CrusaderEnchantmentListener;
 import me.brody.mazesurvival.listener.enchantment.LingeringShotEnchantmentListener;
 import me.brody.mazesurvival.listener.enchantment.MazeRunnerEnchantmentManager;
 import me.brody.mazesurvival.listener.enchantment.SoulBoundEnchantmentListener;
+import me.brody.mazesurvival.listener.mob.*;
 import me.brody.mazesurvival.listener.recipe.CraftingRecipeListener;
 import me.brody.mazesurvival.listener.setbonus.*;
 import me.brody.mazesurvival.loot.chest.LootTable;
@@ -32,7 +33,9 @@ import me.brody.mazesurvival.player.ProfileManager;
 import me.brody.mazesurvival.save.SaveData;
 import me.brody.mazesurvival.wanderingtrader.WanderingTraderManager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
@@ -91,6 +94,7 @@ public class GameManager {
         if(gridOrigin == null || gridBase == null)
             return;
 
+        setGameRules(gridOrigin.getWorld());
         if(isGameRunning)
             newSaveFile();
         if(shouldEnableDebugMode)
@@ -124,6 +128,17 @@ public class GameManager {
         mazeManager.onMazeConstructionFinished.addListener((o, e) -> isGameRunning = true);
     }
 
+    private void setGameRules(World world) {
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        world.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
+        world.setGameRule(GameRule.DISABLE_RAIDS, true);
+        world.setGameRule(GameRule.DO_INSOMNIA, false);
+        world.setGameRule(GameRule.DO_MOB_SPAWNING, false);
+        world.setGameRule(GameRule.DO_TRADER_SPAWNING, false);
+        world.setGameRule(GameRule.DO_WARDEN_SPAWNING, false);
+        world.setGameRule(GameRule.MOB_GRIEFING, false);
+    }
+
     private void registerListeners() {
         registerListener(mobManager);
         registerListener(wanderingTraderManager);
@@ -154,6 +169,8 @@ public class GameManager {
         registerListener(new OreDropListener(plugin));
         registerListener(new MobCaptureListener(plugin));
         registerListener(new SlimeSplitListener());
+        registerListener(new SlimePoisonEffectListener());
+        registerListener(new MagmaCubeFireEffectListener());
     }
 
     private void registerListener(Listener listener) {

@@ -1,4 +1,4 @@
-package me.brody.mazesurvival.listener;
+package me.brody.mazesurvival.listener.mob;
 
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.event.EventHandler;
