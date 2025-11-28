@@ -22,9 +22,11 @@ public class SlimePoisonEffectListener implements Listener {
             return;
 
         String mobName = e.getDamager().getPersistentDataContainer().get(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING);
-        if(mobName.equalsIgnoreCase(CustomMob.OOZE.getMobName()) || mobName.equalsIgnoreCase(CustomMob.BIG_OOZE.getMobName())
-                || mobName.equalsIgnoreCase(CustomMob.MEGA_OOZE.getMobName()) || mobName.equalsIgnoreCase(CustomMob.ULTRA_OOZE.getMobName())) {
-            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40, 0));
+        if(mobName.equalsIgnoreCase(CustomMob.OOZE.getMobId())
+                || mobName.equalsIgnoreCase(CustomMob.BIG_OOZE.getMobId())
+                || mobName.equalsIgnoreCase(CustomMob.MEGA_OOZE.getMobId())
+                || mobName.equalsIgnoreCase(CustomMob.ULTRA_OOZE.getMobId())) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100, 0));
         }
     }
 }

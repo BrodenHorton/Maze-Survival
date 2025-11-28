@@ -2,6 +2,7 @@ package me.brody.mazesurvival.maze.grid;
 
 import me.brody.mazesurvival.Main;
 import me.brody.mazesurvival.maze.Direction;
+import me.brody.mazesurvival.maze.MazeCell;
 import me.brody.mazesurvival.maze.region.CellExtension;
 import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.registry.Registry;
@@ -160,6 +161,16 @@ public class MazeGrid implements Serializable {
 			cellCoords = new Vector2Int(column, row);
 
 		return cellCoords;
+	}
+
+	public boolean isInMaze(MazeRegion region, Location location) {
+		Vector2Int cellCoords = getRegionCellAt(region, location);
+		if(cellCoords == null)
+			return false;
+		if(cellCoords.x < 0 || cellCoords.x >= region.getMazeCells()[0].length || cellCoords.y < 0 || cellCoords.y >= region.getMazeCells().length)
+			return false;
+
+		return region.getMazeCells()[cellCoords.y][cellCoords.x] != null;
 	}
 
 	public Location getGladeWorldOrigin() {

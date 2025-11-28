@@ -32,7 +32,7 @@ public class AmethystSetBonusManager {
             MazeRegion region = grid.getRegionAt(player.getLocation());
             if(region == null)
                 continue;
-            if(grid.getRegionCellAt(region, player.getLocation()) == null)
+            if(!grid.isInMaze(region, player.getLocation()))
                 continue;
 
             if(player.getPotionEffect(PotionEffectType.SPEED) == null || player.getPotionEffect(PotionEffectType.SPEED).getAmplifier() < 2)

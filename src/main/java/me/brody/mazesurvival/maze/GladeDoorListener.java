@@ -51,8 +51,7 @@ public class GladeDoorListener implements Serializable {
         for(Player p : plugin.getServer().getOnlinePlayers()) {
             MazeRegion region = grid.getRegionAt(p.getLocation());
             if(region != null) {
-                Vector2Int cellCoords = grid.getRegionCellAt(region, p.getLocation());
-                if(cellCoords != null && region.getMazeCells()[cellCoords.y][cellCoords.x] != null) {
+                if(grid.isInMaze(region, p.getLocation())) {
                     isPlayerInMaze = true;
                     break;
                 }

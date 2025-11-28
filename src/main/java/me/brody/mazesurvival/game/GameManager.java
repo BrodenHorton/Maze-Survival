@@ -81,28 +81,24 @@ public class GameManager {
         MazeRegionBase.initMazeBases();
         MazeGridBase.register();
 
-        if(hasSaveFile()) {
+        if(hasSaveFile())
             loadSaveFile();
-        }
-        else {
+        else
             plugin.getLogger().info("No Save File Found.");
-            newSaveFile();
-        }
     }
 
     public void startGame(MazeGridBase gridBase, Location gridOrigin, boolean shouldEnableDebugMode) {
-        if(gridOrigin == null || gridBase == null)
+        if(gridBase == null || gridOrigin == null) {
+            plugin.getLogger().warning("Invalid arguments when starting game. gridBase: " + gridBase + ", gridOrigin: " + gridOrigin);
             return;
+        }
 
         setGameRules(gridOrigin.getWorld());
-        if(isGameRunning)
-            newSaveFile();
-        if(shouldEnableDebugMode)
-            isDebugModeEnabled = true;
+        newSaveFile(shouldEnableDebugMode);
         mazeManager.generateMaze(gridBase, gridOrigin);
     }
 
-    public void newSaveFile() {
+    public void newSaveFile(boolean shouldEnableDebugMode) {
         plugin.getLogger().info("New game created");
         plugin.getServer().getScheduler().cancelTasks(plugin);
         HandlerList.unregisterAll(plugin);
@@ -117,7 +113,7 @@ public class GameManager {
         gladeDoorListener = new GladeDoorListener(plugin, dayNightCycle);
         gameState = new GameState();
         isGameRunning = false;
-        isDebugModeEnabled = false;
+        isDebugModeEnabled = shouldEnableDebugMode;
 
         enchantingController = new EnchantingController(plugin);
         customRecipeCompendium = new CustomRecipeCompendium(plugin);
@@ -241,18 +237,18 @@ public class GameManager {
             wanderingTraderManager.registerEvents(dayNightCycle);
             gladeDoorListener.registerEvents(dayNightCycle);
 
-            dayNightCycle.startDayNightCycle();
-            mobManager.startMobSpawning();
-
             enchantingController = new EnchantingController(plugin);
             customRecipeCompendium = new CustomRecipeCompendium(plugin);
             initializePlayersListener = new InitializePlayersListener(plugin, mazeManager);
-
-            registerListeners();
-            mazeManager.onMazeConstructionFinished.addListener((o, e) -> isGameRunning = true);
-
             shouldSaveGameData = true;
             isGameRunning = true;
+
+            registerListeners();
+            runScheduledTasks();
+            mazeManager.onMazeConstructionFinished.addListener((o, e) -> isGameRunning = true);
+
+            dayNightCycle.startDayNightCycle();
+            mobManager.startMobSpawning();
         }
         catch(Exception e) {
             System.out.println("Loading game data failed ...");

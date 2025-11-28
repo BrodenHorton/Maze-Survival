@@ -124,8 +124,7 @@ public class MobManager implements Listener, Serializable {
             MazeRegion region = grid.getRegionAt(player.getLocation());
             if(region == null)
                 continue;
-            Vector2Int cellCoords = grid.getRegionCellAt(region, player.getLocation());
-            if(cellCoords == null || region.getMazeCells()[cellCoords.y][cellCoords.x] == null)
+            if(!grid.isInMaze(region, player.getLocation()))
                 continue;
 
             for(Entity entity : player.getNearbyEntities(currentSpawnConfig.getDespawnRadius(), currentSpawnConfig.getDespawnRadius(), currentSpawnConfig.getDespawnRadius())) {
@@ -134,7 +133,7 @@ public class MobManager implements Listener, Serializable {
             }
         }
 
-        World world = grid.getGridOrigin().getWorld();
+        World world = grid.getWorld();
         for(int i = mobs.size() - 1; i >= 0; i--) {
             if(mobsInRange.contains(mobs.get(i)))
                 continue;
@@ -164,8 +163,9 @@ public class MobManager implements Listener, Serializable {
     }
 
     private List<Location> floodFillCellSpawnLocations(MazeRegion region, Player player) {
-        Vector2Int playerCellCoords = plugin.getMazeManager().getGrid().getRegionCellAt(region, player.getLocation());
-        if(region.getMazeCells()[playerCellCoords.y][playerCellCoords.x] == null)
+        MazeGrid grid = plugin.getMazeManager().getGrid();
+        Vector2Int playerCellCoords = grid.getRegionCellAt(region, player.getLocation());
+        if(!grid.isInMaze(region, player.getLocation()))
             return new ArrayList<>();
 
         return floodFillCellSpawnLocations(new ArrayList<>(), new ArrayList<>(), region, playerCellCoords.y, playerCellCoords.x, 0);

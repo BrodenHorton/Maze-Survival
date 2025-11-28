@@ -21,6 +21,8 @@ import me.brody.mazesurvival.mob.custom.Bomber.BomberBuilder;
 import me.brody.mazesurvival.mob.custom.Ooze.OozeBuilder;
 import me.brody.mazesurvival.mob.custom.ChickenJockey.ChickenJockeyBuilder;
 import me.brody.mazesurvival.mob.custom.Hare.HareBuilder;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionType;
 
 public abstract class CustomMob {
     public static CustomMob REVENANT;
@@ -211,11 +213,16 @@ public abstract class CustomMob {
         desolateRemainsDropTable.addBasicDrop(new ItemStack(Material.BONE), 1);
         desolateRemainsDropTable.addBasicDrop(new ItemStack(Material.ARROW), 1);
         desolateRemainsDropTable.addRareDrop(CustomItem.SHORT_BOW.getItemStack(), 1);
+        ItemStack tippedArrows = new ItemStack(Material.TIPPED_ARROW);
+        PotionMeta tippedArrowsMeta = (PotionMeta) tippedArrows.getItemMeta();
+        tippedArrowsMeta.setBasePotionType(PotionType.POISON);
+        tippedArrows.setItemMeta(tippedArrowsMeta);
         DESOLATE_REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Desolate Remains")
                 .withMaxHealth(15)
                 .withMovementSpeed(0.3)
                 .withDropTable(desolateRemainsDropTable)
                 .withMainHand(new ItemStack(Material.BOW))
+                .withOffHand(tippedArrows)
                 .withHelmet(new ItemStack(Material.CHAINMAIL_HELMET))
                 .withChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE))
                 .withEntityType(EntityType.SKELETON)
@@ -805,6 +812,10 @@ public abstract class CustomMob {
 
     public String getMobName() {
         return mobName;
+    }
+
+    public String getMobId() {
+        return mobName.toLowerCase().replace(' ', '-');
     }
 
     public MobDropTable getDropTable() {

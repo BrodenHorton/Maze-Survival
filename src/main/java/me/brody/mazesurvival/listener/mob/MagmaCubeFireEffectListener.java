@@ -20,9 +20,11 @@ public class MagmaCubeFireEffectListener implements Listener {
             return;
 
         String mobName = e.getDamager().getPersistentDataContainer().get(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING);
-        if(mobName.equalsIgnoreCase(CustomMob.MAGMA_OOZE.getMobName()) || mobName.equalsIgnoreCase(CustomMob.BIG_MAGMA_OOZE.getMobName())
-                || mobName.equalsIgnoreCase(CustomMob.MEGA_MAGMA_OOZE.getMobName()) || mobName.equalsIgnoreCase(CustomMob.ULTRA_MAGMA_OOZE.getMobName())) {
-            player.setFireTicks(5);
+        if(mobName.equalsIgnoreCase(CustomMob.MAGMA_OOZE.getMobId())
+                || mobName.equalsIgnoreCase(CustomMob.BIG_MAGMA_OOZE.getMobId())
+                || mobName.equalsIgnoreCase(CustomMob.MEGA_MAGMA_OOZE.getMobId())
+                || mobName.equalsIgnoreCase(CustomMob.ULTRA_MAGMA_OOZE.getMobId())) {
+            player.setFireTicks(80);
         }
     }
 }

@@ -36,7 +36,7 @@ public class Ooze extends CustomMob {
         else
             slime = (Slime) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.SLIME);
         slime.teleport(location);
-        slime.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
+        slime.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, getMobId());
         slime.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         slime.setHealth(maxHealth);
         slime.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);

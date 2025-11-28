@@ -29,7 +29,7 @@ public class Hare extends CustomMob {
     public LivingEntity summon(Location location) {
         Rabbit rabbit = (Rabbit) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.RABBIT);
         rabbit.teleport(location);
-        rabbit.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
+        rabbit.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, getMobId());
         rabbit.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         rabbit.setHealth(maxHealth);
         rabbit.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);

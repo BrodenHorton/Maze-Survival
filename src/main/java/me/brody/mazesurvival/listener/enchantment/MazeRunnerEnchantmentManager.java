@@ -53,7 +53,7 @@ public class MazeRunnerEnchantmentManager {
             MazeRegion region = grid.getRegionAt(player.getLocation());
             if(region == null)
                 continue;
-            if(grid.getRegionCellAt(region, player.getLocation()) == null)
+            if(!grid.isInMaze(region, player.getLocation()))
                 continue;
 
             player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20, 1, true));

@@ -34,7 +34,7 @@ public class ChickenJockey extends CustomArmorMob {
     public LivingEntity summon(Location location) {
         Zombie zombie = (Zombie) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.ZOMBIE);
         zombie.teleport(location);
-        zombie.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
+        zombie.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, getMobId());
         zombie.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         zombie.setHealth(maxHealth);
         zombie.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);

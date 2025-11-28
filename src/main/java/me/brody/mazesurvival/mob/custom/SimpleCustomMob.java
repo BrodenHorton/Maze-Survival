@@ -33,7 +33,7 @@ public class SimpleCustomMob extends CustomMob {
     public LivingEntity summon(Location location) {
         Mob mob = (Mob) plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, entityType);
         mob.teleport(location);
-        mob.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
+        mob.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, getMobId());
         mob.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         mob.setHealth(maxHealth);
         mob.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);

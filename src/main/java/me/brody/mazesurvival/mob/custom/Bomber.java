@@ -32,7 +32,7 @@ public class Bomber extends CustomMob {
     public LivingEntity summon(Location location) {
         Creeper creeper = (Creeper)plugin.getServer().getWorld(location.getWorld().getUID()).spawnEntity(location, EntityType.CREEPER);
         creeper.teleport(location);
-        creeper.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, mobName.toLowerCase().replace(' ', '-'));
+        creeper.getPersistentDataContainer().set(NamespacedKeys.CUSTOM_MOB, PersistentDataType.STRING, getMobId());
         creeper.getAttribute(Attribute.MAX_HEALTH).setBaseValue(maxHealth);
         creeper.setHealth(maxHealth);
         creeper.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
