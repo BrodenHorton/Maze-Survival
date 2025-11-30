@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-public class CustomArmorBuilder extends CustomItemBuilder<CustomArmorBuilder> {
+public class CustomArmorBuilder extends CustomDurabilityItemBuilder<CustomArmorBuilder> {
 
     public CustomArmorBuilder(ItemStack itemStack, String customItemName) {
         super(itemStack, customItemName);

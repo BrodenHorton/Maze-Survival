@@ -10,11 +10,8 @@ public class NamespacedKeys {
     public static final NamespacedKey TOOL_LEVEL = new NamespacedKey(PLUGIN_NAMESPACE, "tool-level");
     public static final NamespacedKey ARMOR_HEALTH_BOOST = new NamespacedKey(PLUGIN_NAMESPACE, "armor-health-boost");
     public static final NamespacedKey ITEM_GRADE = new NamespacedKey(PLUGIN_NAMESPACE, "item-grade");
-
-    // Custom Recipe Compendium Menu Keys
-    public static final NamespacedKey CUSTOM_RECIPE_INDEX = new NamespacedKey(PLUGIN_NAMESPACE, "custom-recipe-index");
-    public static final NamespacedKey CUSTOM_RECIPE_MENU = new NamespacedKey(PLUGIN_NAMESPACE, "custom-recipe-menu");
-    public static final NamespacedKey CUSTOM_RECIPE_MENU_PAGE = new NamespacedKey(PLUGIN_NAMESPACE, "custom-recipe-menu-page");
+    public static final NamespacedKey BASE_DURABILITY = new NamespacedKey(PLUGIN_NAMESPACE, "base-durability");
+    public static final NamespacedKey CURRENT_DURABILITY = new NamespacedKey(PLUGIN_NAMESPACE, "current-durability");
 
     // Item Enchantment keys
     public static final NamespacedKey SCRIPT = new NamespacedKey(PLUGIN_NAMESPACE, "script");
@@ -32,6 +29,11 @@ public class NamespacedKeys {
     // Wandering Trader keys
     public static final NamespacedKey WANDERING_TRADER = new NamespacedKey(PLUGIN_NAMESPACE, "wandering-trader");
 
+    // Custom Recipe Compendium Menu Keys
+    public static final NamespacedKey CUSTOM_RECIPE_INDEX = new NamespacedKey(PLUGIN_NAMESPACE, "custom-recipe-index");
+    public static final NamespacedKey CUSTOM_RECIPE_MENU = new NamespacedKey(PLUGIN_NAMESPACE, "custom-recipe-menu");
+    public static final NamespacedKey CUSTOM_RECIPE_MENU_PAGE = new NamespacedKey(PLUGIN_NAMESPACE, "custom-recipe-menu-page");
+
     // Enchanting Menu keys
     public static final NamespacedKey ENCHANTING_NAV = new NamespacedKey(PLUGIN_NAMESPACE, "enchantment-nav");
     public static final NamespacedKey ENCHANTING_MENU = new NamespacedKey(PLUGIN_NAMESPACE, "enchanting-menu");
@@ -48,5 +50,4 @@ public class NamespacedKeys {
     public static final NamespacedKey BREAK_ON_CLOSE = new NamespacedKey(PLUGIN_NAMESPACE, "break-on-close");
     public static final NamespacedKey BREAK_ON_OPEN = new NamespacedKey(PLUGIN_NAMESPACE, "break-on-open");
     public static final NamespacedKey TRAP_CHEST = new NamespacedKey(PLUGIN_NAMESPACE, "trap-chest");
-
 }

@@ -242,135 +242,164 @@ public class CustomItem {
         float chestplateHealthMultiplier = 0.4f;
         float leggingsHealthMultiplier = 0.3f;
         float bootsHealthMultiplier = 0.1f;
+        float helmetDurabilityMultiplier = 0.6f;
+        float chestplateDurabilityMultiplier = 1f;
+        float leggingsDurabilityMultiplier = 0.85f;
+        float bootsDurabilityMultiplier = 0.7f;
 
         Color hardLeatherColor = Color.fromRGB(128, 91, 57);
         int hardLeatherHealthBoost = 4;
+        int hardLeatherBaseDurability = 128;
         HARD_LEATHER_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "hard_leather_helmet")
                 .withDisplayName(ChatColor.WHITE + "Hard Leather Helmet")
                 .withColor(hardLeatherColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(hardLeatherHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(hardLeatherBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         HARD_LEATHER_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "hard_leather_chestplate")
                 .withDisplayName(ChatColor.WHITE + "Hard Leather Chestplate")
                 .withColor(hardLeatherColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(hardLeatherHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(hardLeatherBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         HARD_LEATHER_LEGGIGNS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "hard_leather_leggings")
                 .withDisplayName(ChatColor.WHITE + "Hard Leather Leggings")
                 .withColor(hardLeatherColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(hardLeatherHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(hardLeatherBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         HARD_LEATHER_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "hard_leather_boots")
                 .withDisplayName(ChatColor.WHITE + "Hard Leather Boots")
                 .withColor(hardLeatherColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(hardLeatherHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(hardLeatherBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         Color bronzeColor = Color.fromRGB(211, 169, 55);
         int bronzeHealthBoost = 10;
+        int bronzeBaseDurability = 275;
         BRONZE_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "bronze_helmet")
                 .withDisplayName(ChatColor.WHITE + "Bronze Helmet")
                 .withColor(bronzeColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(bronzeHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(bronzeBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         BRONZE_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "bronze_chestplate")
                 .withDisplayName(ChatColor.WHITE + "Bronze Chestplate")
                 .withColor(bronzeColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(bronzeHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(bronzeBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         BRONZE_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "bronze_leggings")
                 .withDisplayName(ChatColor.WHITE + "Bronze Leggings")
                 .withColor(bronzeColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(bronzeHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(bronzeBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         BRONZE_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "bronze_boots")
                 .withDisplayName(ChatColor.WHITE + "Bronze Boots")
                 .withColor(bronzeColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(bronzeHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(bronzeBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         Color miststeelColor = Color.fromRGB(216, 246, 247);
         int miststeelHealthBoost = 18;
+        int miststeelBaseDurability = 320;
         MISTSTEEL_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "miststeel_helmet")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Helmet")
                 .withColor(miststeelColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(miststeelHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(miststeelBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         MISTSTEEL_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "miststeel_chestplate")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Chestplate")
                 .withColor(miststeelColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(miststeelHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(miststeelBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         MISTSTEEL_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "miststeel_leggings")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Leggings")
                 .withColor(miststeelColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(miststeelHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(miststeelBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         MISTSTEEL_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "miststeel_boots")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Boots")
                 .withColor(miststeelColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(miststeelHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(miststeelBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         Color sunGoldColor = Color.fromRGB(255, 186, 0);
         int sunGoldHealthBoost = 24;
+        int sunGoldBaseDurability = 380;
         SUN_GOLD_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "sun_gold_helmet")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Helmet")
                 .withColor(sunGoldColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(sunGoldHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(sunGoldBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         SUN_GOLD_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "sun_gold_chestplate")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Chestplate")
                 .withColor(sunGoldColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(sunGoldHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(sunGoldBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         SUN_GOLD_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "sun_gold_leggings")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Leggings")
                 .withColor(sunGoldColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(sunGoldHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(sunGoldBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         SUN_GOLD_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "sun_gold_boots")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Boots")
                 .withColor(sunGoldColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(sunGoldHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(sunGoldBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         Color corruptedDiamondColor = Color.fromRGB(3, 129, 171);
         int corruptedDiamondHealthBoost = 44;
+        int corruptedDiamondBaseDurability = 425;
         CORRUPTED_DIAMOND_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "corrupted_diamond_helmet")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Helmet")
                 .withColor(corruptedDiamondColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(corruptedDiamondHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(corruptedDiamondBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         CORRUPTED_DIAMOND_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "corrupted_diamond_chestplate")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Chestplate")
                 .withColor(corruptedDiamondColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(corruptedDiamondHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(corruptedDiamondBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         CORRUPTED_DIAMOND_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "corrupted_diamond_leggings")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Leggings")
                 .withColor(corruptedDiamondColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(corruptedDiamondHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(corruptedDiamondBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         CORRUPTED_DIAMOND_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "corrupted_diamond_boots")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Boots")
                 .withColor(corruptedDiamondColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(corruptedDiamondHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(corruptedDiamondBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         List<String> amethystArmorLore = List.of(
@@ -379,11 +408,13 @@ public class CustomItem {
                 ChatColor.GRAY + "the maze.");
         Color amethystColor = Color.fromRGB(239, 151, 249);
         int amethystHealthBoost = 6;
+        int amethystBaseDurability = 210;
         AMETHYST_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "amethyst_helmet")
                 .withDisplayName(ChatColor.WHITE + "Amethyst Helmet")
                 .withLore(amethystArmorLore)
                 .withColor(amethystColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(amethystHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(amethystBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         AMETHYST_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "amethyst_chestplate")
@@ -391,6 +422,7 @@ public class CustomItem {
                 .withLore(amethystArmorLore)
                 .withColor(amethystColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(amethystHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(amethystBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         AMETHYST_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "amethyst_leggings")
@@ -398,6 +430,7 @@ public class CustomItem {
                 .withLore(amethystArmorLore)
                 .withColor(amethystColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(amethystHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(amethystBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         AMETHYST_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "amethyst_boots")
@@ -405,6 +438,7 @@ public class CustomItem {
                 .withLore(amethystArmorLore)
                 .withColor(amethystColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(amethystHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(amethystBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         List<String> lapisArmorLore = List.of(
@@ -412,11 +446,13 @@ public class CustomItem {
                 ChatColor.GRAY + "Immune to poison, wither, and hunger.");
         Color lapisColor = Color.fromRGB(41, 76, 255);
         int lapisHealthBoost = 12;
+        int lapisBaseDurability = 250;
         LAPIS_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "lapis_helmet")
                 .withDisplayName(ChatColor.WHITE + "Lapis Helmet")
                 .withLore(lapisArmorLore)
                 .withColor(lapisColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(lapisHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(lapisBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         LAPIS_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "lapis_chestplate")
@@ -424,6 +460,7 @@ public class CustomItem {
                 .withLore(lapisArmorLore)
                 .withColor(lapisColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(lapisHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(lapisBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         LAPIS_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "lapis_leggings")
@@ -431,6 +468,7 @@ public class CustomItem {
                 .withLore(lapisArmorLore)
                 .withColor(lapisColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(lapisHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(lapisBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         LAPIS_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "lapis_boots")
@@ -438,6 +476,7 @@ public class CustomItem {
                 .withLore(lapisArmorLore)
                 .withColor(lapisColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(lapisHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(lapisBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         List<String> orichalcumArmorLore = List.of(
@@ -446,11 +485,13 @@ public class CustomItem {
                 ChatColor.GRAY + "and magma blocks.");
         Color orichalcumColor = Color.fromRGB(118, 176, 142);
         int orichalcumHealthBoost = 20;
+        int orichalcumBaseDurability = 380;
         ORICHALCUM_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "orichalcum_helmet")
                 .withDisplayName(ChatColor.WHITE + "Orichalcum Helmet")
                 .withLore(orichalcumArmorLore)
                 .withColor(orichalcumColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(orichalcumBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         ORICHALCUM_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "orichalcum_chestplate")
@@ -458,6 +499,7 @@ public class CustomItem {
                 .withLore(orichalcumArmorLore)
                 .withColor(orichalcumColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(orichalcumBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         ORICHALCUM_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "orichalcum_leggings")
@@ -465,6 +507,7 @@ public class CustomItem {
                 .withLore(orichalcumArmorLore)
                 .withColor(orichalcumColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(orichalcumBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         ORICHALCUM_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "orichalcum_boots")
@@ -472,6 +515,7 @@ public class CustomItem {
                 .withLore(orichalcumArmorLore)
                 .withColor(orichalcumColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(orichalcumHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(orichalcumBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         List<String> mithrilArmorLore = List.of(
@@ -480,11 +524,13 @@ public class CustomItem {
                 ChatColor.GRAY + "damage.");
         Color mithrilColor = Color.fromRGB(158, 232, 216);
         int mithrilHealthBoost = 30;
+        int mithrilBaseDurability = 425;
         MITHRIL_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "mithril_helmet")
                 .withDisplayName(ChatColor.WHITE + "Mithril Helmet")
                 .withLore(mithrilArmorLore)
                 .withColor(mithrilColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(mithrilHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(mithrilBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         MITHRIL_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "mithril_chestplate")
@@ -492,6 +538,7 @@ public class CustomItem {
                 .withLore(mithrilArmorLore)
                 .withColor(mithrilColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(mithrilHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(mithrilBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         MITHRIL_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "mithril_leggings")
@@ -499,6 +546,7 @@ public class CustomItem {
                 .withLore(mithrilArmorLore)
                 .withColor(mithrilColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(mithrilHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(mithrilBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         MITHRIL_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "mithril_boots")
@@ -506,6 +554,7 @@ public class CustomItem {
                 .withLore(mithrilArmorLore)
                 .withColor(mithrilColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(mithrilHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(mithrilBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         List<String> solariumArmorLore = List.of(
@@ -514,11 +563,13 @@ public class CustomItem {
                 ChatColor.GRAY + "and magma blocks.");
         Color solariumColor = Color.fromRGB(240, 26, 76);
         int solariumHealthBoost = 40;
+        int solariumBaseDurability = 460;
         SOLARIUM_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "solarium_helmet")
                 .withDisplayName(ChatColor.WHITE + "Solarium Helmet")
                 .withLore(solariumArmorLore)
                 .withColor(solariumColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(solariumHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(solariumBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         SOLARIUM_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "solarium_chestplate")
@@ -526,6 +577,7 @@ public class CustomItem {
                 .withLore(solariumArmorLore)
                 .withColor(solariumColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(solariumHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(solariumBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         SOLARIUM_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "solarium_leggings")
@@ -533,6 +585,7 @@ public class CustomItem {
                 .withLore(solariumArmorLore)
                 .withColor(solariumColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(solariumHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(solariumBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         SOLARIUM_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "solarium_boots")
@@ -540,6 +593,7 @@ public class CustomItem {
                 .withLore(solariumArmorLore)
                 .withColor(solariumColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(solariumHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(solariumBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         List<String> adamantiteArmorLore = List.of(
@@ -547,11 +601,13 @@ public class CustomItem {
                 ChatColor.GRAY + "Armor takes no durability damage.");
         Color adamantiteColor = Color.fromRGB(43, 8, 64);
         int adamantiteHealthBoost = 54;
+        int adamantiteBaseDurability = 500;
         ADAMANTITE_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "adamantite_helmet")
                 .withDisplayName(ChatColor.WHITE + "Adamantite Helmet")
                 .withLore(adamantiteArmorLore)
                 .withColor(adamantiteColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(adamantiteHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(adamantiteBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         ADAMANTITE_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "adamantite_chestplate")
@@ -559,6 +615,7 @@ public class CustomItem {
                 .withLore(adamantiteArmorLore)
                 .withColor(adamantiteColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(adamantiteHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(adamantiteBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         ADAMANTITE_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "adamantite_leggings")
@@ -566,6 +623,7 @@ public class CustomItem {
                 .withLore(adamantiteArmorLore)
                 .withColor(adamantiteColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(adamantiteHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(adamantiteBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         ADAMANTITE_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "adamantite_boots")
@@ -573,14 +631,17 @@ public class CustomItem {
                 .withLore(adamantiteArmorLore)
                 .withColor(adamantiteColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(adamantiteHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(adamantiteBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         Color wornColor = Color.fromRGB(153, 153, 153);
         int wornHelmetHealthBoost = 2;
+        int wornSetBaseDurability = 128;
         WORN_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "worn_helmet")
                 .withDisplayName(ChatColor.WHITE + "Worn Helmet")
                 .withColor(wornColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, wornHelmetHealthBoost)
+                .withBaseDurability((int)(wornSetBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         int tatteredChestplateHealthBoost = 4;
@@ -588,14 +649,17 @@ public class CustomItem {
                 .withDisplayName(ChatColor.WHITE + "Tattered Chestplate")
                 .withColor(wornColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, tatteredChestplateHealthBoost)
+                .withBaseDurability((int)(wornSetBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         Color legionaryColor = Color.fromRGB(230, 220, 149);
         int legionaryHelmetHealthBoost = 8;
+        int legionarySetBaseDurability = 250;
         LEGIONARY_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "legionary_helmet")
                 .withDisplayName(ChatColor.WHITE + "Legionary Helmet")
                 .withColor(legionaryColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, legionaryHelmetHealthBoost)
+                .withBaseDurability((int)(legionarySetBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         int legionaryChestplateHealthBoost = 12;
@@ -603,61 +667,73 @@ public class CustomItem {
                 .withDisplayName(ChatColor.WHITE + "Legionary Chestplate")
                 .withColor(legionaryColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, legionaryChestplateHealthBoost)
+                .withBaseDurability((int)(legionarySetBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         Color fortifiedColor = Color.fromRGB(247, 247, 247);
         int fortifiedHealthBoost = 24;
+        int fortifiedBaseDurability = 320;
         FORTIFIED_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "fortified_helmet")
                 .withDisplayName(ChatColor.WHITE + "Fortified Helmet")
                 .withColor(fortifiedColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(fortifiedHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(fortifiedBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         FORTIFIED_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "fortified_chestplate")
                 .withDisplayName(ChatColor.WHITE + "Fortified Chestplate")
                 .withColor(fortifiedColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(fortifiedHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(fortifiedBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         FORTIFIED_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "fortified_leggings")
                 .withDisplayName(ChatColor.WHITE + "Fortified Leggings")
                 .withColor(fortifiedColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(fortifiedHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(fortifiedBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         FORTIFIED_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "fortified_boots")
                 .withDisplayName(ChatColor.WHITE + "Fortified Boots")
                 .withColor(fortifiedColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(fortifiedHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(fortifiedBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         Color wraithColor = Color.fromRGB(36, 36, 36);
         int wraithHealthBoost = 40;
+        int wraithBaseDurability = 400;
         WRAITH_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "wraith_helmet")
                 .withDisplayName(ChatColor.WHITE + "Wraith Helmet")
                 .withColor(wraithColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(wraithHealthBoost * helmetHealthMultiplier))
+                .withBaseDurability((int)(wraithBaseDurability * helmetDurabilityMultiplier))
                 .build();
 
         WRAITH_CHESTPLATE = new CustomArmorBuilder(new ItemStack(Material.LEATHER_CHESTPLATE), "wraith_chestplate")
                 .withDisplayName(ChatColor.WHITE + "Wraith Chestplate")
                 .withColor(wraithColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(wraithHealthBoost * chestplateHealthMultiplier))
+                .withBaseDurability((int)(wraithBaseDurability * chestplateDurabilityMultiplier))
                 .build();
 
         WRAITH_LEGGINGS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_LEGGINGS), "wraith_leggings")
                 .withDisplayName(ChatColor.WHITE + "Wraith Leggings")
                 .withColor(wraithColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(wraithHealthBoost * leggingsHealthMultiplier))
+                .withBaseDurability((int)(wraithBaseDurability * leggingsDurabilityMultiplier))
                 .build();
 
         WRAITH_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "wraith_boots")
                 .withDisplayName(ChatColor.WHITE + "Wraith Boots")
                 .withColor(wraithColor)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, Math.round(wraithHealthBoost * bootsHealthMultiplier))
+                .withBaseDurability((int)(wraithBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         int mazeRunnerBootsHealthBoost = 3;
+        int mazeRunnerBaseDurability = 180;
         Map<MazeEnchantment, Integer> mazeRunnerEnchantment = new HashMap<>();
         mazeRunnerEnchantment.put(MazeEnchantment.MAZE_RUNNER, 1);
         MAZE_RUNNER_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "maze_runner_boots")
@@ -665,237 +741,291 @@ public class CustomItem {
                 .withColor(125, 20, 114)
                 .withCustomEnchantments(mazeRunnerEnchantment)
                 .withPersistentData(NamespacedKeys.ARMOR_HEALTH_BOOST, PersistentDataType.INTEGER, mazeRunnerBootsHealthBoost)
+                .withBaseDurability((int)(mazeRunnerBaseDurability * bootsDurabilityMultiplier))
                 .build();
 
         // === Weapons ===
-        float swordMultiplier = 1f;
-        float axeMultiplier = 1.3f;
-        float shovelMultiplier = 0.75f;
-        float hoeMultiplier = 0.6f;
-        float pickaxeMultiplier = 0.2f;
+        float swordAttackMultiplier = 1f;
+        float axeAttackMultiplier = 1.3f;
+        float shovelAttackMultiplier = 0.75f;
+        float hoeAttackMultiplier = 0.6f;
+        float pickaxeAttackMultiplier = 0.2f;
 
         int woodenBaseAttack = 3;
+        int woodenToolBaseDurability = 65;
         WOODEN_SHORT_SWORD = new CustomToolBuilder(new ItemStack(Material.WOODEN_SWORD), "wooden_short_sword")
                 .withDisplayName(ChatColor.WHITE + "Wooden Short Sword")
-                .withBaseDamage(Math.round(woodenBaseAttack * swordMultiplier))
+                .withBaseDamage(Math.round(woodenBaseAttack * swordAttackMultiplier))
+                .withBaseDurability(woodenToolBaseDurability)
                 .build();
 
         WOODEN_HATCHET = new CustomToolBuilder(new ItemStack(Material.WOODEN_AXE), "wooden_hatchet")
                 .withDisplayName(ChatColor.WHITE + "Wooden Hatchet")
-                .withBaseDamage(Math.round(woodenBaseAttack * axeMultiplier))
+                .withBaseDamage(Math.round(woodenBaseAttack * axeAttackMultiplier))
+                .withBaseDurability(woodenToolBaseDurability)
                 .build();
 
         WOODEN_SPADE = new CustomToolBuilder(new ItemStack(Material.WOODEN_SHOVEL), "wooden_spade")
                 .withDisplayName(ChatColor.WHITE + "Wooden Spade")
-                .withBaseDamage(Math.round(woodenBaseAttack * shovelMultiplier))
+                .withBaseDamage(Math.round(woodenBaseAttack * shovelAttackMultiplier))
+                .withBaseDurability(woodenToolBaseDurability)
                 .build();
 
         WOODEN_SCYTHE = new CustomToolBuilder(new ItemStack(Material.WOODEN_HOE), "wooden_scythe")
                 .withDisplayName(ChatColor.WHITE + "Wooden Scythe")
-                .withBaseDamage(Math.round(woodenBaseAttack * hoeMultiplier))
+                .withBaseDamage(Math.round(woodenBaseAttack * hoeAttackMultiplier))
+                .withBaseDurability(woodenToolBaseDurability)
                 .build();
 
         int wornWoodenPickaxeToolLevel = 1;
         WORN_WOODEN_PICKAXE = new CustomToolBuilder(new ItemStack(Material.WOODEN_PICKAXE), "worn_wooden_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Worn Wooden Pickaxe")
-                .withBaseDamage(Math.round(woodenBaseAttack * pickaxeMultiplier))
+                .withBaseDamage(Math.round(woodenBaseAttack * pickaxeAttackMultiplier))
                 .withToolLevel(wornWoodenPickaxeToolLevel)
+                .withBaseDurability(woodenToolBaseDurability)
                 .build();
 
         int stoneBaseAttack = 4;
+        int stoneToolBaseDurability = 180;
         BASTARD_SWORD = new CustomToolBuilder(new ItemStack(Material.STONE_SWORD), "bastard_sword")
                 .withDisplayName(ChatColor.WHITE + "Bastard Sword")
-                .withBaseDamage(Math.round(stoneBaseAttack * swordMultiplier))
+                .withBaseDamage(Math.round(stoneBaseAttack * swordAttackMultiplier))
+                .withBaseDurability(stoneToolBaseDurability)
                 .build();
 
         BATTLE_AXE = new CustomToolBuilder(new ItemStack(Material.STONE_AXE), "battle_axe")
                 .withDisplayName(ChatColor.WHITE + "Battle Axe")
-                .withBaseDamage(Math.round(stoneBaseAttack * axeMultiplier))
+                .withBaseDamage(Math.round(stoneBaseAttack * axeAttackMultiplier))
+                .withBaseDurability(stoneToolBaseDurability)
                 .build();
 
         MACE = new CustomToolBuilder(new ItemStack(Material.STONE_SHOVEL), "mace")
                 .withDisplayName(ChatColor.WHITE + "Mace")
-                .withBaseDamage(Math.round(stoneBaseAttack * shovelMultiplier))
+                .withBaseDamage(Math.round(stoneBaseAttack * shovelAttackMultiplier))
+                .withBaseDurability(stoneToolBaseDurability)
                 .build();
 
         int cobblestonePickaxeToolLevel = 2;
         COBBLESTONE_PICKAXE = new CustomToolBuilder(new ItemStack(Material.STONE_PICKAXE), "cobblestone_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Cobblestone Pickaxe")
-                .withBaseDamage(Math.round(stoneBaseAttack * pickaxeMultiplier))
+                .withBaseDamage(Math.round(stoneBaseAttack * pickaxeAttackMultiplier))
                 .withToolLevel(cobblestonePickaxeToolLevel)
+                .withBaseDurability(stoneToolBaseDurability)
                 .build();
 
         int bronzeBaseAttack = 8;
+        int bronzeToolBaseDurability = 250;
         BRONZE_SWORD = new CustomToolBuilder(new ItemStack(Material.STONE_SWORD), "bronze_sword")
                 .withDisplayName(ChatColor.WHITE + "Bronze Sword")
-                .withBaseDamage(Math.round(bronzeBaseAttack * swordMultiplier))
+                .withBaseDamage(Math.round(bronzeBaseAttack * swordAttackMultiplier))
+                .withBaseDurability(bronzeToolBaseDurability)
                 .build();
 
         BRONZE_AXE = new CustomToolBuilder(new ItemStack(Material.STONE_AXE), "bronze_axe")
                 .withDisplayName(ChatColor.WHITE + "Bronze Axe")
-                .withBaseDamage(Math.round(bronzeBaseAttack * axeMultiplier))
+                .withBaseDamage(Math.round(bronzeBaseAttack * axeAttackMultiplier))
+                .withBaseDurability(bronzeToolBaseDurability)
                 .build();
 
         BRONZE_MACE = new CustomToolBuilder(new ItemStack(Material.STONE_SHOVEL), "bronze_mace")
                 .withDisplayName(ChatColor.WHITE + "Bronze Mace")
-                .withBaseDamage(Math.round(bronzeBaseAttack * shovelMultiplier))
+                .withBaseDamage(Math.round(bronzeBaseAttack * shovelAttackMultiplier))
+                .withBaseDurability(bronzeToolBaseDurability)
                 .build();
 
         int bronzePickaxeToolLevel = 3;
         BRONZE_PICKAXE = new CustomToolBuilder(new ItemStack(Material.STONE_PICKAXE), "bronze_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Bronze Pickaxe")
-                .withBaseDamage(Math.round(bronzeBaseAttack * pickaxeMultiplier))
+                .withBaseDamage(Math.round(bronzeBaseAttack * pickaxeAttackMultiplier))
                 .withToolLevel(bronzePickaxeToolLevel)
+                .withBaseDurability(bronzeToolBaseDurability)
                 .build();
 
         int miststeelBaseAttack = 12;
+        int miststeelToolBaseDurability = 560;
         MISTSTEEL_SWORD = new CustomToolBuilder(new ItemStack(Material.IRON_SWORD), "miststeel_sword")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Sword")
-                .withBaseDamage(Math.round(miststeelBaseAttack * swordMultiplier))
+                .withBaseDamage(Math.round(miststeelBaseAttack * swordAttackMultiplier))
+                .withBaseDurability(miststeelToolBaseDurability)
                 .build();
 
         MISTSTEEL_AXE = new CustomToolBuilder(new ItemStack(Material.IRON_AXE), "miststeel_axe")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Axe")
-                .withBaseDamage(Math.round(miststeelBaseAttack * axeMultiplier))
+                .withBaseDamage(Math.round(miststeelBaseAttack * axeAttackMultiplier))
+                .withBaseDurability(miststeelToolBaseDurability)
                 .build();
 
         MISTSTEEL_MACE = new CustomToolBuilder(new ItemStack(Material.IRON_SHOVEL), "miststeel_mace")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Mace")
-                .withBaseDamage(Math.round(miststeelBaseAttack * shovelMultiplier))
+                .withBaseDamage(Math.round(miststeelBaseAttack * shovelAttackMultiplier))
+                .withBaseDurability(miststeelToolBaseDurability)
                 .build();
 
         MISTSTEEL_SCYTHE = new CustomToolBuilder(new ItemStack(Material.IRON_HOE), "miststeel_scythe")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Scythe")
-                .withBaseDamage(Math.round(miststeelBaseAttack * hoeMultiplier))
+                .withBaseDamage(Math.round(miststeelBaseAttack * hoeAttackMultiplier))
+                .withBaseDurability(miststeelToolBaseDurability)
                 .build();
 
         int miststeelPickaxeToolLevel = 4;
         MISTSTEEL_PICKAXE = new CustomToolBuilder(new ItemStack(Material.IRON_PICKAXE), "miststeel_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Pickaxe")
-                .withBaseDamage(Math.round(miststeelBaseAttack * pickaxeMultiplier))
+                .withBaseDamage(Math.round(miststeelBaseAttack * pickaxeAttackMultiplier))
                 .withToolLevel(miststeelPickaxeToolLevel)
+                .withBaseDurability(miststeelToolBaseDurability)
                 .build();
 
         int sunGoldBaseAttack = 18;
+        int sunGoldTooBaseDurability = 875;
         SUN_GOLD_SWORD = new CustomToolBuilder(new ItemStack(Material.GOLDEN_SWORD), "sun_gold_sword")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Sword")
-                .withBaseDamage(Math.round(sunGoldBaseAttack * swordMultiplier))
+                .withBaseDamage(Math.round(sunGoldBaseAttack * swordAttackMultiplier))
+                .withBaseDurability(sunGoldTooBaseDurability)
                 .build();
 
         SUN_GOLD_AXE = new CustomToolBuilder(new ItemStack(Material.GOLDEN_AXE), "sun_gold_axe")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Axe")
-                .withBaseDamage(Math.round(sunGoldBaseAttack * axeMultiplier))
+                .withBaseDamage(Math.round(sunGoldBaseAttack * axeAttackMultiplier))
+                .withBaseDurability(sunGoldTooBaseDurability)
                 .build();
 
         SUN_GOLD_MACE = new CustomToolBuilder(new ItemStack(Material.GOLDEN_SHOVEL), "sun_gold_mace")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Mace")
-                .withBaseDamage(Math.round(sunGoldBaseAttack * shovelMultiplier))
+                .withBaseDamage(Math.round(sunGoldBaseAttack * shovelAttackMultiplier))
+                .withBaseDurability(sunGoldTooBaseDurability)
                 .build();
 
         int sunGoldPickaxeToolLevel = 5;
         SUN_GOLD_PICKAXE = new CustomToolBuilder(new ItemStack(Material.IRON_PICKAXE), "sun_gold_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Pickaxe")
-                .withBaseDamage(Math.round(sunGoldBaseAttack * pickaxeMultiplier))
+                .withBaseDamage(Math.round(sunGoldBaseAttack * pickaxeAttackMultiplier))
                 .withToolLevel(sunGoldPickaxeToolLevel)
+                .withBaseDurability(sunGoldTooBaseDurability)
                 .build();
 
         int corruptedDiamondBaseAttack = 30;
+        int corruptedDiamondToolBaseDurability = 1200;
         CORRUPTED_DIAMOND_SWORD = new CustomToolBuilder(new ItemStack(Material.DIAMOND_SWORD), "corrupted_diamond_sword")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Sword")
-                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * swordMultiplier))
+                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * swordAttackMultiplier))
+                .withBaseDurability(corruptedDiamondToolBaseDurability)
                 .build();
 
         CORRUPTED_DIAMOND_AXE = new CustomToolBuilder(new ItemStack(Material.DIAMOND_AXE), "corrupted_diamond_axe")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Axe")
-                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * axeMultiplier))
+                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * axeAttackMultiplier))
+                .withBaseDurability(corruptedDiamondToolBaseDurability)
                 .build();
 
         CORRUPTED_DIAMOND_MACE = new CustomToolBuilder(new ItemStack(Material.DIAMOND_SHOVEL), "corrupted_diamond_mace")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Mace")
-                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * shovelMultiplier))
+                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * shovelAttackMultiplier))
+                .withBaseDurability(corruptedDiamondToolBaseDurability)
                 .build();
 
         CORRUPTED_DIAMOND_SCYTHE = new CustomToolBuilder(new ItemStack(Material.DIAMOND_HOE), "corrupted_diamond_scythe")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Scythe")
-                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * hoeMultiplier))
+                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * hoeAttackMultiplier))
+                .withBaseDurability(corruptedDiamondToolBaseDurability)
                 .build();
 
         int corruptedDiamondPickaxeToolLevel = 6;
         CORRUPTED_DIAMOND_PICKAXE = new CustomToolBuilder(new ItemStack(Material.DIAMOND_PICKAXE), "corrupted_diamond_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Pickaxe")
-                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * pickaxeMultiplier))
+                .withBaseDamage(Math.round(corruptedDiamondBaseAttack * pickaxeAttackMultiplier))
                 .withToolLevel(corruptedDiamondPickaxeToolLevel)
+                .withBaseDurability(corruptedDiamondToolBaseDurability)
                 .build();
 
         int adamantiteBaseAttack = 34;
+        int adamantiteToolBaseDurability = 1580;
         ABYSSAL_EDGE = new CustomToolBuilder(new ItemStack(Material.NETHERITE_SWORD), "abyssal_edge")
                 .withDisplayName(ChatColor.WHITE + "Abyssal Edge")
-                .withBaseDamage(Math.round(adamantiteBaseAttack * swordMultiplier))
+                .withBaseDamage(Math.round(adamantiteBaseAttack * swordAttackMultiplier))
+                .withBaseDurability(adamantiteToolBaseDurability)
                 .build();
 
         ABYSSAL_CLEAVER = new CustomToolBuilder(new ItemStack(Material.NETHERITE_AXE), "abyssal_cleaver")
                 .withDisplayName(ChatColor.WHITE + "Abyssal Cleaver")
-                .withBaseDamage(Math.round(adamantiteBaseAttack * axeMultiplier))
+                .withBaseDamage(Math.round(adamantiteBaseAttack * axeAttackMultiplier))
+                .withBaseDurability(adamantiteToolBaseDurability)
                 .build();
 
         ABYSSAL_GRAVEDIGGER = new CustomToolBuilder(new ItemStack(Material.NETHERITE_SHOVEL), "abyssal_gravedigger")
                 .withDisplayName(ChatColor.WHITE + "Abyssal Gravedigger")
-                .withBaseDamage(Math.round(adamantiteBaseAttack * shovelMultiplier))
+                .withBaseDamage(Math.round(adamantiteBaseAttack * shovelAttackMultiplier))
+                .withBaseDurability(adamantiteToolBaseDurability)
                 .build();
 
         ABYSSAL_REAPER = new CustomToolBuilder(new ItemStack(Material.NETHERITE_HOE), "abyssal_reaper")
                 .withDisplayName(ChatColor.WHITE + "Abyssal Reaper")
-                .withBaseDamage(Math.round(adamantiteBaseAttack * hoeMultiplier))
+                .withBaseDamage(Math.round(adamantiteBaseAttack * hoeAttackMultiplier))
+                .withBaseDurability(adamantiteToolBaseDurability)
                 .build();
 
         int splinteredSwordBaseAttack = 2;
         SPLINTERED_SWORD = new CustomToolBuilder(new ItemStack(Material.WOODEN_SWORD), "splintered_sword")
                 .withDisplayName(ChatColor.WHITE + "Splintered Sword")
                 .withBaseDamage(Math.round(splinteredSwordBaseAttack))
+                .withBaseDurability(woodenToolBaseDurability)
                 .build();
 
         int arisenRevenantSwordBaseAttack = 5;
         ARISEN_REVENANT_SWORD = new CustomToolBuilder(new ItemStack(Material.WOODEN_SWORD), "arisen_revenant_sword")
                 .withDisplayName(ChatColor.WHITE + "Arisen Revenant Sword")
                 .withBaseDamage(Math.round(arisenRevenantSwordBaseAttack))
+                .withBaseDurability(stoneToolBaseDurability)
                 .build();
 
         int gravediggerBaseAttack = 8;
         GRAVEDIGGER = new CustomToolBuilder(new ItemStack(Material.STONE_SHOVEL), "gravedigger")
                 .withDisplayName(ChatColor.WHITE + "Gravedigger")
                 .withBaseDamage(Math.round(gravediggerBaseAttack))
+                .withBaseDurability(stoneToolBaseDurability)
                 .build();
 
         int witheredScytheBaseAttack = 15;
         WITHERED_SCYTHE = new CustomToolBuilder(new ItemStack(Material.STONE_HOE), "withered_scythe")
                 .withDisplayName(ChatColor.WHITE + "Withered Scythe")
                 .withBaseDamage(Math.round(witheredScytheBaseAttack))
+                .withBaseDurability(bronzeToolBaseDurability)
                 .build();
 
         int forsakenScytheBaseAttack = 20;
         FORSAKEN_SCYTHE = new CustomToolBuilder(new ItemStack(Material.STONE_HOE), "forsaken_scythe")
                 .withDisplayName(ChatColor.WHITE + "Forsaken Scythe")
                 .withBaseDamage(Math.round(forsakenScytheBaseAttack))
+                .withBaseDurability(miststeelToolBaseDurability)
                 .build();
 
+        int shortBowBaseDurability = 80;
         SHORT_BOW = new CustomToolBuilder(new ItemStack(Material.BOW), "short_bow")
                 .withDisplayName(ChatColor.WHITE + "Short Bow")
+                .withBaseDurability(shortBowBaseDurability)
                 .build();
 
+        int decayedBowBaseDurability = 50;
         DECAYED_BOW = new CustomToolBuilder(new ItemStack(Material.BOW), "decayed_bow")
                 .withDisplayName(ChatColor.WHITE + "Decayed Bow")
+                .withBaseDurability(decayedBowBaseDurability)
                 .build();
 
+        int legionaryBowBaseDurability = 150;
         LEGIONARY_BOW = new CustomToolBuilder(new ItemStack(Material.BOW), "legionary_bow")
                 .withDisplayName(ChatColor.WHITE + "Legionary Bow")
+                .withBaseDurability(legionaryBowBaseDurability)
                 .build();
 
+        int wormWoodBowBaseDurability = 200;
         WORM_WOOD_BOW = new CustomToolBuilder(new ItemStack(Material.BOW), "worm_wood_bow")
                 .withDisplayName(ChatColor.WHITE + "Worm Wood Bow")
+                .withBaseDurability(wormWoodBowBaseDurability)
                 .build();
 
+        int executionerCrossbowBaseDurability = 250;
         EXECUTIONER_CROSSBOW = new CustomToolBuilder(new ItemStack(Material.CROSSBOW), "executioner_crossbow")
                 .withDisplayName(ChatColor.WHITE + "Executioner Crossbow")
+                .withBaseDurability(executionerCrossbowBaseDurability)
                 .build();
 
         // === Potions ===

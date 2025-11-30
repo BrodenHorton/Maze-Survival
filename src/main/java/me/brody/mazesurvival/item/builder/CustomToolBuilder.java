@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CustomToolBuilder extends CustomItemBuilder<CustomToolBuilder> {
+public class CustomToolBuilder extends CustomDurabilityItemBuilder<CustomToolBuilder> {
     private static Map<Material, Double> attackSpeedByTool;
 
     static {
