@@ -21,6 +21,8 @@ import me.brody.mazesurvival.mob.custom.Bomber.BomberBuilder;
 import me.brody.mazesurvival.mob.custom.Ooze.OozeBuilder;
 import me.brody.mazesurvival.mob.custom.ChickenJockey.ChickenJockeyBuilder;
 import me.brody.mazesurvival.mob.custom.Hare.HareBuilder;
+import me.brody.mazesurvival.mob.custom.MazePiglin.MazePiglinBuilder;
+import me.brody.mazesurvival.mob.custom.NetherBeast.NetherBeastBuilder;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionType;
 
@@ -513,19 +515,18 @@ public abstract class CustomMob {
         mazePiglinDropTable.addBasicDrop(CustomItem.SUN_GOLD_NUGGET.getItemStack(), 1);
         mazePiglinDropTable.addBasicDrop(new ItemStack(Material.NETHERRACK), 1);
         mazePiglinDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.SUN_GOLD_NUGGET.getItemStack(), ItemGrade.IRON), 1);
-        MAZE_PIGLIN = new SimpleCustomArmorMobBuilder(plugin, "Maze Piglin")
+        MAZE_PIGLIN = new MazePiglinBuilder(plugin, "Maze Piglin")
                 .withMaxHealth(45)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(0)
                 .withDropTable(mazePiglinDropTable)
                 .withMainHand(new ItemStack(Material.GOLDEN_SWORD))
-                .withEntityType(EntityType.PIGLIN)
                 .build();
 
         SimpleMobDropTable barbarianDropTable = new SimpleMobDropTable();
         barbarianDropTable.addBasicDrop(new ItemStack(Material.PORKCHOP), 1);
         barbarianDropTable.addBasicDrop(CustomItem.SUN_GOLD_NUGGET.getItemStack(), 2);
-        BARBARIAN = new SimpleCustomArmorMobBuilder(plugin, "Barbarian")
+        BARBARIAN = new MazePiglinBuilder(plugin, "Barbarian")
                 .withMaxHealth(80)
                 .withMovementSpeed(0.3)
                 .withPowerAmplifier(0)
@@ -533,7 +534,7 @@ public abstract class CustomMob {
                 .withMainHand(new ItemStack(Material.GOLDEN_AXE))
                 .withHelmet(new ItemStack(Material.GOLDEN_HELMET))
                 .withChestplate(new ItemStack(Material.GOLDEN_CHESTPLATE))
-                .withEntityType(EntityType.PIGLIN_BRUTE)
+                .withBrute(true)
                 .build();
 
         SimpleMobDropTable wraithDropTable = new SimpleMobDropTable();
@@ -544,7 +545,7 @@ public abstract class CustomMob {
         wraithDropTable.addRareDrop(CustomItem.WRAITH_CHESTPLATE.getItemStack(), 1);
         wraithDropTable.addRareDrop(CustomItem.WRAITH_LEGGINGS.getItemStack(), 1);
         wraithDropTable.addRareDrop(CustomItem.WRAITH_BOOTS.getItemStack(), 1);
-        WRAITH = new SimpleCustomArmorMobBuilder(plugin, "Wraith")
+        WRAITH = new MazePiglinBuilder(plugin, "Wraith")
                 .withMaxHealth(100)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(3)
@@ -552,30 +553,28 @@ public abstract class CustomMob {
                 .withMainHand(new ItemStack(Material.NETHERITE_AXE))
                 .withHelmet(new ItemStack(Material.NETHERITE_HELMET))
                 .withChestplate(new ItemStack(Material.NETHERITE_CHESTPLATE))
-                .withEntityType(EntityType.PIGLIN_BRUTE)
+                .withBrute(true)
                 .build();
 
         SimpleMobDropTable netherBeastDropTable = new SimpleMobDropTable();
         netherBeastDropTable.addBasicDrop(new ItemStack(Material.PORKCHOP), 2);
         netherBeastDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.PORKCHOP), ItemGrade.IRON), 1);
-        NETHER_BEAST = new SimpleCustomMobBuilder(plugin, "Nether Beast")
+        NETHER_BEAST = new NetherBeastBuilder(plugin, "Nether Beast")
                 .withMaxHealth(60)
                 .withMovementSpeed(0.3)
                 .withDropTable(netherBeastDropTable)
                 .withPowerAmplifier(0)
-                .withEntityType(EntityType.HOGLIN)
                 .build();
 
         SimpleMobDropTable gluttonousBeastDropTable = new SimpleMobDropTable();
         gluttonousBeastDropTable.addBasicDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.PORKCHOP), ItemGrade.IRON), 1);
         gluttonousBeastDropTable.addBasicDrop(CustomItem.SUN_GOLD_NUGGET.getItemStack(), 1);
         gluttonousBeastDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.PORKCHOP), ItemGrade.TITANIUM), 1);
-        GLUTTONOUS_BEAST = new SimpleCustomMobBuilder(plugin, "Gluttonous Beast")
+        GLUTTONOUS_BEAST = new NetherBeastBuilder(plugin, "Gluttonous Beast")
                 .withMaxHealth(100)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(2)
                 .withDropTable(gluttonousBeastDropTable)
-                .withEntityType(EntityType.HOGLIN)
                 .build();
 
         SimpleMobDropTable mazeGhastDropTable = new SimpleMobDropTable();
