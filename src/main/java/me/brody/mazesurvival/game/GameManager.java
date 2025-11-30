@@ -145,6 +145,7 @@ public class GameManager {
         registerListener(respawnManager);
         registerListener(customRecipeCompendium);
         registerListener(initializePlayersListener);
+        registerListener(new DurabilityListener());
         registerListener(new CrusaderEnchantmentListener(plugin));
         registerListener(new LingeringShotEnchantmentListener(plugin));
         registerListener(new SoulBoundEnchantmentListener(plugin));

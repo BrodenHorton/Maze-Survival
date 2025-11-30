@@ -408,7 +408,7 @@ public class CustomItem {
                 ChatColor.GRAY + "the maze.");
         Color amethystColor = Color.fromRGB(239, 151, 249);
         int amethystHealthBoost = 6;
-        int amethystBaseDurability = 210;
+        int amethystBaseDurability = 20;
         AMETHYST_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "amethyst_helmet")
                 .withDisplayName(ChatColor.WHITE + "Amethyst Helmet")
                 .withLore(amethystArmorLore)
