@@ -33,5 +33,4 @@ public class DurabilityListener implements Listener {
         }
         e.getItem().setItemMeta(meta);
     }
-
 }

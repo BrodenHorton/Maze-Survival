@@ -163,8 +163,7 @@ public class GameManager {
         registerListener(new MobDropListener(plugin));
         registerListener(new BossListener(plugin));
         registerListener(new MarkerTeleportListener(plugin));
-        registerListener(new OreDropListener(plugin));
-        registerListener(new GoldenPickaxeBlockBreakListener());
+        registerListener(new OreDropListener());
         registerListener(new MobCaptureListener(plugin));
         registerListener(new SlimeSplitListener());
         registerListener(new SlimePoisonEffectListener());

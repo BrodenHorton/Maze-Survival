@@ -32,6 +32,7 @@ public class AreaProtectionManager implements Listener, Serializable {
         toolLevelByBreakableMaterial.put(Material.COBBLESTONE, 1);
         toolLevelByBreakableMaterial.put(Material.COAL_ORE, 1);
         toolLevelByBreakableMaterial.put(Material.AMETHYST_CLUSTER, 2);
+        toolLevelByBreakableMaterial.put(Material.AMETHYST_BLOCK, 2);
         toolLevelByBreakableMaterial.put(Material.COPPER_ORE, 2);
         toolLevelByBreakableMaterial.put(Material.LAPIS_ORE, 3);
         toolLevelByBreakableMaterial.put(Material.IRON_ORE, 3);
