@@ -40,6 +40,11 @@ public class CustomRecipes {
         REMOVED_RECIPE_MATERIALS.add(Material.GLOWSTONE);
         REMOVED_RECIPE_MATERIALS.add(Material.IRON_NUGGET);
         REMOVED_RECIPE_MATERIALS.add(Material.GOLD_NUGGET);
+        REMOVED_RECIPE_MATERIALS.add(Material.FURNACE);
+        REMOVED_RECIPE_MATERIALS.add(Material.BLAST_FURNACE);
+        REMOVED_RECIPE_MATERIALS.add(Material.SMOKER);
+        REMOVED_RECIPE_MATERIALS.add(Material.LOOM);
+        REMOVED_RECIPE_MATERIALS.add(Material.COMPOSTER);
         REMOVED_RECIPE_MATERIALS.add(Material.ENCHANTING_TABLE);
         REMOVED_RECIPE_MATERIALS.add(Material.BREWING_STAND);
         REMOVED_RECIPE_MATERIALS.add(Material.ANVIL);
@@ -302,6 +307,16 @@ public class CustomRecipes {
         shortBowRecipe.setIngredient('L', Material.OAK_LOG);
         shortBowRecipe.setIngredient('S', Material.STRING);
         Bukkit.addRecipe(shortBowRecipe);
+
+        ItemStack furnace = new ItemStack(Material.FURNACE);
+        CustomShapedRecipe customFurnaceRecipe = new CustomShapedRecipe("CCC", "C C", "CCC", furnace, "furnace");
+        customFurnaceRecipe.addIngredient('C', ItemGradeUtils.createGradedItem(new ItemStack(Material.COBBLESTONE), ItemGrade.IRON));
+        recipes.add(customFurnaceRecipe);
+        Registry.CUSTOM_RECIPE.register(customFurnaceRecipe.getId(), customFurnaceRecipe);
+        ShapedRecipe furnaceRecipe = new ShapedRecipe(new NamespacedKey(NamespacedKeys.PLUGIN_NAMESPACE, "custom-recipe-" + UUID.randomUUID()), INVALID_RECIPE_ITEM);
+        furnaceRecipe.shape("CCC", "C C", "CCC");
+        furnaceRecipe.setIngredient('C', Material.COBBLESTONE);
+        Bukkit.addRecipe(furnaceRecipe);
 
         ItemStack enchantingTable = new ItemStack(Material.ENCHANTING_TABLE);
         CustomShapedRecipe customEnchantingTableRecipe = new CustomShapedRecipe("LCL", "CMC", "LCL", enchantingTable, "enchanting_table");

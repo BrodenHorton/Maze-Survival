@@ -896,7 +896,7 @@ public class CustomItem {
                 .build();
 
         int sunGoldPickaxeToolLevel = 5;
-        SUN_GOLD_PICKAXE = new CustomToolBuilder(new ItemStack(Material.IRON_PICKAXE), "sun_gold_pickaxe")
+        SUN_GOLD_PICKAXE = new CustomToolBuilder(new ItemStack(Material.GOLDEN_PICKAXE), "sun_gold_pickaxe")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Pickaxe")
                 .withBaseDamage(Math.round(sunGoldBaseAttack * pickaxeAttackMultiplier))
                 .withToolLevel(sunGoldPickaxeToolLevel)

@@ -1,20 +1,13 @@
 package me.brody.mazesurvival.listener;
 
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.Random;
-
 public class DurabilityListener implements Listener {
-    private static final Random RNG = new Random();
 
     public DurabilityListener() {}
 

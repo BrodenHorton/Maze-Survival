@@ -29,6 +29,7 @@ public class GameState implements Serializable {
                 Registry.CUSTOM_RECIPE.get("slime_ball_iron_grade"),
                 Registry.CUSTOM_RECIPE.get("gunpowder_iron_grade"),
                 Registry.CUSTOM_RECIPE.get("wool"),
+                Registry.CUSTOM_RECIPE.get("furnace"),
                 Registry.CUSTOM_RECIPE.get("hard_leather_helmet"),
                 Registry.CUSTOM_RECIPE.get("hard_leather_chestplate"),
                 Registry.CUSTOM_RECIPE.get("hard_leather_leggings"),
