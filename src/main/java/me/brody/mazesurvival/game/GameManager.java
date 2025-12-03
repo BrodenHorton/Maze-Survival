@@ -168,6 +168,7 @@ public class GameManager {
         registerListener(new SlimeSplitListener());
         registerListener(new SlimePoisonEffectListener());
         registerListener(new MagmaCubeFireEffectListener());
+        registerListener(new SpawnEggListener(plugin));
     }
 
     private void registerListener(Listener listener) {

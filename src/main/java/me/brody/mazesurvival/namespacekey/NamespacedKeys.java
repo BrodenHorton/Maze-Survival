@@ -20,6 +20,9 @@ public class NamespacedKeys {
     // Custom Mob keys
     public static final NamespacedKey CUSTOM_MOB = new NamespacedKey(PLUGIN_NAMESPACE, "custom-mob");
 
+    // Custom Spawn Egg keys
+    public static final NamespacedKey CUSTOM_SPAWN_EGG = new NamespacedKey(PLUGIN_NAMESPACE, "custom-spawn-egg");
+
     // Boos keys
     public static final NamespacedKey REGION_BOSS = new NamespacedKey(PLUGIN_NAMESPACE, "region-boss");
 

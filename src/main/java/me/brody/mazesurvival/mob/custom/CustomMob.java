@@ -55,6 +55,7 @@ public abstract class CustomMob {
     public static CustomMob BIG_OOZE;
     public static CustomMob MEGA_OOZE;
     public static CustomMob ULTRA_OOZE;
+    public static CustomMob TINY_MAGMA_OOZE;
     public static CustomMob MAGMA_OOZE;
     public static CustomMob BIG_MAGMA_OOZE;
     public static CustomMob MEGA_MAGMA_OOZE;
@@ -438,6 +439,15 @@ public abstract class CustomMob {
                 .withSize(7)
                 .build();
 
+        SimpleMobDropTable tinyMagmaOozeDropTable = new SimpleMobDropTable();
+        tinyMagmaOozeDropTable.addBasicDrop(new ItemStack(Material.COAL), 1);
+        TINY_MAGMA_OOZE = new OozeBuilder(plugin, "Tiny Magma Ooze")
+                .withMovementSpeed(0.25)
+                .withDropTable(tinyMagmaOozeDropTable)
+                .withSize(0)
+                .withMagmaCube(true)
+                .build();
+
         SimpleMobDropTable magmaOozeDropTable = new SimpleMobDropTable();
         magmaOozeDropTable.addBasicDrop(new ItemStack(Material.COAL), 1);
         MAGMA_OOZE = new OozeBuilder(plugin, "Magma Ooze")
@@ -774,6 +784,7 @@ public abstract class CustomMob {
         registerCustomMob(BIG_OOZE);
         registerCustomMob(MEGA_OOZE);
         registerCustomMob(ULTRA_OOZE);
+        registerCustomMob(TINY_MAGMA_OOZE);
         registerCustomMob(MAGMA_OOZE);
         registerCustomMob(BIG_MAGMA_OOZE);
         registerCustomMob(MEGA_MAGMA_OOZE);
@@ -804,7 +815,7 @@ public abstract class CustomMob {
     }
 
     private static void registerCustomMob(CustomMob customMob) {
-        Registry.CUSTOM_MOB.register(customMob.getMobName().toLowerCase().replace(' ', '_'), customMob);
+        Registry.CUSTOM_MOB.register(customMob.getMobId(), customMob);
     }
 
     public abstract LivingEntity summon(Location location);
@@ -814,7 +825,7 @@ public abstract class CustomMob {
     }
 
     public String getMobId() {
-        return mobName.toLowerCase().replace(' ', '-');
+        return mobName.toLowerCase().replace(' ', '_');
     }
 
     public MobDropTable getDropTable() {

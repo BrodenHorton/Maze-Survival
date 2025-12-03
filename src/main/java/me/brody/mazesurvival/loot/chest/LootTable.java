@@ -45,7 +45,7 @@ public class LootTable extends WeightedList<Supplier<ItemStack>> {
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.APPLE)), 20);
 		ItemStack appleIronGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.APPLE), ItemGrade.IRON);
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(appleIronGrade), 5);
-		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.WHEAT_SEEDS)), 20);
+		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.WHEAT_SEEDS, 5)), 5);
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.CARROT)), 5);
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.DIRT, 10)), 20);
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.SAND, 10)), 10);
@@ -54,8 +54,9 @@ public class LootTable extends WeightedList<Supplier<ItemStack>> {
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.DIORITE, 10)), 20);
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.GRANITE, 10)), 20);
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.CHARCOAL, 5)), 10);
-		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.CLOCK)), 2);
+		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.SHEEP_SPAWN_EGG)), 1);
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.BONE)), 20);
+		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.CLOCK)), 2);
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.GOLDEN_APPLE)), 2);
 		STRONGHOLD_LOOT_TABLE.add(new SimpleLootTableEntry(CustomItem.MAZE_RUNNER_BOOTS.getItemStack()), 1);
 
@@ -100,6 +101,7 @@ public class LootTable extends WeightedList<Supplier<ItemStack>> {
 		DESERT_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.RED_SANDSTONE, 10)), 20);
 		DESERT_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.DEAD_BUSH, 3)), 10);
 		DESERT_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.BONE)), 20);
+		DESERT_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.CLOCK)), 2);
 		DESERT_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.GOLDEN_APPLE)), 2);
 		DESERT_LOOT_TABLE.add(new SimpleLootTableEntry(CustomItem.MAZE_RUNNER_BOOTS.getItemStack()), 1);
 
@@ -121,14 +123,15 @@ public class LootTable extends WeightedList<Supplier<ItemStack>> {
 		swampEnchantments.put(MazeEnchantment.UNBREAKING, 1);
 		SWAMP_LOOT_TABLE = new LootTable();
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.RAW_IRON)), 20);
-		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.LAPIS_LAZULI)), 3);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(CustomItem.ORICHALCUM.getItemStack()), 5);
+		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.LAPIS_LAZULI)), 3);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(CustomItem.SCRIPTING_PAPER.getItemStack()), 2);
 		SWAMP_LOOT_TABLE.add(new EnchantedScriptLootTableEntry(swampEnchantments, false), 1);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(CustomItem.SWIFTNESS_II.getItemStack()), 2);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(CustomItem.SWIFTNESS_II_EXTENDED.getItemStack()), 2);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.SPRUCE_LOG, 10)), 20);
-		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.SPRUCE_SAPLING)), 20);
+		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.MANGROVE_PROPAGULE)), 20);
+		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.SPRUCE_SAPLING)), 10);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.BEETROOT)), 5);
 		ItemStack beetrootIronGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.BEETROOT, 3), ItemGrade.IRON);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(beetrootIronGrade), 5);
@@ -154,6 +157,7 @@ public class LootTable extends WeightedList<Supplier<ItemStack>> {
 		beeNestItem.setItemMeta(beeNestMeta);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(beeNestItem), 5);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.BONE)), 20);
+		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.CLOCK)), 2);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.GOLDEN_APPLE)), 2);
 		SWAMP_LOOT_TABLE.add(new SimpleLootTableEntry(CustomItem.MAZE_RUNNER_BOOTS.getItemStack()), 1);
 
@@ -201,6 +205,7 @@ public class LootTable extends WeightedList<Supplier<ItemStack>> {
 		ItemStack glowstoneDustIronGrade = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOWSTONE_DUST, 5), ItemGrade.IRON);
 		NETHER_LOOT_TABLE.add(new SimpleLootTableEntry(glowstoneDustIronGrade), 3);
 		NETHER_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.BONE)), 20);
+		NETHER_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.CLOCK)), 2);
 		NETHER_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.GOLDEN_APPLE)), 2);
 		NETHER_LOOT_TABLE.add(new SimpleLootTableEntry(CustomItem.MAZE_RUNNER_BOOTS.getItemStack()), 1);
 
@@ -238,6 +243,7 @@ public class LootTable extends WeightedList<Supplier<ItemStack>> {
 		DEEP_DARK_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.OBSIDIAN, 10)), 20);
 		DEEP_DARK_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.SCULK, 10)), 20);
 		DEEP_DARK_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.BONE)), 20);
+		DEEP_DARK_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.CLOCK)), 2);
 		DEEP_DARK_LOOT_TABLE.add(new SimpleLootTableEntry(new ItemStack(Material.GOLDEN_APPLE)), 2);
 		DEEP_DARK_LOOT_TABLE.add(new SimpleLootTableEntry(CustomItem.MAZE_RUNNER_BOOTS.getItemStack()), 1);
 	}

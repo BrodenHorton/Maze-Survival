@@ -471,6 +471,11 @@ public class TradeTable extends WeightedList<Supplier<MerchantRecipe>> {
             SWAMP_TRADE_TABLE.add(new BannerPatternTradeEntry(ingredient, DEFAULT_MAX_USES), 5);
         }
         {
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.BEETROOT, 1), ItemGrade.TITANIUM);
+            ItemStack result = new ItemStack(Material.JUNGLE_SAPLING);
+            SWAMP_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 20);
+        }
+        {
             ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.BEETROOT, 2), ItemGrade.GOLD);
             ItemStack result = new ItemStack(Material.MYCELIUM);
             SWAMP_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 20);
