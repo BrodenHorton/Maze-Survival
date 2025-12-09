@@ -716,29 +716,29 @@ public class TradeTable extends WeightedList<Supplier<MerchantRecipe>> {
         {
             List<ItemStack> ingredients = List.of(
                     ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(4), ItemGrade.TITANIUM),
-                    ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 2), ItemGrade.GOLD));
+                    ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 2), ItemGrade.GOLD));
             ItemStack result = CustomItem.CORRUPTED_DIAMOND_HELMET.getItemStack();
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredients, result, DEFAULT_MAX_USES), 20);
         }
         {
             List<ItemStack> ingredients = List.of(
                     ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(4), ItemGrade.TITANIUM),
-                    ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 2), ItemGrade.GOLD));
+                    ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 2), ItemGrade.GOLD));
             ItemStack result = ItemGradeUtils.createGradedItem(CustomItem.CORRUPTED_DIAMOND.getItemStack(), ItemGrade.IRON);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredients, result, DEFAULT_MAX_USES), 20);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC), ItemGrade.TITANIUM);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC), ItemGrade.TITANIUM);
             ItemStack result = CustomItem.ADAMANTITE_INGOT.getItemStack();
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 2), ItemGrade.TITANIUM);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 2), ItemGrade.TITANIUM);
             ItemStack result = ItemGradeUtils.createGradedItem(CustomItem.ADAMANTITE_INGOT.getItemStack(), ItemGrade.IRON);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.TITANIUM);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.TITANIUM);
             ItemStack result = CustomItem.SCRIPTING_TOME.getItemStack();
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
@@ -759,104 +759,104 @@ public class TradeTable extends WeightedList<Supplier<MerchantRecipe>> {
             enchantments.put(MazeEnchantment.PUNCH, 3);
             enchantments.put(MazeEnchantment.LINGERING_SHOT, 3);
             enchantments.put(MazeEnchantment.UNBREAKING, 3);
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.TITANIUM);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.TITANIUM);
             DEEP_DARK_TRADE_TABLE.add(new EnchantedScriptTradeEntry(ingredient, enchantments, true, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 2), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 2), ItemGrade.GOLD);
             ItemStack result = CustomItem.SWIFTNESS_III.getItemStack();
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.GOLD);
             ItemStack result = CustomItem.SWIFTNESS_III_EXTENDED.getItemStack();
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.GOLD);
             ItemStack result = CustomItem.SWIFTNESS_IV.getItemStack();
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.GOLD);
             ItemStack result = CustomItem.STRENGTH_II_EXTENDED.getItemStack();
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.GOLD);
             ItemStack result = CustomItem.STRENGTH_III.getItemStack();
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.GOLD);
             ItemStack result = CustomItem.ABSORPTION_III.getItemStack();
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
         {
             List<ItemStack> ingredients = List.of(
                     ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(4), ItemGrade.TITANIUM),
-                    ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.GOLD));
+                    ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.GOLD));
             ItemStack result = new ItemStack(Material.COMPOSTER);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredients, result, DEFAULT_MAX_USES), 10);
         }
         {
             List<ItemStack> ingredients = List.of(
                     ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(4), ItemGrade.TITANIUM),
-                    ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.GOLD));
+                    ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.GOLD));
             ItemStack result = new ItemStack(Material.LOOM);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredients, result, DEFAULT_MAX_USES), 10);
         }
         {
             List<ItemStack> ingredients = List.of(
                     ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(4), ItemGrade.TITANIUM),
-                    ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.GOLD));
+                    ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.GOLD));
             ItemStack result = new ItemStack(Material.BLAST_FURNACE);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredients, result, DEFAULT_MAX_USES), 10);
         }
         {
             List<ItemStack> ingredients = List.of(
                     ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(4), ItemGrade.TITANIUM),
-                    ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 3), ItemGrade.GOLD));
+                    ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 3), ItemGrade.GOLD));
             ItemStack result = new ItemStack(Material.SMOKER);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredients, result, DEFAULT_MAX_USES), 10);
         }
         {
             List<ItemStack> ingredients = List.of(
                     ItemGradeUtils.createGradedItem(CustomItem.LOG.getItemStack(4), ItemGrade.TITANIUM),
-                    ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 5), ItemGrade.GOLD));
+                    ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 5), ItemGrade.GOLD));
             ItemStack result = new ItemStack(Material.JUKEBOX);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredients, result, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 5), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 5), ItemGrade.GOLD);
             ItemStack result = new ItemStack(Material.CLOCK);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 10);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 5), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 5), ItemGrade.GOLD);
             DEEP_DARK_TRADE_TABLE.add(new MusicDiscTradeEntry(ingredient, DEFAULT_MAX_USES), 5);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 5), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 5), ItemGrade.GOLD);
             DEEP_DARK_TRADE_TABLE.add(new BannerPatternTradeEntry(ingredient, DEFAULT_MAX_USES), 5);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 2), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 2), ItemGrade.GOLD);
             ItemStack result = new ItemStack(Material.CRYING_OBSIDIAN);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 20);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 2), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 2), ItemGrade.GOLD);
             ItemStack result = new ItemStack(Material.END_STONE);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 20);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 2), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 2), ItemGrade.GOLD);
             ItemStack result = new ItemStack(Material.END_ROD);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 20);
         }
         {
-            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.GLOW_INK_SAC, 2), ItemGrade.GOLD);
+            ItemStack ingredient = ItemGradeUtils.createGradedItem(new ItemStack(Material.INK_SAC, 2), ItemGrade.GOLD);
             ItemStack result = new ItemStack(Material.PURPUR_BLOCK);
             DEEP_DARK_TRADE_TABLE.add(new SimpleTradeEntry(ingredient, result, DEFAULT_MAX_USES), 20);
         }

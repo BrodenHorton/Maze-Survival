@@ -12,7 +12,8 @@ public class MazeSchematic implements Serializable {
     private static final String BASTION_FOLDER_PATH = SCHEMATICS_FOLDER_PATH + "/bastion";
     private static final String DEEP_DARK_FOLDER_PATH = SCHEMATICS_FOLDER_PATH + "/deepdark";
 
-    public static final MazeSchematic GLADE = new MazeSchematic(SCHEMATICS_FOLDER_PATH + "/glade-7x7.schem");
+    public static final MazeSchematic SMALL_GLADE = new MazeSchematic(SCHEMATICS_FOLDER_PATH + "/glade-7x7.schem");
+    public static final MazeSchematic GLADE = new MazeSchematic(SCHEMATICS_FOLDER_PATH + "/glade-9x9.schem");
     public static final MazeSchematic GLADE_DOOR = new MazeSchematic(SCHEMATICS_FOLDER_PATH + "/glade-door.schem");
     public static final MazeSchematic GLADE_DOOR_OPENED = new MazeSchematic(SCHEMATICS_FOLDER_PATH + "/glade-door-opened.schem");
 
