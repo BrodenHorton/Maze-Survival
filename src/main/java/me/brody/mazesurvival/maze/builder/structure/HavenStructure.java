@@ -115,7 +115,7 @@ public class HavenStructure implements MazeStructureGenerator {
 
     private void generateProtectionBounds() {
         MazeGrid grid = plugin.getMazeManager().getGrid();
-        final int havenWidth = 25;
+        final int havenWidth = 61;
         final int havenDepth = 4;
         final int havenWallWidth = 1;
         final int havenLength = grid.getMarginInBlocks() * 2 - grid.getWallWidth() - (havenWallWidth * 2);

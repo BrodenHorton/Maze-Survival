@@ -1,6 +1,7 @@
 package me.brody.mazesurvival.maze.builder.structure.consumer;
 
 import me.brody.mazesurvival.Main;
+import me.brody.mazesurvival.utils.ChatUtils;
 import me.brody.mazesurvival.utils.SerializableConsumer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

@@ -97,8 +97,8 @@ public abstract class CustomMob {
     public static void init(Main plugin) {
         SimpleMobDropTable revenantDropTable = new SimpleMobDropTable();
         revenantDropTable.addBasicDrop(new ItemStack(Material.ROTTEN_FLESH), 1);
+        revenantDropTable.addBasicDrop(new ItemStack(Material.LEATHER), 1);
         revenantDropTable.addRareDrop(new ItemStack(Material.COBBLESTONE), 5);
-        revenantDropTable.addRareDrop(new ItemStack(Material.LEATHER), 10);
         revenantDropTable.addRareDrop(CustomItem.WORN_HELMET.getItemStack(), 3);
         revenantDropTable.addRareDrop(CustomItem.SPLINTERED_SWORD.getItemStack(), 3);
         REVENANT = new SimpleCustomArmorMobBuilder(plugin, "Revenant")
@@ -194,7 +194,6 @@ public abstract class CustomMob {
         SimpleMobDropTable remainsDropTable = new SimpleMobDropTable();
         remainsDropTable.addBasicDrop(new ItemStack(Material.BONE), 1);
         remainsDropTable.addBasicDrop(new ItemStack(Material.ARROW), 1);
-        remainsDropTable.addRareDrop(new ItemStack(Material.LEATHER), 10);
         remainsDropTable.addRareDrop(CustomItem.WORN_HELMET.getItemStack(), 5);
         remainsDropTable.addRareDrop(CustomItem.SHORT_BOW.getItemStack(), 5);
         REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Remains")

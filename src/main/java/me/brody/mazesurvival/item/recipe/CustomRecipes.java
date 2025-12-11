@@ -137,6 +137,7 @@ public class CustomRecipes {
         registerThreeByThreeRecipe(new ItemStack(Material.STRING), new ItemStack(Material.WHITE_WOOL), "wool");
         registerThreeByThreeRecipe(new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.GLOWSTONE), "glowstone");
 
+        registerTwoByTwoGradedRecipes(CustomItem.LOG.getItemStack(), "custom_log");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.LEATHER), "leather");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.COBBLESTONE), "cobblestone");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.DEEPSLATE), "deepslate");

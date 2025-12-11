@@ -34,17 +34,17 @@ public class SwampBossFight implements BossFight {
         clearExistingBossMobs(region);
 
         MazeGrid grid = plugin.getMazeManager().getGrid();
-        Location bossRoomCenter = LocationUtils.centerOnBlock(grid.getRegionBossRoomWorldCenter(region));
+        Location bossRoomOrigin = LocationUtils.centerOnBlock(grid.getRegionBossRoomWorldOrigin(region));
         final float yaw = bossRoom.getDirection().id * 90;
-        Location bossSpawnLocation = new Location(bossRoomCenter.getWorld(), 0, 1, -5, yaw, 0);
+        Location bossSpawnLocation = new Location(bossRoomOrigin.getWorld(), 0, 1, -24, yaw, 0);
         bossSpawnLocation = LocationUtils.rotate(bossSpawnLocation, bossRoom.getDirection().id * -90);
-        bossSpawnLocation = LocationUtils.shift(bossSpawnLocation, bossRoomCenter);
-        Location enemySpawnLocation1 = new Location(bossRoomCenter.getWorld(), -3, 1, -3, yaw, 0);
+        bossSpawnLocation = LocationUtils.shift(bossSpawnLocation, bossRoomOrigin);
+        Location enemySpawnLocation1 = new Location(bossRoomOrigin.getWorld(), -3, 1, -22, yaw, 0);
         enemySpawnLocation1 = LocationUtils.rotate(enemySpawnLocation1, bossRoom.getDirection().id * -90);
-        enemySpawnLocation1 = LocationUtils.shift(enemySpawnLocation1, bossRoomCenter);
-        Location enemySpawnLocation2 = new Location(bossRoomCenter.getWorld(), 3, 1, -3, yaw, 0);
+        enemySpawnLocation1 = LocationUtils.shift(enemySpawnLocation1, bossRoomOrigin);
+        Location enemySpawnLocation2 = new Location(bossRoomOrigin.getWorld(), 3, 1, -22, yaw, 0);
         enemySpawnLocation2 = LocationUtils.rotate(enemySpawnLocation2, bossRoom.getDirection().id * -90);
-        enemySpawnLocation2 = LocationUtils.shift(enemySpawnLocation2, bossRoomCenter);
+        enemySpawnLocation2 = LocationUtils.shift(enemySpawnLocation2, bossRoomOrigin);
 
         LivingEntity boss = CustomMob.CHICKEN_JOCKEY.summon(bossSpawnLocation);
         boss.getPersistentDataContainer().set(NamespacedKeys.REGION_BOSS, PersistentDataType.STRING, region.getUuid().toString());

@@ -18,7 +18,7 @@ import java.util.*;
 public class DecoratorGenerator {
     private static final int GENERATION_BATCH_SIZE = 20;
     private static final long GENERATION_DELAY = 15L;
-    private static final double DECORATION_DENSITY = 0.08;
+    private static final double DECORATION_DENSITY = 0.085;
     private static final double TRAP_DENSITY = 0.05;
 
     public Event<EventArgs> onMazeDecoratorFinished;

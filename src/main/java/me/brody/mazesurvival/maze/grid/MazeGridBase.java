@@ -19,8 +19,8 @@ public class MazeGridBase implements Serializable {
 	private MazeSchematic gladeSchema;
 
 	static {
-		SMALL = new MazeGridBase("small", 9, 6, 2, 9, 9, 3, MazeSchematic.GLADE);
-		STANDARD = new MazeGridBase("standard", 9, 30, 2, 9, 25, 3, MazeSchematic.GLADE);
+		SMALL = new MazeGridBase("small", 9, 6, 2, 9, 11, 3, MazeSchematic.GLADE);
+		STANDARD = new MazeGridBase("standard", 9, 30, 2, 9, 23, 3, MazeSchematic.GLADE);
 	}
 
 	private MazeGridBase(String id, int regionCellSize, int wallHeight, int wallWidth, int gladeSize, int gridCellSize, int gridCellMargins, MazeSchematic gladeSchema) {

@@ -51,8 +51,8 @@ public class DayNightCycle implements Serializable {
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 
         final int dayTimeStep = 2;
-        final int nightTimeStep = 4;
-        final long tickTimeScale = 1;
+        final int nightTimeStep = 3;
+        final long tickTimeScale = 3;
         plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
             if(!isDay && world.getTime() >= START_OF_DAY_IN_TICKS && world.getTime() < START_OF_NIGHT_IN_TICKS) {
                 plugin.getLogger().info("Start of day invoked");

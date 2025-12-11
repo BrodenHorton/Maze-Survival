@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class SimpleMobDropTable implements MobDropTable {
-    private static final double DEFAULT_RARE_DROP_RATE = 0.5;
+    private static final double DEFAULT_RARE_DROP_RATE = 0.05;
 
     private List<MobDropEntry> basicDrops;
     private WeightedList<ItemStack> rareDrops;

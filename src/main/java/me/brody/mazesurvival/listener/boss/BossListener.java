@@ -49,8 +49,11 @@ public class BossListener implements Listener {
         plugin.getLogger().info("region level is now: " + plugin.getGameState().getClearedRegions().size());
 
         MazeRegion region = grid.getRegionByUuid(UUID.fromString(regionId));
-        Location markerLocation = LocationUtils.copy(grid.getRegionBossRoomWorldCenter(region));
-        markerLocation.setY(markerLocation.getY() + 1);
+        Location bossRoomOrigin = LocationUtils.centerOnBlock(grid.getRegionBossRoomWorldOrigin(region));
+        final float yaw = region.getBossRoom().getDirection().id * 90;
+        Location markerLocation = new Location(bossRoomOrigin.getWorld(), 0, 1, -24, yaw, 0);
+        markerLocation = LocationUtils.rotate(markerLocation, region.getBossRoom().getDirection().id * -90);
+        markerLocation = LocationUtils.shift(markerLocation, bossRoomOrigin);
         ArmorStand havenTeleportMarker = (ArmorStand)grid.getWorld().spawnEntity(markerLocation, EntityType.ARMOR_STAND);
         havenTeleportMarker.setInvisible(true);
         havenTeleportMarker.setGravity(false);
