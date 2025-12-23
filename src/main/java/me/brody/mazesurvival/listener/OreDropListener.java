@@ -46,11 +46,13 @@ public class OreDropListener implements Listener {
             return;
 
         e.setDropItems(false);
+        int copperDropCount = RNG.nextInt(1, 3);
+        ItemStack copperDrop = new ItemStack(Material.RAW_COPPER, copperDropCount);
         int tinDropCount = RNG.nextInt(0, 3);
         ItemStack tinDrop = CustomItem.TIN.getItemStack(tinDropCount);
         Location dropLocation = LocationUtils.copy(e.getBlock().getLocation());
         dropLocation = LocationUtils.centerOnBlock(dropLocation);
-        e.getBlock().getWorld().dropItemNaturally(dropLocation, new ItemStack(Material.RAW_COPPER));
+        e.getBlock().getWorld().dropItemNaturally(dropLocation, copperDrop);
         e.getBlock().getWorld().dropItemNaturally(dropLocation, tinDrop);
     }
 
@@ -92,7 +94,7 @@ public class OreDropListener implements Listener {
             return;
 
         e.setDropItems(false);
-        int dropCount = RNG.nextInt(2, 5);
+        int dropCount = RNG.nextInt(1, 4);
         ItemStack customDrop = CustomItem.SUN_GOLD_NUGGET.getItemStack(dropCount);
         e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation(), customDrop);
     }

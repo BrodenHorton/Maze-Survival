@@ -248,8 +248,8 @@ public class CustomItem {
         float bootsDurabilityMultiplier = 0.7f;
 
         Color hardLeatherColor = Color.fromRGB(128, 91, 57);
-        int hardLeatherHealthBoost = 4;
-        int hardLeatherBaseDurability = 128;
+        int hardLeatherHealthBoost = 6;
+        int hardLeatherBaseDurability = 200;
         HARD_LEATHER_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "hard_leather_helmet")
                 .withDisplayName(ChatColor.WHITE + "Hard Leather Helmet")
                 .withColor(hardLeatherColor)
@@ -280,7 +280,7 @@ public class CustomItem {
 
         Color bronzeColor = Color.fromRGB(211, 169, 55);
         int bronzeHealthBoost = 10;
-        int bronzeBaseDurability = 275;
+        int bronzeBaseDurability = 350;
         BRONZE_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "bronze_helmet")
                 .withDisplayName(ChatColor.WHITE + "Bronze Helmet")
                 .withColor(bronzeColor)
@@ -311,7 +311,7 @@ public class CustomItem {
 
         Color miststeelColor = Color.fromRGB(216, 246, 247);
         int miststeelHealthBoost = 18;
-        int miststeelBaseDurability = 320;
+        int miststeelBaseDurability = 400;
         MISTSTEEL_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "miststeel_helmet")
                 .withDisplayName(ChatColor.WHITE + "Miststeel Helmet")
                 .withColor(miststeelColor)
@@ -342,7 +342,7 @@ public class CustomItem {
 
         Color sunGoldColor = Color.fromRGB(255, 186, 0);
         int sunGoldHealthBoost = 24;
-        int sunGoldBaseDurability = 380;
+        int sunGoldBaseDurability = 450;
         SUN_GOLD_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "sun_gold_helmet")
                 .withDisplayName(ChatColor.WHITE + "Sun Gold Helmet")
                 .withColor(sunGoldColor)
@@ -373,7 +373,7 @@ public class CustomItem {
 
         Color corruptedDiamondColor = Color.fromRGB(3, 129, 171);
         int corruptedDiamondHealthBoost = 44;
-        int corruptedDiamondBaseDurability = 425;
+        int corruptedDiamondBaseDurability = 500;
         CORRUPTED_DIAMOND_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "corrupted_diamond_helmet")
                 .withDisplayName(ChatColor.WHITE + "Corrupted Diamond Helmet")
                 .withColor(corruptedDiamondColor)
@@ -408,7 +408,7 @@ public class CustomItem {
                 ChatColor.GRAY + "the maze.");
         Color amethystColor = Color.fromRGB(239, 151, 249);
         int amethystHealthBoost = 6;
-        int amethystBaseDurability = 20;
+        int amethystBaseDurability = 300;
         AMETHYST_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "amethyst_helmet")
                 .withDisplayName(ChatColor.WHITE + "Amethyst Helmet")
                 .withLore(amethystArmorLore)
@@ -446,7 +446,7 @@ public class CustomItem {
                 ChatColor.GRAY + "Immune to poison, wither, and hunger.");
         Color lapisColor = Color.fromRGB(41, 76, 255);
         int lapisHealthBoost = 12;
-        int lapisBaseDurability = 250;
+        int lapisBaseDurability = 350;
         LAPIS_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "lapis_helmet")
                 .withDisplayName(ChatColor.WHITE + "Lapis Helmet")
                 .withLore(lapisArmorLore)
@@ -485,7 +485,7 @@ public class CustomItem {
                 ChatColor.GRAY + "and magma blocks.");
         Color orichalcumColor = Color.fromRGB(118, 176, 142);
         int orichalcumHealthBoost = 20;
-        int orichalcumBaseDurability = 380;
+        int orichalcumBaseDurability = 400;
         ORICHALCUM_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "orichalcum_helmet")
                 .withDisplayName(ChatColor.WHITE + "Orichalcum Helmet")
                 .withLore(orichalcumArmorLore)
@@ -524,7 +524,7 @@ public class CustomItem {
                 ChatColor.GRAY + "damage.");
         Color mithrilColor = Color.fromRGB(158, 232, 216);
         int mithrilHealthBoost = 30;
-        int mithrilBaseDurability = 425;
+        int mithrilBaseDurability = 450;
         MITHRIL_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "mithril_helmet")
                 .withDisplayName(ChatColor.WHITE + "Mithril Helmet")
                 .withLore(mithrilArmorLore)
@@ -563,7 +563,7 @@ public class CustomItem {
                 ChatColor.GRAY + "and magma blocks.");
         Color solariumColor = Color.fromRGB(240, 26, 76);
         int solariumHealthBoost = 40;
-        int solariumBaseDurability = 460;
+        int solariumBaseDurability = 500;
         SOLARIUM_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "solarium_helmet")
                 .withDisplayName(ChatColor.WHITE + "Solarium Helmet")
                 .withLore(solariumArmorLore)
@@ -601,7 +601,7 @@ public class CustomItem {
                 ChatColor.GRAY + "Armor takes no durability damage.");
         Color adamantiteColor = Color.fromRGB(43, 8, 64);
         int adamantiteHealthBoost = 54;
-        int adamantiteBaseDurability = 500;
+        int adamantiteBaseDurability = 550;
         ADAMANTITE_HELMET = new CustomArmorBuilder(new ItemStack(Material.LEATHER_HELMET), "adamantite_helmet")
                 .withDisplayName(ChatColor.WHITE + "Adamantite Helmet")
                 .withLore(adamantiteArmorLore)
@@ -733,7 +733,7 @@ public class CustomItem {
                 .build();
 
         int mazeRunnerBootsHealthBoost = 3;
-        int mazeRunnerBaseDurability = 180;
+        int mazeRunnerBaseDurability = 250;
         Map<MazeEnchantment, Integer> mazeRunnerEnchantment = new HashMap<>();
         mazeRunnerEnchantment.put(MazeEnchantment.MAZE_RUNNER, 1);
         MAZE_RUNNER_BOOTS = new CustomArmorBuilder(new ItemStack(Material.LEATHER_BOOTS), "maze_runner_boots")
@@ -752,7 +752,7 @@ public class CustomItem {
         float pickaxeAttackMultiplier = 0.2f;
 
         int woodenBaseAttack = 3;
-        int woodenToolBaseDurability = 65;
+        int woodenToolBaseDurability = 120;
         WOODEN_SHORT_SWORD = new CustomToolBuilder(new ItemStack(Material.WOODEN_SWORD), "wooden_short_sword")
                 .withDisplayName(ChatColor.WHITE + "Wooden Short Sword")
                 .withBaseDamage(Math.round(woodenBaseAttack * swordAttackMultiplier))
@@ -785,8 +785,8 @@ public class CustomItem {
                 .withBaseDurability(woodenToolBaseDurability)
                 .build();
 
-        int stoneBaseAttack = 4;
-        int stoneToolBaseDurability = 180;
+        int stoneBaseAttack = 5;
+        int stoneToolBaseDurability = 250;
         BASTARD_SWORD = new CustomToolBuilder(new ItemStack(Material.STONE_SWORD), "bastard_sword")
                 .withDisplayName(ChatColor.WHITE + "Bastard Sword")
                 .withBaseDamage(Math.round(stoneBaseAttack * swordAttackMultiplier))
@@ -814,7 +814,7 @@ public class CustomItem {
                 .build();
 
         int bronzeBaseAttack = 8;
-        int bronzeToolBaseDurability = 250;
+        int bronzeToolBaseDurability = 380;
         BRONZE_SWORD = new CustomToolBuilder(new ItemStack(Material.STONE_SWORD), "bronze_sword")
                 .withDisplayName(ChatColor.WHITE + "Bronze Sword")
                 .withBaseDamage(Math.round(bronzeBaseAttack * swordAttackMultiplier))
@@ -1031,57 +1031,57 @@ public class CustomItem {
         // === Potions ===
         SWIFTNESS = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 30, 0, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 300, 0, false)
                 .build();
 
         SWIFTNESS_EXTENDED = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_extended")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness Extended")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 90, 0, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 600, 0, false)
                 .build();
 
         SWIFTNESS_II = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_two")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness II")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 30, 1, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 300, 1, false)
                 .build();
 
         SWIFTNESS_II_EXTENDED = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_two_extended")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness II Extended")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 90, 1, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 600, 1, false)
                 .build();
 
         SWIFTNESS_III = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_three")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness III")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 30, 2, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 300, 2, false)
                 .build();
 
         SWIFTNESS_III_EXTENDED = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_three_extended")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness III Extended")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 90, 2, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 600, 2, false)
                 .build();
 
         SWIFTNESS_IV = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_four")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness IV")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 30, 3, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 300, 3, false)
                 .build();
 
         SWIFTNESS_IV_EXTENDED = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_four_extended")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness IV Extended")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 90, 3, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 600, 3, false)
                 .build();
 
         SWIFTNESS_V = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_five")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness V")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 30, 4, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 300, 4, false)
                 .build();
 
         SWIFTNESS_V_EXTENDED = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_five_extended")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness V Extended")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 90, 4, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 600, 4, false)
                 .build();
 
         SWIFTNESS_VI = new CustomPotionBuilder(new ItemStack(Material.POTION), "swiftness_six")
                 .withDisplayName(ChatColor.AQUA + "Potion of Swiftness VI")
-                .withPotionEffect(PotionEffectType.SPEED, 20 * 30, 5, false)
+                .withPotionEffect(PotionEffectType.SPEED, 20 * 300, 5, false)
                 .build();
 
         STRENGTH = new CustomPotionBuilder(new ItemStack(Material.POTION), "strength")

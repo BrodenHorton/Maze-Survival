@@ -4,12 +4,17 @@ import me.brody.mazesurvival.utils.MathUtils;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CustomShapelessRecipe implements CustomRecipe {
     private String id;
     private List<ItemStack> ingredients;
     private ItemStack result;
+
+    public CustomShapelessRecipe(ItemStack ingredient, ItemStack result, String id) {
+        this(new ArrayList<>(Arrays.asList(ingredient)), result, id);
+    }
 
     public CustomShapelessRecipe(List<ItemStack> ingredients, ItemStack result, String id) {
         this.id = id;

@@ -34,6 +34,10 @@ public class NetherBeast extends CustomMob {
         hoglin.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
         if(powerAmplifier >= 0)
             hoglin.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
+        if(isBaby)
+            hoglin.setBaby();
+        else
+            hoglin.setAdult();
         hoglin.setImmuneToZombification(true);
 
         return hoglin;

@@ -5,6 +5,7 @@ import me.brody.mazesurvival.mob.builder.CustomMobBuilder;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Ageable;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
@@ -39,6 +40,12 @@ public class SimpleCustomMob extends CustomMob {
         mob.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
         if(powerAmplifier >= 0)
             mob.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
+        if(mob instanceof Ageable ageable) {
+            if(isBaby)
+                ageable.setBaby();
+            else
+                ageable.setAdult();
+        }
 
         return mob;
     }

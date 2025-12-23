@@ -42,6 +42,10 @@ public class MazePiglin extends CustomArmorMob {
         mob.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
         if(powerAmplifier >= 0)
             mob.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
+        if(isBaby)
+            mob.setBaby();
+        else
+            mob.setAdult();
         mob.getEquipment().setItemInMainHand(null);
         mob.getEquipment().setItemInOffHand(null);
         if(mainHandWeapon != null)

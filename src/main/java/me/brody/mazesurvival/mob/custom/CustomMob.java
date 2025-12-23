@@ -89,6 +89,7 @@ public abstract class CustomMob {
     protected double maxHealth;
     protected double movementSpeed;
     protected int powerAmplifier;
+    protected boolean isBaby;
 
     protected CustomMob(String mobName) {
         this.mobName = mobName;
@@ -126,7 +127,7 @@ public abstract class CustomMob {
         fortifiedRevenantDropTable.addRareDrop(CustomItem.MISTSTEEL_INGOT.getItemStack(), 5);
         fortifiedRevenantDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.MISTSTEEL_INGOT.getItemStack(), ItemGrade.IRON), 1);
         FORTIFIED_REVENANT = new SimpleCustomArmorMobBuilder(plugin, "Fortified Revenant")
-                .withMaxHealth(60)
+                .withMaxHealth(50)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(0)
                 .withDropTable(fortifiedRevenantDropTable)
@@ -165,7 +166,7 @@ public abstract class CustomMob {
         hungryHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(new ItemStack(Material.RAW_COPPER), ItemGrade.IRON), 1);
         hungryHorrorDropTable.addRareDrop(ItemGradeUtils.createGradedItem(CustomItem.TIN.getItemStack(), ItemGrade.IRON), 1);
         HUNGRY_HORROR = new SimpleCustomArmorMobBuilder(plugin, "Hungry Horror")
-                .withMaxHealth(30)
+                .withMaxHealth(28)
                 .withMovementSpeed(0.25)
                 .withDropTable(hungryHorrorDropTable)
                 .withHelmet(new ItemStack(Material.LEATHER_HELMET))
@@ -215,16 +216,10 @@ public abstract class CustomMob {
         desolateRemainsDropTable.addBasicDrop(new ItemStack(Material.BONE), 1);
         desolateRemainsDropTable.addBasicDrop(new ItemStack(Material.ARROW), 1);
         desolateRemainsDropTable.addRareDrop(CustomItem.SHORT_BOW.getItemStack(), 1);
-        ItemStack tippedArrows = new ItemStack(Material.TIPPED_ARROW);
-        PotionMeta tippedArrowsMeta = (PotionMeta) tippedArrows.getItemMeta();
-        tippedArrowsMeta.setBasePotionType(PotionType.POISON);
-        tippedArrows.setItemMeta(tippedArrowsMeta);
         DESOLATE_REMAINS = new SimpleCustomArmorMobBuilder(plugin, "Desolate Remains")
-                .withMaxHealth(15)
+                .withMaxHealth(18)
                 .withMovementSpeed(0.3)
                 .withDropTable(desolateRemainsDropTable)
-                .withMainHand(new ItemStack(Material.BOW))
-                .withOffHand(tippedArrows)
                 .withHelmet(new ItemStack(Material.CHAINMAIL_HELMET))
                 .withChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE))
                 .withEntityType(EntityType.SKELETON)
@@ -415,16 +410,15 @@ public abstract class CustomMob {
         bigOozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 1);
         BIG_OOZE = new OozeBuilder(plugin, "Big Ooze")
                 .withMovementSpeed(0.3)
-                .withPowerAmplifier(0)
                 .withDropTable(bigOozeDropTable)
-                .withSize(5)
+                .withSize(4)
                 .build();
 
         SimpleMobDropTable megaOozeDropTable = new SimpleMobDropTable();
         megaOozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 2);
         MEGA_OOZE = new OozeBuilder(plugin, "Mega Ooze")
                 .withMovementSpeed(0.4)
-                .withPowerAmplifier(1)
+                .withPowerAmplifier(0)
                 .withDropTable(megaOozeDropTable)
                 .withSize(6)
                 .build();
@@ -433,7 +427,7 @@ public abstract class CustomMob {
         ultraOozeDropTable.addBasicDrop(new ItemStack(Material.SLIME_BALL), 2);
         ULTRA_OOZE = new OozeBuilder(plugin, "Ultra Ooze")
                 .withMovementSpeed(0.4)
-                .withPowerAmplifier(3)
+                .withPowerAmplifier(2)
                 .withDropTable(ultraOozeDropTable)
                 .withSize(7)
                 .build();
@@ -492,7 +486,7 @@ public abstract class CustomMob {
         SimpleMobDropTable mazeBlazeDropTable = new SimpleMobDropTable();
         mazeBlazeDropTable.addBasicDrop(new ItemStack(Material.BLAZE_ROD), 1);
         MAZE_BLAZE = new SimpleCustomMobBuilder(plugin, "Maze Blaze")
-                .withMaxHealth(40)
+                .withMaxHealth(30)
                 .withMovementSpeed(0.3)
                 .withDropTable(mazeBlazeDropTable)
                 .withEntityType(EntityType.BLAZE)
@@ -501,7 +495,7 @@ public abstract class CustomMob {
         SimpleMobDropTable fieryFuryDropTable = new SimpleMobDropTable();
         fieryFuryDropTable.addBasicDrop(new ItemStack(Material.BLAZE_ROD), 2);
         FIERY_FURY = new SimpleCustomMobBuilder(plugin, "Fiery Fury")
-                .withMaxHealth(60)
+                .withMaxHealth(50)
                 .withMovementSpeed(0.35)
                 .withPowerAmplifier(2)
                 .withDropTable(fieryFuryDropTable)
@@ -749,8 +743,8 @@ public abstract class CustomMob {
                 .withMaxHealth(80)
                 .withMovementSpeed(0.4)
                 .withPowerAmplifier(2)
+                .withBaby(true)
                 .withHelmet(CustomItem.ORICHALCUM_HELMET.getItemStack())
-                .withAdult(false)
                 .build();
     }
 

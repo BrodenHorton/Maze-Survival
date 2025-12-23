@@ -15,7 +15,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class ChickenJockey extends CustomArmorMob {
     public final Main plugin;
-    private boolean isAdult;
 
     protected ChickenJockey(ChickenJockeyBuilder builder) {
         super(builder.mobName);
@@ -27,7 +26,6 @@ public class ChickenJockey extends CustomArmorMob {
         this.mainHandWeapon = builder.mainHandWeapon;
         this.offHandWeapon = builder.offHandWeapon;
         this.armor = builder.armor;
-        this.isAdult = builder.isAdult;
     }
 
     @Override
@@ -40,10 +38,10 @@ public class ChickenJockey extends CustomArmorMob {
         zombie.getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(movementSpeed);
         if(powerAmplifier >= 0)
             zombie.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200000, powerAmplifier, true));
-        if (isAdult)
-            zombie.setAdult();
-        else
+        if(isBaby)
             zombie.setBaby();
+        else
+            zombie.setAdult();
         zombie.getEquipment().setItemInMainHand(null);
         zombie.getEquipment().setItemInOffHand(null);
         if(mainHandWeapon != null)
@@ -74,16 +72,9 @@ public class ChickenJockey extends CustomArmorMob {
     }
 
     public static class ChickenJockeyBuilder extends CustomArmorMobBuilder<ChickenJockeyBuilder, ChickenJockey> {
-        public boolean isAdult;
 
         public ChickenJockeyBuilder(Main plugin, String mobName) {
             super(plugin, mobName);
-            this.isAdult = true;
-        }
-
-        public ChickenJockeyBuilder withAdult(boolean isAdult) {
-            this.isAdult = isAdult;
-            return this;
         }
 
         @Override

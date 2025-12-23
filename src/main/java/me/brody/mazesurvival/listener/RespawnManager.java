@@ -70,5 +70,7 @@ public class RespawnManager implements Listener, Serializable {
             return;
 
         e.setRespawnLocation(respawnLocationByPlayer.get(e.getPlayer().getUniqueId()));
+        /*e.getPlayer().setFoodLevel(15);
+        e.getPlayer().setSaturation(0);*/
     }
 }

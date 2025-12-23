@@ -8,10 +8,12 @@ import me.brody.mazesurvival.maze.region.MazeRegion;
 import me.brody.mazesurvival.namespacekey.NamespacedKeys;
 import me.brody.mazesurvival.utils.ChatUtils;
 import me.brody.mazesurvival.utils.LocationUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -163,7 +165,8 @@ public class WanderingTraderManager implements Listener, Serializable {
         trader.remove();
         e.setCancelled(true);
         e.getPlayer().playSound(e.getPlayer(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 0.8f);
-        ChatUtils.msg(e.getPlayer(), "&aWandering Trader has been rescued in region: &f" + region.getUuid());
+        for(Player player : Bukkit.getOnlinePlayers())
+            ChatUtils.msg(player, "&aWandering Trader has been rescued!");
     }
 
     @EventHandler

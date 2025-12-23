@@ -36,8 +36,8 @@ public class DecoratorGenerator {
         this.grid = grid;
         decorations = new ArrayDeque<>();
         weightedTraps = new WeightedList<>();
-        weightedTraps.add(CellTrap.BLINDNESS_TRAP, 2);
-        weightedTraps.add(CellTrap.SLOWNESS_TRAP, 2);
+        weightedTraps.add(CellTrap.BLINDNESS_TRAP, 5);
+        weightedTraps.add(CellTrap.SLOWNESS_TRAP, 5);
         weightedTraps.add(CellTrap.TELEPORTATION_TRAP, 1);
         isRunning = false;
     }

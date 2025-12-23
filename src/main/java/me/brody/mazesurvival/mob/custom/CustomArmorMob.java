@@ -1,6 +1,5 @@
 package me.brody.mazesurvival.mob.custom;
 
-import me.brody.mazesurvival.mob.drop.MobDropTable;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class CustomArmorMob extends CustomMob {

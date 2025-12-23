@@ -11,6 +11,7 @@ public abstract class CustomMobBuilder<T, U> {
     public double maxHealth;
     public double movementSpeed;
     public int powerAmplifier;
+    public boolean isBaby;
     public MobDropTable dropTable;
 
     public CustomMobBuilder(Main plugin, String mobName) {
@@ -19,6 +20,7 @@ public abstract class CustomMobBuilder<T, U> {
         maxHealth = 20.0;
         movementSpeed = 0.25;
         powerAmplifier = -1;
+        isBaby = false;
         dropTable = new SimpleMobDropTable();
     }
 
@@ -34,6 +36,11 @@ public abstract class CustomMobBuilder<T, U> {
 
     public T withPowerAmplifier(int powerAmplifier) {
         this.powerAmplifier = powerAmplifier;
+        return link();
+    }
+
+    public T withBaby(boolean isBaby) {
+        this.isBaby = isBaby;
         return link();
     }
 
