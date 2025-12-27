@@ -138,6 +138,12 @@ public class CustomRecipes {
         registerThreeByThreeRecipe(new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.GLOWSTONE), "glowstone");
 
         registerTwoByTwoGradedRecipes(CustomItem.LOG.getItemStack(), "custom_log");
+        CustomShapelessRecipe oakPlanksShapelessRecipe = new CustomShapelessRecipe(new ItemStack(Material.OAK_LOG), new ItemStack(Material.OAK_PLANKS, 4), "custom-standard-oak-planks");
+        recipes.add(oakPlanksShapelessRecipe);
+        Registry.CUSTOM_RECIPE.register(oakPlanksShapelessRecipe.getId(), oakPlanksShapelessRecipe);
+        CustomShapelessRecipe customOakPlanksShapelessRecipe = new CustomShapelessRecipe(CustomItem.LOG.getItemStack(), new ItemStack(Material.OAK_PLANKS, 4), "custom-oak-planks");
+        recipes.add(customOakPlanksShapelessRecipe);
+        Registry.CUSTOM_RECIPE.register(customOakPlanksShapelessRecipe.getId(), customOakPlanksShapelessRecipe);
         registerTwoByTwoGradedRecipes(new ItemStack(Material.LEATHER), "leather");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.COBBLESTONE), "cobblestone");
         registerTwoByTwoGradedRecipes(new ItemStack(Material.DEEPSLATE), "deepslate");
@@ -428,11 +434,13 @@ public class CustomRecipes {
         recipe.setIngredient('L', item.getType());
         Bukkit.addRecipe(recipe);
 
+        ItemStack reverseBaseResult = item.clone();
+        reverseBaseResult.setAmount(4);
         ItemStack reverseIronGradeResult = itemIronGrade.clone();
         reverseIronGradeResult.setAmount(4);
         ItemStack reverseGoldGradeResult = itemGoldGrade.clone();
         reverseGoldGradeResult.setAmount(4);
-        CustomShapelessRecipe reverseBaseRecipe = new CustomShapelessRecipe(itemIronGrade, new ItemStack(item.getType(), 4), recipeId + "_reverse_base");
+        CustomShapelessRecipe reverseBaseRecipe = new CustomShapelessRecipe(itemIronGrade, reverseBaseResult, recipeId + "_reverse_base");
         recipes.add(reverseBaseRecipe);
         Registry.CUSTOM_RECIPE.register(reverseBaseRecipe.getId(), reverseBaseRecipe);
         CustomShapelessRecipe reverseIronGradeRecipe = new CustomShapelessRecipe(itemGoldGrade, reverseIronGradeResult, recipeId + "_reverse_iron_grade");
